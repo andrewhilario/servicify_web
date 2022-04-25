@@ -1,0 +1,120 @@
+.login-template {
+    width: 100%;
+    height: 70vh;
+}
+
+.login-template h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 50px 0;
+}
+
+.login-form {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.login-form form {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-email {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+.login-email label {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.login-email input {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid #000000;
+    padding: 10px;
+    margin: 0 auto;
+    font-family: "Raleway";
+}
+
+.login-password {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+.login-password label {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.login-password input {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid #000000;
+    padding: 10px;
+    margin: 0 auto;
+    font-family: "Raleway";
+}
+
+.login-buttons {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+.login-buttons input {
+    width: 70%;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    color: white;
+    font-family: "Raleway";
+    margin: 20px auto;
+}
+
+.login-buttons input:nth-last-of-type(2) {
+    background-color: #507C59;
+}
+
+.login-buttons input:nth-last-of-type(1) {
+    background-color: #3B5998;
+}
+
+.seperator {
+    width: 100%;
+    text-align: center;
+    position: relative
+}
+
+.seperator p {
+    display: inline;
+    padding: 0 10px;
+    background-color: white;
+    text-align: center;
+}
+
+.seperator hr {
+    position: absolute;
+    width: 50%;
+    height: 2px;
+    background-color: #000000;
+    border: none;
+    top: 50%;
+    transform: translateX(50%);
+    z-index: -1;
+}

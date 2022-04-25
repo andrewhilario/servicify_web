@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<div class="login-template">
+    <h1>Login your Account</h1>
+    <div class="login-form">
+        <form action="">
+            <div class="login-email">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Enter your email">
+            </div>
+            <div class="login-password">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Enter your password">
+            </div>
+            <div class="login-buttons">
+                <input type="submit" value="Login">
+
+                <span class="seperator">
+                    <hr>
+                    <p>or</p>
+                </span>
+                <input type="button" value="Continue with Facebook">
+            </div>
+        </form>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+{% endblock %}
