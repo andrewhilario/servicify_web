@@ -1,0 +1,136 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="dashboard-template-1">
+    <div class="dashboard-title-header">
+        <h1>From Workers,</h1>
+        <h1>For Workers</h1>
+    </div>
+    <div class="dashboard-sub-title">
+        <h3>Make your craft known.</h3>
+    </div>
+    <div class="dashboard-setup-service-profile">
+        <a href="#">
+            Setup a Service Profile
+        </a>
+    </div>
+</div>
+<div class="dashboard-template-2">
+    <div class="dashboard-work-offers">
+        <h1>Work offers</h1>
+        <ul class="offers">
+            <li><a href="">
+                    <img src="{% static 'images/image-default.png' %}" alt="">
+                    <p>Computer Repair</p>
+                    <span>Bid Starts at &#8369;5000</span>
+                </a></li>
+            <li><a href=""><img src="{% static 'images/image-default.png' %}" alt="">
+                    <p>Room Sanitation</p>
+                    <span>Bid Starts at &#8369;5000</span>
+                </a></li>
+            <li><a href="">
+                    <img src="{% static 'images/image-default.png' %}" alt="">
+                    <p>Computer Repair</p>
+                    <span>Bid Starts at &#8369;5000</span>
+                </a></li>
+            <li><a href="">
+                    <img src="{% static 'images/image-default.png' %}" alt="">
+                    <p>Computer Repair</p>
+                    <span>Bid Starts at &#8369;5000</span>
+                </a></li>
+            <li><a href="">
+                    <img src="{% static 'images/image-default.png' %}" alt="">
+                    <p>Room Sanitation</p>
+                    <span>Bid Starts at &#8369;5000</span>
+                </a></li>
+        </ul>
+    </div>
+    <div class="dashboard-services">
+        <h1>Services</h1>
+        <ul class="services">
+            <li><a href="">
+                    <img src="{% static 'images/image-default.png' %}" alt="">
+                    <p>Miguel's Notary Services</p>
+                    <span>2.1km away - Tondo</span>
+                </a></li>
+            <li><a href="">
+                    <img src="{% static 'images/image-default.png' %}" alt="">
+                    <p>Miguel's Notary Services</p>
+                    <span>2.1km away - Tondo</span>
+                </a></li>
+            <li><a href=""><img src="{% static 'images/image-default.png' %}" alt="">
+                    <p>Miguel's Notary Services</p>
+                    <span>2.1km away - Tondo</span>
+                </a></li>
+            <li><a href=""><img src="{% static 'images/image-default.png' %}" alt="">
+                    <p>Miguel's Notary Services</p>
+                    <span>2.1km away - Tondo</span>
+                </a></li>
+            <li><a href=""><img src="{% static 'images/image-default.png' %}" alt="">
+                    <p>Miguel's Notary Services</p>
+                    <span>2.1km away - Tondo</span>
+                </a></li>
+        </ul>
+    </div>
+</div>
+<div class="dashboard-template-3">
+    <h1>Top Categories</h1>
+    <div class="dashboard-categories">
+        <div class="categories">
+            <a href="">
+                <img src="{% static 'images/electronic.png' %}" alt="">
+                <p>Electronics</p>
+            </a>
+        </div>
+        <div class="categories">
+            <a href="">
+                <img src="{% static 'images/health.png' %}" alt="">
+                <p>Health Service
+                </p>
+            </a>
+        </div>
+        <div class="categories">
+            <a href="">
+                <img src="{% static 'images/automotive.png' %}" alt="">
+                <p>Automotive</p>
+            </a>
+        </div>
+        <div class="categories">
+            <a href="">
+                <img src="{% static 'images/legal.png' %}" alt="">
+                <p>Legal Services</p>
+            </a>
+        </div>
+        <div class="categories">
+            <a href="">
+                <img src="{% static 'images/event.png' %}" alt="">
+                <p>Event Services</p>
+            </a>
+        </div>
+        <div class="categories">
+            <a href="">
+                <img src="{% static 'images/well-being.png' %}" alt="">
+                <p>Wellbeing</p>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="dashboard-template-4">
+    <h1>Join our mailing list for the updates</h1>
+    <form action="">
+        <div class="mailing-section">
+            <label for="email">Email</label>
+            <input type="email">
+        </div>
+        <div class="mailing-section">
+            <label for="fname">Full Name</label>
+            <input type="text">
+        </div>
+        <div class="mailing-section">
+            <label for="work">Work</label>
+            <input type="text">
+        </div>
+    </form>
+</div>
+{% endblock %}
