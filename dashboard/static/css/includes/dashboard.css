@@ -215,3 +215,74 @@
 .categories a img {
     margin-bottom: 20px;
 }
+
+/* Dashboard Template 4 */
+
+.dashboard-template-4 {
+    width: 100%;
+    height: 70vh;
+    background-color: white;
+}
+
+.dashboard-template-4 h1 {
+    font-size: 2.5rem;
+    width: 20%;
+    color: #000000;
+    font-weight: bold;
+    margin-top: 5%;
+    margin: 3% auto;
+    text-align: center;
+}
+
+.dashboard-template-4 form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mailing-section {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+}
+
+.mailing-section label {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 10px;
+
+}
+
+.mailing-section input {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid #000000;
+    padding: 10px;
+    margin: 0 auto;
+    font-family: "Raleway";
+}
+
+.mailing-section input:focus {
+    outline: none;
+}
+
+.mailing-section input[type="submit"] {
+    width: 50%;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding: 10px;
+    margin: 0 auto;
+    font-family: "Raleway";
+    background-color: #507C59;
+    color: white;
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-align: center;
+}
