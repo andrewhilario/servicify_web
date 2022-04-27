@@ -41,6 +41,10 @@ var scrollTop = document.getElementById('scroll-top');
 
 
 
+window.onload = () => {
+    scrollTop.classList.add('scroll-active-1');
+}
+
 window.onscroll = () => {
     if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
         scrollTop.classList.remove('scroll-active-1');

@@ -299,6 +299,7 @@
     padding: 20px;
     border-radius: 4px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transform: translateX(200%);
 }
 
 .scroll-top i {

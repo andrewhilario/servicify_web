@@ -365,3 +365,19 @@
     margin: 0 auto;
     width: 40%;
 }
+
+.register-success-template a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    margin: 20px auto;
+
+}
+
+.register-success-template a p {
+    padding: 20px 40px;
+    width: 20%;
+    margin: 0 auto;
+    background-color: #507C59;
+    border-radius: 10px;
+}
