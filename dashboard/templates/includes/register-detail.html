@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<div class="register-detail-template">
+    <h1>Enter your other details</h1>
+
+    <form action="" method="post">
+        <div class="register-detail-form">
+            <div class="register-full-name">
+                <label for="fname">Full Name</label>
+                <input type="text" name="fname" id="fname" placeholder="Enter your Full Name">
+            </div>
+            <div class="register-upload-pfp">
+                <label for="upload">Upload your Profile Picture</label>
+                <label id="pfp" for="upload-pfp">Choose your Picture</label>
+                <input type="file" name="upload-pfp" id="upload-pfp" value="Choose your Picture">
+            </div>
+            <div class="register-image-view">
+                <img src="" alt="">
+            </div>
+        </div>
+        <div class="register-detail-buttons">
+            <input id="account_type" type="button" value="Continue >">
+        </div>
+    </form>
+</div>
+
+
+{% include 'footer.html' %}
+{% endblock %}

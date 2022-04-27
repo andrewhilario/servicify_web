@@ -286,3 +286,32 @@
     font-size: 1.4rem;
     text-align: center;
 }
+
+.scroll-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 99;
+    outline: none;
+    background-color: #5d9167;
+    border: none;
+    cursor: pointer;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.scroll-top i {
+    color: white;
+    font-size: 2rem;
+}
+
+.scroll-active-1 {
+    transition: all .5s ease-in-out;
+    transform: translateX(200%);
+}
+
+.scroll-active-2 {
+    transition: all .5s ease-in-out;
+    transform: translateX(0%);
+}

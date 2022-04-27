@@ -7,5 +7,45 @@
 {% include 'navbar.html' %}
 
 
+<div class="register-template">
+    <h1>Create a New Account</h1>
+    <div class="register-form">
+        <form action="{% url 'details' %}">
+
+            <div class="main-form">
+                <div class="register-phone-num">
+                    <label for="phone-num">Phone Number</label>
+                    <input type="text" name="phone-num" id="phone-num" placeholder="Enter your phone number">
+                </div>
+                <div class="register-email">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Enter your email">
+                </div>
+                <div class="register-password">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" placeholder="Enter your password">
+                </div>
+                <div class="register-password">
+                    <label for="password">Confirm Password</label>
+                    <input type="password" name="password" id="password" placeholder="Enter your password">
+                </div>
+            </div>
+            <div class="register-buttons">
+                <input id="continue" type="button" value="Continue >">
+                <span class="seperator">
+                    <hr>
+                    <p>or</p>
+                </span>
+                <input type="button" value="Register using Facebook">
+            </div>
+        </form>
+        <div class="reg-login-btn">
+            <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+        </div>
+    </div>
+</div>
+
+
+
 {% include 'footer.html' %}
 {% endblock %}

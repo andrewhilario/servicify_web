@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+
+{% block content %}
+{% include 'navbar.html' %}
+<div class="register-success-template">
+    <h1>You’re all set!</h1>
+    <p>We’ve sent your email yourmail@mail.com the confirmation details. You may login once confirmed.</p>
+</div>
+
+
+{% include 'footer.html' %}
+{% endblock %}

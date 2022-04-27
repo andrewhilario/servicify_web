@@ -118,3 +118,15 @@
     transform: translateX(50%);
     z-index: -1;
 }
+
+.login-reg-btn {
+    text-align: center;
+}
+
+.login-reg-btn a {
+    text-decoration: none;
+    color: #507C59;
+
+    font-weight: bold;
+    margin: 20px 0;
+}
