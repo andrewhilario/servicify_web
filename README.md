@@ -34,10 +34,22 @@ CREATE DATABASE servicify;
 ```
 
 ## Usage
-*If you've already completed the steps above, you may run the server with: *
+*If you've already completed the steps above, you may run the server with:*
 ```python
 python manage.py runserver
 ```
+
+## TODO
+Lists of tasks that need to be done. 
+### Figma Prototypes *(Drew)*
+- [ ] Service request page (For serviceperson)
+- [ ] Service request confirmation
+- [ ] Work Offer page (with place bid button & bids of other users)
+- [ ] Work Offer bid page (with bid details & accept or decline)
+- [ ] Work Offer bid confirmation
+- [ ] Client Profile page (Web)
+- [ ] Serviceperson Profile
+- [ ] Search interface (with filters)
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
