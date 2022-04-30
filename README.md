@@ -41,16 +41,19 @@ python manage.py runserver
 
 ## TODO
 Lists of tasks that need to be done. 
-### Figma Prototypes *(Drew)*
-- [ ] Service request page (For serviceperson)
-- [ ] Service request confirmation
-- [ ] Work Offer page (with place bid button & bids of other users)
-- [ ] Work Offer bid page (with bid details & accept or decline)
-- [ ] Work Offer bid confirmation
-- [ ] Client Profile page (Web)
-- [ ] Serviceperson Profile
-- [ ] Search interface (with filters)
-- [ ] 404 Page
+### Figma Prototypes
+- [ ] Service request page (For serviceperson) *(Drew)*
+- [ ] Service request confirmation *(Drew)*
+- [ ] Work Offer page (with place bid button & bids of other users) *(Drew)*
+- [ ] Work Offer bid page (with bid details & accept or decline) *(Drew)*
+- [ ] Work Offer bid confirmation *(Drew)*
+- [ ] Client Profile page (Web) *(Drew)*
+- [ ] Serviceperson Profile *(Drew)*
+- [ ] Search interface (with filters) *(Drew)*
+- [ ] 404 Page *(Drew)*
+
+### System
+- [ ] Change default delete behaviour. (Instead of literal delete, add a deleted_at column.) *(Troy)*
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
