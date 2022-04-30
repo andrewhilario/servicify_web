@@ -50,6 +50,7 @@ Lists of tasks that need to be done.
 - [ ] Client Profile page (Web)
 - [ ] Serviceperson Profile
 - [ ] Search interface (with filters)
+- [ ] 404 Page
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
