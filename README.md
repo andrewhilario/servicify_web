@@ -41,7 +41,12 @@ python manage.py runserver
 
 ## TODO
 Lists of tasks that need to be done. 
+
+### Templates
+- [ ] Combine `templates\includes\register.html` and `templates\includes\register-detail.html` to single page. (Para madali mag-handle ng form) *(Drew)*
+
 ### Figma Prototypes
+- [ ] Combine `templates\includes\register.html` and `templates\includes\register-detail.html` to single page. (Para madali mag-handle ng form) *(Drew)*
 - [ ] Service request page (For serviceperson) *(Drew)*
 - [ ] Service request confirmation *(Drew)*
 - [ ] Work Offer page (with place bid button & bids of other users) *(Drew)*
