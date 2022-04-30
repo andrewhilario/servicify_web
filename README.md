@@ -30,8 +30,9 @@ psql -U postgres;
 8. Enter 'postgres' as the password.
 9. After successful login, type:
 ```bash
-CREATE DATABASE servicify;
+CREATE DATABASE servicify; # To create the database needed.
 ```
+10. You can now run the server. 
 
 ## Usage
 *If you've already completed the steps above, you may run the server with:*
@@ -46,7 +47,6 @@ Lists of tasks that need to be done.
 - [ ] Combine `templates\includes\register.html` and `templates\includes\register-detail.html` to single page. (Para madali mag-handle ng form) *(Drew)*
 
 ### Figma Prototypes
-- [ ] Combine `templates\includes\register.html` and `templates\includes\register-detail.html` to single page. (Para madali mag-handle ng form) *(Drew)*
 - [ ] Service request page (For serviceperson) *(Drew)*
 - [ ] Service request confirmation *(Drew)*
 - [ ] Work Offer page (with place bid button & bids of other users) *(Drew)*
@@ -59,6 +59,8 @@ Lists of tasks that need to be done.
 
 ### System
 - [ ] Change default delete behaviour. (Instead of literal delete, add a deleted_at column.) *(Troy)*
+- [x] User, Service, WorkOffer, Bid, ActiveService, ServiceType model *(Troy)*
+- [x] Postgres Setup *(Troy)*
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
