@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+
+{% block content %}
+{% include 'navbar.html' %}
+<div class="register-success-template">
+    <h1>Sorry!</h1>
+    <p>The confirmation link was invalid, possibly because it has already been used.</p>
+</div>
+
+
+{% include 'footer.html' %}
+{% endblock %}

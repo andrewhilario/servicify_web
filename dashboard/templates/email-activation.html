@@ -1,0 +1,14 @@
+{% autoescape off %}
+
+Hi {{ user.username }},
+
+Your account has successfully created. Please click below link to activate your account
+
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+-- 
+Do not reply to this message, as it's not being read by anyone.
+
+Servicify 2022
+
+{% endautoescape %}

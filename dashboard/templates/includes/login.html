@@ -1,23 +1,32 @@
 {% extends 'index.html' %}
-
 {% load static %}
-
-
-
 {% block content %}
 {% include 'navbar.html' %}
 
 <div class="login-template">
     <h1>Login your Account</h1>
     <div class="login-form">
-        <form action="">
+        <form method="post">
+            {% csrf_token %}
+
+            {% if form.errors %}
+            <p>Please correct the following errors:</p>
+            {% for field in form %}
+            {% if field.errors %}
+            <div class="alert alert-primary" role="alert">
+                {{ field.label }}: {{ field.errors|striptags }}
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+
             <div class="login-email">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Enter your email">
+                <label for="username">{{ form.username.label }}</label>
+                {{ form.username }}
             </div>
             <div class="login-password">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="Enter your password">
+                <label for="password">{{ form.password.label }}</label>
+                {{ form.password }}
             </div>
             <div class="login-buttons">
                 <input type="submit" value="Login">

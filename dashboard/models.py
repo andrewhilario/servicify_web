@@ -2,6 +2,11 @@ from django.db import models
 from datetime import datetime
 
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+def user_directory_path(instance, filename):
+    return 'users/avatars/{0}/{1}'.format(instance.user.id, filename)
 
 # Create your models here.
 
@@ -9,6 +14,13 @@ from django.contrib.auth.models import User
 class MainUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=15)
+    avatar = models.ImageField(
+        upload_to=user_directory_path, default='user/avatar.jpg')
+
+@ receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        MainUser.objects.create(user=instance)
 
 # For service categories
 class ServiceTypes(models.Model):
