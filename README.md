@@ -49,9 +49,9 @@ Lists of tasks that need to be done.
 ### Figma Prototypes
 - [x] Service request page (For serviceperson) *(Drew)*
 - [x] Service request confirmation *(Drew)*
-- [ ] Work Offer page (with place bid button & bids of other users) *(Drew)*
-- [ ] Work Offer bid page (with bid details & accept or decline) *(Drew)*
-- [ ] Work Offer bid confirmation *(Drew)*
+- [x] Work Offer page (with place bid button & bids of other users) *(Drew)*
+- [x] Work Offer bid page (with bid details & accept or decline) *(Drew)*
+- [x] Work Offer bid confirmation *(Drew)*
 - [ ] Client Profile page (Web) *(Drew)*
 - [ ] Serviceperson Profile *(Drew)*
 - [ ] Search interface (with filters) *(Drew)*
