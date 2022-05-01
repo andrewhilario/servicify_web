@@ -47,8 +47,8 @@ Lists of tasks that need to be done.
 - [ ] Combine `templates\includes\register.html` and `templates\includes\register-detail.html` to single page. (Para madali mag-handle ng form) *(Drew)*
 
 ### Figma Prototypes
-- [ ] Service request page (For serviceperson) *(Drew)*
-- [ ] Service request confirmation *(Drew)*
+- [x] Service request page (For serviceperson) *(Drew)*
+- [x] Service request confirmation *(Drew)*
 - [ ] Work Offer page (with place bid button & bids of other users) *(Drew)*
 - [ ] Work Offer bid page (with bid details & accept or decline) *(Drew)*
 - [ ] Work Offer bid confirmation *(Drew)*
