@@ -44,7 +44,10 @@ python manage.py runserver
 Lists of tasks that need to be done. 
 
 ### Templates
-- [ ] Combine `templates\includes\register.html` and `templates\includes\register-detail.html` to single page. (Para madali mag-handle ng form) *(Drew)*
+- [ ] Avatar Hover Menu
+- [ ] Create Service Template
+- [ ] Service View Template
+- [x] Combine `templates\includes\register.html` and `templates\includes\register-detail.html` to single page. (Para madali mag-handle ng form) *(Drew)*
 
 ### Figma Prototypes
 - [x] Service request page (For serviceperson) *(Drew)*
@@ -59,8 +62,13 @@ Lists of tasks that need to be done.
 
 ### System
 - [ ] Change default delete behaviour. (Instead of literal delete, add a deleted_at column.) *(Troy)*
+- [ ] Avatar/Image validation
+- [ ] Client/Serviceperson switch
+- [ ] Service Creation
+- [x] Login and Registration
 - [x] User, Service, WorkOffer, Bid, ActiveService, ServiceType model *(Troy)*
 - [x] Postgres Setup *(Troy)*
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
