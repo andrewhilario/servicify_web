@@ -12,15 +12,15 @@ def login(request):
 
 def register(request):
     return render(request, 'includes/register.html')
+    
+def workoffer(request):
+    return render(request, 'includes/workoffer.html')
+    
+def workoffer2(request):
+    return render(request, 'includes/workoffer2.html') 
 
+def acquireservice(request):
+    return render(request, 'includes/acquireservice.html') 
 
-def register_details(request):
-    return render(request, 'includes/register-detail.html')
-
-
-def account_type(request):
-    return render(request, 'includes/register-account-type.html')
-
-
-def register_success(request):
-    return render(request, 'includes/registration-success.html')
+def acquireservice2(request):
+    return render(request, 'includes/acquireservice2.html') 

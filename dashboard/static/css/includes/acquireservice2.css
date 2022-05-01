@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap');
+
+body{
+    font-family: 'Raleway', sans-serif;
+}
+
+.acquire-service-success-msg{
+    margin-bottom: 48px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.acquire-service1 {
+    width: 70%;
+    height: 50vh;
+    margin: 0 auto;
+}
+
+.acquire-service1 h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #000000;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.service1 {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.service1 li {
+    list-style: none;
+    margin: 0 10px;
+    width: 20%;
+}
+
+.service1 li a {
+    text-decoration: none;
+    color: black;
+    margin: 10px auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.service1 li a img {
+    width: 200px;
+    height: 200px;
+    background-color: gray;
+    margin-bottom: 10px;
+}

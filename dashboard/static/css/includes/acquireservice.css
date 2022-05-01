@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap');
+
+body{
+    font-family: 'Raleway', sans-serif;
+}
+
+.acquire-service-container{
+    width: 80%;
+    margin: auto;
+    padding: 70px;
+}
+
+.acquire-service-title{
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.acquire-service-flex{
+    display: flex;
+    justify-content: center;
+}
+
+.acquire-service-details-thumbnail{
+    width: 20%;
+}
+.acquire-service-details-thumbnail-img{
+    width: 100%;
+    height: 144px;
+    margin-bottom: 8px;
+}
+
+.acquire-service-details-thumbnail-img img{
+    border-radius: 8px;
+    height: 175px;
+    width: 450px;
+    margin-top: 24px;
+}
+
+.acquire-service-thumbnail-service-name{
+    font-weight: 600;
+    padding-top: 50px;
+}
+
+.acquire-service-form{
+    width: 30%;
+    padding: 16px;
+    margin-left : 250px;
+}
+
+.acquire-service-input{
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.acquire-service-label{
+    display: block;
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.acquire-service-container input, textarea{
+    width: 100%;
+    border: 2px solid black;
+    border-radius: 4px;
+    outline: none;
+    padding: 8px;
+}
+
+.acquire-service-container textarea{
+    height: 128px;
+    font: 'Raleway', sans-serif;
+}
+
+.acquire-service-form-button input[type="button"]{
+    width: 100%;
+    padding: 16px 8px;
+    background-color: #507c59;
+    border: 1px solid #507c59;
+    border-radius: 4px;
+
+    font: 16px 'Raleway', sans-serif;
+    font-weight: 600;
+    color: white;
+}
+
+.acquire-service-details{
+    padding: 16px;
+}
+
+.acquire-service-details-card{
+    padding: 16px;
+    display: flex;
+}
+
+.acquire-service-details-card-img{
+    width: 144px;
+    height: 144px;
+    margin-right: 24px;
+}
+
+.acquire-service-details-card-img img{
+    width: 100%;
+    border-radius: 50%;
+}
+
+.acquire-service-card-details{
+    font-weight: 600;
+}
+
+.acquire-service-card-title{
+    font-size: 24px;
+}
+
+.acquire-service-client-name{
+    font-size: 20px;
+}
+
+.acquire-service-card-values{
+    font-weight: 400;
+}
+
+.acquire-service {
+    width: 70%;
+    height: 50vh;
+    margin: 0 auto;
+}
+
+.acquire-service h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #000000;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.service {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.service li {
+    list-style: none;
+    margin: 0 10px;
+    width: 20%;
+}
+
+.service li a {
+    text-decoration: none;
+    color: black;
+    margin: 10px auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.service li a img {
+    width: 200px;
+    height: 200px;
+    background-color: gray;
+    margin-bottom: 10px;
+}
