@@ -2,6 +2,14 @@
 {% load static %}
 {% block content %}
 
+<style>
+    .avatar {
+        height: 60px;
+        width: 60px;
+        background-color: #000;
+        border-radius: 50%;
+    }
+</style>
 
 <div class="navigation-bar">
     <div class="logo-navbar">
@@ -10,6 +18,22 @@
         </a>
     </div>
     <ul class="navlinks">
+        
+        {% if request.user.is_authenticated %}
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+        <li><a href="">{{ request.user.first_name }}</a></li>
+        <li>
+            <a href="/">
+                <img class="avatar" src="
+            {% for data in avatar %}
+            {{ data.avatar.url }}
+            {% endfor %}
+            ">
+                
+            </a>
+        </li>
+
+        {% else %}
         <li><a href="/">Home</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Contact</a></li>
@@ -21,6 +45,7 @@
                 <img src="{% static 'images/search-icon.png' %}" alt="search-icon">
             </button>
         </div>
+        {% endif %}
     </ul>
 
 </div>

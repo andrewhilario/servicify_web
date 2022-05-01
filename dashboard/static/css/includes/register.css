@@ -1,383 +1,438 @@
 .register-template {
-    width: 100%;
-    height: 70vh;
+  width: 100%;
+  height: 80vh;
 }
 
 .register-template h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    text-align: center;
-    padding: 50px 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 50px 0;
 }
 
 .register-form {
-    width: 90%;
-    margin: 0 auto;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .register-form form {
-    width: 80%;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
 }
 
 .main-form {
-    width: 50%;
-    margin-bottom: 35px;
+  width: 50%;
+  margin-bottom: 35px;
 }
 
 .register-email {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0;
-
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
 }
 
 .register-email label {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .register-email input {
-    width: 100%;
-    height: 40px;
-    border-radius: 5px;
-    border: 2px solid #000000;
-    padding: 10px;
-    margin: 0 auto;
-    font-family: "Raleway";
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  border: 2px solid #000000;
+  padding: 10px;
+  margin: 0 auto;
+  font-family: "Raleway";
 }
 
 .register-password {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
 }
 
 .register-password label {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .register-password input {
-    width: 100%;
-    height: 40px;
-    border-radius: 5px;
-    border: 2px solid #000000;
-    padding: 10px;
-    margin: 0 auto;
-    font-family: "Raleway";
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  border: 2px solid #000000;
+  padding: 10px;
+  margin: 0 auto;
+  font-family: "Raleway";
 }
 
-.register-phone-num {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0;
+.register-username {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
 }
 
-.register-phone-num label {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
+.register-username label {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
-.register-phone-num input {
-    width: 100%;
-    height: 40px;
-    border-radius: 5px;
-    border: 2px solid #000000;
-    padding: 10px;
-    margin: 0 auto;
-    font-family: "Raleway";
+.register-username input {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  border: 2px solid #000000;
+  padding: 10px;
+  margin: 0 auto;
+  font-family: "Raleway";
 }
 
 .register-buttons {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    margin: 55px auto;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 55px auto;
 }
 
 .register-buttons input {
-    width: 60%;
-    height: 40px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    color: white;
-    font-family: "Raleway";
-    margin: 25px auto;
-    cursor: pointer;
+  width: 60%;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  color: white;
+  font-family: "Raleway";
+  margin: 25px auto;
+  cursor: pointer;
 }
 
 .register-buttons input:nth-last-of-type(2) {
-    background-color: #507C59;
-
+  background-color: #507c59;
 }
 
 .register-buttons input:nth-last-of-type(1) {
-    background-color: #3B5998;
-
+  background-color: #3b5998;
 }
 
 .seperator {
-    width: 100%;
-    text-align: center;
-    position: relative
+  width: 100%;
+  text-align: center;
+  position: relative;
 }
 
 .seperator p {
-    display: inline;
-    padding: 0 10px;
-    background-color: white;
-    text-align: center;
+  display: inline;
+  padding: 0 10px;
+  background-color: white;
+  text-align: center;
 }
 
 .seperator hr {
-    position: absolute;
-    width: 50%;
-    height: 2px;
-    background-color: #000000;
-    border: none;
-    top: 50%;
-    transform: translateX(50%);
-    z-index: -1;
+  position: absolute;
+  width: 50%;
+  height: 2px;
+  background-color: #000000;
+  border: none;
+  top: 50%;
+  transform: translateX(50%);
+  z-index: -1;
 }
 
 .reg-login-btn {
-    text-align: center;
+  text-align: center;
 }
 
 .reg-login-btn a {
-    text-decoration: none;
-    color: #507C59;
+  text-decoration: none;
+  color: #507c59;
 
-    font-weight: bold;
-    margin: 20px auto;
+  font-weight: bold;
+  margin: 20px auto;
 }
 
 /* Detail Page for Register */
 
-
 .register-detail-template {
-    width: 100%;
-    height: 100vh;
-    margin: 0 auto;
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
 }
 
 .register-detail-template h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    text-align: center;
-    padding: 50px 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 50px 0;
 }
 
 .register-detail-form {
-    width: 30%;
-    margin: 0 auto;
+  width: 30%;
+  margin: 0 auto;
 }
 
 .register-full-name {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.register-fname {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin-right: 5px;
 }
 
 .register-full-name label {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .register-full-name input {
-    width: 100%;
-    height: 40px;
-    border-radius: 5px;
-    border: 2px solid #000000;
-    padding: 10px;
-    margin: 0 auto;
-    font-family: "Raleway";
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  border: 2px solid #3d2121;
+  padding: 10px;
+  margin: 0 auto;
+  font-family: "Raleway";
 }
 
-
 .register-upload-pfp {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
 }
 
 .register-upload-pfp label {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
-.register-upload-pfp input[type='file'] {
-    width: 100%;
-    height: 100%;
-    display: none;
+.register-upload-pfp input[type="file"] {
+  width: 100%;
+  height: 100%;
+  display: none;
 }
 
 #pfp {
-    font-size: 1rem;
-    text-align: center;
-    width: 100%;
-    height: 40px;
-    border-radius: 5px;
-    background-color: #507C59;
-    border: None;
-    padding: 10px;
-    color: white;
-    margin: 0 auto;
-    font-family: "Raleway";
-    cursor: pointer;
+  font-size: 1rem;
+  text-align: center;
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #507c59;
+  border: None;
+  padding: 10px;
+  color: white;
+  margin: 0 auto;
+  font-family: "Raleway";
+  cursor: pointer;
 }
 
 .register-detail-buttons {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    margin: 55px auto;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 55px auto;
 }
 
 .register-detail-buttons input {
-    width: 60%;
-    position: relative;
-    height: 40px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    color: white;
-    font-family: "Raleway";
-    margin: 0 auto;
-    cursor: pointer;
-    background-color: #507C59;
-    z-index: 2;
+  width: 60%;
+  position: relative;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  color: white;
+  font-family: "Raleway";
+  margin: 0 auto;
+  cursor: pointer;
+  background-color: #507c59;
+  z-index: 2;
 }
 
 .register-image-view {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
 }
 
 .register-image-view img {
-    width: 80%;
-    height: 45vh;
-    margin: 0 auto;
-    background-color: gray;
+  width: 80%;
+  height: 45vh;
+  margin: 0 auto;
+  background-color: gray;
 }
 
 /* Account Type Template */
 
-
 .account-type-template {
-    width: 100%;
-    height: 60vh;
-    margin: 0 auto;
+  width: 100%;
+  height: 60vh;
+  margin: 0 auto;
 }
 
 .account-type-template h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    text-align: center;
-    padding: 80px 0px;
-    margin: 0 auto;
-    width: 20%;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 80px 0px;
+  margin: 0 auto;
+  width: 20%;
 }
 
 .account-type-choices {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    justify-content: space-around;
-    margin: 0 auto;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
 }
 
 .worker {
-    height: 40%;
-    width: 33%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    background-color: #507C59;
-    border-radius: 20px;
-    color: white;
-    cursor: pointer;
+  height: 40%;
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  background-color: #507c59;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
 }
 
 .account-type-choices span {
-    width: 33%;
-    height: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    font-weight: bold;
-    font-size: 2rem;
+  width: 33%;
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  font-weight: bold;
+  font-size: 2rem;
 }
 
 .employer {
-    height: 40%;
-    width: 33%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    background-color: #507C59;
-    border-radius: 20px;
-    color: white;
-    cursor: pointer;
+  height: 40%;
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  background-color: #507c59;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
 }
 
 /* Register success Template */
 
 .register-success-template {
-    width: 100%;
-    height: 60vh;
-    margin: 0 auto;
+  width: 100%;
+  height: 60vh;
+  margin: 0 auto;
 }
 
 .register-success-template h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    text-align: center;
-    padding: 80px 0px;
-    margin: 0 auto;
-    width: 20%;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 80px 0px;
+  margin: 0 auto;
+  width: 20%;
 }
 
 .register-success-template p {
-    font-size: 1.3rem;
-    font-weight: bold;
-    text-align: center;
-    padding: 80px 0px;
-    margin: 0 auto;
-    width: 40%;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 80px 0px;
+  margin: 0 auto;
+  width: 40%;
 }
 
 .register-success-template a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    margin: 20px auto;
-
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  margin: 20px auto;
 }
 
 .register-success-template a p {
-    padding: 20px 40px;
-    width: 20%;
-    margin: 0 auto;
-    background-color: #507C59;
-    border-radius: 10px;
+  padding: 20px 40px;
+  width: 20%;
+  margin: 0 auto;
+  background-color: #507c59;
+  border-radius: 10px;
+}
+
+.avatar-wrapper {
+  position: relative;
+  height: 200px;
+  width: 200px;
+  margin: 10px auto;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 1px 1px 10px -1px #507c59;
+  transition: all 0.3s ease;
+}
+.avatar-wrapper:hover {
+  transform: scale(1.01);
+  cursor: pointer;
+}
+.avatar-wrapper:hover .profile-pic {
+  opacity: 0.9;
+}
+.profile-pic {
+  height: 100%;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+.profile-pic:after {
+  content: "Upload your image here";
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  font-size: 0.8rem;
+  color: #34495e;
+  text-align: center;
+}
+.upload-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+.upload-button .fa-arrow-circle-up {
+  position: absolute;
+  font-size: 234px;
+  top: -17px;
+  left: 0;
+  text-align: center;
+  opacity: 0;
+  transition: all 0.3s ease;
+  color: #34495e;
+}
+.upload-button:hover .fa-arrow-circle-up {
+  opacity: 0.9;
 }

@@ -20,7 +20,7 @@
 
 .navlinks {
     display: flex;
-    justify-content: space-around;
+    justify-content: end;
     align-items: center;
     width: 50%;
     margin-right: 10%;
