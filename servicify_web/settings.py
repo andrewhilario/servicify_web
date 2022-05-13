@@ -94,6 +94,8 @@ DATABASES = {
 
         'HOST': '127.0.0.1',
 
+        #please change the port thanks
+
         'PORT': '8080',
 
     }
