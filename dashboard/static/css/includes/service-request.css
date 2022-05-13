@@ -222,6 +222,7 @@
 .vs-pfp-name h3 {
     font-size: 1.4rem;
     font-weight: bold;
+
 }
 
 .vs-pfp-other-details ul {
@@ -281,6 +282,7 @@
     font-family: 'Raleway', sans-serif;
     font-weight: bold;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    cursor: pointer;
 }
 
 .view-service-page-btns input[type='button']:nth-of-type(1) {
