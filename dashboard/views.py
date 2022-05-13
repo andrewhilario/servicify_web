@@ -96,13 +96,17 @@ def activate(request, uidb64, token):
         return render(request, 'includes/registration-invalid.html')
 
 
-def register_details(request):
-    return render(request, 'includes/register-detail.html')
-
-
-def account_type(request):
-    return render(request, 'includes/register-account-type.html')
-
 
 def register_success(request):
     return render(request, 'includes/registration-success.html')
+
+
+def profile_page(request):
+    return render(request, 'includes/profile-page.html')
+
+
+def service_request(request):
+    return render(request, 'includes/service-request.html')
+
+def view_service(request):
+    return render(request, 'includes/view-service.html')

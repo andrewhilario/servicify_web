@@ -24,6 +24,7 @@
     align-items: center;
     width: 50%;
     margin-right: 10%;
+    position: relative;
 }
 
 .navlinks li {
@@ -51,5 +52,49 @@
     height: 100%;
     border: none;
     background: none;
+    cursor: pointer;
+}
+
+.hover-profile {
+    display: none;
+    position: absolute;
+    top: 110%;
+    right: 0;
+    width: 30%;
+    background: #507c59;
+    border-radius: 20px;
+
+}
+
+.navlinks-clicked {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 30px 10px;
+}
+
+.navlinks-clicked li {
+    list-style: none;
+    margin: 10px 10px;
+}
+
+.navlinks-clicked li a {
+    color: white;
+}
+
+
+.navlinks-clicked li a i {
+    margin-right: 20px;
+}
+
+.hover-profile-active {
+    display: block;
+}
+
+#avatar {
+    border: none;
+    outline: none;
+    background: transparent;
     cursor: pointer;
 }

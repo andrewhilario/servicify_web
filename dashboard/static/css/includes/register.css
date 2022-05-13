@@ -1,6 +1,6 @@
 .register-template {
   width: 100%;
-  height: 80vh;
+  height: 100vh;
 }
 
 .register-template h1 {
@@ -393,18 +393,22 @@
   box-shadow: 1px 1px 10px -1px #507c59;
   transition: all 0.3s ease;
 }
+
 .avatar-wrapper:hover {
   transform: scale(1.01);
   cursor: pointer;
 }
+
 .avatar-wrapper:hover .profile-pic {
   opacity: 0.9;
 }
+
 .profile-pic {
   height: 100%;
   width: 100%;
   transition: all 0.3s ease;
 }
+
 .profile-pic:after {
   content: "Upload your image here";
   top: 50%;
@@ -416,6 +420,7 @@
   color: #34495e;
   text-align: center;
 }
+
 .upload-button {
   position: absolute;
   top: 0;
@@ -423,6 +428,7 @@
   height: 100%;
   width: 100%;
 }
+
 .upload-button .fa-arrow-circle-up {
   position: absolute;
   font-size: 234px;
@@ -433,6 +439,59 @@
   transition: all 0.3s ease;
   color: #34495e;
 }
+
 .upload-button:hover .fa-arrow-circle-up {
   opacity: 0.9;
+}
+
+
+/* Account Type CSS */
+.register-account-type {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.register-account-type h3 {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.account-type-selection {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 40px auto;
+}
+
+.account-type-selection button {
+  width: 45%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  background-color: #507c59;
+  cursor: pointer;
+}
+
+.account-type-selection button i {
+  font-size: 1.5rem;
+  margin: 0 10px;
+  color: white;
+}
+
+.account-type-selection button p {
+  font-size: 1rem;
+  font-family: 'Raleway';
+  color: white;
+}
+
+/* Account Type Animation CSS */
+
+.account-type-selection button:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  color: black;
 }

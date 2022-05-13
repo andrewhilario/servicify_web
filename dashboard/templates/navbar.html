@@ -22,14 +22,25 @@
         <li><a href="{% url 'logout' %}">Logout</a></li>
         <li><a href="">{{ request.user.first_name }}</a></li>
         <li>
-            <a href="/">
+            <button id="avatar">
                 <img class="avatar" src="
             {% for data in avatar %}
             {{ data.avatar.url }}
             {% endfor %}
             ">
-                
-            </a>
+            </button>
+        </li>
+        <li class="hover-profile" id="navlinks-profile">
+            <ul class="navlinks-clicked">
+                <li><a href="{% url 'profile' %}"><i class="fa-solid fa-user"></i>Profile</a></li>
+                <li><a href="/"><i class="fa-solid fa-house-chimney"></i>Home</a></li>
+                <li><a href="#"><i class="fa-solid fa-circle-info"></i>About</a></li>
+                <li><a href="#"><i class="fa-solid fa-phone"></i>Contact</a></li>
+                <li><a href="{% url 'service_request' %}"><i class="fa-solid fa-wrench"></i>Service Requests</a></li>
+                <li><a href="{% url 'acquireservice' %}"><i class="fa-solid fa-shop"></i>Service Marketplace</a></li>
+                <li><a href="{% url 'workoffer' %}"><i class="fa-solid fa-briefcase"></i>Work Offer</a></li>
+
+            </ul>
         </li>
 
         {% else %}

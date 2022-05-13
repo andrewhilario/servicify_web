@@ -1,0 +1,230 @@
+.profile_page {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.profile-header-image {
+    width: 100%;
+    height: 30vh;
+}
+
+.profile-header-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-picture-outer {
+    width: 250px;
+    height: 250px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    margin: -80px auto;
+    z-index: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-picture {
+    width: 90%;
+    height: 90%;
+    background-color: white;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profile-header-info {
+    width: 50%;
+    height: 50vh;
+    background-color: #749E7D;
+    margin: 0 auto;
+    margin-bottom: 10%;
+    border-radius: 20px;
+
+}
+
+.profile-form {
+    padding: 40px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.profile-name {
+    margin-top: 12%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-name p {
+    font-size: 2rem;
+    font-weight: bold;
+
+}
+
+.profile-name span {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.profile-phone {
+    margin-top: 3%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-phone p {
+    font-size: 2.5rem;
+    font-weight: bold;
+
+}
+
+.profile-phone span {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.profile-email {
+    margin: 3% auto;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-email p {
+    font-size: 2rem;
+    font-weight: bold;
+
+}
+
+.profile-email span {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.facebook-connect {
+    margin-top: 3%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    background-color: #3B5998;
+    width: 400px;
+    height: 50px;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px
+}
+
+.facebook-connect a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.facebook-connect a i {
+    margin-right: 10px;
+    color: #ffffff;
+    text-align: center;
+
+}
+
+.reviews {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.reviews-header {
+    text-align: center;
+    margin: 30px auto;
+}
+
+.reviews-content {
+    width: 100%;
+    background-color: #749E7D;
+    margin: 0 auto;
+    margin-bottom: 10%;
+    border-radius: 20px;
+    display: flex;
+    color: white;
+    justify-content: space-between;
+}
+
+.name-and-reviews {
+    margin: 20px auto;
+}
+
+.review-sub-contents {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+#profile-pic {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin: 20px 10px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.review-sub-contents-2 {
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.review-sub-content {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.reviews-sub-contents-3 {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin: 20px;
+}
+
+
+
+.pic-and-reviews img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    padding: 10px;
+}
+
+.review {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.review img {
+    width: 65px;
+    height: 65px;
+    object-fit: cover;
+    padding: 10px 0;
+}

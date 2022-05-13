@@ -1,40 +1,40 @@
-var detail_btn = document.getElementById('continue');
+// var detail_btn = document.getElementById('continue');
 
 
-if (detail_btn) {
+// if (detail_btn) {
 
 
-    detail_btn.addEventListener('click', () => {
-        location.href = "details"
-    });
+//     detail_btn.addEventListener('click', () => {
+//         location.href = "details"
+//     });
 
-}
+// }
 
-var account_type = document.getElementById('account_type');
+// var account_type = document.getElementById('account_type');
 
-if (account_type) {
+// if (account_type) {
 
-    account_type.addEventListener('click', () => {
-        location.href = "account-type"
-    });
-
-
-}
+//     account_type.addEventListener('click', () => {
+//         location.href = "account-type"
+//     });
 
 
-var worker = document.getElementById('worker');
-var employer = document.getElementById('employer');
+// }
 
-if (worker) {
-    worker.addEventListener('click', () => {
-        location.href = "success?type=worker"
-    });
-}
-if (employer) {
-    employer.addEventListener('click', () => {
-        location.href = "success?type=employer"
-    });
-}
+
+// var worker = document.getElementById('worker');
+// var employer = document.getElementById('employer');
+
+// if (worker) {
+//     worker.addEventListener('click', () => {
+//         location.href = "success?type=worker"
+//     });
+// }
+// if (employer) {
+//     employer.addEventListener('click', () => {
+//         location.href = "success?type=employer"
+//     });
+// }
 
 
 var scrollTop = document.getElementById('scroll-top');
@@ -82,3 +82,15 @@ if (acquireservice) {
         window.location.href = "/acquireservice2"
     }
 }
+
+
+var avatar = document.getElementById('avatar');
+var clicked_link = document.getElementById('navlinks-profile');
+
+
+if (avatar) {
+    avatar.onclick = () => {
+        clicked_link.classList.toggle('hover-profile-active');
+    }
+}
+

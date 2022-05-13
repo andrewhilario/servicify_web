@@ -1,0 +1,105 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="profile_page">
+    <div class="profile-section">
+        <div class="profile-header-image">
+            <img src="{% static 'images/background-homepage.png'%}" alt="">
+        </div>
+        <div class="profile-picture-outer">
+            <div class="profile-picture">
+                <img src="{% for data in avatar %}
+                {{ data.avatar.url }}
+                {% endfor %}" alt="">
+            </div>
+        </div>
+        <div class="profile-header-info">
+            <div class="profile-form">
+                <div class="profile-name">
+                    <p>{{ request.user.first_name }} {{request.user.last_name}}</p>
+                    <span>Full Name</span>
+                </div>
+                <div class="profile-phone">
+                    <p>09123456789</p>
+                    <span>Phone Number</span>
+                </div>
+                <div class="profile-email">
+                    <p>{{ request.user.email }}</p>
+                    <span>email</span>
+                </div>
+                <div class="facebook-connect">
+                    <a href="#">
+                        <i class="fa-brands fa-facebook"></i>
+                        <p>{{request.user.first_name}} {{request.user.last_name}}</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="reviews">
+            <div class="reviews-header">
+                <h2>Recent Service Reviews</h2>
+            </div>
+            <div class="reviews-content">
+                <div class="review-sub-contents">
+                    <img src="{% for data in avatar %}
+                    {{ data.avatar.url }}
+                    {% endfor %}" alt="" id="profile-pic">
+                    <div class="reviews-sub-contents-2">
+                        <div class="name-and-reviews">
+                            <p>{{request.user.first_name}} {{request.user.last_name}}</p>
+                            <p>Reviews: </p>
+                        </div>
+                        <div class="review">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime nostrum alias aliquam
+                                aspernatur modi iusto velit id. Rem, quam repudiandae!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-sub-content">
+                    <div class="reviews-sub-contents-3">
+                        <div class="pic-and-reviews">
+                            <img src="{% static 'images/background-homepage.png'%}" alt="">
+                        </div>
+                        <div class="review">
+                            <img src="{% static 'images/background-homepage.png' %}" alt="">
+                            <img src="{% static 'images/background-homepage.png' %}" alt="">
+                            <img src="{% static 'images/background-homepage.png' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="reviews-content">
+                <div class="review-sub-contents">
+                    <img src="{% for data in avatar %}
+                    {{ data.avatar.url }}
+                    {% endfor %}" alt="" id="profile-pic">
+                    <div class="reviews-sub-contents-2">
+                        <div class="name-and-reviews">
+                            <p>{{request.user.first_name}} {{request.user.last_name}}</p>
+                            <p>Reviews: </p>
+                        </div>
+                        <div class="review">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime nostrum alias aliquam
+                                aspernatur modi iusto velit id. Rem, quam repudiandae!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-sub-content">
+                    <div class="reviews-sub-contents-3">
+                        <div class="pic-and-reviews">
+                            <img src="{% static 'images/background-homepage.png'%}" alt="">
+                        </div>
+                        <div class="review">
+                            <img src="{% static 'images/background-homepage.png' %}" alt="">
+                            <img src="{% static 'images/background-homepage.png' %}" alt="">
+                            <img src="{% static 'images/background-homepage.png' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button id="scroll-top" class="scroll-top"><i class="fa-solid fa-arrow-up"></i></button>
+    {% include 'footer.html' %}
+    {% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="view-service-page">
+    <a href="{% url 'service_request' %}">
+        <i class="fa-solid fa-caret-left"></i>
+        <span>Return to Service Request</span>
+    </a>
+    <h2>Juan Dela Cruz has requested your Service</h2>
+    <p>Offer Amount: &#8369;5000.00</p>
+    <div class="view-service-page-contents">
+        <div class="vs-profile">
+            <div class="vs-pfp">
+                <img src="{% for data in avatar %}
+                {{ data.avatar.url }}
+                {% endfor %}" alt="">
+            </div>
+            <div class="vs-pfp-details">
+                <div class="vs-pfp-name">
+                    <h3>Juan Dela Cruz</h3>
+                    <span>Client's Name</span>
+                </div>
+                <div class="vs-pfp-other-details">
+                    <ul>
+                        <li>
+                            <p>Join date: </p>
+                            <span>2/22/22</span>
+                        </li>
+                        <li>
+                            <p>Location: </p>
+                            <span>Pasig City</span>
+                        </li>
+                        <li>
+                            <p>Service: </p>
+                            <span>Legal Service</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="vs-message">
+            <h4>Message: </h4>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis harum voluptas officia, veniam eos sequi
+                consequuntur enim placeat ducimus necessitatibus corporis? Magnam officia animi ipsum autem
+                reprehenderit assumenda in odit. <br> <br>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis harum voluptas officia, veniam eos sequi
+                consequuntur enim placeat ducimus necessitatibus corporis? Magnam officia animi ipsum autem
+                reprehenderit assumenda in odit</p>
+        </div>
+    </div>
+    <div class="view-service-page-btns">
+        <input type="button" value="Accept Offer">
+        <input type="button" value="Decline Offer">
+    </div>
+</div>
+
+
+{% include 'footer.html' %}
+{% endblock %}
