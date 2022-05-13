@@ -44,7 +44,7 @@ python manage.py runserver
 Lists of tasks that need to be done. 
 
 ### Templates
-- [ ] Avatar Hover Menu
+- [x] Avatar Hover Menu
 - [ ] Create Service Template
 - [ ] Service View Template
 - [x] Combine `templates\includes\register.html` and `templates\includes\register-detail.html` to single page. (Para madali mag-handle ng form) *(Drew)*
