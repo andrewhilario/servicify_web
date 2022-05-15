@@ -47,20 +47,22 @@ Lists of tasks that need to be done.
 - [ ] Work Offer Details Template (https://imgur.com/a/Yee5niQ) (Drew)
 - [ ] Work Offer Biddings Template (Use Tables) (https://imgur.com/a/wjoMysa)
 - [ ] Create Service Template (https://imgur.com/a/frlOmJ7)
+- [ ] Serviceperson Profile (https://imgur.com/a/4TaTYlB)
+- [ ] 404 Page (https://imgur.com/a/wOgJtl9)
+- [ ] Search Interface (https://imgur.com/a/DEYYeET)
 - [x] Avatar Hover Menu
 - [x] Combine `templates\includes\register.html` and `templates\includes\register-detail.html` to single page. (Para madali mag-handle ng form) *(Drew)*
 
 ### Figma Prototypes
+- [ ] Service View Template (equivalent of https://imgur.com/a/Yee5niQ for service)
 - [x] Service request page (For serviceperson) *(Drew)*
 - [x] Service request confirmation *(Drew)*
 - [x] Work Offer page (with place bid button & bids of other users) *(Drew)*
 - [x] Work Offer bid page (with bid details & accept or decline) *(Drew)*
 - [x] Work Offer bid confirmation *(Drew)*
-- [ ] Service View Template (equivalent of https://imgur.com/a/Yee5niQ for service)
-- [ ] Client Profile page (Web) *(Drew)*
-- [ ] Serviceperson Profile *(Drew)*
-- [ ] Search interface (with filters) *(Drew)*
-- [ ] 404 Page *(Drew)*
+- [x] Client Profile page (Web) *(Drew)*
+- [x] Search interface (with filters) *(Drew)*
+- [x] 404 Page *(Drew)*
 
 ### System
 - [ ] Change default delete behaviour. (Instead of literal delete, add a deleted_at column.) *(Troy)*
