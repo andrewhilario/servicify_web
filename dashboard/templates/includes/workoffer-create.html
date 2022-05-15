@@ -18,6 +18,7 @@
 
                 reader.onload = function (e) {
                     document.querySelector('.work-image').setAttribute('src', e.target.result);
+                    document.getElementById('upload').style.display = 'none';
                 }
 
                 reader.readAsDataURL(input.files[0]);
@@ -30,6 +31,7 @@
 
         document.querySelector(".create-work-upload-button").addEventListener('click', function () {
             document.querySelector(".create-work-file-upload").click()
+
         });
     });
 </script>
@@ -53,15 +55,16 @@
         {% csrf_token %}
         <div class="work-offer-create-flex">
             <div class="work-offer-thumbnail">
-                
+
                 <div class="thumbnail-wrapper">
                     <img class="work-image" src="{% static 'images/image-default.png' %}" />
                     <div class="create-work-upload-button">
                     </div>
                     <!-- <input class="create-work-file-upload" type="file" accept="image/*" name="thumbnail" /> -->
                     {{ form.thumbnail}}
+                    <p id="upload">Click to upload image</p>
                 </div>
-                <p>Click to upload image</p>
+
             </div>
 
             <div class="work-offer-create-form">
