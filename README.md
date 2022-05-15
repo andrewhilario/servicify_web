@@ -64,6 +64,10 @@ Lists of tasks that need to be done.
 - [x] Search interface (with filters) *(Drew)*
 - [x] 404 Page *(Drew)*
 
+### Template Changes
+- [ ] Make Dashboard images fit to box (Not streched and not full)
+- [ ] Add 'Browse More' on the end of slide (at the end of Work Offers and Services) (https://imgur.com/a/aE5YJzI)
+
 ### System
 - [ ] Change default delete behaviour. (Instead of literal delete, add a deleted_at column.) *(Troy)*
 - [ ] Avatar/Image validation
