@@ -1,0 +1,93 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+<script>
+    function ready(fn) {
+        if (document.readyState != 'loading') {
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+    }
+
+    ready(function () {
+        var readURL = function (input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    document.querySelector('.work-image').setAttribute('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        document.querySelector(".create-work-file-upload").addEventListener('change', function () {
+            readURL(this);
+        });
+
+        document.querySelector(".create-work-upload-button").addEventListener('click', function () {
+            document.querySelector(".create-work-file-upload").click()
+        });
+    });
+</script>
+<div class="work-offer-create-container">
+
+    {% if form.errors or errors %}
+    <div class="work-offer-create-title-error">
+        <h1>Sorry 😟</h1>
+        <p>Unable to proceed/submit. Please check your input and try again.</p>
+        <p>Please make sure you dont have an existing work offer.</p>
+    </div>
+    {% else %}
+    <div class="work-offer-create-title">
+        <h1>Create a work offer</h1>
+        <p>Connect with freelancers, part-timers and professional services</p>
+    </div>
+
+
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="work-offer-create-flex">
+            <div class="work-offer-thumbnail">
+                
+                <div class="thumbnail-wrapper">
+                    <img class="work-image" src="{% static 'images/image-default.png' %}" />
+                    <div class="create-work-upload-button">
+                    </div>
+                    <!-- <input class="create-work-file-upload" type="file" accept="image/*" name="thumbnail" /> -->
+                    {{ form.thumbnail}}
+                </div>
+                <p>Click to upload image</p>
+            </div>
+
+            <div class="work-offer-create-form">
+                <div class="work-offer-create-input">
+                    <label for="" class="work-offer-create-label">Client</label>
+                    {{ client_name }} (You)
+                </div>
+                <div class="work-offer-create-input">
+                    <label for="" class="work-offer-create-label">{{ form.work_name.label }}</label>
+                    {{ form.work_name }}
+                </div>
+                <div class="work-offer-create-input">
+                    <label for="" class="work-offer-create-label">{{ form.min_pay.label }}</label>
+                    {{ form.min_pay }}
+                </div>
+                <div class="work-offer-create-input">
+                    <label for="" class="work-offer-create-label">{{ form.description.label }}</label>
+                    {{ form.description }}
+                </div>
+                <div class="work-offer-create-form-button">
+                    <input type="submit" id="create-workoffer" value="Create Work" />
+                </div>
+            </div>
+        </div>
+    </form>
+    {% endif %}
+</div>
+{% include 'footer.html' %}
+{% endblock %}

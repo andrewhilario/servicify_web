@@ -18,6 +18,7 @@ urlpatterns = [
     path('service-request/view/', views.view_service, name='view_service'),
     path('acquireservice/', views.acquireservice, name='acquireservice'),
     path('acquireservice2/', views.acquireservice2, name='acquireservice2'),
+    path('createworkoffer/', views.createworkoffer, name='createworkoffer'),
     path('workoffer/', views.workoffer, name='workoffer'),
     path('workoffer2/', views.workoffer2, name='workoffer2'),
     
@@ -25,7 +26,7 @@ urlpatterns = [
     path('biddings/view/', views.view_work_offer_bidding, name='view_work_offer_bidding'),
     
     path('register/success', views.register_success, name='register_success'),
-    path('activate/<slug:uidb64>/<slug:token>)/',
+    path('activate/<slug:uidb64>/<slug:token>/',
          views.activate, name='activate'),
     path('profile/', views.profile_page, name='profile'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

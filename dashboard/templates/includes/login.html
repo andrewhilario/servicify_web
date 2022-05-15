@@ -11,13 +11,9 @@
 
             {% if form.errors %}
             <p>Please correct the following errors:</p>
-            {% for field in form %}
-            {% if field.errors %}
             <div class="alert alert-primary" role="alert">
-                {{ field.label }}: {{ field.errors|striptags }}
+                Your username or password is incorrect.
             </div>
-            {% endif %}
-            {% endfor %}
             {% endif %}
 
             <div class="login-email">

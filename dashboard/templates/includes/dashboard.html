@@ -1,5 +1,6 @@
 {% extends 'index.html' %}
 {% load static %}
+{% load humanize %}
 {% block content %}
 {% include 'navbar.html' %}
 <div class="dashboard-template-1">
@@ -20,30 +21,17 @@
     <div class="dashboard-work-offers">
         <h1>Work offers</h1>
         <ul class="offers">
-            <li><a href="">
-                    <img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Computer Repair</p>
-                    <span>Bid Starts at &#8369;5000</span>
-                </a></li>
-            <li><a href=""><img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Room Sanitation</p>
-                    <span>Bid Starts at &#8369;5000</span>
-                </a></li>
-            <li><a href="">
-                    <img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Computer Repair</p>
-                    <span>Bid Starts at &#8369;5000</span>
-                </a></li>
-            <li><a href="">
-                    <img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Computer Repair</p>
-                    <span>Bid Starts at &#8369;5000</span>
-                </a></li>
-            <li><a href="">
-                    <img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Room Sanitation</p>
-                    <span>Bid Starts at &#8369;5000</span>
-                </a></li>
+            {% for work_offer in work_offers %}
+            <li>
+                <a href="">
+                    <div class="work-offer-thumbnail-parent">
+                        <img src="{{ work_offer.thumbnail.url }}" alt="">
+                    </div>
+                    <p>{{ work_offer.work_name }}</p>
+                    <span>Bid Starts at &#8369;{% filter intcomma %}{{ work_offer.min_pay|floatformat }}{% endfilter %}</span>
+                </a>
+            </li>
+            {% endfor %}
         </ul>
     </div>
     <div class="dashboard-services">
@@ -119,6 +107,7 @@
 <div class="dashboard-template-4">
     <h1>Join our mailing list for the updates</h1>
     <form action="">
+        {% csrf_token %}
         <div class="mailing-section">
             <label for="email">Email</label>
             <input type="email">

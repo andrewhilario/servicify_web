@@ -44,27 +44,39 @@ python manage.py runserver
 Lists of tasks that need to be done. 
 
 ### Templates
+- [x] Work Offer Details Template (https://imgur.com/a/Yee5niQ) (Drew)
+- [x] Work Offer Biddings Template (Use Tables) (https://imgur.com/a/wjoMysa)
+- [ ] Create Service Template (https://imgur.com/a/frlOmJ7)
+- [x] Serviceperson Profile (https://imgur.com/a/4TaTYlB)
+- [ ] Client Profile (https://imgur.com/a/ysW7OtE)
+- [ ] 404 Page (https://imgur.com/a/wOgJtl9)
+- [ ] Search Interface (https://imgur.com/a/DEYYeET)
 - [x] Avatar Hover Menu
-- [ ] Create Service Template
-- [ ] Service View Template
 - [x] Combine `templates\includes\register.html` and `templates\includes\register-detail.html` to single page. (Para madali mag-handle ng form) *(Drew)*
 
 ### Figma Prototypes
+- [ ] Service View Page (equivalent of https://imgur.com/a/Yee5niQ for service)
+- [ ] List of Services Page
+- [ ] List of Work Offers Page
 - [x] Service request page (For serviceperson) *(Drew)*
 - [x] Service request confirmation *(Drew)*
 - [x] Work Offer page (with place bid button & bids of other users) *(Drew)*
 - [x] Work Offer bid page (with bid details & accept or decline) *(Drew)*
 - [x] Work Offer bid confirmation *(Drew)*
-- [ ] Client Profile page (Web) *(Drew)*
-- [ ] Serviceperson Profile *(Drew)*
-- [ ] Search interface (with filters) *(Drew)*
-- [ ] 404 Page *(Drew)*
+- [x] Client Profile page (Web) *(Drew)*
+- [x] Search interface (with filters) *(Drew)*
+- [x] 404 Page *(Drew)*
+
+### Template Changes
+- [ ] Make Dashboard images fit to box (Not streched and not full)
+- [ ] Add 'Browse More' on the end of slide (at the end of Work Offers and Services) (https://imgur.com/a/aE5YJzI)
 
 ### System
 - [ ] Change default delete behaviour. (Instead of literal delete, add a deleted_at column.) *(Troy)*
 - [ ] Avatar/Image validation
 - [ ] Client/Serviceperson switch
 - [ ] Service Creation
+- [x] Work Offer Creation
 - [x] Login and Registration
 - [x] User, Service, WorkOffer, Bid, ActiveService, ServiceType model *(Troy)*
 - [x] Postgres Setup *(Troy)*

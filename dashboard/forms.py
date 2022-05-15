@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, PasswordChangeForm, SetPasswordForm
-from .models import MainUser
+from .models import MainUser, WorkOffer
 
 
 class UserLoginForm(AuthenticationForm):
@@ -93,3 +93,19 @@ class MainUserRegistrationForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['avatar'].widget.attrs.update(
             {'class': 'file-upload', 'name': 'avatar'})
+
+
+class CreateWorkOfferForm(forms.ModelForm):
+    work_name = forms.CharField(
+        label='Name', min_length=5, max_length=100, help_text='Required')
+    description = forms.CharField(label='Description', min_length=5, max_length=1000, help_text='Required', widget=forms.Textarea)
+    min_pay = forms.DecimalField(label='Minimum Pay (PHP)', max_digits=19, decimal_places=4, help_text='Required')
+
+    class Meta:
+        model = WorkOffer
+        fields = ['work_name', 'description', 'min_pay', 'thumbnail']
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['thumbnail'].widget.attrs.update(
+            {'class': 'create-work-file-upload', 'name': 'thumbnail'})

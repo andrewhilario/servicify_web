@@ -19,7 +19,6 @@
     </div>
     <ul class="navlinks">
         {% if request.user.is_authenticated %}
-        <li><a href="{% url 'logout' %}">Logout</a></li>
         <li><a href="">{{ request.user.first_name }}</a></li>
         <li>
             <button id="avatar">
@@ -38,10 +37,16 @@
                 <li><a href="#"><i class="fa-solid fa-phone"></i>Contact</a></li>
                 <li><a href="{% url 'service_request' %}"><i class="fa-solid fa-wrench"></i>Service Requests</a></li>
                 <li><a href="{% url 'acquireservice' %}"><i class="fa-solid fa-shop"></i>Service Marketplace</a></li>
+<<<<<<< HEAD
                 <li><a href="{% url 'workoffer' %}"><i class="fa-solid fa-briefcase"></i>Work Offer</a></li>
                 <li><a href="{% url 'work_offer_bidding' %}"><i class="fa-solid fa-gavel"></i>Work Offer Biddings</a>
                 </li>
 
+=======
+                <li><a href="{% url 'createworkoffer' %}"><i class="fa-solid fa-briefcase"></i>Create Work Offer</a></li>
+                <li><a href="{% url 'workoffer' %}"><i class="fa-solid fa-briefcase"></i>Work Offers</a></li>
+                <li><a href="{% url 'logout' %}"><i class="fa-solid fa-door-open"></i>Logout</a></li>
+>>>>>>> 9f9b18d68b79230919172c3ced1654480a7f70d6
             </ul>
         </li>
 

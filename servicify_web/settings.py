@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'dashboard.apps.DashboardConfig',
 ]
 
@@ -96,7 +97,7 @@ DATABASES = {
 
         #please change the port thanks
 
-        'PORT': '8080',
+        'PORT': '5432',
 
     }
 }
@@ -151,3 +152,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # DEV
 
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/login/'
