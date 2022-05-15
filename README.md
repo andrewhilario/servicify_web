@@ -44,8 +44,8 @@ python manage.py runserver
 Lists of tasks that need to be done. 
 
 ### Templates
-- [ ] Work Offer Details Page (https://imgur.com/a/Yee5niQ)
-- [ ] Work Offer Biddings (Use Tables) (https://imgur.com/a/wjoMysa)
+- [ ] Work Offer Details Template (https://imgur.com/a/Yee5niQ) (Drew)
+- [ ] Work Offer Biddings Template (Use Tables) (https://imgur.com/a/wjoMysa)
 - [ ] Create Service Template (https://imgur.com/a/frlOmJ7)
 - [x] Avatar Hover Menu
 - [x] Combine `templates\includes\register.html` and `templates\includes\register-detail.html` to single page. (Para madali mag-handle ng form) *(Drew)*
