@@ -44,8 +44,8 @@ python manage.py runserver
 Lists of tasks that need to be done. 
 
 ### Templates
-- [ ] Work Offer Details Template (https://imgur.com/a/Yee5niQ) (Drew)
-- [ ] Work Offer Biddings Template (Use Tables) (https://imgur.com/a/wjoMysa)
+- [x] Work Offer Details Template (https://imgur.com/a/Yee5niQ) (Drew)
+- [x] Work Offer Biddings Template (Use Tables) (https://imgur.com/a/wjoMysa)
 - [ ] Create Service Template (https://imgur.com/a/frlOmJ7)
 - [ ] Serviceperson Profile (https://imgur.com/a/4TaTYlB)
 - [ ] 404 Page (https://imgur.com/a/wOgJtl9)
