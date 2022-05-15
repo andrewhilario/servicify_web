@@ -20,6 +20,10 @@ urlpatterns = [
     path('acquireservice2/', views.acquireservice2, name='acquireservice2'),
     path('workoffer/', views.workoffer, name='workoffer'),
     path('workoffer2/', views.workoffer2, name='workoffer2'),
+    
+    path('biddings/', views.work_offer_bidding, name='work_offer_bidding'),
+    path('biddings/view/', views.view_work_offer_bidding, name='view_work_offer_bidding'),
+    
     path('register/success', views.register_success, name='register_success'),
     path('activate/<slug:uidb64>/<slug:token>)/',
          views.activate, name='activate'),

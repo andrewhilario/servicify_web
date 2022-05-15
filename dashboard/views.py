@@ -37,7 +37,7 @@ def logout_user(request):
 
 
 def workoffer(request):
-    return render(request, 'includes/workoffer.html')
+    return render(request, 'includes/work-offer.html')
     
 def workoffer2(request):
     return render(request, 'includes/workoffer2.html') 
@@ -110,3 +110,11 @@ def service_request(request):
 
 def view_service(request):
     return render(request, 'includes/view-service.html')
+
+
+def work_offer_bidding(request):
+    return render(request, 'includes/work-offer-bidding.html')
+
+
+def view_work_offer_bidding(request):
+    return render(request, 'includes/view-work-offer-bid.html')

@@ -1,0 +1,150 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="wo-bidding">
+    <a href="/">
+        <i class="fa-solid fa-caret-left"></i>
+        <span>Return to Homepage</span>
+    </a>
+    <h2>Work Offer Biddings</h2>
+    <div class="wo-contents">
+        <div class="wo-image-view">
+            <div class="wo-main-img">
+                <img src="{% static 'images/wo-carpentry-1.png' %}" alt="">
+            </div>
+            <div class="wo-img-thumbs">
+
+                <div class="wo-sub-img">
+                    <img src="{% static 'images/wo-carpentry-1.png' %}" alt="">
+                </div>
+                <div class="wo-sub-img">
+                    <img src="{% static 'images/wo-carpentry-2.png' %}" alt="">
+                </div>
+                <div class="wo-sub-img">
+                    <img src="{% static 'images/wo-carpentry-3.png' %}" alt="">
+                </div>
+
+            </div>
+        </div>
+        <div class="wo-details-and-bid">
+            <div class="wo-sub-contents">
+                <div class="wo-details">
+                    <h3>Carpenter</h3>
+                    <div class="wo-sub-details">
+                        <div class="wo-img-sub-details">
+                            <div class="wo-img-container">
+                                <img src="{% for data in avatar %}
+                                {{ data.avatar.url }}
+                                {% endfor %}" alt="">
+                            </div>
+                            <span>⭐⭐⭐⭐⭐</span>
+                        </div>
+                        <div class="wo-content-sub-details">
+                            <ul>
+                                <li>
+                                    <p>Posted By:</p>
+                                    <span>Juan Dela Cruz</span>
+                                </li>
+                                <li>
+                                    <p>Location:</p>
+                                    <span>Muntinlupa City</span>
+                                </li>
+                                <li>
+                                    <p>Work Posted: </p>
+                                    <span>5</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="wo-description">
+                        <span><strong>Description: </strong></span> <br>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Quisquam, quidem.
+                    </p>
+                </div>
+                <div class="wo-time-limit">
+                    <div class="wo-timer">
+                        <i class="fa-solid fa-clock"></i>
+                        <span>6:14:24:02</span>
+                    </div>
+                </div>
+            </div>
+            <div class="wo-pricing">
+                <div class="wo-current-price">
+                    <p>Current Price:</p>
+                    <span>₱5,400.00</span>
+                </div>
+                <div class="wo-bid-incre">
+                    <p>Bid increment:</p>
+                    <span>₱100.00</span>
+                </div>
+            </div>
+            <div class="wo-bidding-input">
+                <div class="wo-bid-input">
+                    <p>₱</p>
+                    <input type="text" placeholder="Enter your bid">
+                </div>
+                <div class="wo-bid-btn">
+                    <input type="button" value="Bid Now">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wo-bidders">
+        <div class="wo-active-and-total-bids">
+            <div class="wo-active-bids">
+                <i class="fa-solid fa-hand"></i>
+                <div class="wo-sub-content">
+                    <span>3</span>
+                    <p>Active Bids:</p>
+                </div>
+            </div>
+            <div class="wo-total-bids">
+                <i class="fa-solid fa-gavel"></i>
+                <div class="wo-sub-content">
+                    <span>5</span>
+                    <p>Total Bids</p>
+                </div>
+            </div>
+        </div>
+        <div class="wo-latest-bidder">
+            <div class="wo-latest-bid">
+                <div class="wo-latest-bid-content">
+                    <p>Latest Bidder: </p>
+                    <span>Miguelito Juaqin</span>
+                </div>
+                <div class="wo-latest-bid-content">
+                    <p>Latest Bid: </p>
+                    <span>₱200</span>
+                </div>
+            </div>
+            <div class="wo-other-bid">
+                <p>Other Bids:</p>
+                <div class="wo-other-bid-tbl">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Bidder</th>
+                                <th>Bid</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Juan Galerio Guanzon</td>
+                                <td>₱100</td>
+                            </tr>
+                            <tr>
+                                <td>Antonio Maharlika</td>
+                                <td>₱50</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<button id="scroll-top" class="scroll-top"><i class="fa-solid fa-arrow-up"></i></button>
+{% include 'footer.html' %}
+{% endblock %}

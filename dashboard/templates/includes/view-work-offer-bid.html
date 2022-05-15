@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="view-work-offer-page">
+    <a href="{% url 'service_request' %}">
+        <i class="fa-solid fa-caret-left"></i>
+        <span>Return to Work Offer Biddings</span>
+    </a>
+    <h2>Miguelito Juaqin has bid your offer</h2>
+    <p>Total bid amount: &#8369;5,400.00</p>
+    <div class="view-work-offer-page-contents">
+        <div class="vwo-profile">
+            <div class="vwo-pfp">
+                <img src="{% for data in avatar %}
+                {{ data.avatar.url }}
+                {% endfor %}" alt="">
+            </div>
+            <div class="vwo-pfp-details">
+                <div class="vwo-pfp-name">
+                    <h3>Juan Dela Cruz</h3>
+                    <span>Client's Name</span>
+                </div>
+                <div class="vs-pfp-other-details">
+                    <ul>
+                        <li>
+                            <p>Join date: </p>
+                            <span>2/22/22</span>
+                        </li>
+                        <li>
+                            <p>Location: </p>
+                            <span>Pasig City</span>
+                        </li>
+                        <li>
+                            <p>Service: </p>
+                            <span>Legal Service</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="view-work-offer-btns">
+        <input type="button" value="Accept Bid">
+        <input type="button" value="Decline Bid">
+    </div>
+</div>
+
+
+{% include 'footer.html' %}
+{% endblock %}

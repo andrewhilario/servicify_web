@@ -1,0 +1,389 @@
+.wo-bidding {
+    width: 90%;
+
+    margin: 0 auto;
+}
+
+.wo-bidding a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.wo-bidding a i,
+.wo-bidding a span {
+    padding: 40px 0px;
+}
+
+.wo-bidding h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 30px 0px;
+}
+
+.wo-contents {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 5%;
+}
+
+.wo-image-view {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.wo-main-img {
+    width: 100%;
+    height: 450px;
+    border-radius: 40px;
+    margin: 20px;
+}
+
+.wo-main-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wo-img-thumbs {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    align-self: start;
+    margin-top: 20px;
+}
+
+.wo-sub-img {
+    width: 100px;
+    height: 70px;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.wo-sub-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wo-details-and-bid {
+    width: 40%;
+    margin: 0 50px;
+}
+
+.wo-sub-contents {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-self: start;
+}
+
+.wo-details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.wo-details h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.wo-sub-details {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.wo-img-sub-details {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.wo-img-container {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #749E7D;
+}
+
+.wo-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #749E7D;
+}
+
+
+.wo-content-sub-details ul {
+
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.wo-content-sub-details ul li {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.wo-content-sub-details ul li p {
+    font-weight: bold;
+}
+
+.wo-time-limit {
+    width: 30%;
+}
+
+.wo-timer {
+    width: 150px;
+    height: 100px;
+    background-color: #749E7D;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    color: white;
+}
+
+.wo-timer i {
+    text-align: center;
+    width: 100%;
+    font-size: 2rem;
+    margin: 10px 0;
+    color: white;
+}
+
+.wo-timer span {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.wo-description {
+    width: 100%;
+    padding: 20px 0;
+}
+
+.wo-description span {
+    margin-right: 10px;
+}
+
+.wo-pricing {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.wo-current-price {
+    display: flex;
+    justify-content: space-between;
+}
+
+.wo-current-price p {
+    font-size: 2.3rem;
+    font-weight: bold;
+    margin-right: 10px
+}
+
+.wo-current-price span {
+    font-size: 2.3rem;
+    font-weight: bold;
+    margin-right: 10px
+}
+
+.wo-bid-incre {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.wo-bid-incre span {
+
+    margin-right: 10px
+}
+
+.wo-bidding-input {
+    width: 100%;
+    display: flex;
+}
+
+.wo-bid-input {
+    width: 100%;
+    position: relative;
+}
+
+.wo-bid-input p {
+    position: absolute;
+    top: 15%;
+    left: 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.wo-bid-input input {
+    width: 90%;
+    height: 50px;
+    border-radius: 5px;
+    border: 2px solid #749E7D;
+    padding-left: 35px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.wo-bid-btn input[type="button"] {
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #749E7D;
+    background-color: #749E7D;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0 50px;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* bidders */
+
+.wo-bidders {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    margin: 100px auto;
+}
+
+.wo-active-and-total-bids {
+    width: 35%;
+    background-color: #7CB687;
+    color: white;
+    padding: 40px 0;
+    border-radius: 20px;
+}
+
+.wo-active-bids {
+    width: 70%;
+    display: flex;
+    padding: 40px 0;
+    justify-content: space-around;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.wo-active-bids i {
+    font-size: 5rem;
+}
+
+.wo-sub-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+}
+
+.wo-sub-content span {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.wo-sub-content p {
+    text-align: center;
+    font-weight: 500;
+}
+
+.wo-total-bids {
+    width: 70%;
+    display: flex;
+    padding: 40px 0;
+    justify-content: space-around;
+    margin: 0 auto;
+    align-items: center;
+}
+
+
+.wo-total-bids i {
+    font-size: 5rem;
+}
+
+.wo-latest-bidder {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+
+
+    background-color: #7CB687;
+    color: white;
+    border-radius: 20px;
+}
+
+.wo-latest-bid {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    padding: 40px;
+    padding-bottom: 30px;
+    font-size: 2rem;
+
+}
+
+.wo-latest-bid-content {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.wo-other-bid {
+    width: 90%;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.wo-other-bid p {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.wo-other-bid-tbl {
+    width: 100%;
+}
+
+.wo-other-bid-tbl table {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 1.5rem;
+}
+
+.wo-other-bid-tbl table thead tr th {
+    padding: 10px 0;
+}
+
+
+
+.wo-other-bid-tbl table tbody tr td {
+    padding: 10px 0;
+    text-align: center;
+
+}
