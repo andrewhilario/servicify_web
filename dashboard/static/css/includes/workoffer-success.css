@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap");
+
+body {
+  font-family: "Raleway", sans-serif;
+}
+
+.work-offer-success-container {
+  width: 60%;
+  margin: auto;
+  padding: 70px;
+}
+
+.work-offer-success-title {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.work-offer-success-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+}
+
+.work-offer-success-text {
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.work-offer-success-price {
+  margin-bottom: 6px;
+}
+
+.work-offer-success-client {
+  margin-bottom: 4px;
+}
+
+.work-offer-success-price span {
+  font-weight: 600;
+}
+
+.work-offer-success-description {
+  font-size: 10px;
+  margin-bottom: 4px;
+}
+
+.work-offer-success-description p {
+  font-size: 12px;
+}
+
+.work-offer-success-text-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.work-offer-success-thumbnail-img {
+  display: flex;
+  width: 40%;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}

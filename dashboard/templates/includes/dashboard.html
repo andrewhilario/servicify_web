@@ -20,7 +20,21 @@
     <div class="dashboard-work-offers">
         <h1>Work offers</h1>
         <ul class="offers">
+            {% for work_offer in work_offers %}
+            <li>
+                <a href="">
+                    <img src="{{ work_offer.thumbnail.url }}" alt="">
+                    <p>{{ work_offer.work_name }}</p>
+                    <span>Bid Starts at &#8369;<span class="work-offer-cost-dashboard">{{ work_offer.min_pay }}</span></span>
+                </a>
+            </li>
+            {% endfor %}
             <li><a href="">
+                    <img src="{% static 'images/image-default.png' %}" alt="">
+                    <p>Computer Repair</p>
+                    <span>Bid Starts at &#8369;5000</span>
+                </a></li>
+            <!-- <li><a href="">
                     <img src="{% static 'images/image-default.png' %}" alt="">
                     <p>Computer Repair</p>
                     <span>Bid Starts at &#8369;5000</span>
@@ -43,7 +57,7 @@
                     <img src="{% static 'images/image-default.png' %}" alt="">
                     <p>Room Sanitation</p>
                     <span>Bid Starts at &#8369;5000</span>
-                </a></li>
+                </a></li> -->
         </ul>
     </div>
     <div class="dashboard-services">
@@ -119,6 +133,7 @@
 <div class="dashboard-template-4">
     <h1>Join our mailing list for the updates</h1>
     <form action="">
+        {% csrf_token %}
         <div class="mailing-section">
             <label for="email">Email</label>
             <input type="email">

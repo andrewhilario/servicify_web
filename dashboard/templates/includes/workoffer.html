@@ -39,6 +39,7 @@
 
         <div class="work-offer-form">
             <form action="">
+                {% csrf_token %}
                 <div class="work-offer-input">
                     <label for="" class="work-offer-label">Offer Amount</label>
                     <input type="text">

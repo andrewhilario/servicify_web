@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="work-offer-success-container">
+    <div class="work-offer-success-title">
+        <h1>Success</h1>
+        <p>Your work offer successfuly created.</p>
+    </div>
+
+    <div class="work-offer-success-flex">
+        <img class="work-offer-success-thumbnail-img" src="{{ work_offer_thumbnail_url }}" alt="">
+        <div class="work-offer-success-text-details">
+            <div class="work-offer-success-text">
+                <p>{{ work_offer_name }}</p>
+            </div>
+            <div class="work-offer-success-client">
+                <p>Client Name: {{ work_offer_client }}</p>
+            </div>
+            <div class="work-offer-success-price">
+                <p>Bid starts at &#8369;<span>{{ work_offer_price }}</span>
+            </div>
+            <div class="work-offer-success-description">
+                Description:
+                <p>{{ work_offer_description }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'footer.html' %}
+{% endblock %}

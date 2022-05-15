@@ -10,6 +10,7 @@
     <h1>Enter your other details</h1>
 
     <form action="" method="post">
+        {% csrf_token %}
         <div class="register-detail-form">
             <div class="register-full-name">
                 <label for="fname">Full Name</label>

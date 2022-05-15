@@ -94,3 +94,7 @@ if (avatar) {
     }
 }
 
+var workOfferCosts = document.getElementsByClassName('work-offer-cost-dashboard');
+for (let workOfferCost in workOfferCosts) {
+    workOfferCost.innerText = parseInt(workOfferCost.innerText).toFixed(2); 
+}

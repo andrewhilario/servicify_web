@@ -1,19 +1,29 @@
 from django.shortcuts import render
-from .forms import RegistrationForm, MainUserRegistrationForm
+from .forms import RegistrationForm, MainUserRegistrationForm, CreateWorkOfferForm
 from .tokens import account_activation_token
-from .models import MainUser
+from .models import MainUser, WorkOffer
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
+from django.contrib.auth.decorators import login_required
+import random
 
 # Create your views here.
 
 
 def dashboard(request):
-    return render(request, 'includes/dashboard.html')
+    # for work offers
+    valid_work_offers = WorkOffer.objects.filter(status='OPEN').values_list('id', flat=True)
+    random_profiles_id_list = random.sample(list(valid_work_offers), min(len(valid_work_offers), 10))
+    query_set = WorkOffer.objects.filter(id__in=random_profiles_id_list)
+    context = { 
+        'work_offers': query_set.all()
+    }
+
+    return render(request, 'includes/dashboard.html', context)
 
 
 def avatar(request):
@@ -35,6 +45,36 @@ def logout_user(request):
 
 
 
+@login_required
+def createworkoffer(request):
+    # check_work_offer = WorkOffer.objects.filter(created_by=request.user.mainuser)
+    # if check_work_offer:
+    #     return render(request, 'includes/workoffer-create.html', { 'errors': 'You can only create one Work Offer each account.'})
+
+    if request.method == "POST": 
+        workOfferForm = CreateWorkOfferForm(request.POST, request.FILES)
+        if workOfferForm.is_valid():
+            work_offer = workOfferForm.save(commit=False)
+            work_offer.created_by = request.user.mainuser
+            work_offer.status = 'OPEN'
+            work_offer.save()
+
+            context = {
+                'work_offer_client': '{0} {1}'.format(request.user.first_name, request.user.last_name),
+                'work_offer_name': work_offer.work_name,
+                'work_offer_price': work_offer.min_pay,
+                'work_offer_description': work_offer.description,
+                'work_offer_thumbnail_url': work_offer.thumbnail.url,
+            }
+            return render(request, 'includes/workoffer-success.html', context)
+
+    form = CreateWorkOfferForm()
+    context = { 
+        'client_name': '{0} {1}'.format(request.user.first_name, request.user.last_name),
+        'form': form
+    }
+
+    return render(request, 'includes/workoffer-create.html', context)
 
 def workoffer(request):
     return render(request, 'includes/workoffer.html')
