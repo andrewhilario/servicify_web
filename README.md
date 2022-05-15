@@ -44,9 +44,10 @@ python manage.py runserver
 Lists of tasks that need to be done. 
 
 ### Templates
+- [ ] Work Offer Details Page (https://imgur.com/a/Yee5niQ)
+- [ ] Work Offer Biddings (Use Tables) (https://imgur.com/a/wjoMysa)
+- [ ] Create Service Template (https://imgur.com/a/frlOmJ7)
 - [x] Avatar Hover Menu
-- [ ] Create Service Template
-- [ ] Service View Template
 - [x] Combine `templates\includes\register.html` and `templates\includes\register-detail.html` to single page. (Para madali mag-handle ng form) *(Drew)*
 
 ### Figma Prototypes
@@ -55,6 +56,7 @@ Lists of tasks that need to be done.
 - [x] Work Offer page (with place bid button & bids of other users) *(Drew)*
 - [x] Work Offer bid page (with bid details & accept or decline) *(Drew)*
 - [x] Work Offer bid confirmation *(Drew)*
+- [ ] Service View Template (equivalent of https://imgur.com/a/Yee5niQ for service)
 - [ ] Client Profile page (Web) *(Drew)*
 - [ ] Serviceperson Profile *(Drew)*
 - [ ] Search interface (with filters) *(Drew)*
@@ -65,6 +67,7 @@ Lists of tasks that need to be done.
 - [ ] Avatar/Image validation
 - [ ] Client/Serviceperson switch
 - [ ] Service Creation
+- [x] Work Offer Creation
 - [x] Login and Registration
 - [x] User, Service, WorkOffer, Bid, ActiveService, ServiceType model *(Troy)*
 - [x] Postgres Setup *(Troy)*
