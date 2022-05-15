@@ -1,5 +1,6 @@
 {% extends 'index.html' %}
 {% load static %}
+{% load humanize %}
 {% block content %}
 {% include 'navbar.html' %}
 <div class="dashboard-template-1">
@@ -25,7 +26,7 @@
                 <a href="">
                     <img src="{{ work_offer.thumbnail.url }}" alt="">
                     <p>{{ work_offer.work_name }}</p>
-                    <span>Bid Starts at &#8369;<span class="work-offer-cost-dashboard">{{ work_offer.min_pay }}</span></span>
+                    <span>Bid Starts at &#8369;{% filter intcomma %}{{ work_offer.min_pay|floatformat }}{% endfilter %}</span>
                 </a>
             </li>
             {% endfor %}
@@ -34,30 +35,6 @@
                     <p>Computer Repair</p>
                     <span>Bid Starts at &#8369;5000</span>
                 </a></li>
-            <!-- <li><a href="">
-                    <img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Computer Repair</p>
-                    <span>Bid Starts at &#8369;5000</span>
-                </a></li>
-            <li><a href=""><img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Room Sanitation</p>
-                    <span>Bid Starts at &#8369;5000</span>
-                </a></li>
-            <li><a href="">
-                    <img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Computer Repair</p>
-                    <span>Bid Starts at &#8369;5000</span>
-                </a></li>
-            <li><a href="">
-                    <img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Computer Repair</p>
-                    <span>Bid Starts at &#8369;5000</span>
-                </a></li>
-            <li><a href="">
-                    <img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Room Sanitation</p>
-                    <span>Bid Starts at &#8369;5000</span>
-                </a></li> -->
         </ul>
     </div>
     <div class="dashboard-services">

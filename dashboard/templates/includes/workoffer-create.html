@@ -52,12 +52,15 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="work-offer-create-flex">
-            <div class="thumbnail-wrapper">
-                <img class="work-image" src="" />
-                <div class="create-work-upload-button">
+            <div class="work-offer-thumbnail">
+                <p>Click to upload image</p>
+                <div class="thumbnail-wrapper">
+                    <img class="work-image" src="{% static 'images/image-default.png' %}" />
+                    <div class="create-work-upload-button">
+                    </div>
+                    <!-- <input class="create-work-file-upload" type="file" accept="image/*" name="thumbnail" /> -->
+                    {{ form.thumbnail}}
                 </div>
-                <!-- <input class="create-work-file-upload" type="file" accept="image/*" name="thumbnail" /> -->
-                {{ form.thumbnail}}
             </div>
 
             <div class="work-offer-create-form">
