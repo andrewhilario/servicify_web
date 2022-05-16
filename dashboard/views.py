@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from .forms import RegistrationForm, MainUserRegistrationForm, CreateWorkOfferForm
+from .forms import RegistrationForm, MainUserRegistrationForm, CreateWorkOfferForm, CreateServiceForm
 from .tokens import account_activation_token
-from .models import MainUser, WorkOffer
+from .models import MainUser, WorkOffer, ServiceImage
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.contrib.sites.shortcuts import get_current_site
@@ -81,6 +81,37 @@ def workoffer(request):
     
 def workoffer2(request):
     return render(request, 'includes/workoffer2.html') 
+
+@login_required
+def createservice(request):
+    if request.method == "POST":
+        serviceForm = CreateServiceForm(request.POST)
+        if serviceForm.is_valid():
+            service = serviceForm.save(commit=False)
+            service.created_by = request.user.mainuser
+            service.save()
+
+            print(request.FILES)
+            for service_img in request.FILES.getlist('file'):
+                pic = ServiceImage()
+                pic.service = service 
+                pic.image = service_img
+                pic.save()
+                print(service_img)
+            
+            context = {
+                'service_owner': '{0} {1}'.format(request.user.first_name, request.user.last_name),
+                'service': service,
+                'service_imgs': ServiceImage.objects.filter(service=service)
+            }
+            return render(request, 'includes/service-success.html', context)
+
+    form = CreateServiceForm()
+    context = { 
+        'service_owner': '{0} {1}'.format(request.user.first_name, request.user.last_name),
+        'form': form
+    }
+    return render(request, 'includes/service-create.html', context) 
 
 def acquireservice(request):
     return render(request, 'includes/acquireservice.html') 

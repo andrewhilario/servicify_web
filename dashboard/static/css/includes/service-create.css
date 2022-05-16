@@ -1,0 +1,226 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap");
+
+body {
+  font-family: "Raleway", sans-serif;
+}
+
+.service-create-container {
+  width: 60%;
+  margin: auto;
+  padding: 70px;
+}
+
+.service-create-title {
+  margin-bottom: 45px;
+  text-align: left;
+}
+
+.service-create-title h1 {
+  margin-bottom: 8px;
+}
+
+.service-create-flex {
+  display: flex;
+}
+
+.service-create-flex-container {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.service-create-details {
+  padding: 16px;
+}
+
+.service-create-details-card {
+  padding: 16px;
+  display: flex;
+}
+
+.service-create-details-card-img {
+  width: 144px;
+  height: 144px;
+  margin-right: 24px;
+}
+
+.service-create-details-card-img img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.service-create-card-details {
+  font-weight: 600;
+}
+
+.service-create-card-title {
+  font-size: 24px;
+}
+
+.service-create-client-name {
+  font-size: 20px;
+}
+
+.service-create-card-values {
+  font-weight: 400;
+}
+
+.service-create-details-thumbnail-img {
+  width: 100%;
+  height: 144px;
+  margin-bottom: 8px;
+}
+
+.service-create-details-thumbnail-img img {
+  border-radius: 8px;
+  height: 100%;
+  width: 110%;
+}
+
+.service-create-thumbnail-service-name {
+  font-weight: 600;
+}
+
+.service-create-form {
+  width: 50%;
+  padding: 16px;
+  margin-left: 50px;
+}
+
+.service-create-input {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.service-create-label {
+  display: block;
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.service-create-container input,
+textarea {
+  width: 100%;
+  border: 2px solid black;
+  border-radius: 4px;
+  outline: none;
+  padding: 8px;
+}
+
+.service-create-container textarea {
+  height: 128px;
+  font: "Raleway", sans-serif;
+}
+
+.service-create-form-button input[type="submit"] {
+  width: 100%;
+  padding: 16px 8px;
+  background-color: #507c59;
+  border: 1px solid #507c59;
+  border-radius: 4px;
+
+  font: 16px "Raleway", sans-serif;
+  font-weight: 600;
+  color: white;
+}
+
+.service-create-title-error {
+  margin: 30vh auto;
+  text-align: center;
+}
+
+.service-create-upload__box {
+  padding: 40px;
+}
+
+.service-thumbnail-upload-button-box {
+  margin-bottom: 10px;
+}
+
+.service-create-upload__img-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
+.service-create-upload__img-box {
+  width: 200px;
+  padding: 0 10px;
+  margin-bottom: 12px;
+}
+
+.service-create-img-bg {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  padding-bottom: 100%;
+}
+
+.service-thumbnail {
+  height: 350px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.service-thumbnail-upload {
+  position: relative;
+  background: #e2eaf4;
+  margin: 5px;
+}
+
+.service-thumbnail-upload:first-child {
+  width: 100%;
+}
+
+.service-thumbnail-upload:not(:first-child) {
+  flex: 1;
+}
+
+.service-thumbnail-upload-close {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  text-align: center;
+  line-height: 24px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.service-thumbnail-upload-close:after {
+  content: "\2716";
+  font-size: 14px;
+  color: white;
+}
+
+.service-thumbnail-upload-button {
+  display: inline-block;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  min-width: 116px;
+  padding: 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid;
+  background-color: #507c59;
+  border-color: #507c59;
+  line-height: 26px;
+  font-size: 14px;
+}
+
+.service-create-upload__inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}

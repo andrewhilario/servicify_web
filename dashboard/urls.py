@@ -16,6 +16,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('service-request/', views.service_request, name='service_request'),
     path('service-request/view/', views.view_service, name='view_service'),
+    path('createservice/', views.createservice, name='createservice'),
     path('acquireservice/', views.acquireservice, name='acquireservice'),
     path('acquireservice2/', views.acquireservice2, name='acquireservice2'),
     path('createworkoffer/', views.createworkoffer, name='createworkoffer'),

@@ -1,0 +1,141 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+<script>
+    function ready(fn) {
+        if (document.readyState != 'loading') {
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+    }
+    ready(ImgUpload)
+
+    function findFreeElement(elements) {
+        for (e of elements) {
+            if (!e.innerHTML.trim()) return e;
+        }
+        return null
+    }
+    var imgWrap = "";
+    var imgArray = [];
+
+    function ImgUpload() {
+
+        document.querySelector(".service-create-upload__inputfile").addEventListener('change', async function (e) {
+
+            var maxLength = this.getAttribute('data-max_length');
+
+            var files = e.target.files;
+            var filesArr = Array.prototype.slice.call(files);
+            var iterator = 0;
+            filesArr.forEach(function (f, index) {
+                if (!f.type.match('image.*')) {
+                    return;
+                }
+
+                if (imgArray.length > maxLength) {
+                    return false
+                } else {
+                    var len = 0;
+                    for (var i = 0; i < imgArray.length; i++) {
+                        if (imgArray[i] !== undefined) {
+                            len++;
+                        }
+                    }
+                    if (len > maxLength) {
+                        return false;
+                    } else {
+                        var reader = new FileReader();
+                        reader.onload = async function (e) {
+                            imgWrap = findFreeElement(document.querySelectorAll('.service-thumbnail-upload'));
+                            if (!imgWrap) return;
+                            imgArray.push(f);
+                            imgWrap.innerHTML += "<div class='service-thumbnail-upload-close'></div>"
+                            imgWrap.removeAttribute('background')
+                            imgWrap.setAttribute('style', "background-image: url(" + e.target.result + ");background-repeat: no-repeat; background-position: center; background-size: cover;")
+                            imgWrap.setAttribute('data-file', f.name)
+                            iterator++;
+                        }
+                        reader.readAsDataURL(f);
+                    }
+                }
+            });
+        });
+        document.addEventListener('click', function (e) {
+            // loop parent nodes from the target to the delegation node
+            for (var target = e.target; target && target != this; target = target.parentNode) {
+                if (target.matches(".service-thumbnail-upload-close")) {
+                    removeThumbnail.call(target, e);
+                    break;
+                }
+            }
+        }, false);
+
+        function removeThumbnail(target, e) {
+            element = target.target
+            var file = element.parentNode.dataset.file;
+            imgArray = imgArray.filter(v => v.name !== file)
+
+            if (element.parentNode !== null) {
+                element.parentNode.removeAttribute('data-file')
+                element.parentNode.removeAttribute('style')
+                element.parentNode.removeChild(element);
+            }
+        }
+    }
+</script>
+<div class="service-create-container">
+
+    <div class="service-create-title">
+        <h1>Create a Service</h1>
+        <p>Make your skills known and reach out to potential clients.</p>
+    </div>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="service-create-flex">
+            <div class="service-create-flex-container">
+                <div class="service-thumbnail">
+                    <div class="service-thumbnail-upload"></div>
+                    <div class="service-thumbnail-upload"></div>
+                    <div class="service-thumbnail-upload"></div>
+                    <div class="service-thumbnail-upload"></div>
+                </div>
+                <label class="service-thumbnail-upload-button">
+                    <p>Upload images</p>
+                    <input type="file" name="file" multiple="" data-max_length="4" class="service-create-upload__inputfile">
+                </label>
+            </div>
+
+            <div class="service-create-form">
+                <div class="service-create-input">
+                    <label for="" class="service-create-label">Service owner</label>
+                    {{ service_owner }} (You)
+                </div>
+                <div class="service-create-input">
+                    <label for="" class="service-create-label">{{ form.service_type.label }}</label>
+                    {{ form.service_type }}
+                </div>
+                <div class="service-create-input">
+                    <label for="" class="service-create-label">{{ form.service_name.label }}</label>
+                    {{ form.service_name }}
+                </div>
+                <div class="service-create-input">
+                    <label for="" class="service-create-label">{{ form.price.label }}</label>
+                    {{ form.price }}
+                </div>
+                <div class="service-create-input">
+                    <label for="" class="service-create-label">{{ form.description.label }}</label>
+                    {{ form.description }}
+                </div>
+                <div class="service-create-form-button">
+                    <input type="submit" id="create-service" value="Create Service" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% include 'footer.html' %}
+{% endblock %}

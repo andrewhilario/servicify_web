@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+<div>
+    <h1>Success</h1>
+    <p>Your service is successfuly created.</p>
+
+    <p>{{ service.service_name }}</p>
+    <p>Service Owner: {{ service_owner }} (You)</p>
+    <p>Type: {{ service.service_type.name }} (You)</p>
+    <p>Price starts at &#8369;<span>{{ service.price }}</span>
+    <p>Description: {{ service.description }}</p>
+
+    {% for img in service_imgs %}
+    <img style="max-width: 200px; max-height: 200px;" src="{{ img.image.url }}" alt="">
+    {% endfor %}
+
+</div>
+{% include 'footer.html' %}
+{% endblock %}

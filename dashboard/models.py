@@ -11,6 +11,9 @@ def user_directory_path(instance, filename):
 def workoffer_directory_path(instance, filename):
     return 'workoffers/thumbnails/{0}/{1}'.format(instance.created_by.user.id, filename)
 
+def service_directory_path(instance, filename):
+    return 'services/thumbnails/{0}/{1}'.format(instance.id, filename)
+
 # Create your models here.
 
 # this extends Django's built-in User model
@@ -29,8 +32,12 @@ def create_user_profile(sender, instance, created, **kwargs):
 # For service categories
 class ServiceTypes(models.Model):
     name = models.CharField(max_length=64)
+    tag = models.CharField(max_length=12, blank=True)
     created_by = models.ForeignKey(MainUser, on_delete=models.DO_NOTHING)
     created_at = models.DateTimeField(default=datetime.now, blank=True)
+
+    def __str__(self):
+        return self.name
 
 # For services
 class Service(models.Model):
@@ -40,6 +47,11 @@ class Service(models.Model):
     description = models.TextField()
     service_type = models.ForeignKey(ServiceTypes, on_delete=models.DO_NOTHING)
     price = models.DecimalField(max_digits=19, decimal_places=4)
+
+# For service photos
+class ServiceImage(models.Model):
+   service = models.ForeignKey(Service, on_delete=models.CASCADE)
+   image = models.ImageField(upload_to=service_directory_path)
 
 # For services that clients acquired
 class ActiveService(models.Model):
