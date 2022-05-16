@@ -71,7 +71,7 @@
     width: 70%;
     height: 100%;
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     align-items: center;
     margin: 0 auto;
 }
@@ -95,7 +95,7 @@
 
 }
 
-.offers li a img {
+.work-offer-thumbnail-parent img {
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -103,7 +103,7 @@
 
 .work-offer-thumbnail-parent {
     width: 200px;
-    height: 200px;
+    height: 250px;
     background-color: gray;
     margin-bottom: 20px;
 }
