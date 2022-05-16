@@ -86,6 +86,7 @@ body {
   margin-bottom: 16px;
 }
 
+
 .work-offer-create-label {
   display: block;
   font-weight: 600;
@@ -100,11 +101,15 @@ textarea {
   border-radius: 4px;
   outline: none;
   padding: 8px;
+  font-family: 'Raleway';
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
 .work-offer-create-container textarea {
   height: 128px;
   font: "Raleway", sans-serif;
+  font-weight: 500;
 }
 
 .work-offer-create-form-button input[type="submit"] {
@@ -142,10 +147,21 @@ textarea {
   opacity: 0.9;
 }
 
+.thumbnail-wrapper p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+}
+
 .work-image {
   height: 100%;
-  max-width:100%;
+  width: 100%;
   transition: all 0.3s ease;
+  z-index: 1;
 }
 
 .work-image:after {
@@ -158,6 +174,7 @@ textarea {
   font-size: 0.8rem;
   color: #34495e;
   text-align: center;
+  z-index: 2;
 }
 
 .create-work-upload-button {

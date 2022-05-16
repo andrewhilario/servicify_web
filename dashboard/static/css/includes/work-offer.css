@@ -1,39 +1,39 @@
-.service-request-page {
+.work-offer-page {
     width: 90%;
     height: 90vh;
     margin: 0 auto;
 }
 
-.service-request-page a {
+.work-offer-page a {
     text-decoration: none;
     color: black;
     font-weight: bold;
 }
 
-.service-request-page a i,
-.service-request-page a span {
+.work-offer-page a i,
+.work-offer-page a span {
     padding: 40px 0px;
 }
 
-.service-request-page h2 {
+.work-offer-page h2 {
     font-size: 2rem;
     font-weight: bold;
     padding: 30px 0px;
 }
 
-.service-request-header {
+.work-offer-header {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.sr-entries span {
+.wo-entries span {
     font-size: 1rem;
     font-weight: 600;
 }
 
-.sr-entries select {
+.wo-entries select {
     border: 2px solid black;
     border-radius: 4px;
     font-family: 'Raleway';
@@ -42,24 +42,24 @@
     padding: 5px 10px;
 }
 
-.sr-entries select option {
+.wo-entries select option {
     font-family: 'Raleway';
     font-size: .9rem;
     font-weight: 500;
 }
 
-.sr-search-and-sort {
+.wo-search-and-sort {
     display: flex;
     width: 30%;
     justify-content: space-around;
 }
 
-.sr-sort-select span {
+.wo-sort-select span {
     font-size: 1rem;
     font-weight: 600;
 }
 
-.sr-sort-select select {
+.wo-sort-select select {
     border: 2px solid black;
     border-radius: 4px;
     font-family: 'Raleway';
@@ -68,18 +68,18 @@
     padding: 5px 10px;
 }
 
-.sr-sort-select select option {
+.wo-sort-select select option {
     font-family: 'Raleway';
     font-size: .9rem;
     font-weight: 500;
 }
 
-.sr-search-bar label {
+.wo-search-bar label {
     font-size: 1rem;
     font-weight: 600;
 }
 
-.sr-search-bar input[type='text'] {
+.wo-search-bar input[type='text'] {
     border: 2px solid black;
     border-radius: 4px;
     font-family: 'Raleway';
@@ -88,18 +88,18 @@
     padding: 5px 10px;
 }
 
-.service-request-table {
+.work-offer-table {
     width: 100%;
 }
 
-.sr-table {
+.wo-table {
     margin-top: 30px;
     width: 100%;
     border-collapse: collapse;
 
 }
 
-.sr-table thead {
+.wo-table thead {
 
     background-color: #59745f;
     font-weight: bold;
@@ -108,27 +108,27 @@
     border-radius: 0px 15px 0px 15px;
 }
 
-.sr-table th,
-.sr-table td {
+.wo-table th,
+.wo-table td {
     padding: 12px 15px;
     text-align: center;
 }
 
-.sr-table tbody tr {
+.wo-table tbody tr {
     border-bottom: 2px solid #59745f;
     text-align: center;
 }
 
-.sr-table tbody tr td span {
+.wo-table tbody tr td span {
     font-weight: 600;
 }
 
-.sr-table tbody tr td span a {
+.wo-table tbody tr td span a {
     cursor: pointer;
     color: rgb(44, 170, 44);
 }
 
-.sr-table tbody tr td span input[type='button'] {
+.wo-table tbody tr td span input[type='button'] {
     font-weight: 600;
     border: none;
     outline: none;
@@ -139,7 +139,7 @@
     color: rgb(204, 52, 52);
 }
 
-.sr-table tbody tr td span button {
+.wo-table tbody tr td span button {
     font-weight: 600;
     border: none;
     outline: none;
@@ -156,35 +156,34 @@
     color: rgb(168, 168, 168);
 }
 
-/* View Service Request Page */
-
-.view-service-page {
+/* View Work Offer Page */
+.view-work-offer-page {
     width: 90%;
     height: 70vh;
     margin: 0 auto;
 }
 
 
-.view-service-page a {
+.view-work-offer-page a {
     text-decoration: none;
     color: black;
     font-weight: bold;
 }
 
-.view-service-page a i,
-.view-service-page a span {
+.view-work-offer-page a i,
+.view-work-offer-page a span {
     padding: 40px 0px;
 }
 
 
-.view-service-page h2 {
+.view-work-offer-page h2 {
     font-size: 2rem;
     font-weight: bold;
     padding-top: 30px;
     text-align: center;
 }
 
-.view-service-page p {
+.view-work-offer-page p {
     font-size: 1.3rem;
     font-weight: 700;
     padding: 5px 0px;
@@ -192,46 +191,51 @@
     text-align: center;
 }
 
-.view-service-page-contents {
+.view-work-offer-page-contents {
     width: 70%;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin: 50px auto;
+    margin: 20px auto;
 }
 
-.vs-profile {
-    width: 30%;
+.vwo-profile {
+    width: 50%;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    padding: 50px 40px;
+    background-color: #7CB687;
+    border-radius: 20px;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.vs-pfp {
+.vwo-pfp {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     border: 3px solid #59745f;
 }
 
-.vs-pfp img {
+.vwo-pfp img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
 }
 
-.vs-pfp-name h3 {
+.vwo-pfp-name h3 {
     font-size: 1.4rem;
     font-weight: bold;
 
 }
 
-.vs-pfp-other-details ul {
+.vwo-pfp-other-details ul {
     margin: 10px auto;
 }
 
-.vs-pfp-other-details ul li {
+.vwo-pfp-other-details ul li {
     list-style: none;
     display: flex;
     flex-direction: row;
@@ -239,44 +243,30 @@
     justify-content: space-between;
 }
 
-.vs-pfp-other-details ul li p {
+.vwo-pfp-other-details ul li p {
     font-size: .9rem;
     font-weight: bold;
     text-align: start;
     padding: 0;
 }
 
-.vs-pfp-other-details ul li span {
+.vwo-pfp-other-details ul li span {
     font-size: .9rem;
     text-align: start;
 }
 
-.vs-message {
-    width: 50%;
-}
 
-.vs-message h4 {
-    font-size: 1.3rem;
-    font-size: bold;
-    margin: 10px auto;
-}
 
-.vs-message p {
-    font-size: .9rem;
-    font-weight: 500;
-    text-align: start;
-}
-
-.view-service-page-btns {
-    width: 50%;
+.view-work-offer-btns {
+    width: 45%;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin: 40px auto;
+    margin: 50px auto;
 }
 
-.view-service-page-btns input[type='button'] {
-    padding: 10px 40px;
+.view-work-offer-btns input[type='button'] {
+    padding: 10px 50px;
     border: none;
     outline: none;
     border-radius: 5px;
@@ -287,12 +277,12 @@
     cursor: pointer;
 }
 
-.view-service-page-btns input[type='button']:nth-of-type(1) {
+.view-work-offer-btns input[type='button']:nth-of-type(1) {
     background-color: #85C693;
     color: white;
 }
 
-.view-service-page-btns input[type='button']:nth-of-type(2) {
+.view-work-offer-btns input[type='button']:nth-of-type(2) {
     background-color: #B74848;
     color: white;
 }

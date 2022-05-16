@@ -37,8 +37,13 @@
                 <li><a href="#"><i class="fa-solid fa-phone"></i>Contact</a></li>
                 <li><a href="{% url 'service_request' %}"><i class="fa-solid fa-wrench"></i>Service Requests</a></li>
                 <li><a href="{% url 'acquireservice' %}"><i class="fa-solid fa-shop"></i>Service Marketplace</a></li>
-                <li><a href="{% url 'createworkoffer' %}"><i class="fa-solid fa-briefcase"></i>Create Work Offer</a></li>
-                <li><a href="{% url 'workoffer' %}"><i class="fa-solid fa-briefcase"></i>Work Offers</a></li>
+                <li><a href="{% url 'workoffer' %}"><i class="fa-solid fa-briefcase"></i>Work Offer</a></li>
+                <li><a href="{% url 'work_offer_bidding' %}"><i class="fa-solid fa-gavel"></i>Work Offer Biddings</a>
+                </li>
+
+                <li><a href="{% url 'createworkoffer' %}"><i class="fa-solid fa-briefcase"></i>Create Work Offer</a>
+                </li>
+
                 <li><a href="{% url 'logout' %}"><i class="fa-solid fa-door-open"></i>Logout</a></li>
             </ul>
         </li>
