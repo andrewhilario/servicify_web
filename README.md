@@ -58,6 +58,7 @@ Lists of tasks that need to be done.
 - [ ] Service View Page (equivalent of https://imgur.com/a/Yee5niQ for service)
 - [ ] List of Services Page
 - [ ] List of Work Offers Page
+- [ ] Create Service Type Form
 - [x] Service request page (For serviceperson) *(Drew)*
 - [x] Service request confirmation *(Drew)*
 - [x] Work Offer page (with place bid button & bids of other users) *(Drew)*
@@ -75,7 +76,7 @@ Lists of tasks that need to be done.
 - [ ] Change default delete behaviour. (Instead of literal delete, add a deleted_at column.) *(Troy)*
 - [ ] Avatar/Image validation
 - [ ] Client/Serviceperson switch
-- [ ] Service Creation
+- [x] Service Creation
 - [x] Work Offer Creation
 - [x] Login and Registration
 - [x] User, Service, WorkOffer, Bid, ActiveService, ServiceType model *(Troy)*
