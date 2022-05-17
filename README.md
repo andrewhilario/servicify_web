@@ -50,7 +50,7 @@ Lists of tasks that need to be done.
 - [x] Serviceperson Profile (https://imgur.com/a/4TaTYlB)
 - [ ] Client Profile (https://imgur.com/a/ysW7OtE)
 - [x] 404 Page (https://imgur.com/a/wOgJtl9)
-- [ ] Search Interface (https://imgur.com/a/DEYYeET)
+- [x] Search Interface (https://imgur.com/a/DEYYeET)
 - [x] Avatar Hover Menu
 - [x] Combine `templates\includes\register.html` and `templates\includes\register-detail.html` to single page. (Para madali mag-handle ng form) *(Drew)*
 
