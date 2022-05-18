@@ -48,7 +48,7 @@ Lists of tasks that need to be done.
 - [x] Work Offer Biddings Template (Use Tables) (https://imgur.com/a/wjoMysa)
 - [x] Create Service Template (https://imgur.com/a/frlOmJ7)
 - [x] Serviceperson Profile (https://imgur.com/a/4TaTYlB)
-- [ ] Client Profile (https://imgur.com/a/ysW7OtE)
+- [x] Client Profile (https://imgur.com/a/ysW7OtE)
 - [x] 404 Page (https://imgur.com/a/wOgJtl9)
 - [x] Search Interface (https://imgur.com/a/DEYYeET)
 - [x] Avatar Hover Menu
