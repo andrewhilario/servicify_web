@@ -66,7 +66,7 @@ Lists of tasks that need to be done.
 
 ### Templates
 - [ ] Service Marketplace Template (You can check reference sa Work Offers Templates (https://imgur.com/a/730oAey))
-- [ ] Contact Us Page (https://imgur.com/a/PQOAiGM) undraw svg (https://imgur.com/a/M0lrEZ7) (Marc Abi)
+- [x] Contact Us Page (https://imgur.com/a/PQOAiGM) undraw svg (https://imgur.com/a/M0lrEZ7) (Marc Abi)
 - [ ] About Us Page (https://imgur.com/a/bCww0gR) undraw svg (https://imgur.com/a/GvoH2KC) (Joshia)
 - [x] Work Offer Details Template (https://imgur.com/a/Yee5niQ) (Drew)
 - [x] Work Offer Biddings Template (Use Tables) (https://imgur.com/a/wjoMysa)
