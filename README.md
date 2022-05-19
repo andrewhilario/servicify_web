@@ -66,8 +66,8 @@ Lists of tasks that need to be done.
 
 ### Templates
 - [ ] Service Marketplace Template (You can check reference sa Work Offers Templates (https://imgur.com/a/730oAey))
-- [ ] Contact Us Page
-- [ ] About Us Page 
+- [ ] Contact Us Page (https://imgur.com/a/PQOAiGM)
+- [ ] About Us Page (https://imgur.com/a/bCww0gR)
 - [x] Work Offer Details Template (https://imgur.com/a/Yee5niQ) (Drew)
 - [x] Work Offer Biddings Template (Use Tables) (https://imgur.com/a/wjoMysa)
 - [x] Create Service Template (https://imgur.com/a/frlOmJ7)
