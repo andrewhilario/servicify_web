@@ -3,17 +3,17 @@
 Servicify is a service platform.
 
 
-### How to install Git for Windows 10
+## How to install Git for Windows 10
 
 click [here](https://www.youtube.com/watch?v=4xqVv2lTo40) to watch.
 
 
-### How to clone a repository in Visual Studio Code or Using CMD
+## How to clone a repository in Visual Studio Code or Using CMD
 
-## For Visual Code
+### For Visual Code
 click [here](https://www.youtube.com/watch?v=VNNChXqF390) to watch.
 
-## For CMD
+### For CMD
 click [here](https://www.youtube.com/watch?v=q5JhB9yjh_g) to watch
 
 
