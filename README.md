@@ -37,7 +37,7 @@ CREATE DATABASE servicify; # To create the database needed.
 
 ### How to install Git for Windows 10
 
-click here(https://www.youtube.com/watch?v=4xqVv2lTo40) to watch.
+click [here](https://www.youtube.com/watch?v=4xqVv2lTo40) to watch.
 
 ## Usage
 *If you've already completed the steps above, you may run the server with:*
