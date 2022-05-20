@@ -65,8 +65,11 @@
             </div>
             <div class="wo-pricing">
                 <div class="wo-current-price">
-                    <p>Highest Bid:</p>
-                    <span>₱0.00</span>
+                    <div>
+                        <p>Highest Bid:</p>
+                        <span>₱{% filter intcomma %}{{ highest_bid.bid_amount|floatformat }}{% endfilter %}</span>
+                    </div>
+                    <div>Placed by: <img class="mini-avatar" src="{{ highest_bid.bidder_id.avatar.url }}" alt=""> {{ highest_bid.bidder_id.full_name }}</div>
                 </div>
                 <div class="wo-bid-incre">
                     <p>Starting Bid:</p>
@@ -74,13 +77,31 @@
                 </div>
             </div>
             <div class="wo-bidding-input">
-                <div class="wo-bid-input">
-                    <p>₱</p>
-                    <input type="text" placeholder="Enter your bid">
-                </div>
-                <div class="wo-bid-btn">
-                    <input type="button" value="Bid Now">
-                </div>
+                {% if request.user.is_authenticated %}
+                    <form method="post">
+                        {% csrf_token %}
+                        {% if form_errors %}
+                        <div class="wo-bid-error">
+                            <p>Unable to create bid:</p>
+                            {% for error in form_errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        <div class="wo-bid-input">
+                            <p>₱</p>
+                            {{ bid_form.bid_amount }}
+                        </div>
+                        <div class="wo-bid-btn">
+                            <button type="submit">Bid Now</button>
+                        </div>
+                        <div>
+                            {{ bid_form.bidder_msg }}
+                        </div>
+                    </form>
+                {% else %}
+                    <p>Login to place bid</p>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -89,28 +110,34 @@
             <div class="wo-active-bids">
                 <i class="fa-solid fa-hand"></i>
                 <div class="wo-sub-content">
-                    <span>3</span>
+                    <span>{{ active_bids }}</span>
                     <p>Active Bids:</p>
                 </div>
             </div>
             <div class="wo-total-bids">
                 <i class="fa-solid fa-gavel"></i>
                 <div class="wo-sub-content">
-                    <span>5</span>
+                    <span>{{ total_bids }}</span>
                     <p>Total Bids</p>
                 </div>
             </div>
         </div>
         <div class="wo-latest-bidder">
             <div class="wo-latest-bid">
+                {% if latest_bid %}
                 <div class="wo-latest-bid-content">
                     <p>Latest Bidder: </p>
-                    <span>Miguelito Juaqin</span>
+                    <span><img class="mini-avatar" src="{{ latest_bid.bidder_id.avatar.url }}" alt=""> {{ latest_bid.bidder_id.full_name }}</span>
                 </div>
                 <div class="wo-latest-bid-content">
                     <p>Latest Bid: </p>
-                    <span>₱200</span>
+                    <span>₱{{ latest_bid.bid_amount }}</span>
                 </div>
+                {% else %}
+                <div class="wo-latest-bid-content">
+                    No recent bids 🤷‍♂️
+                </div>
+                {% endif %}
             </div>
             <div class="wo-other-bid">
                 <p>Other Bids:</p>
@@ -118,19 +145,19 @@
                     <table>
                         <thead>
                             <tr>
+                                <th>Date</th>
                                 <th>Bidder</th>
                                 <th>Bid</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% for bid in bids %}
                             <tr>
-                                <td>Juan Galerio Guanzon</td>
-                                <td>₱100</td>
+                                <td>{{ bid.created_at }}</td>
+                                <td> <img class="mini-avatar" src="{{ bid.bidder_id.avatar.url }}" alt=""> {{ bid.bidder_id.full_name }}</td>
+                                <td>₱{{ bid.bid_amount }}</td>
                             </tr>
-                            <tr>
-                                <td>Antonio Maharlika</td>
-                                <td>₱50</td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

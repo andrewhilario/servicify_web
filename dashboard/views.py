@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from .forms import RegistrationForm, MainUserRegistrationForm, CreateWorkOfferForm, CreateServiceForm
+from .forms import RegistrationForm, MainUserRegistrationForm, CreateWorkOfferForm, CreateServiceForm, CreateWorkOfferBidForm
 from .tokens import account_activation_token
-from .models import MainUser, WorkOffer, ServiceImage, WorkOfferImage
+from .models import MainUser, WorkOffer, ServiceImage, WorkOfferImage, Bid
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.contrib.sites.shortcuts import get_current_site
@@ -237,11 +237,46 @@ def work_offer_list(request):
 
 def work_offer_bidding(request, work_offer_id):
     work_offer = WorkOffer.objects.get(id=work_offer_id)
-    client_work_posted = WorkOffer.objects.filter(created_by=work_offer.created_by).count()    
+    client_work_posted = WorkOffer.objects.filter(created_by=work_offer.created_by).count()
+    highest_bid = Bid.objects.filter(workoffer_id=work_offer.id).order_by('-bid_amount').first()
+    total_bids = Bid.objects.filter(workoffer_id=work_offer.id).count()
+    active_bids = Bid.objects.filter(workoffer_id=work_offer.id, status='PENDING').count()
+    # latest_bid = Bid.objects.filter(workoffer_id=work_offer.id, status='PENDING').order_by('-created_at').first()
+    bids = Bid.objects.filter(workoffer_id=work_offer.id, status='PENDING').order_by('-created_at').all()
+    latest_bid = None
+    if bids:
+        latest_bid = bids[0]
+        bids = bids[1:]
+
+    if request.user.is_authenticated:
+        form = CreateWorkOfferBidForm()
+    else:
+        form = None
+    
+    form_errors = []
+    if request.method == 'POST' and request.user.is_authenticated:
+        bidForm = CreateWorkOfferBidForm(request.POST)
+        if bidForm.is_valid():
+            if bidForm.cleaned_data["bid_amount"] < work_offer.min_pay:
+                form_errors.append('Bid amount must be greater than starting bid.')
+            else:
+                bid = bidForm.save(commit=False)
+                bid.bidder_id = request.user.mainuser
+                bid.workoffer_id = work_offer
+                bid.status = 'PENDING'
+                bid.save()
+                return HttpResponseRedirect(work_offer_id)
 
     context = {
         'work_offer': work_offer,
         'client_work_posted': client_work_posted,
+        'bid_form': form,
+        'form_errors': form_errors if form_errors else None,
+        'highest_bid': highest_bid,
+        'total_bids': total_bids,
+        'active_bids': active_bids,
+        'latest_bid': latest_bid,
+        'bids': bids,
     }
     return render(request, 'includes/work-offer-bidding.html', context)
 
