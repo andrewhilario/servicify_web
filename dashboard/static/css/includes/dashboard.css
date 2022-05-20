@@ -94,26 +94,84 @@
     flex-direction: column;
     justify-content: left;
     align-items: flex-start;
-
+    padding: 10px;
+    border-radius: 10px;
+    transition: all .2s ease-in-out;
 }
 
 .work-offer-thumbnail-parent {
     width: 200px;
     height: 250px;
-    background-color: gray;
+    /* background-color: gray; */
     margin-bottom: 20px;
     position: relative;
-    transition: all .2s ease-in-out;
+
 }
 
 .work-offer-thumbnail-parent img {
     height: 100%;
     width: 100%;
     object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    transition: all 0.1s ease-in;
+    animation: showMe 2s ease infinite 0.2s forwards;
+    animation-play-state: paused;
+
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
     /* position: absolute; */
 }
 
-.work-offer-thumbnail-parent:hover {
+.work-offer-thumbnail-parent:hover img {
+    animation-play-state: running;
+}
+
+.work-offer-thumbnail-parent img:nth-child(1) {
+    animation-delay: 0.5s;
+    z-index: 9;
+}
+
+.work-offer-thumbnail-parent img:nth-child(2) {
+    animation-delay: 1s;
+    z-index: 8;
+}
+
+.work-offer-thumbnail-parent img:nth-child(3) {
+    animation-delay: 1.5s;
+    z-index: 7;
+}
+
+/* Animation */
+@keyframes showMe {
+    0% {
+
+        visibility: visible;
+        z-index: 80;
+    }
+
+    12.5% {
+
+        visibility: visible;
+        z-index: 80;
+    }
+
+    /* 25% {
+
+        visibility: hidden;
+        z-index: 0;
+    } */
+
+    100% {
+
+        visibility: hidden;
+        z-index: 0;
+    }
+}
+
+.offers li:not(.dashboard-show-more) a:hover {
     transform: scale(1.03);
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }

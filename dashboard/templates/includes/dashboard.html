@@ -21,7 +21,7 @@
     <div class="dashboard-work-offers">
         <h1>Work offers</h1>
         <ul class="offers">
-            {% for work_offer in work_offers %}
+            {% for work_offer in work_offers reversed %}
             <li>
                 <a href="{% url 'work_offer_bidding' work_offer.id  %}">
                     <div class="work-offer-thumbnail-parent">
@@ -37,7 +37,7 @@
             </li>
             {% endfor %}
             <li class="dashboard-show-more">
-                <a href="workoffer">
+                <a href="workoffer" class="dashboard-show-href">
                     <i class="fa-solid fa-arrow-right-long"></i>
                     <p>Show more</p>
                 </a>
