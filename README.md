@@ -94,6 +94,8 @@ Lists of tasks that need to be done.
 
 ### Template Changes
 - [ ] Make Dashboard images fit to box (Not streched and not full)
+- [ ] Create Service Dropdown add style (https://imgur.com/a/K0ok0a7)
+- [ ] Create Service Success add style (https://imgur.com/a/Z0u4njy)
 - [ ] Add 'Browse More' on the end of slide (at the end of Work Offers and Services) (https://imgur.com/a/aE5YJzI)
 
 ### System
