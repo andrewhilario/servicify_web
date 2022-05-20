@@ -23,7 +23,7 @@
         <ul class="offers">
             {% for work_offer in work_offers %}
             <li>
-                <a href="">
+                <a href="{% url 'work_offer_bidding' work_offer.id %}">
                     <div class="work-offer-thumbnail-parent">
                         {% for img in work_offer.workofferimage_set.all %}
                             <img src="{{ img.image.url }}" alt="">

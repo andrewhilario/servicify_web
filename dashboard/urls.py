@@ -29,9 +29,8 @@ urlpatterns = [
     path('createworkoffer/', views.createworkoffer, name='createworkoffer'),
     path('workoffer/', views.work_offer_list, name='work_offer_list'),
     path('workoffer/view', views.workoffer, name='workoffer_view'),
-
     path('workoffer2/', views.workoffer2, name='workoffer2'),
-    path('biddings/', views.work_offer_bidding, name='work_offer_bidding'),
+    path('biddings/<slug:work_offer_id>', views.work_offer_bidding, name='work_offer_bidding'),
     path('biddings/view/', views.view_work_offer_bidding, name='view_work_offer_bidding'),
     
     path('register/success', views.register_success, name='register_success'),

@@ -1,5 +1,6 @@
 {% extends 'index.html' %}
 {% load static %}
+{% load humanize %}
 {% block content %}
 {% include 'navbar.html' %}
 <div class="wo-bidding">
@@ -11,32 +12,25 @@
     <div class="wo-contents">
         <div class="wo-image-view">
             <div class="wo-main-img">
-                <img src="{% static 'images/wo-carpentry-1.png' %}" alt="">
+                <img src="{% static 'images/image-default.png' %}" alt="">
             </div>
             <div class="wo-img-thumbs">
-
-                <div class="wo-sub-img">
-                    <img src="{% static 'images/wo-carpentry-1.png' %}" alt="">
-                </div>
-                <div class="wo-sub-img">
-                    <img src="{% static 'images/wo-carpentry-2.png' %}" alt="">
-                </div>
-                <div class="wo-sub-img">
-                    <img src="{% static 'images/wo-carpentry-3.png' %}" alt="">
-                </div>
-
+                {% for img in work_offer.workofferimage_set.all %}
+                    <div class="wo-sub-img">
+                        <img src="{{ img.image.url }}" alt="">
+                    </div>
+                {% endfor %}
             </div>
+            
         </div>
         <div class="wo-details-and-bid">
             <div class="wo-sub-contents">
                 <div class="wo-details">
-                    <h3>Carpenter</h3>
+                    <h3>{{ work_offer.work_name }}</h3>
                     <div class="wo-sub-details">
                         <div class="wo-img-sub-details">
                             <div class="wo-img-container">
-                                <img src="{% for data in avatar %}
-                                {{ data.avatar.url }}
-                                {% endfor %}" alt="">
+                                <img src="{{ work_offer.created_by.avatar.url }}" alt="">
                             </div>
                             <span>⭐⭐⭐⭐⭐</span>
                         </div>
@@ -44,7 +38,7 @@
                             <ul>
                                 <li>
                                     <p>Posted By:</p>
-                                    <span>Juan Dela Cruz</span>
+                                    <span>{{ work_offer.created_by.full_name }}</span>
                                 </li>
                                 <li>
                                     <p>Location:</p>
@@ -52,32 +46,31 @@
                                 </li>
                                 <li>
                                     <p>Work Posted: </p>
-                                    <span>5</span>
+                                    <span>{{ client_work_posted }}</span>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <p class="wo-description">
                         <span><strong>Description: </strong></span> <br>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Quisquam, quidem.
+                        {{ work_offer.description }}
                     </p>
                 </div>
                 <div class="wo-time-limit">
                     <div class="wo-timer">
                         <i class="fa-solid fa-clock"></i>
-                        <span>6:14:24:02</span>
+                        <span>Created {{ work_offer.created_at|naturaltime }}</span>
                     </div>
                 </div>
             </div>
             <div class="wo-pricing">
                 <div class="wo-current-price">
-                    <p>Current Price:</p>
-                    <span>₱5,400.00</span>
+                    <p>Highest Bid:</p>
+                    <span>₱0.00</span>
                 </div>
                 <div class="wo-bid-incre">
-                    <p>Bid increment:</p>
-                    <span>₱100.00</span>
+                    <p>Starting Bid:</p>
+                    <span>₱{% filter intcomma %}{{ work_offer.min_pay|floatformat }}{% endfilter %}</span>
                 </div>
             </div>
             <div class="wo-bidding-input">

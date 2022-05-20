@@ -235,8 +235,15 @@ def work_offer_list(request):
 # @login_required
 
 
-def work_offer_bidding(request):
-    return render(request, 'includes/work-offer-bidding.html')
+def work_offer_bidding(request, work_offer_id):
+    work_offer = WorkOffer.objects.get(id=work_offer_id)
+    client_work_posted = WorkOffer.objects.filter(created_by=work_offer.created_by).count()    
+
+    context = {
+        'work_offer': work_offer,
+        'client_work_posted': client_work_posted,
+    }
+    return render(request, 'includes/work-offer-bidding.html', context)
 
 
 def view_work_offer_bidding(request):
