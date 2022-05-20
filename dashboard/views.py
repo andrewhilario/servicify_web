@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .forms import RegistrationForm, MainUserRegistrationForm, CreateWorkOfferForm, CreateServiceForm
 from .tokens import account_activation_token
-from .models import MainUser, WorkOffer, ServiceImage
+from .models import MainUser, WorkOffer, ServiceImage, WorkOfferImage
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.contrib.sites.shortcuts import get_current_site
@@ -22,18 +22,16 @@ def page_not_found(request, exception, template_name='page-not-found.html'):
     return render(request, template_name)
 
 
-
-
 def dashboard(request):
     # for work offers
     valid_work_offers = WorkOffer.objects.filter(
         status='OPEN').values_list('id', flat=True)
     random_profiles_id_list = random.sample(
         list(valid_work_offers), min(len(valid_work_offers), 10))
-    query_set = WorkOffer.objects.filter(id__in=random_profiles_id_list)
-    
-    context = { 
-        'work_offers': query_set.all()
+    work_offers = WorkOffer.objects.filter(id__in=random_profiles_id_list)
+
+    context = {
+        'work_offers': work_offers
     }
 
     return render(request, 'includes/dashboard.html', context)
@@ -66,7 +64,6 @@ def custom_logout(request, next_page="/register"):
         return HttpResponseRedirect(next_page)
 
 
-
 @login_required
 def createworkoffer(request):
     # check_work_offer = WorkOffer.objects.filter(created_by=request.user.mainuser)
@@ -74,19 +71,25 @@ def createworkoffer(request):
     #     return render(request, 'includes/workoffer-create.html', { 'errors': 'You can only create one Work Offer each account.'})
 
     if request.method == "POST":
-        workOfferForm = CreateWorkOfferForm(request.POST, request.FILES)
+        workOfferForm = CreateWorkOfferForm(request.POST)
         if workOfferForm.is_valid():
             work_offer = workOfferForm.save(commit=False)
             work_offer.created_by = request.user.mainuser
             work_offer.status = 'OPEN'
             work_offer.save()
 
+            for work_offer_img in request.FILES.getlist('file'):
+                pic = WorkOfferImage()
+                pic.workoffer = work_offer
+                pic.image = work_offer_img
+                pic.save()
+
             context = {
                 'work_offer_client': '{0} {1}'.format(request.user.first_name, request.user.last_name),
                 'work_offer_name': work_offer.work_name,
                 'work_offer_price': work_offer.min_pay,
                 'work_offer_description': work_offer.description,
-                'work_offer_thumbnail_url': work_offer.thumbnail.url,
+                'work_offer_imgs': WorkOfferImage.objects.filter(workoffer=work_offer)
             }
             return render(request, 'includes/workoffer-success.html', context)
 
@@ -101,7 +104,8 @@ def createworkoffer(request):
 
 def workoffer(request):
     return render(request, 'includes/workoffer.html')
-    
+
+
 def workoffer2(request):
     return render(request, 'includes/workoffer2.html')
 
@@ -115,13 +119,11 @@ def createservice(request):
             service.created_by = request.user.mainuser
             service.save()
 
-            print(request.FILES)
             for service_img in request.FILES.getlist('file'):
                 pic = ServiceImage()
                 pic.service = service
                 pic.image = service_img
                 pic.save()
-                print(service_img)
 
             context = {
                 'service_owner': '{0} {1}'.format(request.user.first_name, request.user.last_name),
@@ -140,6 +142,7 @@ def createservice(request):
 
 def createservice_success(request):
     return render(request, 'includes/service-success.html')
+
 
 def acquireservice(request):
     return render(request, 'includes/acquireservice.html')
@@ -219,15 +222,19 @@ def view_service(request):
 
 
 def work_offer_list(request):
-    valid_work_offers = WorkOffer.objects.filter(status='OPEN').values_list('id', flat=True)
-    random_profiles_id_list = random.sample(list(valid_work_offers), min(len(valid_work_offers), 10))
+    valid_work_offers = WorkOffer.objects.filter(
+        status='OPEN').values_list('id', flat=True)
+    random_profiles_id_list = random.sample(
+        list(valid_work_offers), min(len(valid_work_offers), 10))
     query_set = WorkOffer.objects.filter(id__in=random_profiles_id_list)
-    context = { 
+    context = {
         'work_offers': query_set.all()
     }
     return render(request, 'includes/work-offer-list.html', context)
 
 # @login_required
+
+
 def work_offer_bidding(request):
     return render(request, 'includes/work-offer-bidding.html')
 
@@ -235,8 +242,10 @@ def work_offer_bidding(request):
 def view_work_offer_bidding(request):
     return render(request, 'includes/view-work-offer-bid.html')
 
+
 def contact_us(request):
     return render(request, 'includes/contact-us.html')
+
 
 def search_results(request):
     return render(request, 'includes/search-results-page.html')

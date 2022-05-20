@@ -9,7 +9,7 @@ def user_directory_path(instance, filename):
     return 'users/avatars/{0}/{1}'.format(instance.user.id, filename)
 
 def workoffer_directory_path(instance, filename):
-    return 'workoffers/thumbnails/{0}/{1}'.format(instance.created_by.user.id, filename)
+    return 'workoffers/thumbnails/{0}/{1}'.format(instance.id, filename)
 
 def service_directory_path(instance, filename):
     return 'services/thumbnails/{0}/{1}'.format(instance.id, filename)
@@ -68,8 +68,11 @@ class WorkOffer(models.Model):
     description = models.TextField()
     min_pay = models.DecimalField(max_digits=19, decimal_places=4)
     status = models.CharField(max_length=64, blank=True)
-    thumbnail = models.ImageField(
-        upload_to=workoffer_directory_path, default='workoffers/default.png')
+
+# For work offer photos
+class WorkOfferImage(models.Model):
+   workoffer = models.ForeignKey(WorkOffer, on_delete=models.CASCADE)
+   image = models.ImageField(upload_to=workoffer_directory_path)
 
 class Bid(models.Model):
     workoffer_id = models.ForeignKey(WorkOffer, on_delete=models.CASCADE)

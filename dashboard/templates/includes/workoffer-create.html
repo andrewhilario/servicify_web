@@ -10,30 +10,81 @@
             document.addEventListener('DOMContentLoaded', fn);
         }
     }
+    ready(ImgUpload)
 
-    ready(function () {
-        var readURL = function (input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+    function findFreeElement(elements) {
+        for (e of elements) {
+            if (!e.innerHTML.trim()) return e;
+        }
+        return null
+    }
+    var imgWrap = "";
+    var imgArray = [];
 
-                reader.onload = function (e) {
-                    document.querySelector('.work-image').setAttribute('src', e.target.result);
-                    document.getElementById('upload').style.display = 'none';
+    function ImgUpload() {
+
+        document.querySelector(".work-offer-create-upload__inputfile").addEventListener('change', async function (e) {
+
+            var maxLength = this.getAttribute('data-max_length');
+
+            var files = e.target.files;
+            var filesArr = Array.prototype.slice.call(files);
+            var iterator = 0;
+            filesArr.forEach(function (f, index) {
+                if (!f.type.match('image.*')) {
+                    return;
                 }
 
-                reader.readAsDataURL(input.files[0]);
+                if (imgArray.length > maxLength) {
+                    return false
+                } else {
+                    var len = 0;
+                    for (var i = 0; i < imgArray.length; i++) {
+                        if (imgArray[i] !== undefined) {
+                            len++;
+                        }
+                    }
+                    if (len > maxLength) {
+                        return false;
+                    } else {
+                        var reader = new FileReader();
+                        reader.onload = async function (e) {
+                            imgWrap = findFreeElement(document.querySelectorAll('.work-offer-thumbnail-upload'));
+                            if (!imgWrap) return;
+                            imgArray.push(f);
+                            imgWrap.innerHTML += "<div class='work-offer-thumbnail-upload-close'></div>"
+                            imgWrap.removeAttribute('background')
+                            imgWrap.setAttribute('style', "background-image: url(" + e.target.result + ");background-repeat: no-repeat; background-position: center; background-size: cover;")
+                            imgWrap.setAttribute('data-file', f.name)
+                            iterator++;
+                        }
+                        reader.readAsDataURL(f);
+                    }
+                }
+            });
+        });
+        document.addEventListener('click', function (e) {
+            // loop parent nodes from the target to the delegation node
+            for (var target = e.target; target && target != this; target = target.parentNode) {
+                if (target.matches(".work-offer-thumbnail-upload-close")) {
+                    removeThumbnail.call(target, e);
+                    break;
+                }
+            }
+        }, false);
+
+        function removeThumbnail(target, e) {
+            element = target.target
+            var file = element.parentNode.dataset.file;
+            imgArray = imgArray.filter(v => v.name !== file)
+
+            if (element.parentNode !== null) {
+                element.parentNode.removeAttribute('data-file')
+                element.parentNode.removeAttribute('style')
+                element.parentNode.removeChild(element);
             }
         }
-
-        document.querySelector(".create-work-file-upload").addEventListener('change', function () {
-            readURL(this);
-        });
-
-        document.querySelector(".create-work-upload-button").addEventListener('click', function () {
-            document.querySelector(".create-work-file-upload").click()
-
-        });
-    });
+    }
 </script>
 <div class="work-offer-create-container">
 
@@ -54,17 +105,18 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="work-offer-create-flex">
-            <div class="work-offer-thumbnail">
-
-                <div class="thumbnail-wrapper">
-                    <img class="work-image" src="{% static 'images/image-default.png' %}" />
-                    <div class="create-work-upload-button">
-                    </div>
-                    <!-- <input class="create-work-file-upload" type="file" accept="image/*" name="thumbnail" /> -->
-                    {{ form.thumbnail}}
-                    <p id="upload">Click to upload image</p>
+            <div class="work-offer-create-flex-container">
+                <div class="work-offer-thumbnail">
+                    <div class="work-offer-thumbnail-upload"></div>
+                    <div class="work-offer-thumbnail-upload"></div>
+                    <div class="work-offer-thumbnail-upload"></div>
+                    <div class="work-offer-thumbnail-upload"></div>
                 </div>
-
+                <label class="work-offer-thumbnail-upload-button">
+                    <p>Upload images</p>
+                    <input type="file" name="file" multiple="" data-max_length="4"
+                        class="work-offer-create-upload__inputfile">
+                </label>
             </div>
 
             <div class="work-offer-create-form">

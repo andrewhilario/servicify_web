@@ -25,7 +25,9 @@
             <li>
                 <a href="">
                     <div class="work-offer-thumbnail-parent">
-                        <img src="{{ work_offer.thumbnail.url }}" alt="">
+                        {% for img in work_offer.workofferimage_set.all %}
+                            <img src="{{ img.image.url }}" alt="">
+                        {% endfor %}
                     </div>
                     <p>{{ work_offer.work_name }}</p>
                     <span>Bid Starts at &#8369;{% filter intcomma %}{{ work_offer.min_pay|floatformat }}{% endfilter %}

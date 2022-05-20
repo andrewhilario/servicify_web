@@ -102,16 +102,11 @@ class CreateWorkOfferForm(forms.ModelForm):
     description = forms.CharField(label='Description', min_length=5,
                                   max_length=1000, help_text='Required', widget=forms.Textarea)
     min_pay = forms.DecimalField(
-        label='Minimum Pay (PHP)', max_digits=19, decimal_places=4, help_text='Required')
+        label='Starting Bid (PHP)', max_digits=19, decimal_places=4, help_text='Required')
 
     class Meta:
         model = WorkOffer
-        fields = ['work_name', 'description', 'min_pay', 'thumbnail']
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['thumbnail'].widget.attrs.update(
-            {'class': 'create-work-file-upload', 'name': 'thumbnail'})
+        fields = ['work_name', 'description', 'min_pay']
 
 
 class CreateServiceForm(forms.ModelForm):

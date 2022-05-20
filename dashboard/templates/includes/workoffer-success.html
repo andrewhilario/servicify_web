@@ -9,7 +9,6 @@
     </div>
 
     <div class="work-offer-success-flex">
-        <img class="work-offer-success-thumbnail-img" src="{{ work_offer_thumbnail_url }}" alt="">
         <div class="work-offer-success-text-details">
             <div class="work-offer-success-text">
                 <p>{{ work_offer_name }}</p>
@@ -24,6 +23,11 @@
                 Description:
                 <p>{{ work_offer_description }}</p>
             </div>
+        </div>
+        <div class="cs-images">
+            {% for img in work_offer_imgs %}
+            <img style="max-width: 200px; max-height: 200px;" src="{{ img.image.url }}" alt="">
+            {% endfor %}
         </div>
     </div>
 </div>
