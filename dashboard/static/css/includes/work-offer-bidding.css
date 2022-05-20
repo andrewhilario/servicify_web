@@ -99,7 +99,7 @@
 .wo-sub-details {
     width: 80%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     margin: 20px 0;
 }

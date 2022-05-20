@@ -16,10 +16,12 @@ import random
 
 def dashboard(request):
     # for work offers
-    valid_work_offers = WorkOffer.objects.filter(status='OPEN').values_list('id', flat=True)
-    random_profiles_id_list = random.sample(list(valid_work_offers), min(len(valid_work_offers), 10))
+    valid_work_offers = WorkOffer.objects.filter(
+        status='OPEN').values_list('id', flat=True)
+    random_profiles_id_list = random.sample(
+        list(valid_work_offers), min(len(valid_work_offers), 10))
     query_set = WorkOffer.objects.filter(id__in=random_profiles_id_list)
-    context = { 
+    context = {
         'work_offers': query_set.all()
     }
 
@@ -39,10 +41,10 @@ def avatar(request):
             'NotLoggedIn': User.objects.none()
         }
 
+
 def logout_user(request):
     logout(request)
     return render(request, 'includes/logout.html')
-
 
 
 @login_required
@@ -51,7 +53,7 @@ def createworkoffer(request):
     # if check_work_offer:
     #     return render(request, 'includes/workoffer-create.html', { 'errors': 'You can only create one Work Offer each account.'})
 
-    if request.method == "POST": 
+    if request.method == "POST":
         workOfferForm = CreateWorkOfferForm(request.POST, request.FILES)
         if workOfferForm.is_valid():
             work_offer = workOfferForm.save(commit=False)
@@ -69,18 +71,29 @@ def createworkoffer(request):
             return render(request, 'includes/workoffer-success.html', context)
 
     form = CreateWorkOfferForm()
-    context = { 
+    context = {
         'client_name': '{0} {1}'.format(request.user.first_name, request.user.last_name),
         'form': form
     }
 
     return render(request, 'includes/workoffer-create.html', context)
 
+
 def workoffer(request):
     return render(request, 'includes/work-offer.html')
-    
+
+
 def workoffer2(request):
-    return render(request, 'includes/workoffer2.html') 
+    return render(request, 'includes/workoffer2.html')
+
+
+def work_offer_bidding(request):
+    return render(request, 'includes/work-offer-bidding.html')
+
+
+def view_work_offer_bidding(request):
+    return render(request, 'includes/view-work-offer-bid.html')
+
 
 @login_required
 def createservice(request):
@@ -94,11 +107,11 @@ def createservice(request):
             print(request.FILES)
             for service_img in request.FILES.getlist('file'):
                 pic = ServiceImage()
-                pic.service = service 
+                pic.service = service
                 pic.image = service_img
                 pic.save()
                 print(service_img)
-            
+
             context = {
                 'service_owner': '{0} {1}'.format(request.user.first_name, request.user.last_name),
                 'service': service,
@@ -107,17 +120,20 @@ def createservice(request):
             return render(request, 'includes/service-success.html', context)
 
     form = CreateServiceForm()
-    context = { 
+    context = {
         'service_owner': '{0} {1}'.format(request.user.first_name, request.user.last_name),
         'form': form
     }
-    return render(request, 'includes/service-create.html', context) 
+    return render(request, 'includes/service-create.html', context)
+
 
 def acquireservice(request):
-    return render(request, 'includes/acquireservice.html') 
+    return render(request, 'includes/acquireservice.html')
+
 
 def acquireservice2(request):
-    return render(request, 'includes/acquireservice2.html') 
+    return render(request, 'includes/acquireservice2.html')
+
 
 def register(request):
     if request.method == 'POST':
@@ -138,7 +154,8 @@ def register(request):
             })
             user.email_user(subject=subject, message=message)
 
-            mainUserForm = MainUserRegistrationForm(request.POST, request.FILES, instance=user.mainuser)
+            mainUserForm = MainUserRegistrationForm(
+                request.POST, request.FILES, instance=user.mainuser)
 
             if mainUserForm.is_valid():
                 main_user = mainUserForm.save(commit=False)
@@ -150,7 +167,7 @@ def register(request):
     else:
         registerForm = RegistrationForm()
         mainUserForm = MainUserRegistrationForm()
-    return render(request, 'includes/register.html', {'form': registerForm,'mainuser_form':mainUserForm})
+    return render(request, 'includes/register.html', {'form': registerForm, 'mainuser_form': mainUserForm})
 
 
 def activate(request, uidb64, token):
@@ -167,7 +184,6 @@ def activate(request, uidb64, token):
         return render(request, 'includes/registration-invalid.html')
 
 
-
 def register_success(request):
     return render(request, 'includes/registration-success.html')
 
@@ -179,13 +195,6 @@ def profile_page(request):
 def service_request(request):
     return render(request, 'includes/service-request.html')
 
+
 def view_service(request):
     return render(request, 'includes/view-service.html')
-
-
-def work_offer_bidding(request):
-    return render(request, 'includes/work-offer-bidding.html')
-
-
-def view_work_offer_bidding(request):
-    return render(request, 'includes/view-work-offer-bid.html')

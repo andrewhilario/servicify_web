@@ -14,15 +14,17 @@ urlpatterns = [
                                                 authentication_form=UserLoginForm), name='login'),
     path('logout/', views.logout_user, name='logout'),
     path('register/', views.register, name='register'),
+
     path('service-request/', views.service_request, name='service_request'),
     path('service-request/view/', views.view_service, name='view_service'),
     path('createservice/', views.createservice, name='createservice'),
     path('acquireservice/', views.acquireservice, name='acquireservice'),
     path('acquireservice2/', views.acquireservice2, name='acquireservice2'),
+
+    # work offers
     path('createworkoffer/', views.createworkoffer, name='createworkoffer'),
     path('workoffer/', views.workoffer, name='workoffer'),
     path('workoffer2/', views.workoffer2, name='workoffer2'),
-    
     path('biddings/', views.work_offer_bidding, name='work_offer_bidding'),
     path('biddings/view/', views.view_work_offer_bidding, name='view_work_offer_bidding'),
     
