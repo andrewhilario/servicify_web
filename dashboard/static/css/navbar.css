@@ -115,7 +115,7 @@
     width: 30%;
     background: #507c59;
     border-radius: 20px;
-
+    z-index: 99;
 }
 
 .navlinks-clicked {
@@ -124,6 +124,7 @@
     flex-direction: column;
     justify-content: space-around;
     padding: 30px 10px;
+
 }
 
 .navlinks-clicked li {

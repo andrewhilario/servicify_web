@@ -16,12 +16,12 @@
             </div>
             <div class="wo-img-thumbs">
                 {% for img in work_offer.workofferimage_set.all %}
-                    <div class="wo-sub-img">
-                        <img src="{{ img.image.url }}" alt="">
-                    </div>
+                <div class="wo-sub-img">
+                    <img src="{{ img.image.url }}" alt="">
+                </div>
                 {% endfor %}
             </div>
-            
+
         </div>
         <div class="wo-details-and-bid">
             <div class="wo-sub-contents">
@@ -61,15 +61,20 @@
                         <i class="fa-solid fa-clock"></i>
                         <span>Created {{ work_offer.created_at|naturaltime }}</span>
                     </div>
+                    <div class="wo-manage">
+                        <button>Manage your Bid</button>
+                    </div>
                 </div>
             </div>
             <div class="wo-pricing">
                 <div class="wo-current-price">
-                    <div>
+                    <div class="wo-highest-bid">
                         <p>Highest Bid:</p>
                         <span>₱{% filter intcomma %}{{ highest_bid.bid_amount|floatformat }}{% endfilter %}</span>
                     </div>
-                    <div>Placed by: <img class="mini-avatar" src="{{ highest_bid.bidder_id.avatar.url }}" alt=""> {{ highest_bid.bidder_id.full_name }}</div>
+                    <div>
+                        Placed by: <img class="mini-avatar" src="{{ highest_bid.bidder_id.avatar.url }}" alt="">
+                        {{ highest_bid.bidder_id.full_name }}</div>
                 </div>
                 <div class="wo-bid-incre">
                     <p>Starting Bid:</p>
@@ -78,29 +83,28 @@
             </div>
             <div class="wo-bidding-input">
                 {% if request.user.is_authenticated %}
-                    <form method="post">
-                        {% csrf_token %}
-                        {% if form_errors %}
-                        <div class="wo-bid-error">
-                            <p>Unable to create bid:</p>
-                            {% for error in form_errors %}
-                                <p>{{ error }}</p>
-                            {% endfor %}
-                        </div>
-                        {% endif %}
-                        <div class="wo-bid-input">
-                            <p>₱</p>
-                            {{ bid_form.bid_amount }}
-                        </div>
-                        <div class="wo-bid-btn">
-                            <button type="submit">Bid Now</button>
-                        </div>
-                        <div>
-                            {{ bid_form.bidder_msg }}
-                        </div>
-                    </form>
+                <form method="post">
+                    {% csrf_token %}
+                    {% if form_errors %}
+                    <div class="wo-bid-error">
+                        <p>Unable to create bid:</p>
+                        {% for error in form_errors %}
+                        <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <div class="wo-bid-input">
+                        <p>₱</p>
+                        {{ bid_form.bid_amount }}
+                        <button type="submit">Bid Now</button>
+                    </div>
+
+                    <div class="wo-bid-message">
+                        {{ bid_form.bidder_msg }}
+                    </div>
+                </form>
                 {% else %}
-                    <p>Login to place bid</p>
+                <p>Login to place bid</p>
                 {% endif %}
             </div>
         </div>
@@ -127,7 +131,8 @@
                 {% if latest_bid %}
                 <div class="wo-latest-bid-content">
                     <p>Latest Bidder: </p>
-                    <span><img class="mini-avatar" src="{{ latest_bid.bidder_id.avatar.url }}" alt=""> {{ latest_bid.bidder_id.full_name }}</span>
+                    <span><img class="mini-avatar" src="{{ latest_bid.bidder_id.avatar.url }}" alt=""> {{
+                        latest_bid.bidder_id.full_name }}</span>
                 </div>
                 <div class="wo-latest-bid-content">
                     <p>Latest Bid: </p>
@@ -154,7 +159,8 @@
                             {% for bid in bids %}
                             <tr>
                                 <td>{{ bid.created_at }}</td>
-                                <td> <img class="mini-avatar" src="{{ bid.bidder_id.avatar.url }}" alt=""> {{ bid.bidder_id.full_name }}</td>
+                                <td> <img class="mini-avatar" src="{{ bid.bidder_id.avatar.url }}" alt=""> {{
+                                    bid.bidder_id.full_name }}</td>
                                 <td>₱{{ bid.bid_amount }}</td>
                             </tr>
                             {% endfor %}

@@ -171,8 +171,35 @@
 }
 
 .wo-timer span {
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: bold;
+    text-align: center;
+}
+
+.wo-manage {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: 30px auto;
+}
+
+.wo-manage button {
+    padding: 20px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #749E7D;
+    outline: none;
+    font-family: 'Raleway';
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.wo-manage button:hover {
+    background-color: #24503a;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
 .wo-description {
@@ -208,6 +235,11 @@
     margin-right: 10px
 }
 
+.wo-highest-bid {
+    display: flex;
+    justify-content: space-between;
+}
+
 .wo-bid-incre {
     display: flex;
     justify-content: space-between;
@@ -222,10 +254,17 @@
 .wo-bidding-input {
     width: 100%;
     display: flex;
+    margin: 0;
+    /* justify-content: space-around; */
+}
+
+.wo-bidding-input form {
+    width: 100%;
 }
 
 .wo-bid-input {
     width: 100%;
+    display: flex;
     position: relative;
 }
 
@@ -239,7 +278,7 @@
 }
 
 .wo-bid-input input {
-    width: 90%;
+    width: 100%;
     height: 50px;
     border-radius: 5px;
     border: 2px solid #749E7D;
@@ -247,20 +286,42 @@
     font-size: 1.5rem;
     font-weight: bold;
     margin-right: 10px;
+    font-family: 'Raleway';
 }
 
-.wo-bid-btn input[type="button"] {
-    width: 100%;
+.wo-bid-input button {
+    width: 40%;
     height: 50px;
     border-radius: 5px;
-    border: 1px solid #749E7D;
+    border: none;
     background-color: #749E7D;
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
     padding: 0 50px;
     text-align: center;
     cursor: pointer;
+    font-family: 'Raleway';
+    transition: all 0.3s ease-in-out;
+    outline: none;
+}
+
+.wo-bid-input button:hover {
+    background-color: #24503a;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.wo-bid-message {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+#bidder_msg {
+    width: 100%;
+    border: 2px solid #7CB687;
+    resize: none;
 }
 
 /* bidders */
