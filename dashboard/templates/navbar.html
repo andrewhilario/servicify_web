@@ -13,12 +13,19 @@
 
 <div class="navigation-bar">
     <div class="logo-navbar">
-        <a href="#">
+        <a href="/">
             <img src="{% static 'images/logo-navbar.png' %}" alt="logo">
         </a>
     </div>
     <ul class="navlinks">
         {% if request.user.is_authenticated %}
+        <div class="search-bar">
+            <input type="text" placeholder="Search..." id="search-bar-logged-in">
+            <button id="search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        </div>
         <li><a href="">{{ request.user.first_name }}</a></li>
         <li>
             <button id="avatar">
@@ -32,12 +39,14 @@
         <li class="hover-profile" id="navlinks-profile">
             <ul class="navlinks-clicked">
                 <li><a href="{% url 'profile' %}"><i class="fa-solid fa-user"></i>Profile</a></li>
+                <li><a href="{% url 'profile_client' %}"><i class="fa-solid fa-user"></i>Profile Client</a></li>
                 <li><a href="/"><i class="fa-solid fa-house-chimney"></i>Home</a></li>
                 <li><a href="#"><i class="fa-solid fa-circle-info"></i>About</a></li>
                 <li><a href="#"><i class="fa-solid fa-phone"></i>Contact</a></li>
                 <li><a href="{% url 'service_request' %}"><i class="fa-solid fa-wrench"></i>Service Requests</a></li>
+                <li><a href="{% url 'createservice' %}"><i class="fa-solid fa-wrench"></i>Create Service</a></li>
                 <li><a href="{% url 'acquireservice' %}"><i class="fa-solid fa-shop"></i>Service Marketplace</a></li>
-                <li><a href="{% url 'workoffer' %}"><i class="fa-solid fa-briefcase"></i>Work Offer</a></li>
+                <li><a href="{% url 'work_offer_list' %}"><i class="fa-solid fa-briefcase"></i>Work Offers</a></li>
                 <li><a href="{% url 'work_offer_bidding' %}"><i class="fa-solid fa-gavel"></i>Work Offer Biddings</a>
                 </li>
 
@@ -53,17 +62,34 @@
         <li><a href="#">About</a></li>
         <li><a href="#">Contact</a></li>
         <li><a href="{% url 'acquireservice' %}">Service Marketplace</a></li>
-        <li><a href="{% url 'workoffer' %}">Work Offer</a></li>
+        <li><a href="{% url 'work_offer_list' %}">Work Offers</a></li>
         <li><a href="{% url 'login' %}">Login</a></li>
         <div class="search-bar">
-            <button type="submit">
+            <input type="text" placeholder="Search" id="search-bar">
+            <button id="search">
                 <img src="{% static 'images/search-icon.png' %}" alt="search-icon">
             </button>
+
         </div>
         {% endif %}
     </ul>
 
 </div>
+
+<script>
+    var search = document.querySelector('#search');
+    var search_bar = document.querySelector('#search-bar');
+    var search_bar_login = document.querySelector('#search-bar-logged-in');
+
+    if (search) {
+        search.onclick = () => {
+            search_bar.classList.toggle('search-active');
+
+        }
+
+    }
+</script>
+
 
 
 {% endblock %}

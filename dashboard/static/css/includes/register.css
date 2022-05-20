@@ -463,35 +463,68 @@
   margin: 40px auto;
 }
 
-.account-type-selection button {
+.reg-btn input[type="radio"] {
+  display: none;
+}
+
+.reg-btn {
   width: 45%;
-  height: 50px;
+}
+
+
+.reg-btn input[type="radio"]+label {
+
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
   outline: none;
-  border-radius: 10px;
+
+
+}
+
+.reg-btn input[type="radio"]+label span {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #507c59;
+  border-radius: 10px;
+  transition: all .3s ease-in;
   cursor: pointer;
 }
 
-.account-type-selection button i {
+.reg-btn input[type="radio"]+label span i {
   font-size: 1.5rem;
   margin: 0 10px;
   color: white;
+  transition: all .3s ease-in;
 }
 
-.account-type-selection button p {
+.reg-btn input[type="radio"]+label span p {
   font-size: 1rem;
   font-family: 'Raleway';
   color: white;
+  transition: all .3s ease-in;
+  font-weight: bold;
 }
 
 /* Account Type Animation CSS */
 
-.account-type-selection button:hover {
-  transform: scale(1.05);
-  transition: all 0.3s ease-in-out;
-  color: black;
+.reg-btn input[type="radio"]:checked+label span {
+  background-color: #a0d8ab;
+
 }
+
+.reg-btn input[type="radio"]:checked+label span i {
+  color: #34495e;
+}
+
+.reg-btn input[type="radio"]:checked+label span p {
+  color: #34495e;
+}
+
+/* .active-btn button:focus {
+  color: black;
+} */

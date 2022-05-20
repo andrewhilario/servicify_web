@@ -9,9 +9,19 @@ from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
+from django.http import *
 import random
 
+# for 404 page
+
+
 # Create your views here.
+
+def page_not_found(request, exception, template_name='page-not-found.html'):
+    return render(request, template_name)
+
+
 
 
 def dashboard(request):
@@ -21,7 +31,8 @@ def dashboard(request):
     random_profiles_id_list = random.sample(
         list(valid_work_offers), min(len(valid_work_offers), 10))
     query_set = WorkOffer.objects.filter(id__in=random_profiles_id_list)
-    context = {
+    
+    context = { 
         'work_offers': query_set.all()
     }
 
@@ -45,6 +56,15 @@ def avatar(request):
 def logout_user(request):
     logout(request)
     return render(request, 'includes/logout.html')
+
+
+def custom_logout(request, next_page="/register"):
+    logout(request)
+    if next_page is None:
+        return render(request, 'includes/logout.html')
+    else:
+        return HttpResponseRedirect(next_page)
+
 
 
 @login_required
@@ -80,19 +100,10 @@ def createworkoffer(request):
 
 
 def workoffer(request):
-    return render(request, 'includes/work-offer.html')
-
-
+    return render(request, 'includes/workoffer.html')
+    
 def workoffer2(request):
     return render(request, 'includes/workoffer2.html')
-
-
-def work_offer_bidding(request):
-    return render(request, 'includes/work-offer-bidding.html')
-
-
-def view_work_offer_bidding(request):
-    return render(request, 'includes/view-work-offer-bid.html')
 
 
 @login_required
@@ -126,6 +137,9 @@ def createservice(request):
     }
     return render(request, 'includes/service-create.html', context)
 
+
+def createservice_success(request):
+    return render(request, 'includes/service-success.html')
 
 def acquireservice(request):
     return render(request, 'includes/acquireservice.html')
@@ -192,9 +206,37 @@ def profile_page(request):
     return render(request, 'includes/profile-page.html')
 
 
+def profile_client(request):
+    return render(request, 'includes/profile-page-client.html')
+
+
 def service_request(request):
     return render(request, 'includes/service-request.html')
 
 
 def view_service(request):
     return render(request, 'includes/view-service.html')
+
+
+def work_offer_list(request):
+    valid_work_offers = WorkOffer.objects.filter(status='OPEN').values_list('id', flat=True)
+    random_profiles_id_list = random.sample(list(valid_work_offers), min(len(valid_work_offers), 10))
+    query_set = WorkOffer.objects.filter(id__in=random_profiles_id_list)
+    context = { 
+        'work_offers': query_set.all()
+    }
+    return render(request, 'includes/work-offer-list.html', context)
+
+# @login_required
+def work_offer_bidding(request):
+    return render(request, 'includes/work-offer-bidding.html')
+
+
+def view_work_offer_bidding(request):
+    return render(request, 'includes/view-work-offer-bid.html')
+
+def contact_us(request):
+    return render(request, 'includes/contact-us.html')
+
+def search_results(request):
+    return render(request, 'includes/search-results-page.html')

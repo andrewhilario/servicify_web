@@ -22,12 +22,13 @@
     display: flex;
     justify-content: end;
     align-items: center;
-    width: 50%;
+    width: 55%;
     margin-right: 10%;
     position: relative;
 }
 
 .navlinks li {
+
     list-style: none;
     margin: 0 10px;
 }
@@ -45,6 +46,7 @@
     justify-content: space-between;
     align-items: center;
     height: 10vh;
+
 }
 
 .search-bar button {
@@ -53,6 +55,56 @@
     border: none;
     background: none;
     cursor: pointer;
+    font-size: 2rem;
+    outline: none;
+}
+
+
+
+#search-bar {
+    position: absolute;
+    height: 5vh;
+    width: 80%;
+    margin-right: 10%;
+    right: 0;
+    border-radius: 10px;
+    border: 3px solid #507c59;
+    padding-left: 10px;
+    font-size: 1.3rem;
+    font-family: 'Raleway';
+    opacity: 0;
+    transition: all .2s ease-in-out;
+    z-index: -1;
+    outline: none;
+}
+
+#search-bar-logged-in {
+    position: absolute;
+    height: 5vh;
+    width: 78%;
+    margin-right: 10%;
+    left: 0;
+    border-radius: 10px;
+    border: 3px solid #507c59;
+    padding-left: 10px;
+    font-size: 1.3rem;
+    font-family: 'Raleway';
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    opacity: 1;
+    transition: all .2s ease-in-out;
+    z-index: 1;
+    outline: none;
+}
+
+.search-active {
+    opacity: 1 !important;
+    z-index: 1 !important;
+}
+
+.search-active-1 {
+    opacity: 1 !important;
+    z-index: 1 !important;
 }
 
 .hover-profile {
