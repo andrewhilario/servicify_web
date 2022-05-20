@@ -65,7 +65,7 @@ python manage.py runserver
 Lists of tasks that need to be done. 
 
 ### Templates
-- [ ] Service Marketplace Template (You can check reference sa Work Offers Templates (https://imgur.com/a/730oAey))
+- [x] Service Marketplace Template (You can check reference sa Work Offers Templates (https://imgur.com/a/730oAey))
 - [x] Contact Us Page (https://imgur.com/a/PQOAiGM) undraw svg (https://imgur.com/a/M0lrEZ7) (Marc Abi)
 - [ ] About Us Page (https://imgur.com/a/bCww0gR) undraw svg (https://imgur.com/a/GvoH2KC) (Joshia)
 - [x] Work Offer Details Template (https://imgur.com/a/Yee5niQ) (Drew)
@@ -79,10 +79,10 @@ Lists of tasks that need to be done.
 - [x] Combine `templates\includes\register.html` and `templates\includes\register-detail.html` to single page. (Para madali mag-handle ng form) *(Drew)*
 
 ### Figma Prototypes
-- [ ] Service View Page (equivalent of https://imgur.com/a/Yee5niQ for service)
-- [ ] List of Services Page
-- [ ] List of Work Offers Page
-- [ ] Create Service Type Form
+- [x] Service View Page (equivalent of https://imgur.com/a/Yee5niQ for service)
+- [x] List of Services Page
+- [x] List of Work Offers Page
+- [x] Create Service Type Form
 - [x] Service request page (For serviceperson) *(Drew)*
 - [x] Service request confirmation *(Drew)*
 - [x] Work Offer page (with place bid button & bids of other users) *(Drew)*
@@ -96,7 +96,7 @@ Lists of tasks that need to be done.
 - [x] Make Dashboard images fit to box (Not streched and not full)
 - [x] Create Service Dropdown add style (https://imgur.com/a/K0ok0a7)
 - [x] Create Service Success add style (https://imgur.com/a/Z0u4njy)
-- [ ] Add 'Browse More' on the end of slide (at the end of Work Offers and Services) (https://imgur.com/a/aE5YJzI)
+- [x] Add 'Browse More' on the end of slide (at the end of Work Offers and Services) (https://imgur.com/a/aE5YJzI)
 
 ### System
 - [ ] Change default delete behaviour. (Instead of literal delete, add a deleted_at column.) *(Troy)*
