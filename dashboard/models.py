@@ -22,6 +22,11 @@ class MainUser(models.Model):
     phone_number = models.CharField(max_length=15)
     avatar = models.ImageField(
         upload_to=user_directory_path, default='users/avatar.png')
+    
+    @property
+    def full_name(self):
+        "Returns the user's full name."
+        return '%s %s' % (self.user.first_name, self.user.last_name)
 
 @ receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

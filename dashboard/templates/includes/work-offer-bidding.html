@@ -1,5 +1,6 @@
 {% extends 'index.html' %}
 {% load static %}
+{% load humanize %}
 {% block content %}
 {% include 'navbar.html' %}
 <div class="wo-bidding">
@@ -11,32 +12,25 @@
     <div class="wo-contents">
         <div class="wo-image-view">
             <div class="wo-main-img">
-                <img src="{% static 'images/wo-carpentry-1.png' %}" alt="">
+                <img src="{% static 'images/image-default.png' %}" alt="">
             </div>
             <div class="wo-img-thumbs">
-
-                <div class="wo-sub-img">
-                    <img src="{% static 'images/wo-carpentry-1.png' %}" alt="">
-                </div>
-                <div class="wo-sub-img">
-                    <img src="{% static 'images/wo-carpentry-2.png' %}" alt="">
-                </div>
-                <div class="wo-sub-img">
-                    <img src="{% static 'images/wo-carpentry-3.png' %}" alt="">
-                </div>
-
+                {% for img in work_offer.workofferimage_set.all %}
+                    <div class="wo-sub-img">
+                        <img src="{{ img.image.url }}" alt="">
+                    </div>
+                {% endfor %}
             </div>
+            
         </div>
         <div class="wo-details-and-bid">
             <div class="wo-sub-contents">
                 <div class="wo-details">
-                    <h3>Carpenter</h3>
+                    <h3>{{ work_offer.work_name }}</h3>
                     <div class="wo-sub-details">
                         <div class="wo-img-sub-details">
                             <div class="wo-img-container">
-                                <img src="{% for data in avatar %}
-                                {{ data.avatar.url }}
-                                {% endfor %}" alt="">
+                                <img src="{{ work_offer.created_by.avatar.url }}" alt="">
                             </div>
                             <span>⭐⭐⭐⭐⭐</span>
                         </div>
@@ -44,7 +38,7 @@
                             <ul>
                                 <li>
                                     <p>Posted By:</p>
-                                    <span>Juan Dela Cruz</span>
+                                    <span>{{ work_offer.created_by.full_name }}</span>
                                 </li>
                                 <li>
                                     <p>Location:</p>
@@ -52,42 +46,62 @@
                                 </li>
                                 <li>
                                     <p>Work Posted: </p>
-                                    <span>5</span>
+                                    <span>{{ client_work_posted }}</span>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <p class="wo-description">
                         <span><strong>Description: </strong></span> <br>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Quisquam, quidem.
+                        {{ work_offer.description }}
                     </p>
                 </div>
                 <div class="wo-time-limit">
                     <div class="wo-timer">
                         <i class="fa-solid fa-clock"></i>
-                        <span>6:14:24:02</span>
+                        <span>Created {{ work_offer.created_at|naturaltime }}</span>
                     </div>
                 </div>
             </div>
             <div class="wo-pricing">
                 <div class="wo-current-price">
-                    <p>Current Price:</p>
-                    <span>₱5,400.00</span>
+                    <div>
+                        <p>Highest Bid:</p>
+                        <span>₱{% filter intcomma %}{{ highest_bid.bid_amount|floatformat }}{% endfilter %}</span>
+                    </div>
+                    <div>Placed by: <img class="mini-avatar" src="{{ highest_bid.bidder_id.avatar.url }}" alt=""> {{ highest_bid.bidder_id.full_name }}</div>
                 </div>
                 <div class="wo-bid-incre">
-                    <p>Bid increment:</p>
-                    <span>₱100.00</span>
+                    <p>Starting Bid:</p>
+                    <span>₱{% filter intcomma %}{{ work_offer.min_pay|floatformat }}{% endfilter %}</span>
                 </div>
             </div>
             <div class="wo-bidding-input">
-                <div class="wo-bid-input">
-                    <p>₱</p>
-                    <input type="text" placeholder="Enter your bid">
-                </div>
-                <div class="wo-bid-btn">
-                    <input type="button" value="Bid Now">
-                </div>
+                {% if request.user.is_authenticated %}
+                    <form method="post">
+                        {% csrf_token %}
+                        {% if form_errors %}
+                        <div class="wo-bid-error">
+                            <p>Unable to create bid:</p>
+                            {% for error in form_errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        <div class="wo-bid-input">
+                            <p>₱</p>
+                            {{ bid_form.bid_amount }}
+                        </div>
+                        <div class="wo-bid-btn">
+                            <button type="submit">Bid Now</button>
+                        </div>
+                        <div>
+                            {{ bid_form.bidder_msg }}
+                        </div>
+                    </form>
+                {% else %}
+                    <p>Login to place bid</p>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -96,28 +110,34 @@
             <div class="wo-active-bids">
                 <i class="fa-solid fa-hand"></i>
                 <div class="wo-sub-content">
-                    <span>3</span>
+                    <span>{{ active_bids }}</span>
                     <p>Active Bids:</p>
                 </div>
             </div>
             <div class="wo-total-bids">
                 <i class="fa-solid fa-gavel"></i>
                 <div class="wo-sub-content">
-                    <span>5</span>
+                    <span>{{ total_bids }}</span>
                     <p>Total Bids</p>
                 </div>
             </div>
         </div>
         <div class="wo-latest-bidder">
             <div class="wo-latest-bid">
+                {% if latest_bid %}
                 <div class="wo-latest-bid-content">
                     <p>Latest Bidder: </p>
-                    <span>Miguelito Juaqin</span>
+                    <span><img class="mini-avatar" src="{{ latest_bid.bidder_id.avatar.url }}" alt=""> {{ latest_bid.bidder_id.full_name }}</span>
                 </div>
                 <div class="wo-latest-bid-content">
                     <p>Latest Bid: </p>
-                    <span>₱200</span>
+                    <span>₱{{ latest_bid.bid_amount }}</span>
                 </div>
+                {% else %}
+                <div class="wo-latest-bid-content">
+                    No recent bids 🤷‍♂️
+                </div>
+                {% endif %}
             </div>
             <div class="wo-other-bid">
                 <p>Other Bids:</p>
@@ -125,19 +145,19 @@
                     <table>
                         <thead>
                             <tr>
+                                <th>Date</th>
                                 <th>Bidder</th>
                                 <th>Bid</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% for bid in bids %}
                             <tr>
-                                <td>Juan Galerio Guanzon</td>
-                                <td>₱100</td>
+                                <td>{{ bid.created_at }}</td>
+                                <td> <img class="mini-avatar" src="{{ bid.bidder_id.avatar.url }}" alt=""> {{ bid.bidder_id.full_name }}</td>
+                                <td>₱{{ bid.bid_amount }}</td>
                             </tr>
-                            <tr>
-                                <td>Antonio Maharlika</td>
-                                <td>₱50</td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

@@ -193,6 +193,7 @@
 .wo-current-price {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
 }
 
 .wo-current-price p {
@@ -386,4 +387,9 @@
     padding: 10px 0;
     text-align: center;
 
+}
+
+.mini-avatar {
+    width: 3%;
+    border-radius: 50%;
 }
