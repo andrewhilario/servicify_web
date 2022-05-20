@@ -1,0 +1,113 @@
+.sm-list {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.sm-list h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    padding: 50px 20px;
+
+}
+
+.sm-list .offers {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    width: 100%;
+    padding: 60px 0px;
+}
+
+.sm-list .offers li {
+    width: 100%;
+}
+
+.sm-list .offers li a {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.sm-list .offers li a p {
+    width: 100%;
+}
+
+/* Work Offer List Sorting */
+
+.sm-sort {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sm-sort-section {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 10px;
+    align-items: center;
+}
+
+.sm-sort-section span {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.sm-sort-section a {
+    text-decoration: none;
+    color: black;
+    padding: 10px 30px;
+    border: 2px solid #7CB687;
+    border-radius: 10px;
+    font-weight: 500;
+    outline: none;
+}
+
+.sm-sort-section a:hover {
+    background-color: #7CB687;
+    color: white;
+    transition: all .2s ease-in;
+}
+
+.sm-sort-section select {
+    color: black;
+    padding: 10px;
+    border: 2px solid #7CB687;
+    outline: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-family: 'Raleway', sans-serif;
+    cursor: pointer;
+}
+
+
+
+.sm-list-or-grid {
+    width: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10px;
+}
+
+.sm-list-or-grid button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    outline: none;
+    border: 2px solid #7CB687;
+    border-radius: 10px;
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+    font-size: 1.5rem;
+    background-color: white;
+}
+
+.sm-list-or-grid button:hover {
+    color: white;
+    background-color: #7CB687;
+    transition: all .2s ease-in;
+}

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .forms import RegistrationForm, MainUserRegistrationForm, CreateWorkOfferForm, CreateServiceForm
 from .tokens import account_activation_token
-from .models import MainUser, WorkOffer, ServiceImage, WorkOfferImage
+from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.contrib.sites.shortcuts import get_current_site
@@ -28,10 +28,14 @@ def dashboard(request):
         status='OPEN').values_list('id', flat=True)
     random_profiles_id_list = random.sample(
         list(valid_work_offers), min(len(valid_work_offers), 10))
-    work_offers = WorkOffer.objects.filter(id__in=random_profiles_id_list)
+    work_offers = WorkOffer.objects.filter(id__in=random_profiles_id_list)[:5]
+
+    # for services
+    service = Service.objects.all()[:5]
 
     context = {
-        'work_offers': work_offers
+        'work_offers': work_offers,
+        'services': service,
     }
 
     return render(request, 'includes/dashboard.html', context)
@@ -106,6 +110,8 @@ def workoffer(request):
     return render(request, 'includes/workoffer.html')
 
 
+
+
 def workoffer2(request):
     return render(request, 'includes/workoffer2.html')
 
@@ -142,6 +148,9 @@ def createservice(request):
 
 def createservice_success(request):
     return render(request, 'includes/service-success.html')
+
+def service_marketplace(request):
+    return render(request, 'includes/service-marketplace.html')
 
 
 def acquireservice(request):

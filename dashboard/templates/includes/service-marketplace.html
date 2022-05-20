@@ -1,0 +1,58 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% load humanize %}
+{% include 'navbar.html' %}
+<div class="sm-list">
+    <h1>Service Marketplace</h1>
+    <div class="sm-sort">
+
+        <div class="sm-sort-section">
+
+            <span>Sort by:</span>
+            <a href="#">Newest</a>
+            <a href="#">Oldest</a>
+            <select name="sort" id="" value="Price">
+                <option value="none" selected disabled hidden>Price</option>
+                <option value="">Price: High to Low</option>
+                <option value="">Price: Low to High</option>
+            </select>
+            <select name="sort" id="" value="">
+                <option value="none" selected disabled hidden>Categories</option>
+                <option value="">Electronics</option>
+                <option value="">Health Service</option>
+                <option value="">Automotive</option>
+                <option value="">Legal Service</option>
+                <option value="">Event Service</option>
+                <option value="">Well-being</option>
+
+            </select>
+        </div>
+        <div class="sm-list-or-grid">
+
+            <button><i class="fa-solid fa-list"></i></button>
+            <button><i class="fa-solid fa-table-cells-large"></i></button>
+
+        </div>
+
+    </div>
+    <ul class="offers">
+        {% for work_offer in work_offers %}
+        <li>
+            <a href="{% url 'work_offer_bidding' %}">
+                <div class="work-offer-thumbnail-parent">
+                    <img src="{{ work_offer.thumbnail.url }}" alt="">
+                </div>
+                <p>{{ work_offer.work_name }}</p>
+                <span>Bid Starts at &#8369;{% filter intcomma %}{{ work_offer.min_pay|floatformat }}{% endfilter %}
+
+                </span>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+
+{% include 'footer.html' %}
+{% endblock %}

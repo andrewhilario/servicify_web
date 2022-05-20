@@ -2,34 +2,78 @@
 {% load static %}
 {% block content %}
 {% include 'navbar.html' %}
-<div class="work-offer-success-container">
-    <div class="work-offer-success-title">
-        <h1>Success</h1>
-        <p>Your work offer successfuly created.</p>
-    </div>
+<div class="cs-success">
+    <a href="{% url 'createworkoffer' %}">
+        <i class="fa-solid fa-caret-left"></i>
+        <span>Return to Work Offer</span>
+    </a>
+    <h2 style="margin: 80px 0px !important">Successfully a work offer!</h2>
 
-    <div class="work-offer-success-flex">
-        <div class="work-offer-success-text-details">
-            <div class="work-offer-success-text">
-                <p>{{ work_offer_name }}</p>
+
+
+    <div style="margin: 100px auto;" class="cs-details">
+        <h3>Service Details</h3>
+        <div class="cs-sub-details">
+            <div class="cs-profile">
+                <div class="cs-pfp">
+                    <img src="{% for data in avatar %}
+                    {{ data.avatar.url }}
+                    {% endfor %}" alt="">
+                </div>
+                <div class="cs-pfp-details">
+                    <div class="cs-pfp-name">
+                        <h4>{{ work_offer_name }}</h4>
+                    </div>
+                    <div class="cs-pfp-other-details">
+                        <ul>
+                            <li>
+                                <p>Client Name: {{ work_offer_client }} </p>
+                                <span>{{ service.created_at.date }}</span>
+                            </li>
+                            <li>
+                                <p>Bid starts at: </p>
+                                <span>&#8369;{{ work_offer_price }}</span>
+                            </li>
+                            <li>
+                                <p>Description: </p>
+                                <span>{{ work_offer_description }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="work-offer-success-client">
-                <p>Client Name: {{ work_offer_client }}</p>
-            </div>
-            <div class="work-offer-success-price">
-                <p>Bid starts at &#8369;<span>{{ work_offer_price }}</span>
-            </div>
-            <div class="work-offer-success-description">
-                Description:
-                <p>{{ work_offer_description }}</p>
+            <div class="cs-images">
+                {% for img in work_offer_imgs %}
+                <img style="max-width: 200px; max-height: 200px;" src="{{ img.image.url }}" alt="">
+                {% endfor %}
             </div>
         </div>
-        <div class="cs-images">
-            {% for img in work_offer_imgs %}
-            <img style="max-width: 200px; max-height: 200px;" src="{{ img.image.url }}" alt="">
-            {% endfor %}
-        </div>
+
+        <!-- <p>{{ service.service_name }}</p>
+    <p>Service Owner: (You)</p>
+    <p>Type: {{ service.service_type.name }} (You)</p>
+    <p>Price starts at &#8369;<span>{{ service.price }}</span>
+    <p>Description: {{ service.description }}</p> -->
+
+
+
     </div>
 </div>
+
+
 {% include 'footer.html' %}
 {% endblock %}
+
+<!-- <div class="work-offer-success-text">
+    <p>{{ work_offer_name }}</p>
+</div>
+<div class="work-offer-success-client">
+    <p>Client Name: {{ work_offer_client }}</p>
+</div>
+<div class="work-offer-success-price">
+    <p>Bid starts at &#8369;<span></span>
+</div>
+<div class="work-offer-success-description">
+    Description:
+    <p>{{ work_offer_description }}</p>
+</div> -->

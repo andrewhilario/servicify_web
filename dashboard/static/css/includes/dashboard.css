@@ -71,9 +71,11 @@
     width: 70%;
     height: 100%;
     display: flex;
-    /* justify-content: space-around; */
+    justify-content: space-around;
+    flex-direction: row;
     align-items: baseline;
-    margin: 0 auto;
+    margin: 50px auto;
+    position: relative;
 }
 
 .offers li {
@@ -95,18 +97,62 @@
 
 }
 
-.work-offer-thumbnail-parent img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-}
-
 .work-offer-thumbnail-parent {
     width: 200px;
     height: 250px;
     background-color: gray;
     margin-bottom: 20px;
+    position: relative;
+    transition: all .2s ease-in-out;
 }
+
+.work-offer-thumbnail-parent img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    /* position: absolute; */
+}
+
+.work-offer-thumbnail-parent:hover {
+    transform: scale(1.03);
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+/* .work-offer-thumbnail-parent:hover img {
+    opacity: 0;
+} */
+
+.dashboard-show-more {
+    position: absolute;
+    font-size: 1rem;
+    right: -25%;
+    top: 20%;
+}
+
+.dashboard-show-more i {
+    font-size: 2rem;
+    text-align: end;
+    margin-left: 35%;
+    color: #000000;
+    transition: all .2s ease-in-out;
+}
+
+.dashboard-show-more a p {
+    font-style: bold;
+    font-size: 1.5rem !important;
+    color: #000000 !important;
+    transition: all .2s ease-in-out;
+}
+
+.dashboard-show-more:hover a p,
+.dashboard-show-more:hover a i {
+    color: rgb(80, 124, 89) !important;
+    text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2),
+        0px -5px 35px rgba(255, 255, 255, 0.3);
+}
+
+
+
 
 .offers li a p {
     font-size: 1rem;
@@ -143,6 +189,7 @@
     justify-content: space-around;
     align-items: center;
     margin: 0 auto;
+    position: relative;
 }
 
 .services li {
@@ -182,6 +229,35 @@
     font-weight: bold;
     color: black;
     margin-bottom: 20px;
+}
+
+.dashboard-show-more-2 {
+    position: absolute;
+    font-size: 1rem;
+    right: -25%;
+    top: 30%;
+}
+
+.dashboard-show-more-2 i {
+    font-size: 2rem;
+    text-align: end;
+    margin-left: 35%;
+    color: #000000;
+    transition: all .2s ease-in-out;
+}
+
+.dashboard-show-more-2 a p {
+    font-style: bold;
+    font-size: 1.5rem !important;
+    color: #000000 !important;
+    transition: all .2s ease-in-out;
+}
+
+.dashboard-show-more-2:hover a p,
+.dashboard-show-more-2:hover a i {
+    color: rgb(80, 124, 89) !important;
+    text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2),
+        0px -5px 35px rgba(255, 255, 255, 0.3);
 }
 
 /* Dashboard Tempalte 3 */

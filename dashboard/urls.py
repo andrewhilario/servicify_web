@@ -18,10 +18,12 @@ urlpatterns = [
     path('custom_logout', views.custom_logout, name='custom_logout'),
     path('register/', views.register, name='register'),
 
+    #services
     path('service-request/', views.service_request, name='service_request'),
     path('service-request/view/', views.view_service, name='view_service'),
     path('createservice/', views.createservice, name='createservice'),
     path('createservice/success/', views.createservice_success, name='createservice_success'),
+    path('service-marketplace/', views.service_marketplace, name='service_marketplace'),
     path('acquireservice/', views.acquireservice, name='acquireservice'),
     path('acquireservice2/', views.acquireservice2, name='acquireservice2'),
 
