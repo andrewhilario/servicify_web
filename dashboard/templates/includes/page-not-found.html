@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+
+<div class="errorpage-template">
+    <div class="errorpage-message">
+        <p class="m1">Oops!</p>
+        <p class="m2">Sorry, we could not find the<br>
+        page you are looking for.</p>
+        <p class="m3">Either something went wrong or the page<br>
+        doesn't exist.</p>
+        <div class="errorpage-button">
+            <button><a href="{% url 'dashboard' %}">Home Page</a></button> 
+        </div>
+    </div>
+    <div class="errorpage-img">
+        <div class="errorpage-img-container">
+            <img src="{% static 'images/errorpage.png' %}" alt="">
+        </div>
+    </div>
+</div>      
+
+{% include 'footer.html' %}
+{% endblock %}

@@ -2,20 +2,63 @@
 {% load static %}
 {% block content %}
 {% include 'navbar.html' %}
-<div>
-    <h1>Success</h1>
-    <p>Your service is successfuly created.</p>
+<div class="cs-success">
+    <a href="{% url 'service_request' %}">
+        <i class="fa-solid fa-caret-left"></i>
+        <span>Return to Service Request</span>
+    </a>
+    <h2>Successfully Created a Service!</h2>
+    <p>{{ service.service_name }} {{ service.service_type.name }} Services has been created.</p>
 
-    <p>{{ service.service_name }}</p>
-    <p>Service Owner: {{ service_owner }} (You)</p>
+
+    <div class="cs-details">
+        <h3>Service Details</h3>
+        <div class="cs-sub-details">
+            <div class="cs-profile">
+                <div class="cs-pfp">
+                    <img src="{% for data in avatar %}
+                    {{ data.avatar.url }}
+                    {% endfor %}" alt="">
+                </div>
+                <div class="cs-pfp-details">
+                    <div class="cs-pfp-name">
+                        <h4>{{ service.service_name }}</h4>
+                        <span>Rating not available</span>
+                    </div>
+                    <div class="cs-pfp-other-details">
+                        <ul>
+                            <li>
+                                <p>Join date: </p>
+                                <span>{{ service.created_at.date }}</span>
+                            </li>
+                            <li>
+                                <p>Location: </p>
+                                <span>Pasig City</span>
+                            </li>
+                            <li>
+                                <p>Service: </p>
+                                <span>{{ service.service_type.name }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="cs-images">
+                {% for img in service_imgs %}
+                <img style="max-width: 200px; max-height: 200px;" src="{{ img.image.url }}" alt="">
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- <p>{{ service.service_name }}</p>
+    <p>Service Owner: (You)</p>
     <p>Type: {{ service.service_type.name }} (You)</p>
     <p>Price starts at &#8369;<span>{{ service.price }}</span>
-    <p>Description: {{ service.description }}</p>
+    <p>Description: {{ service.description }}</p> -->
 
-    {% for img in service_imgs %}
-    <img style="max-width: 200px; max-height: 200px;" src="{{ img.image.url }}" alt="">
-    {% endfor %}
 
+
+    </div>
 </div>
 {% include 'footer.html' %}
 {% endblock %}

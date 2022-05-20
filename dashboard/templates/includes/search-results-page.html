@@ -1,0 +1,138 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="search-results-page">
+    <div class="search-sidebar">
+        <h1>Filter By: </h1>
+        <hr>
+        <div class="search-categories">
+            <h3>Categories</h3>
+            <ul>
+                <li><input type="checkbox" name="all" id="">All</li>
+                <li><input type="checkbox" name="electronics" id="">Electronics</li>
+                <li><input type="checkbox" name="health" id="">Health Service</li>
+                <li><input type="checkbox" name="auto" id="">Automotive</li>
+                <li><input type="checkbox" name="legal" id="">Legal Services</li>
+                <li><input type="checkbox" name="event" id="">Event Services</li>
+                <li><input type="checkbox" name="wellbeing" id="">Well-being</li>
+                <li><input type="checkbox" name="others" id="">Other</li>
+            </ul>
+        </div>
+        <hr>
+        <div class="search-ratings">
+            <h3>Ratings</h3>
+            <ul>
+
+                <li>
+                    <input type="checkbox" name="5" id="">
+                    <div class="search-stars">
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" name="4" id="">
+                    <div class="search-stars">
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" name="3" id="">
+                    <div class="search-stars">
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" name="2" id="">
+                    <div class="search-stars">
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" name="1" id="">
+                    <div class="search-stars">
+                        <span class="fa fa-star star-checked"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <hr>
+        <div class="search-price-range">
+            <h3>Price</h3>
+            <div class="search-price-range-input">
+                <input type="number" name="min" id="" placeholder="Min">
+                <span>to</span>
+                <input type="number" name="max" id="" placeholder="Max">
+                <button><i class="fa-solid fa-play"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="search-main-results">
+        <h3>Search Results for: <span></span></h3>
+        <div class="search-query">
+            <div class="search-query-img-container">
+                <div class="search-query-img">
+                    <img src="{% static 'images/wo-carpentry-1.png' %}" alt="">
+                </div>
+            </div>
+            <div class="search-query-details">
+                <div class="search-query-details-section">
+                    <h4>Carpentry</h4>
+                    <div class="sqd-rating">
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <p> Carpentry is the work of removing wood from a tree or other woody structure and shaping it into
+                        a new form. </p>
+                </div>
+                <div class="search-query-details-price">
+                    <p>&#8369; 5,000</p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="search-query">
+            <div class="search-query-img-container">
+                <div class="search-query-img">
+                    <img src="{% static 'images/wo-carpentry-1.png' %}" alt="">
+                </div>
+            </div>
+            <div class="search-query-details">
+                <div class="search-query-details-section">
+                    <h4>Carpentry</h4>
+                    <div class="sqd-rating">
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star star-checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <p> Carpentry is the work of removing wood from a tree or other woody structure and shaping it into
+                        a new form. </p>
+                </div>
+                <div class="search-query-details-price">
+                    <p>&#8369; 5,000</p>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+
+
+<button id="scroll-top" class="scroll-top"><i class="fa-solid fa-arrow-up"></i></button>
+{% include 'footer.html' %}
+{% endblock %}

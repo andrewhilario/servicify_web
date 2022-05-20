@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap');
+
+.errorpage-template {
+    width: 80%;
+    height: 80%;
+    margin: 50px;
+    padding: 50px;
+    display: flex;
+}
+
+.errorpage-message {
+    width: 100%;
+    padding: 16px;
+    margin-left: 200px;
+    text-align: center;
+}
+
+.errorpage-message p {
+    font-weight: bold;
+}
+
+.m1 {
+    font-size: 100px;
+    margin-bottom: 20px;
+}
+
+.m2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.m3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.errorpage-img {
+    width: 80%;
+    padding: 10px;
+}
+
+.errorpage-img-container {
+    width: 400px;
+    height: 300px;
+    margin: 5px;
+}
+
+.errorpage-img-container img {
+    width: 170%;
+    height: 140%;
+}
+
+.errorpage-button button {
+    width: 300px;
+    padding: 16px 8px;
+    background-color: #507c59;
+    border: 1px solid #507c59;
+    border-radius: 8px;
+}
+
+.errorpage-button a {
+    font: 16px 'Raleway', sans-serif;
+    font-weight: 600;
+    color: white;
+}

@@ -286,3 +286,119 @@
     background-color: #B74848;
     color: white;
 }
+
+
+/* Work Offer list */
+.work-offer-list {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.work-offer-list h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    padding: 50px 20px;
+
+}
+
+.work-offer-list .offers {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    width: 100%;
+    padding: 60px 0px;
+}
+
+.work-offer-list .offers li {
+    width: 100%;
+}
+
+.work-offer-list .offers li a {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.work-offer-list .offers li a p {
+    width: 100%;
+}
+
+/* Work Offer List Sorting */
+
+.wo-sort {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wo-sort-section {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 10px;
+    align-items: center;
+}
+
+.wo-sort-section span {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.wo-sort-section a {
+    text-decoration: none;
+    color: black;
+    padding: 10px 30px;
+    border: 2px solid #7CB687;
+    border-radius: 10px;
+    font-weight: 500;
+    outline: none;
+}
+
+.wo-sort-section a:hover {
+    background-color: #7CB687;
+    color: white;
+    transition: all .2s ease-in;
+}
+
+.wo-sort-section select {
+    color: black;
+    padding: 10px;
+    border: 2px solid #7CB687;
+    outline: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-family: 'Raleway', sans-serif;
+    cursor: pointer;
+}
+
+
+
+.wo-list-or-grid {
+    width: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10px;
+}
+
+.wo-list-or-grid button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    outline: none;
+    border: 2px solid #7CB687;
+    border-radius: 10px;
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+    font-size: 1.5rem;
+    background-color: white;
+}
+
+.wo-list-or-grid button:hover {
+    color: white;
+    background-color: #7CB687;
+    transition: all .2s ease-in;
+}

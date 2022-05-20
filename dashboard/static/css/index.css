@@ -9,3 +9,10 @@
 body {
     font-family: "Raleway", sans-serif;
 }
+
+
+@media screen and (max-width: 768px) {
+    body {
+        display: none;
+    }
+}

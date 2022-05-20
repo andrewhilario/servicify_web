@@ -1,0 +1,210 @@
+.search-results-page {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* Search Sidebar Filters */
+
+.search-sidebar {
+    width: 35%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-sidebar h1 {
+    font-size: 2.5rem;
+    font-family: 'Raleway';
+    font-weight: bold;
+    padding: 40px 0px;
+}
+
+.search-categories {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}
+
+.search-categories h3 {
+    font-size: 1.5rem;
+    font-family: 'Raleway';
+    font-weight: bold;
+    padding: 10px 0px;
+}
+
+.search-categories ul {
+    padding: 15px 0px;
+}
+
+.search-categories ul li {
+    list-style: none;
+    padding: 5px 0px;
+    font-size: 1rem;
+    font-family: 'Raleway';
+    font-weight: bold;
+}
+
+.search-categories ul li input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Search Filter Ratings */
+
+.search-ratings {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.search-ratings h3 {
+    font-size: 1.5rem;
+    font-family: 'Raleway';
+    font-weight: bold;
+    padding: 10px 0px;
+}
+
+.search-ratings ul {
+    padding: 15px 0px;
+}
+
+.search-ratings ul li {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 5px 0px;
+    font-size: 1rem;
+    font-family: 'Raleway';
+    font-weight: bold;
+}
+
+.search-ratings ul li input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Search Filter Price Range */
+
+.search-price-range {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-bottom: 40px;
+}
+
+.search-price-range h3 {
+    font-size: 1.5rem;
+    font-family: 'Raleway';
+    font-weight: bold;
+    padding: 10px 0px;
+}
+
+.search-price-range-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-price-range-input input[type="number"] {
+    width: 35%;
+    padding: 10px;
+    border: 2px solid #507c59;
+    outline: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: 'Raleway';
+    font-weight: bold;
+}
+
+.search-price-range-input button {
+    cursor: pointer;
+    color: white;
+    padding: 10px 15px;
+    background-color: #507c59;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: 'Raleway';
+    font-weight: bold;
+}
+
+.search-main-results {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 3%;
+}
+
+.search-main-results h3 {
+    font-size: 2.5rem;
+    font-family: 'Raleway';
+    font-weight: bold;
+    padding: 40px 0px;
+}
+
+/* Search Results Queries */
+.search-query {
+
+    display: flex;
+    justify-content: space-around;
+    padding: 35px 0px;
+}
+
+.search-query-details {
+
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20px;
+}
+
+.search-query-details-section {
+    width: 50%;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.search-query-details-section h4 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.sqd-rating {
+    margin: 10px 0px;
+}
+
+.search-query-img-container {
+    width: 40%;
+}
+
+.search-query-img {
+    width: 200px;
+    height: 150px;
+    margin: 0 auto;
+}
+
+.search-query-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.search-query-details-price {
+    width: 30%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.search-query-details-price p {
+    font-size: 2.5rem;
+    font-family: 'Raleway';
+    font-weight: bold;
+}
+
+.star-checked {
+    color: #FFA500;
+}
