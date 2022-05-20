@@ -1,11 +1,7 @@
 from django.shortcuts import render
 from .forms import RegistrationForm, MainUserRegistrationForm, CreateWorkOfferForm, CreateServiceForm, CreateWorkOfferBidForm
 from .tokens import account_activation_token
-<<<<<<< HEAD
 from .models import *
-=======
-from .models import MainUser, WorkOffer, ServiceImage, WorkOfferImage, Bid
->>>>>>> 188393e3ccf5b3937b89031e7e4cf62d8df89303
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.contrib.sites.shortcuts import get_current_site
