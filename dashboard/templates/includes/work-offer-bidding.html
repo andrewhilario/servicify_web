@@ -64,7 +64,7 @@
                         <span>Created {{ work_offer.created_at|naturaltime }}</span>
                     </div>
                     <div class="wo-manage">
-                        <button>Manage your Bid</button>
+                        <button><i class="fa-solid fa-list"></i>Manage your Bid</button>
                     </div>
                 </div>
             </div>
@@ -133,8 +133,10 @@
                 {% if latest_bid %}
                 <div class="wo-latest-bid-content">
                     <p>Latest Bidder: </p>
-                    <span><img class="mini-avatar" src="{{ latest_bid.bidder_id.avatar.url }}" alt=""> {{
-                        latest_bid.bidder_id.full_name }}</span>
+                    <span>
+                        <img class="mini-avatar" src="{{ latest_bid.bidder_id.avatar.url }}" alt=""> 
+                        {{ latest_bid.bidder_id.full_name }}
+                    </span>
                 </div>
                 <div class="wo-latest-bid-content">
                     <p>Latest Bid: </p>
@@ -153,17 +155,23 @@
                         <thead>
                             <tr>
                                 <th>Date</th>
-                                <th>Bidder</th>
+                                <th>Details</th>
                                 <th>Bid</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for bid in bids %}
                             <tr>
                                 <td>{{ bid.created_at }}</td>
-                                <td> <img class="mini-avatar" src="{{ bid.bidder_id.avatar.url }}" alt=""> {{
-                                    bid.bidder_id.full_name }}</td>
+                                <td>
+                                    <img class="mini-avatar" src="{{ bid.bidder_id.avatar.url }}" alt=""> 
+                                    {{ bid.bidder_id.full_name }}
+                                    Description
+                                    {{ bid.bidder_msg }}
+                                </td>
                                 <td>₱{{ bid.bid_amount }}</td>
+                                <td><a href="">View</a></td>
                             </tr>
                             {% endfor %}
                         </tbody>
