@@ -3,6 +3,8 @@
 {% load humanize %}
 {% block content %}
 {% include 'navbar.html' %}
+
+
 <div class="wo-bidding">
     <a href="/">
         <i class="fa-solid fa-caret-left"></i>
@@ -11,15 +13,17 @@
     <h2>Work Offer Biddings</h2>
     <div class="wo-contents">
         <div class="wo-image-view">
+            {% for img in work_offer.workofferimage_set.all|slice:":1" %}
             <div class="wo-main-img">
-                {% for img in work_offer.workofferimage_set.all|slice:":1" %}
-                <img src="{{ img.image.url }}" alt="">
-                {% endfor %}
+
+                <img src="{{ img.image.url }}" alt="" id="img-preview">
+
             </div>
+            {% endfor %}
             <div class="wo-img-thumbs">
                 {% for img in work_offer.workofferimage_set.all %}
                 <div class="wo-sub-img">
-                    <img src="{{ img.image.url }}" alt="">
+                    <img src="{{ img.image.url }}" alt="" id="img-thumbnails" onclick="myFunction(this);">
                 </div>
                 {% endfor %}
             </div>
