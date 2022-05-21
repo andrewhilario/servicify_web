@@ -99,4 +99,8 @@ for (let workOfferCost in workOfferCosts) {
     workOfferCost.innerText = parseInt(workOfferCost.innerText).toFixed(2);
 }
 
-
+function myFunction(imgs) {
+    var expandImg = document.getElementById("img-preview");
+    expandImg.src = imgs.src;
+    expandImg.parentElement.style.display = "block";
+}
