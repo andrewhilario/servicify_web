@@ -322,3 +322,9 @@ def contact_us(request):
 
 def search_results(request):
     return render(request, 'includes/search-results-page.html')
+
+def contactus(request):
+    return render(request, 'includes/contactus.html') 
+
+def aboutus(request):
+    return render(request, 'includes/aboutus.html') 

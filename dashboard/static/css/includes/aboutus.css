@@ -1,0 +1,99 @@
+.aboutus-template {
+    width: 100%;
+    height: 50vh;
+    background-image: url('/static/images/background-homepage.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.aboutus-title-header {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.aboutus-title-header p {
+
+    font-weight: bold;
+    font-size: 100px;
+    text-align: center;
+    color: white;
+    margin: 0 auto;
+
+}
+
+.aboutus-container {
+    width: 80%;
+    margin: 50px auto;
+    padding-left: 20px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    position: relative;
+}
+
+.aboutus-message {
+    width: 100%;
+    margin: 40px 50px;
+    padding: 80px 60px;
+}
+
+.message1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.message2 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.aboutus-img {
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.aboutus-img-container {
+    width: 700px;
+    height: 50vh;
+    padding-right: 80px;
+    border-radius: 30px;
+}
+
+.aboutus-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0 auto;
+    border-radius: 30px;
+}
+
+.circle1 {
+    position: absolute;
+    top: 10%;
+    left: 45%;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: #3f9b5e94;
+    z-index: -1;
+}
+
+.circle2 {
+    position: absolute;
+    top: 60%;
+    left: 80%;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: #3f9b5e94;
+    z-index: -1;
+}

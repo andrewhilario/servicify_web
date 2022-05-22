@@ -1,0 +1,39 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="contactus-template">
+    <div class="contactus-title-header">
+        <p>Contact Us</p>
+    </div>
+</div>
+<div class="contactus-container">
+    <div class="contactus-form">
+        <form action="">
+        <p>Have any Queries? We're here to help.</p>
+            <div class="contactus-input">
+                <input type="text" placeholder="Name">
+            </div>
+            <div class="contactus-input">
+                <input type="text" placeholder="Subject">
+            </div>
+            <div class="contactus-input">
+                <input type="text" placeholder="Email">
+            </div>
+            <div class="contactus-input">
+                <textarea placeholder="Message"></textarea>
+            </div>
+            <div class="contactus-form-button">
+                <input type="button" id="contactus" value="Submit"></input>  
+            </div>
+        </form>
+    </div>
+    <div class="contactus-img">
+        <div class="contactus-img-container">
+            <img src="{% static 'images/contact-us.png' %}" alt="">
+        </div>
+    </div> 
+</div> 
+
+{% include 'footer.html' %}
+{% endblock %}
