@@ -105,6 +105,9 @@ Lists of tasks that need to be done.
 
 ### System
 - [ ] Change default delete behaviour. (Instead of literal delete, add a deleted_at column.) *(Troy)*
+- [ ] Chat/Messaging System
+- [ ] SMS api
+- [ ] Permissions (Work Offers, Biddings)
 - [ ] Avatar/Image validation
 - [ ] Client/Serviceperson switch
 - [x] Service Creation
