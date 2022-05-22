@@ -48,30 +48,19 @@
         <h1>Services</h1>
         <ul class="services">
             {% for service in services %}
-            <li><a href="">
-                    <img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>{{service.service_name|truncatechars:9}} {{service.service_type}} Services</p>
+            <li>
+                <a href="{% url 'service_details' service.id  %}">
+                    <div class="work-offer-thumbnail-parent">
+                        {% for img in service.serviceimage_set.all %}
+                        <img src="{{ img.image.url }}" alt="">
+                        {% endfor %}
+                    </div>
+                    <p>{{service.service_name|truncatechars:16}}</p>
+                    <p>{{service.service_type}}</p>
                     <span>2.1km away - Tondo</span>
                 </a>
             </li>
             {% endfor %}
-            <!-- <li><a href="">
-                    <img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Miguel's Notary Services</p>
-                    <span>2.1km away - Tondo</span>
-                </a></li>
-            <li><a href=""><img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Miguel's Notary Services</p>
-                    <span>2.1km away - Tondo</span>
-                </a></li>
-            <li><a href=""><img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Miguel's Notary Services</p>
-                    <span>2.1km away - Tondo</span>
-                </a></li>
-            <li><a href=""><img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Miguel's Notary Services</p>
-                    <span>2.1km away - Tondo</span>
-                </a></li> -->
             <li class="dashboard-show-more-2">
                 <a href="service-marketplace">
                     <i class="fa-solid fa-arrow-right-long"></i>

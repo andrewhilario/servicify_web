@@ -28,7 +28,7 @@ def dashboard(request):
     work_offers = WorkOffer.objects.order_by('?')[:5]
 
     # for services
-    service = Service.objects.all()[:5]
+    service = Service.objects.order_by('?')[:5]
 
     context = {
         'work_offers': work_offers,
@@ -227,6 +227,10 @@ def createservice(request):
         'form': form
     }
     return render(request, 'includes/service-create.html', context)
+
+
+def service_details(request, service_id):
+    return render(request, 'includes/service-details.html')
 
 
 def service_marketplace(request):

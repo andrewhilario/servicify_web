@@ -19,6 +19,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
 
     #services
+    path('service/<slug:service_id>', views.service_details, name='service_details'),
     path('service-marketplace/', views.service_marketplace, name='service_marketplace'),
     path('createservice/', views.createservice, name='createservice'),
     path('service-request/', views.service_request, name='service_request'),

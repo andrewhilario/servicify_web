@@ -1,0 +1,126 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="srvc-dtl">
+    <a href="/">
+        <i class="fa-solid fa-caret-left"></i>
+        <span>Return to Homepage</span>
+    </a>
+    <h2>Service</h2>
+    <div class="srvc-dtl-contents">
+        <div class="srvc-dtl-image-view">
+            <div class="srvc-dtl-main-img">
+                <img src="{% static 'images/srvc-dtl-carpentry-1.png' %}" alt="">
+            </div>
+            <div class="srvc-dtl-img-thumbs">
+
+                <div class="srvc-dtl-sub-img">
+                    <img src="{% static 'images/srvc-dtl-carpentry-1.png' %}" alt="">
+                </div>
+                <div class="srvc-dtl-sub-img">
+                    <img src="{% static 'images/srvc-dtl-carpentry-2.png' %}" alt="">
+                </div>
+                <div class="srvc-dtl-sub-img">
+                    <img src="{% static 'images/srvc-dtl-carpentry-3.png' %}" alt="">
+                </div>
+
+            </div>
+        </div>
+        <div class="srvc-dtl-details-and-reviews">
+            <div class="srvc-dtl-sub-contents">
+                <div class="srvc-dtl-details">
+                    <h3>Carpenter</h3>
+                    <div class="srvc-dtl-sub-details">
+                        <div class="srvc-dtl-img-sub-details">
+                            <div class="srvc-dtl-img-container">
+                                <img src="{% for data in avatar %}
+                                {{ data.avatar.url }}
+                                {% endfor %}" alt="">
+                            </div>
+                        </div>
+                        <div class="srvc-dtl-content-sub-details">
+                            <ul>
+                                <li>
+                                    <p>Owner:</p>
+                                    <span>Juan Dela Cruz</span>
+                                </li>
+                                <li>
+                                    <p>Location:</p>
+                                    <span>Muntinlupa City</span>
+                                </li>
+                                <li>
+                                    <p>Services Completed:</p>
+                                    <span>5</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h5>Service starts at:</h5>
+                    <h3>₱100,000</h3>
+                </div>
+                <div class="srvc-dtl-time-limit">
+                    <div class="srvc-dtl-timer">
+                        <i class="fa-solid fa-clock"></i>
+                        <span>6:14:24:02</span>
+                    </div>
+                </div>
+            </div>
+            <div class="srvc-dtl-service-input">
+                <div class="srvc-dtl-service-textarea">
+                    <textarea name="" id="" cols="30" rows="10" ></textarea>
+                </div>
+                <div class="srvc-dtl-service-btn">
+                    <input type="button" value="Acquire Service">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="srvc-dtl-description">
+        <h5>Service Details</h5>
+    </div>
+    <div class="srvc-dtl-reviews">
+        <div class="srvc-dtl-review-options">
+            5.0
+            <div class="rating-setting">
+                <input type="radio" name="review-filter-all" id="review-filter-all">
+                All
+            </div>
+            <div class="rating-setting">
+                <input type="radio" name="review-filter-5-star" id="review-filter-5-star">
+                5 Star
+            </div>
+            <div class="rating-setting">
+                <input type="radio" name="review-filter-4-star" id="review-filter-4-star">
+                4 Star
+            </div>
+            <div class="rating-setting">
+                <input type="radio" name="review-filter-3-star" id="review-filter-3-star">
+                3 Star
+            </div>
+            <div class="rating-setting">
+                <input type="radio" name="review-filter-2-star" id="review-filter-2-star">
+                2 Star
+            </div>
+            <div class="rating-setting">
+                <input type="radio" name="review-filter-1-star" id="review-filter-1-star">
+                < 1 Star
+            </div>
+        </div>
+        <div class="srvc-dtl-review-clients">
+            <div class="service-review">
+                <div class="reviewer-avatar">
+                    <img src="{% for data in avatar %} {{ data.avatar.url }} {% endfor %}" alt="">
+                </div>
+                <div class="review-body">
+                    <span>{{ request.user.mainuser.full_name }}</span>
+                    <span>⭐⭐⭐⭐⭐</span>
+                    <span>Review description Lorem ipsum</span>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <button id="scroll-top" class="scroll-top"><i class="fa-solid fa-arrow-up"></i></button>
+    {% include 'footer.html' %}
+    {% endblock %}
