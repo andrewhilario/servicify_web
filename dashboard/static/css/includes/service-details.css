@@ -81,6 +81,7 @@
     display: flex;
     justify-content: space-between;
     align-self: start;
+    margin-bottom: 50px;
 }
 
 .srvc-dtl-details {
@@ -146,11 +147,14 @@
     font-weight: bold;
 }
 
-.srvc-dtl-time-limit {
+.srvc-dtl-tags {
     width: 30%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
 }
 
-.srvc-dtl-timer {
+.srvc-dtl-tag-container {
     width: 150px;
     height: 100px;
     background-color: #749E7D;
@@ -160,19 +164,26 @@
     align-items: center;
     border-radius: 20px;
     color: white;
+    margin-bottom: 10px;
 }
 
-.srvc-dtl-timer i {
+.srvc-dtl-tag-container strong {
     text-align: center;
     width: 100%;
     font-size: 2rem;
-    margin: 10px 0;
+    margin: 5px 0;
     color: white;
 }
 
-.srvc-dtl-timer span {
-    font-size: 1.5rem;
+.srvc-dtl-tag-container span {
+    font-size: 1rem;
     font-weight: bold;
+}
+
+.srvc-dtl-tag-container a {
+    align-items: center;
+    text-decoration: none;
+    color: white;
 }
 
 .srvc-dtl-description {
@@ -190,7 +201,7 @@
     resize: none;
 }
 
-.srvc-dtl-service-btn input[type="button"] {
+.srvc-dtl-service-btn input[type="submit"] {
     width: 100%;
     height: 50px;
     border-radius: 5px;

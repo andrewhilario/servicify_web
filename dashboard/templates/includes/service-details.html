@@ -1,5 +1,9 @@
 {% extends 'index.html' %}
 {% load static %}
+{% load humanize %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'css/includes/service-details.css' %}">
+{% endblock %}
 {% block content %}
 {% include 'navbar.html' %}
 <div class="srvc-dtl">
@@ -30,54 +34,96 @@
         <div class="srvc-dtl-details-and-reviews">
             <div class="srvc-dtl-sub-contents">
                 <div class="srvc-dtl-details">
-                    <h3>Carpenter</h3>
+                    <h3>{{ service.service_name }}</h3>
+                    <h4>{{ service.service_type.tag }} {{ service.service_type.name }}</h4>
                     <div class="srvc-dtl-sub-details">
                         <div class="srvc-dtl-img-sub-details">
                             <div class="srvc-dtl-img-container">
-                                <img src="{% for data in avatar %}
-                                {{ data.avatar.url }}
-                                {% endfor %}" alt="">
+                                <img src="{{ service.created_by.avatar.url }}" alt="">
                             </div>
                         </div>
                         <div class="srvc-dtl-content-sub-details">
                             <ul>
                                 <li>
                                     <p>Owner:</p>
-                                    <span>Juan Dela Cruz</span>
+                                    <span>{{ service.created_by.full_name }}</span>
                                 </li>
                                 <li>
                                     <p>Location:</p>
-                                    <span>Muntinlupa City</span>
-                                </li>
-                                <li>
-                                    <p>Services Completed:</p>
-                                    <span>5</span>
+                                    <span>--</span>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <h5>Service starts at:</h5>
-                    <h3>₱100,000</h3>
+                    <div class="srvc-dtl-price">
+                        <h5>Service starts at:</h5>
+                        <h3>₱{% filter intcomma %}{{ service.price|floatformat }}{% endfilter %}</h3>
+                    </div>
                 </div>
-                <div class="srvc-dtl-time-limit">
-                    <div class="srvc-dtl-timer">
-                        <i class="fa-solid fa-clock"></i>
-                        <span>6:14:24:02</span>
+                <div class="srvc-dtl-tags">
+                    <div class="srvc-dtl-tag-container">
+                        <strong>{{ total_clients }}</strong>
+                        <span>Total Clients</span>
+                    </div>
+                    <div class="srvc-dtl-tag-container">
+                        <strong>{{ clients_finished }}</strong>
+                        <span>Completed</span>
+                    </div>
+                    <div class="srvc-dtl-tag-container">
+                        <a href="{% url 'service_requests' service.id %}">
+                        <i class="fa-solid fa-list"></i>
+                        <span>Manage</span>
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="srvc-dtl-service-input">
-                <div class="srvc-dtl-service-textarea">
-                    <textarea name="" id="" cols="30" rows="10" ></textarea>
-                </div>
-                <div class="srvc-dtl-service-btn">
-                    <input type="button" value="Acquire Service">
-                </div>
+            {% if client_acquired_service %}
+            <div class="acquired-service-card">
+                <h4>Your service request details:</h4>
+                {% if client_acquired_service.status == 'PENDING' %}
+                <h5 style="color: #FF8400;">{{ client_acquired_service.status }}</h5>
+                {% elif client_acquired_service.status == 'ON-GOING' %}
+                <h5 style="color: #fff700;">{{ client_acquired_service.status }}</h5>
+                {% elif client_acquired_service.status == 'CANCELED' or client_acquired_service.status == 'DECLINED' %}
+                <h5 style="color: #cd1800;">{{ client_acquired_service.status }}</h5>
+                {% elif client_acquired_service.status == 'COMPLETED' %}
+                <h5 style="color: #268700;">{{ client_acquired_service.status }}</h5>
+                {% endif %}
+                <span>Details:</span>
+                <p>{{ client_acquired_service.client_msg }}</p>
             </div>
+            {% elif request.user.is_authenticated %}
+            {% for message in form_messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+            <form action="" method="post">
+                {% csrf_token %}
+                {% if form_errors %}
+                    <div class="srvc-dtl-error">
+                        <p>Unable to proceed:</p>
+                        {% for error in form_errors %}
+                        <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="srvc-dtl-service-input">
+                    <div class="srvc-dtl-service-textarea">
+                        <label for="client_msg">{{ form.client_msg.label }}</label>
+                        {{ form.client_msg }}
+                    </div>
+                    <div class="srvc-dtl-service-btn">
+                        <input type="submit" value="Acquire Service">
+                    </div>
+                </div>
+            </form>
+            {% else %}
+            <p>Login to acquire service.</p>
+            {% endif %}
         </div>
     </div>
     <div class="srvc-dtl-description">
         <h5>Service Details</h5>
+        <p>{{ service.description }}</p>
     </div>
     <div class="srvc-dtl-reviews">
         <div class="srvc-dtl-review-options">

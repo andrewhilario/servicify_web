@@ -1,0 +1,99 @@
+{% load static %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'css/includes/service-request.css' %}" />
+{% endblock %}
+{% block content %}
+{% include 'navbar.html' %}
+
+<div class="service-request-page">
+    <a href="{% url 'service_details' service.id %}">
+        <i class="fa-solid fa-caret-left"></i>
+        <span>Return to {{ service.service_name }}</span>
+    </a>
+    <h2>Service Requests</h2>
+    <div class="service-request-header">
+        <div class="sr-entries">
+            <span>Show</span>
+            <select>
+                <option>All</option>
+                <option>10</option>
+                <option>25</option>
+                <option>50</option>
+                <option>100</option>
+            </select>
+            <span>entries</span>
+        </div>
+        <div class="sr-search-and-sort">
+            <div class="sr-sort-select">
+                <span>Sort by:</span>
+                <select>
+                    <option>Name</option>
+                    <option>Status</option>
+                    <option>Amount</option>
+                </select>
+            </div>
+            <div class="sr-search-bar">
+                <label for="searh">Search:</label>
+                <input type="text" name="search" placeholder="Search">
+            </div>
+        </div>
+    </div>
+    <div class="service-request-table">
+        {% if form_error %}
+            <p>{{ form_error }}</p>
+        {% endif %}
+        <table class="sr-table">
+            <thead>
+                <tr>
+                    <th>Client</th>
+                    <th>Status</th>
+                    <th>Message</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for client in service_clients.all %}
+                <tr>
+                    <td><span>{{ client.client_id.full_name }}</span></td>
+                    <td>
+                        {% if client.status == 'PENDING' %}
+                        <span style="color: #FF8400;">{{ client.status }}</span>
+                        {% elif client.status == 'ON-GOING' %}
+                        <span style="color: #fff700;">{{ client.status }}</span>
+                        {% elif client.status == 'CANCELED' or client.status == 'DECLINED' %}
+                        <span style="color: #cd1800;">{{ client.status }}</span>
+                        {% elif client.status == 'COMPLETED' %}
+                        <span style="color: #268700;">{{ client.status }}</span>
+                        {% endif %}
+                    </td>
+                    <td><span>{{ client.client_msg }}</span></td>
+                    <td>
+                        {% if client.status == 'PENDING' or client.status == 'ON-GOING' %}
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <select name="set-client-status">
+                                <option value="" selected disabled hidden>Change Status</option>
+                                {% if client.status == 'PENDING' %}
+                                <option value="ACCEPT">Accept</option>
+                                <option value="DECLINE">Decline</option>
+                                {% elif client.status == 'ON-GOING' %}
+                                <option value="COMPLETE">Complete</option>
+                                <option value="CANCEL">Cancel</option>
+                                {% endif %}
+                            </select>
+                            <span>
+                                <button type="submit" value="{{ client.id }}" name="service-client-id">Update Status</button>
+                            </span>
+                        </form>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% include 'footer.html' %}
+{% endblock %}

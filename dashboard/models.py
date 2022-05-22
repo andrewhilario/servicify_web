@@ -59,7 +59,7 @@ class ServiceImage(models.Model):
    image = models.ImageField(upload_to=service_directory_path)
 
 # For services that clients acquired
-class ActiveService(models.Model):
+class ServiceClients(models.Model):
     service_id = models.ForeignKey(Service, on_delete=models.CASCADE)
     client_id = models.ForeignKey(MainUser, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=datetime.now, blank=True)

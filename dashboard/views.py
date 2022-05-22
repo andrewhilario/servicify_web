@@ -119,7 +119,6 @@ def work_offer_list(request):
     }
     return render(request, 'includes/work-offer-list.html', context)
 
-@login_required
 def work_offer_bidding(request, work_offer_id):
     work_offer = WorkOffer.objects.get(id=work_offer_id)
     client_work_posted = WorkOffer.objects.filter(created_by=work_offer.created_by).count()
@@ -230,7 +229,78 @@ def createservice(request):
 
 
 def service_details(request, service_id):
-    return render(request, 'includes/service-details.html')
+    service = Service.objects.get(id=service_id)
+    total_clients = ServiceClients.objects.filter(service_id=service).count()
+    clients_finished = ServiceClients.objects.filter(service_id=service, status='COMPLETED').count()
+
+    if request.user.is_authenticated:
+        form = AcquireServiceForm()
+        client_acquired_service = ServiceClients.objects.filter(service_id=service, client_id=request.user.mainuser).first()
+    else:
+        client_acquired_service = None
+        form = None
+
+    form_errors = []
+    form_messages = []
+    if request.method == 'POST' and request.user.is_authenticated and not client_acquired_service:
+        acquired_service_form = AcquireServiceForm(request.POST)
+        if acquired_service_form.is_valid():
+            acquired_service = acquired_service_form.save(commit=False)
+            acquired_service.client_id = request.user.mainuser
+            acquired_service.service_id = service
+            acquired_service.status = 'PENDING'
+            acquired_service.save()
+            client_acquired_service = acquired_service
+            form_messages.append('We have sent your message to the service owner. The service owner will contact you shortly.')
+        else:
+            form_errors.append('Unable to process your request. Please check your input.')
+
+    context = {
+        'service': service,
+        'total_clients': total_clients,
+        'clients_finished': clients_finished,
+        'client_acquired_service': client_acquired_service,
+        'form': form,
+        'form_messages': form_messages,
+        'form_errors': form_errors,
+    }
+    return render(request, 'includes/service-details.html', context)
+
+
+def service_requests(request, service_id):
+    service = Service.objects.get(id=service_id)
+    service_clients = ServiceClients.objects.filter(service_id=service)
+    form_error = None
+
+    if request.method == 'POST':
+        updated_status = request.POST.get('set-client-status', False)
+        service_client_id = request.POST.get('service-client-id', False)
+        service_client = ServiceClients.objects.get(id=service_client_id)
+        
+        if service_client.status in ['COMPLETED','DECLINED','CANCELED']:
+            form_error = 'Unfortunately, we cant update the status.'
+
+        if updated_status == 'ACCEPT' and service_client.status == 'PENDING':
+            service_client.status = 'ON-GOING'
+            service_client.save()
+        elif updated_status == 'DECLINE' and service_client.status == 'PENDING':
+            service_client.status = 'DECLINED'
+            service_client.save()
+        elif updated_status == 'COMPLETE' and service_client.status == 'ON-GOING':
+            service_client.status = 'COMPLETED'
+            service_client.save()
+        elif updated_status == 'CANCEL' and service_client.status == 'ON-GOING':
+            service_client.status = 'CANCELED'
+            service_client.save()
+        else:
+            form_error = 'Invalid option.'
+
+    context = {
+        'service': service,
+        'service_clients': service_clients,
+        'form_error': form_error,
+    }
+    return render(request, 'includes/service-requests.html', context)
 
 
 def service_marketplace(request):
@@ -304,10 +374,6 @@ def profile_page(request):
 
 def profile_client(request):
     return render(request, 'includes/profile-page-client.html')
-
-
-def service_request(request):
-    return render(request, 'includes/service-request.html')
 
 
 def view_service(request):

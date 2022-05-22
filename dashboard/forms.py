@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, PasswordChangeForm, SetPasswordForm
-from .models import MainUser, WorkOffer, Service, ServiceTypes, ServiceImage, Bid
+from .models import MainUser, WorkOffer, Service, ServiceTypes, ServiceImage, Bid, ServiceClients
 
 
 class UserLoginForm(AuthenticationForm):
@@ -122,6 +122,21 @@ class CreateServiceForm(forms.ModelForm):
     class Meta:
         model = Service
         fields = ['service_name', 'description', 'price', 'service_type']
+
+
+class AcquireServiceForm(forms.ModelForm):
+    client_msg = forms.CharField(label='Message', min_length=5,
+                                  max_length=1000, help_text='Required', widget=forms.Textarea)
+
+    class Meta:
+        model = ServiceClients
+        fields = ['client_msg']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['client_msg'].widget.attrs.update(
+            {'placeholder': 'Enter the details of what you need to be done.', 'name': 'client_msg', 'id': 'client_msg'})
+
 
 class CreateWorkOfferBidForm(forms.ModelForm):
     bidder_msg = forms.CharField(label='Message', min_length=5,
