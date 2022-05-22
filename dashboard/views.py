@@ -25,8 +25,7 @@ def page_not_found(request, exception, template_name='page-not-found.html'):
 
 def dashboard(request):
     # for work offers
-    work_offers = WorkOffer.objects.filter(
-        status='OPEN').order_by('?')[:5]
+    work_offers = WorkOffer.objects.order_by('?')[:5]
 
     # for services
     service = Service.objects.all()[:5]
@@ -229,13 +228,10 @@ def view_service(request):
 
 
 def work_offer_list(request):
-    valid_work_offers = WorkOffer.objects.filter(
-        status='OPEN').values_list('id', flat=True)
-    random_profiles_id_list = random.sample(
-        list(valid_work_offers), min(len(valid_work_offers), 10))
-    query_set = WorkOffer.objects.filter(id__in=random_profiles_id_list)
+    work_offers = WorkOffer.objects.order_by('?')
+
     context = {
-        'work_offers': query_set.all()
+        'work_offers': work_offers
     }
     return render(request, 'includes/work-offer-list.html', context)
 
@@ -248,11 +244,11 @@ def work_offer_bidding(request, work_offer_id):
     highest_bid = Bid.objects.filter(workoffer_id=work_offer.id).order_by('-bid_amount').first()
     total_bids = Bid.objects.filter(workoffer_id=work_offer.id).count()
     active_bids = Bid.objects.filter(workoffer_id=work_offer.id, status='PENDING').count()
-    bids = Bid.objects.filter(workoffer_id=work_offer.id, status='PENDING').order_by('-created_at').all()
+    bids = Bid.objects.filter(workoffer_id=work_offer.id).order_by('-created_at').all()
+    winning_bid = Bid.objects.filter(workoffer_id=work_offer.id, status='ACCEPTED').first()
     latest_bid = None
     if bids:
         latest_bid = bids[0]
-        bids = bids[1:]
 
     if request.user.is_authenticated:
         form = CreateWorkOfferBidForm()
@@ -261,6 +257,9 @@ def work_offer_bidding(request, work_offer_id):
 
     form_errors = []
     if request.method == 'POST' and request.user.is_authenticated:
+        if winning_bid:
+            form_errors.append('Bidding is already closed.')
+
         bidForm = CreateWorkOfferBidForm(request.POST)
         if bidForm.is_valid():
             if bidForm.cleaned_data["bid_amount"] < work_offer.min_pay:
@@ -282,12 +281,39 @@ def work_offer_bidding(request, work_offer_id):
         'total_bids': total_bids,
         'active_bids': active_bids,
         'latest_bid': latest_bid,
+        'winning_bid': winning_bid,
         'bids': bids,
     }
     return render(request, 'includes/work-offer-bidding.html', context)
 
-def view_bidding_details(request, work_offer_id):
-    return render(request, 'includes/work-offer-bidding-details.html')
+def view_bidding_details(request, work_offer_id, bidding_id):
+    bid = Bid.objects.get(id=bidding_id,workoffer_id=work_offer_id)
+    is_valid_workoffer = bid.workoffer_id.status == 'OPEN'
+    bidder_service = Service.objects.filter(created_by=bid.bidder_id.id).first()
+
+    form_error = None
+    if is_valid_workoffer and request.method == 'POST':
+        if request.POST.get('accept-bid', False):
+            bid.status = 'ACCEPTED'
+            bid.workoffer_id.status = 'CLOSED'
+            bid.save()
+            bid.workoffer_id.save()
+        elif request.POST.get('decline-bid', False):
+            bid.status = 'DECLINED'
+            bid.save()
+        else:
+            form_error = 'Unknown action'
+    
+    if not is_valid_workoffer:
+        form_error = 'Bidding for this work offer is now closed.'
+
+
+    context = {
+        'bid': bid,
+        'bidder_service': bidder_service if bidder_service else None,
+        'form_error': form_error,
+    }
+    return render(request, 'includes/work-offer-bidding-details.html', context)
 
 
 def contact_us(request):

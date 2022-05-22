@@ -33,7 +33,7 @@ urlpatterns = [
     path('workoffer/view', views.workoffer, name='workoffer_view'),
     path('workoffer2/', views.workoffer2, name='workoffer2'),
     path('biddings/<slug:work_offer_id>', views.work_offer_bidding, name='work_offer_bidding'),
-    path('biddings/<slug:work_offer_id>/view/', views.view_bidding_details, name='view_bidding_details'),
+    path('biddings/<slug:work_offer_id>/view/<slug:bidding_id>', views.view_bidding_details, name='view_bidding_details'),
     
     path('register/success', views.register_success, name='register_success'),
     path('activate/<slug:uidb64>/<slug:token>/',
