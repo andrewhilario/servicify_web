@@ -1,5 +1,8 @@
-{% extends 'index.html' %}
 {% load static %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'css/includes/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'css/includes/service-marketplace.css' %}">
+{% endblock %}
 {% block content %}
 {% load humanize %}
 {% include 'navbar.html' %}

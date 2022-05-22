@@ -36,71 +36,79 @@
 //     });
 // }
 
-
-var scrollTop = document.getElementById('scroll-top');
-
-
-
-window.onload = () => {
-    scrollTop.classList.add('scroll-active-1');
-}
-
-window.onscroll = () => {
-    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        scrollTop.classList.remove('scroll-active-1');
-        scrollTop.classList.add('scroll-active-2');
+function ready(fn) {
+    if (document.readyState != 'loading') {
+        fn();
     } else {
-        scrollTop.classList.remove('scroll-active-2');
-        scrollTop.classList.add('scroll-active-1');
-
-
-        if (scrollTop) {
-            scrollTop.addEventListener('click', () => {
-
-                window.scroll({ top: 0, left: 0, behavior: 'smooth' });
-            });
-        }
-        console.log(window.scrollY);
+        document.addEventListener('DOMContentLoaded', fn);
     }
 }
 
+ready(() => {
+    var scrollTop = document.getElementById('scroll-top');
 
-var workoffer = document.getElementById('workoffer');
+    
+	window.onload = () => {
+		scrollTop.classList.add('scroll-active-1');
+	}
 
-if (workoffer) {
-
-    workoffer.onclick = () => {
-        window.location.href = "/workoffer2"
-    }
-}
-
-var acquireservice = document.getElementById('acquireservice');
-
-if (acquireservice) {
-
-    acquireservice.onclick = () => {
-        window.location.href = "/acquireservice2"
-    }
-}
+	window.onscroll = () => {
+		if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+			scrollTop.classList.remove('scroll-active-1');
+			scrollTop.classList.add('scroll-active-2');
+		} else {
+			scrollTop.classList.remove('scroll-active-2');
+			scrollTop.classList.add('scroll-active-1');
 
 
-var avatar = document.getElementById('avatar');
-var clicked_link = document.getElementById('navlinks-profile');
+			if (scrollTop) {
+				scrollTop.addEventListener('click', () => {
+
+					window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+				});
+			}
+			console.log(window.scrollY);
+		}
+	}
+
+	var workoffer = document.getElementById('workoffer');
+
+	if (workoffer) {
+
+		workoffer.onclick = () => {
+			window.location.href = "/workoffer2"
+		}
+	}
+
+	var acquireservice = document.getElementById('acquireservice');
+
+	if (acquireservice) {
+
+		acquireservice.onclick = () => {
+			window.location.href = "/acquireservice2"
+		}
+	}
 
 
-if (avatar) {
-    avatar.onclick = () => {
-        clicked_link.classList.toggle('hover-profile-active');
-    }
-}
+	var avatar = document.getElementById('avatar');
+	var clicked_link = document.getElementById('navlinks-profile');
 
-var workOfferCosts = document.getElementsByClassName('work-offer-cost-dashboard');
-for (let workOfferCost in workOfferCosts) {
-    workOfferCost.innerText = parseInt(workOfferCost.innerText).toFixed(2);
-}
 
-function myFunction(imgs) {
-    var expandImg = document.getElementById("img-preview");
-    expandImg.src = imgs.src;
-    expandImg.parentElement.style.display = "block";
-}
+	if (avatar) {
+		avatar.onclick = () => {
+			clicked_link.classList.toggle('hover-profile-active');
+		}
+	}
+
+	var workOfferCosts = document.getElementsByClassName('work-offer-cost-dashboard');
+	for (let workOfferCost in workOfferCosts) {
+		workOfferCost.innerText = parseInt(workOfferCost.innerText).toFixed(2);
+	}
+
+	function myFunction(imgs) {
+		var expandImg = document.getElementById("img-preview");
+		expandImg.src = imgs.src;
+		expandImg.parentElement.style.display = "block";
+	}
+
+})

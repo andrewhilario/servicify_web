@@ -9,29 +9,10 @@
 
     <title>Servicify</title>
     <link rel="icon" href="{% static 'images/main-logo-2.png' %}" />
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/page-not-found.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/dashboard.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/login.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/register.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/service-create.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/service-details.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/service-marketplace.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/acquireservice.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/acquireservice2.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/workoffer.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/work-offer.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/workoffer2.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/workoffer-create.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/workoffer-success.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/profile-page.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/service-request.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/work-offer-bidding.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/search.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/contactus.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/aboutus.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    {% block css_files %}{% endblock %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -39,14 +20,12 @@
 </head>
 
 <body>
-    {% block content%}
+    {% block content %}
     {% endblock %}
 
 
 
-    <script src="{% static 'js/index.js' %}"></script>
-
-
 </body>
+<script src="{% static 'js/index.js' %}"></script>
 
 </html>

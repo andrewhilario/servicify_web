@@ -1,5 +1,7 @@
-{% extends 'index.html' %}
 {% load static %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'css/includes/aboutus.css' %}">
+{% endblock %}
 {% block content %}
 {% include 'navbar.html' %}
 <div class="aboutus-template">

@@ -1,5 +1,8 @@
-{% extends 'index.html' %}
 {% load static %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'css/includes/work-offer.css' %}">
+<link rel="stylesheet" href="{% static 'css/includes/work-offer-bidding.css' %}">
+{% endblock %}
 {% block content %}
 {% include 'navbar.html' %}
 <div class="view-work-offer-page">

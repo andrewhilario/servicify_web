@@ -98,7 +98,7 @@ DATABASES = {
         #please change the port thanks
 
         # 'PORT': '8080',
-        'PORT': '8080',
+        'PORT': '5432',
 
     }
 }
