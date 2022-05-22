@@ -25,11 +25,8 @@ def page_not_found(request, exception, template_name='page-not-found.html'):
 
 def dashboard(request):
     # for work offers
-    valid_work_offers = WorkOffer.objects.filter(
-        status='OPEN').values_list('id', flat=True)
-    random_profiles_id_list = random.sample(
-        list(valid_work_offers), min(len(valid_work_offers), 10))
-    work_offers = WorkOffer.objects.filter(id__in=random_profiles_id_list)[:5]
+    work_offers = WorkOffer.objects.filter(
+        status='OPEN').order_by('?')[:5]
 
     # for services
     service = Service.objects.all()[:5]
@@ -251,7 +248,6 @@ def work_offer_bidding(request, work_offer_id):
     highest_bid = Bid.objects.filter(workoffer_id=work_offer.id).order_by('-bid_amount').first()
     total_bids = Bid.objects.filter(workoffer_id=work_offer.id).count()
     active_bids = Bid.objects.filter(workoffer_id=work_offer.id, status='PENDING').count()
-    # latest_bid = Bid.objects.filter(workoffer_id=work_offer.id, status='PENDING').order_by('-created_at').first()
     bids = Bid.objects.filter(workoffer_id=work_offer.id, status='PENDING').order_by('-created_at').all()
     latest_bid = None
     if bids:
@@ -290,8 +286,8 @@ def work_offer_bidding(request, work_offer_id):
     }
     return render(request, 'includes/work-offer-bidding.html', context)
 
-def view_work_offer_bidding(request):
-    return render(request, 'includes/view-work-offer-bid.html')
+def view_bidding_details(request, work_offer_id):
+    return render(request, 'includes/work-offer-bidding-details.html')
 
 
 def contact_us(request):
