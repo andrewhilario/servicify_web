@@ -40,7 +40,8 @@ urlpatterns = [
          views.activate, name='activate'),
     path('profile/service-person', views.profile_page, name='profile'),
     path('profile/client', views.profile_client, name='profile_client'),
-    path('contact_us/', views.contact_us, name='contact_us'),
+    path('contact/', views.contactus, name='contact_us'),
+    path('about/', views.aboutus, name='about_us'),
     path('search/', views.search_results, name='search_results'),
 
 

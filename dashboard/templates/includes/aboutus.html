@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="aboutus-template">
+    <div class="aboutus-title-header">
+        <p>About Us</p>
+    </div>
+</div>
+<div class="aboutus-container">
+    <div class="aboutus-message">
+        <p class="message1">About Servicify</p>
+        <p class="message2">Lorem ipsum dolor sit amet, consectetur<br>
+            adipiscing elit. Porta ut iaculis interdum sit.<br>
+            Aliquet semper lectus imperdiet gravida non<br>
+            hac ultrices. Massa odio est vel orci, vehicula<br>
+            tellus sem iaculis eu. In vulputate sed urna non.<br>
+            Congue mauris facilisis augue aliquam eget sed<br>
+            in. Dui volutpat augue consequat cursus egestas<br>
+            urna turpis molestie nec. Purus nunc, enim, sit<br>
+            quisque ullamcorper. Mauris tellus in<br>
+            pellentesque lectus. Non, pulvinar mauris sed<br>
+            faucibus ipsum posuere semper. Amet, eu,<br>
+            consequat blandit lacus dolor. Imperdiet sed<br>
+            magna ultrices at id. Senectus pellentesque<br>
+            semper pulvinar massa nunc ultrices mi.<br>
+            Facilisi erat suscipit pretium enim sollicitudin<br>
+            sed. Nunc morbi sed non egestas sagittis. Ut<br>
+            tincidunt vel pulvinar faucibus ipsum posuere<br>
+            semper. Amet, eu, consequat blandit lacus dolor.<br>
+            Imperdiet sed magna ultrices at id. Senectus <br>
+            pellentesque semper pulvinar massa nunc<br>
+            ultrices mi.</p>
+    </div>
+    <div class="aboutus-img">
+        <div class="aboutus-img-container">
+            <img src="{% static 'images/about-us.png' %}" alt="">
+        </div>
+    </div>
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+</div>
+
+{% include 'footer.html' %}
+{% endblock %}
