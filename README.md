@@ -110,6 +110,8 @@ Lists of tasks that need to be done.
 - [ ] Permissions (Work Offers, Biddings)
 - [ ] Avatar/Image validation
 - [ ] Client/Serviceperson switch
+- [x] Work Offer System
+- [x] Bidding System
 - [x] Service Creation
 - [x] Work Offer Creation
 - [x] Login and Registration
