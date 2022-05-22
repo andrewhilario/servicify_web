@@ -111,36 +111,6 @@ def workoffer2(request):
     return render(request, 'includes/workoffer2.html')
 
 
-@login_required
-def createservice(request):
-    if request.method == "POST":
-        serviceForm = CreateServiceForm(request.POST)
-        if serviceForm.is_valid():
-            service = serviceForm.save(commit=False)
-            service.created_by = request.user.mainuser
-            service.save()
-
-            for service_img in request.FILES.getlist('file'):
-                pic = ServiceImage()
-                pic.service = service
-                pic.image = service_img
-                pic.save()
-
-            context = {
-                'service_owner': '{0} {1}'.format(request.user.first_name, request.user.last_name),
-                'service': service,
-                'service_imgs': ServiceImage.objects.filter(service=service)
-            }
-            return render(request, 'includes/service-success.html', context)
-
-    form = CreateServiceForm()
-    context = {
-        'service_owner': '{0} {1}'.format(request.user.first_name, request.user.last_name),
-        'form': form
-    }
-    return render(request, 'includes/service-create.html', context)
-
-
 def work_offer_list(request):
     work_offers = WorkOffer.objects.order_by('?')
 
@@ -227,6 +197,37 @@ def view_bidding_details(request, work_offer_id, bidding_id):
         'form_error': form_error,
     }
     return render(request, 'includes/work-offer-bidding-details.html', context)
+
+
+@login_required
+def createservice(request):
+    if request.method == "POST":
+        serviceForm = CreateServiceForm(request.POST)
+        if serviceForm.is_valid():
+            service = serviceForm.save(commit=False)
+            service.created_by = request.user.mainuser
+            service.save()
+
+            for service_img in request.FILES.getlist('file'):
+                pic = ServiceImage()
+                pic.service = service
+                pic.image = service_img
+                pic.save()
+
+            context = {
+                'service_owner': '{0} {1}'.format(request.user.first_name, request.user.last_name),
+                'service': service,
+                'service_imgs': ServiceImage.objects.filter(service=service)
+            }
+            return render(request, 'includes/service-success.html', context)
+
+    form = CreateServiceForm()
+    context = {
+        'service_owner': '{0} {1}'.format(request.user.first_name, request.user.last_name),
+        'form': form
+    }
+    return render(request, 'includes/service-create.html', context)
+
 
 def service_marketplace(request):
     return render(request, 'includes/service-marketplace.html')

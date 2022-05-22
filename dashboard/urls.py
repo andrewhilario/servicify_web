@@ -19,18 +19,16 @@ urlpatterns = [
     path('register/', views.register, name='register'),
 
     #services
+    path('service-marketplace/', views.service_marketplace, name='service_marketplace'),
+    path('createservice/', views.createservice, name='createservice'),
     path('service-request/', views.service_request, name='service_request'),
     path('service-request/view/', views.view_service, name='view_service'),
-    path('createservice/', views.createservice, name='createservice'),
-    path('service-marketplace/', views.service_marketplace, name='service_marketplace'),
     path('acquireservice/', views.acquireservice, name='acquireservice'),
     path('acquireservice2/', views.acquireservice2, name='acquireservice2'),
 
     # work offers
     path('createworkoffer/', views.createworkoffer, name='createworkoffer'),
     path('workoffer/', views.work_offer_list, name='work_offer_list'),
-    path('workoffer/view', views.workoffer, name='workoffer_view'),
-    path('workoffer2/', views.workoffer2, name='workoffer2'),
     path('biddings/<slug:work_offer_id>', views.work_offer_bidding, name='work_offer_bidding'),
     path('biddings/<slug:work_offer_id>/view/<slug:bidding_id>', views.view_bidding_details, name='view_bidding_details'),
     
@@ -42,6 +40,10 @@ urlpatterns = [
     path('contact/', views.contactus, name='contact_us'),
     path('about/', views.aboutus, name='about_us'),
     path('search/', views.search_results, name='search_results'),
+
+    # unused
+    path('workoffer/view', views.workoffer, name='workoffer_view'),
+    path('workoffer2/', views.workoffer2, name='workoffer2'),
 
 
     
