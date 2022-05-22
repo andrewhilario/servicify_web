@@ -93,7 +93,7 @@ Lists of tasks that need to be done.
 - [x] 404 Page *(Drew)*
 
 ### Template Changes
-- [ ] 'CLOSED' tag for closed work offers (Similar to Created At but darker bg color) (https://imgur.com/a/OA7uUAf)3
+- [ ] 'CLOSED' tag for closed work offers (Similar to Created At but darker bg color) (https://imgur.com/a/OA7uUAf)
 - [ ] Winning Bid Card and Highest Bid Style (https://imgur.com/a/NYqO17S)
 - [ ] Center and increase size of Bidding is already closed. (https://imgur.com/a/XTGcft2)
 - [ ] Work Offer Bids (colors are just sample, use the original theme) (https://imgur.com/a/SRcKgek)
