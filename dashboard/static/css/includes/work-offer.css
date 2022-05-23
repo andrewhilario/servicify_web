@@ -159,7 +159,7 @@
 /* View Work Offer Page */
 .view-work-offer-page {
     width: 90%;
-    height: 70vh;
+    height: 100vh;
     margin: 0 auto;
 }
 
@@ -265,7 +265,7 @@
     margin: 50px auto;
 }
 
-.view-work-offer-btns input[type='button'] {
+.view-work-offer-btns input[type='submit'] {
     padding: 10px 50px;
     border: none;
     outline: none;
@@ -277,12 +277,12 @@
     cursor: pointer;
 }
 
-.view-work-offer-btns input[type='button']:nth-of-type(1) {
+.view-work-offer-btns input[type='submit']:nth-of-type(1) {
     background-color: #85C693;
     color: white;
 }
 
-.view-work-offer-btns input[type='button']:nth-of-type(2) {
+.view-work-offer-btns input[type='submit']:nth-of-type(2) {
     background-color: #B74848;
     color: white;
 }

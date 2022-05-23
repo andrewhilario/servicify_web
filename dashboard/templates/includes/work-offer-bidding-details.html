@@ -12,7 +12,7 @@
     </a>
     <h2>{{ bid.bidder_id.full_name }}'s bid</h2>
     <p>Bid amount: &#8369;{{ bid.bid_amount }}</p>
-    <p>Message: {{ bid.bidder_msg }}</p>
+    <p>Message: <br> {{ bid.bidder_msg }}</p>
     <div class="view-work-offer-page-contents">
         <div class="vwo-profile">
             <div class="vwo-pfp">
@@ -23,11 +23,11 @@
                     <h3>{{ bid.bidder_id.full_name }}</h3>
                     <span>Bidder's Name</span>
                 </div>
-                <div class="vs-pfp-other-details">
+                <div class="vwo-pfp-other-details">
                     <ul>
                         <li>
                             <p>Join date: </p>
-                            <span>{{ bid.bidder_id.user.date_joined }}</span>
+                            <span>{{ bid.bidder_id.user.date_joined.date }}</span>
                         </li>
                         <li>
                             <p>Location: </p>
