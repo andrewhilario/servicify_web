@@ -93,11 +93,11 @@ Lists of tasks that need to be done.
 - [x] 404 Page *(Drew)*
 
 ### Template Changes
-- [ ] 'CLOSED' tag for closed work offers (Similar to Created At but darker bg color) (https://imgur.com/a/OA7uUAf)
-- [ ] Winning Bid Card and Highest Bid Style (https://imgur.com/a/NYqO17S)
-- [ ] Center and increase size of Bidding is already closed. (https://imgur.com/a/XTGcft2)
-- [ ] Work Offer Bids (colors are just sample, use the original theme) (https://imgur.com/a/SRcKgek)
-- [ ] Work Offer Bid details (https://imgur.com/a/3iaUmJK)
+- [x] 'CLOSED' tag for closed work offers (Similar to Created At but darker bg color) (https://imgur.com/a/OA7uUAf)
+- [x] Winning Bid Card and Highest Bid Style (https://imgur.com/a/NYqO17S)
+- [x] Center and increase size of Bidding is already closed. (https://imgur.com/a/XTGcft2)
+- [x] Work Offer Bids (colors are just sample, use the original theme) (https://imgur.com/a/SRcKgek)
+- [x] Work Offer Bid details (https://imgur.com/a/3iaUmJK)
 - [x] Make Dashboard images fit to box (Not streched and not full)
 - [x] Create Service Dropdown add style (https://imgur.com/a/K0ok0a7)
 - [x] Create Service Success add style (https://imgur.com/a/Z0u4njy)
