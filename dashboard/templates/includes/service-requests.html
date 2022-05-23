@@ -40,7 +40,7 @@
     </div>
     <div class="service-request-table">
         {% if form_error %}
-            <p>{{ form_error }}</p>
+        <p class="servicify-errors">*{{ form_error }}</p>
         {% endif %}
         <table class="sr-table">
             <thead>
@@ -67,7 +67,7 @@
                         {% endif %}
                     </td>
                     <td><span>{{ client.client_msg }}</span></td>
-                    <td>
+                    <td class="sr-action">
                         {% if client.status == 'PENDING' or client.status == 'ON-GOING' %}
                         <form action="" method="post">
                             {% csrf_token %}
@@ -82,7 +82,8 @@
                                 {% endif %}
                             </select>
                             <span>
-                                <button type="submit" value="{{ client.id }}" name="service-client-id">Update Status</button>
+                                <button type="submit" value="{{ client.id }}" name="service-client-id">Update
+                                    Status</button>
                             </span>
                         </form>
                         {% endif %}
