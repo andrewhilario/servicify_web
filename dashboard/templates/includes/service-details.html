@@ -3,6 +3,7 @@
 {% load humanize %}
 {% block css_files %}
 <link rel="stylesheet" href="{% static 'css/includes/service-details.css' %}">
+
 {% endblock %}
 {% block content %}
 {% include 'navbar.html' %}
@@ -15,20 +16,18 @@
     <div class="srvc-dtl-contents">
         <div class="srvc-dtl-image-view">
             <div class="srvc-dtl-main-img">
-                <img src="{% static 'images/srvc-dtl-carpentry-1.png' %}" alt="">
+                <img src="{% static 'images/wo-carpentry-1.png' %}" alt="">
             </div>
             <div class="srvc-dtl-img-thumbs">
-
                 <div class="srvc-dtl-sub-img">
-                    <img src="{% static 'images/srvc-dtl-carpentry-1.png' %}" alt="">
+                    <img src="{% static 'images/wo-carpentry-1.png' %}" alt="">
                 </div>
                 <div class="srvc-dtl-sub-img">
-                    <img src="{% static 'images/srvc-dtl-carpentry-2.png' %}" alt="">
+                    <img src="{% static 'images/wo-carpentry-2.png' %}" alt="">
                 </div>
                 <div class="srvc-dtl-sub-img">
-                    <img src="{% static 'images/srvc-dtl-carpentry-3.png' %}" alt="">
+                    <img src="{% static 'images/wo-carpentry-3.png' %}" alt="">
                 </div>
-
             </div>
         </div>
         <div class="srvc-dtl-details-and-reviews">
@@ -71,24 +70,27 @@
                     </div>
                     <div class="srvc-dtl-tag-container">
                         <a href="{% url 'service_requests' service.id %}">
-                        <i class="fa-solid fa-list"></i>
-                        <span>Manage</span>
+                            <i class="fa-solid fa-list"></i>
+                            <span>Manage</span>
                         </a>
                     </div>
                 </div>
             </div>
             {% if client_acquired_service %}
             <div class="acquired-service-card">
-                <h4>Your service request details:</h4>
-                {% if client_acquired_service.status == 'PENDING' %}
-                <h5 style="color: #FF8400;">{{ client_acquired_service.status }}</h5>
-                {% elif client_acquired_service.status == 'ON-GOING' %}
-                <h5 style="color: #fff700;">{{ client_acquired_service.status }}</h5>
-                {% elif client_acquired_service.status == 'CANCELED' or client_acquired_service.status == 'DECLINED' %}
-                <h5 style="color: #cd1800;">{{ client_acquired_service.status }}</h5>
-                {% elif client_acquired_service.status == 'COMPLETED' %}
-                <h5 style="color: #268700;">{{ client_acquired_service.status }}</h5>
-                {% endif %}
+                <div class="asc-dtl">
+                    <h4>Your service request details:</h4>
+                    {% if client_acquired_service.status == 'PENDING' %}
+                    <h5 style="color: #FF8400;">{{ client_acquired_service.status }}</h5>
+                    {% elif client_acquired_service.status == 'ON-GOING' %}
+                    <h5 style="color: #fff700;">{{ client_acquired_service.status }}</h5>
+                    {% elif client_acquired_service.status == 'CANCELED' or client_acquired_service.status == 'DECLINED'
+                    %}
+                    <h5 style="color: #cd1800;">{{ client_acquired_service.status }}</h5>
+                    {% elif client_acquired_service.status == 'COMPLETED' %}
+                    <h5 style="color: #268700;">{{ client_acquired_service.status }}</h5>
+                    {% endif %}
+                </div>
                 <span>Details:</span>
                 <p>{{ client_acquired_service.client_msg }}</p>
             </div>
@@ -99,12 +101,12 @@
             <form action="" method="post">
                 {% csrf_token %}
                 {% if form_errors %}
-                    <div class="srvc-dtl-error">
-                        <p>Unable to proceed:</p>
-                        {% for error in form_errors %}
-                        <p>{{ error }}</p>
-                        {% endfor %}
-                    </div>
+                <div class="srvc-dtl-error">
+                    <p>Unable to proceed:</p>
+                    {% for error in form_errors %}
+                    <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
                 {% endif %}
                 <div class="srvc-dtl-service-input">
                     <div class="srvc-dtl-service-textarea">
@@ -122,35 +124,67 @@
         </div>
     </div>
     <div class="srvc-dtl-description">
-        <h5>Service Details</h5>
+        <h5>Service Details:</h5><br>
         <p>{{ service.description }}</p>
     </div>
     <div class="srvc-dtl-reviews">
         <div class="srvc-dtl-review-options">
-            5.0
+            <h3>Star Ratings</h3>
             <div class="rating-setting">
-                <input type="radio" name="review-filter-all" id="review-filter-all">
-                All
+                <input type="radio" name="review-rating" id="review-filter-all">
+                <div class="star-ratings">
+                    All
+                </div>
             </div>
             <div class="rating-setting">
-                <input type="radio" name="review-filter-5-star" id="review-filter-5-star">
-                5 Star
+                <input type="radio" name="review-rating" id="review-filter-5-star">
+                <div class="star-ratings">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                </div>
             </div>
             <div class="rating-setting">
-                <input type="radio" name="review-filter-4-star" id="review-filter-4-star">
-                4 Star
+                <input type="radio" name="review-rating" id="review-filter-4-star">
+                <div class="star-ratings">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star "></span>
+                </div>
             </div>
             <div class="rating-setting">
-                <input type="radio" name="review-filter-3-star" id="review-filter-3-star">
-                3 Star
+                <input type="radio" name="review-rating" id="review-filter-3-star">
+                <div class="star-ratings">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star "></span>
+                    <span class="fa fa-star "></span>
+                </div>
             </div>
             <div class="rating-setting">
-                <input type="radio" name="review-filter-2-star" id="review-filter-2-star">
-                2 Star
+                <input type="radio" name="review-rating" id="review-filter-2-star">
+                <div class="star-ratings">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star "></span>
+                    <span class="fa fa-star "></span>
+                    <span class="fa fa-star "></span>
+                </div>
             </div>
             <div class="rating-setting">
-                <input type="radio" name="review-filter-1-star" id="review-filter-1-star">
-                < 1 Star
+                <input type="radio" name="review-rating" id="review-filter-1-star">
+                <div class="star-ratings">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star "></span>
+                    <span class="fa fa-star "></span>
+                    <span class="fa fa-star "></span>
+                    <span class="fa fa-star "></span>
+                </div>
             </div>
         </div>
         <div class="srvc-dtl-review-clients">
@@ -159,14 +193,20 @@
                     <img src="{% for data in avatar %} {{ data.avatar.url }} {% endfor %}" alt="">
                 </div>
                 <div class="review-body">
-                    <span>{{ request.user.mainuser.full_name }}</span>
-                    <span>⭐⭐⭐⭐⭐</span>
-                    <span>Review description Lorem ipsum</span>
+                    <span class="review-body-name">{{ request.user.mainuser.full_name }}</span>
+                    <div class="star-ratings">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <span class="review-body-rv-dtl">Review description Lorem ipsum</span>
                 </div>
             </div>
         </div>
-        </div>
     </div>
-    <button id="scroll-top" class="scroll-top"><i class="fa-solid fa-arrow-up"></i></button>
-    {% include 'footer.html' %}
-    {% endblock %}
+</div>
+<button id="scroll-top" class="scroll-top"><i class="fa-solid fa-arrow-up"></i></button>
+{% include 'footer.html' %}
+{% endblock %}

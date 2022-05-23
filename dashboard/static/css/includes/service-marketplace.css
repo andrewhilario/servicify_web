@@ -14,9 +14,10 @@
 
 .sm-list .offers {
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto auto;
     width: 100%;
     padding: 60px 0px;
+    gap: 20px;
 }
 
 .sm-list .offers li {
@@ -25,12 +26,22 @@
 
 .sm-list .offers li a {
     width: 100%;
+    display: flex;
+    flex-direction: column;
     margin: 0 auto;
+
 }
 
 .sm-list .offers li a p {
     width: 100%;
 }
+
+.sm-list .offers .work-offer-thumbnail-parent img {
+    width: 110%;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
 
 /* Work Offer List Sorting */
 

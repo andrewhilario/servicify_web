@@ -33,29 +33,31 @@
         </div>
         <div class="sm-list-or-grid">
 
-            <button><i class="fa-solid fa-list"></i></button>
-            <button><i class="fa-solid fa-table-cells-large"></i></button>
+            <button id="list"><i class="fa-solid fa-list"></i></button>
+            <button id="grid"><i class="fa-solid fa-table-cells-large"></i></button>
 
         </div>
 
     </div>
-    <ul class="offers">
-        {% for work_offer in work_offers %}
+    <ul class="offers" id="container">
+        {% for service in services %}
         <li>
-            <a href="{% url 'work_offer_bidding' %}">
+            <a href="{% url 'service_details' service.id  %}">
                 <div class="work-offer-thumbnail-parent">
-                    <img src="{{ work_offer.thumbnail.url }}" alt="">
+                    {% for img in service.serviceimage_set.all %}
+                    <img src="{{ img.image.url }}" alt="">
+                    {% endfor %}
                 </div>
-                <p>{{ work_offer.work_name }}</p>
-                <span>Bid Starts at &#8369;{% filter intcomma %}{{ work_offer.min_pay|floatformat }}{% endfilter %}
-
-                </span>
+                <p>{{service.service_name|truncatechars:16}}</p>
+                <p>{{service.service_type}}</p>
+                <span>2.1km away - Tondo</span>
             </a>
         </li>
         {% endfor %}
+
     </ul>
 </div>
-
+<button id="scroll-top" class="scroll-top"><i class="fa-solid fa-arrow-up"></i></button>
 
 {% include 'footer.html' %}
 {% endblock %}

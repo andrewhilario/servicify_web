@@ -1,6 +1,8 @@
 {% load static %}
 {% block css_files %}
 <link rel="stylesheet" href="{% static 'css/includes/aboutus.css' %}">
+<link rel="stylesheet" href="{% static 'css/includes/dashboard.css' %}">
+
 {% endblock %}
 {% block content %}
 {% include 'navbar.html' %}
@@ -42,6 +44,7 @@
     <div class="circle1"></div>
     <div class="circle2"></div>
 </div>
+<button id="scroll-top" class="scroll-top"><i class="fa-solid fa-arrow-up"></i></button>
 
 {% include 'footer.html' %}
 {% endblock %}

@@ -330,12 +330,18 @@
     display: flex;
     justify-content: space-around;
     margin-top: 10px;
+
 }
 
 #bidder_msg {
     width: 100%;
     border: 2px solid #7CB687;
+    border-radius: 10px;
+    font-size: 1.2rem;
     resize: none;
+    font-family: 'Raleway';
+    padding: 10px;
+    outline: none;
 }
 
 /* bidders */
@@ -454,6 +460,7 @@
 
 .wo-other-bid-tbl table thead tr th {
     padding: 10px 0;
+    color: white;
 }
 
 

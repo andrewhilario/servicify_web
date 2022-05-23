@@ -1,6 +1,5 @@
 .srvc-dtl {
     width: 90%;
-
     margin: 0 auto;
 }
 
@@ -81,7 +80,7 @@
     display: flex;
     justify-content: space-between;
     align-self: start;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .srvc-dtl-details {
@@ -98,7 +97,7 @@
 }
 
 .srvc-dtl-sub-details {
-    width: 80%;
+    width: 55%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -129,7 +128,7 @@
 
 
 .srvc-dtl-content-sub-details ul {
-
+    width: 100%;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -145,6 +144,11 @@
 
 .srvc-dtl-content-sub-details ul li p {
     font-weight: bold;
+}
+
+.srvc-dtl-content-sub-details ul li span {
+    display: flex;
+    margin-left: 10px;
 }
 
 .srvc-dtl-tags {
@@ -188,17 +192,37 @@
 
 .srvc-dtl-description {
     width: 100%;
-    padding: 20px 0;
+    padding: 20px 30px;
 }
 
 .srvc-dtl-service-input {
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+}
+
+.srvc-dtl-service-textarea {
+    width: 100%;
+    height: 150px;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-weight: 500;
 }
 
 .srvc-dtl-service-textarea textarea {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border: 2px solid #749E7D;
     resize: none;
+    padding: 10px;
+    font-size: 1rem;
+    font-family: "Raleway";
+    margin: 10px 0px;
+    outline: none;
 }
 
 .srvc-dtl-service-btn input[type="submit"] {
@@ -213,21 +237,29 @@
     padding: 0 50px;
     text-align: center;
     cursor: pointer;
+    margin: 20px 0px;
 }
 
 .srvc-dtl-description {
     background-color: #7CB687;
     width: 100%;
     color: white;
-    padding: 40px 0;
+    padding: 40px 20px;
     border-radius: 20px;
+    display: block;
+}
+
+.srvc-dtl-description h5 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
 }
 
 .srvc-dtl-reviews {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin: 100px auto;
+    margin: 10% auto;
 }
 
 .srvc-dtl-review-options {
@@ -236,8 +268,32 @@
     background-color: #7CB687;
     width: 25%;
     color: white;
-    padding: 40px 0;
+    padding: 40px 20px;
     border-radius: 20px;
+}
+
+.srvc-dtl-review-options h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 15px 0px;
+}
+
+.star-ratings {
+    color: rgb(255, 255, 255);
+}
+
+.checked {
+    color: rgb(255, 217, 146);
+}
+
+.rating-setting {
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.rating-setting .star-ratings {
+    margin-left: 10px;
 }
 
 .srvc-dtl-review-clients {
@@ -253,6 +309,7 @@
 .service-review {
     display: flex;
     flex-direction: row;
+    width: 100%;
 }
 
 .reviewer-avatar {
@@ -260,7 +317,10 @@
     height: 100px;
     border-radius: 50%;
     border: 3px solid #749E7D;
+    margin: 0px 40px;
 }
+
+
 
 .reviewer-avatar img {
     width: 100%;
@@ -272,4 +332,80 @@
 .review-body {
     display: flex;
     flex-direction: column;
+}
+
+.review-body-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 20px 0px;
+}
+
+.review-body-rv-dtl {
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+.acquired-service-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.asc-dtl {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0px;
+}
+
+.asc-dtl h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.asc-dtl h5 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.acquired-service-card span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0px 0px 10px 0px;
+}
+
+/* Scroll to Top */
+.scroll-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 99;
+    outline: none;
+    background-color: #5d9167;
+    border: none;
+    cursor: pointer;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transform: translateX(200%);
+}
+
+.scroll-top i {
+    color: white;
+    font-size: 2rem;
+}
+
+.scroll-active-1 {
+    transition: all .5s ease-in-out;
+    transform: translateX(200%);
+}
+
+.scroll-active-2 {
+    transition: all .5s ease-in-out;
+    transform: translateX(0%);
 }

@@ -1,9 +1,12 @@
 {% extends 'index.html' %}
 {% load static %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'css/includes/service-create.css' %}">
+{% endblock %}
 {% block content %}
 {% include 'navbar.html' %}
 <div class="cs-success">
-    <a href="{% url 'service_request' %}">
+    <a href="{% url 'service_requests' service.id %}">
         <i class="fa-solid fa-caret-left"></i>
         <span>Return to Service Request</span>
     </a>

@@ -37,17 +37,17 @@
 // }
 
 function ready(fn) {
-    if (document.readyState != 'loading') {
-        fn();
-    } else {
-        document.addEventListener('DOMContentLoaded', fn);
-    }
+	if (document.readyState != 'loading') {
+		fn();
+	} else {
+		document.addEventListener('DOMContentLoaded', fn);
+	}
 }
 
 ready(() => {
-    var scrollTop = document.getElementById('scroll-top');
+	var scrollTop = document.getElementById('scroll-top');
 
-    
+
 	window.onload = () => {
 		scrollTop.classList.add('scroll-active-1');
 	}
@@ -105,10 +105,12 @@ ready(() => {
 		workOfferCost.innerText = parseInt(workOfferCost.innerText).toFixed(2);
 	}
 
-	function myFunction(imgs) {
-		var expandImg = document.getElementById("img-preview");
-		expandImg.src = imgs.src;
-		expandImg.parentElement.style.display = "block";
-	}
 
 })
+
+function myFunction(imgs) {
+	var expandImg = document.getElementById("img-preview");
+	expandImg.src = imgs.src;
+	expandImg.parentElement.style.display = "block";
+}
+

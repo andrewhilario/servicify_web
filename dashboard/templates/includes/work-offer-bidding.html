@@ -1,5 +1,6 @@
 {% load static %}
 {% block css_files %}
+<link rel="stylesheet" href="{% static 'css/includes/dashboard.css' %}">
 <link rel="stylesheet" href="{% static 'css/includes/work-offer-bidding.css' %}">
 {% endblock %}
 {% load humanize %}
@@ -104,7 +105,7 @@
             <div class="wo-bidding-input">
                 {% if request.user.is_authenticated %}
                 {% if winning_bid %}
-                    <em>Bidding is already closed.</em>
+                <em>Bidding is already closed.</em>
                 {% else %}
                 <form method="post">
                     {% csrf_token %}
@@ -141,7 +142,7 @@
                 <div class="wo-sub-content">
                     <p>Winning Bid:</p>
                     {{ winning_bid.created_at }}
-                    <img class="mini-avatar" src="{{ winning_bid.bidder_id.avatar.url }}" alt=""> 
+                    <img class="mini-avatar" src="{{ winning_bid.bidder_id.avatar.url }}" alt="">
                     {{ winning_bid.bidder_id.full_name }}
                     Description
                     {{ winning_bid.bidder_msg }}
@@ -171,7 +172,7 @@
                 <div class="wo-latest-bid-content">
                     <p>Latest Bidder: </p>
                     <span>
-                        <img class="mini-avatar" src="{{ latest_bid.bidder_id.avatar.url }}" alt=""> 
+                        <img class="mini-avatar" src="{{ latest_bid.bidder_id.avatar.url }}" alt="">
                         {{ latest_bid.bidder_id.full_name }}
                     </span>
                 </div>
@@ -203,7 +204,7 @@
                             <tr>
                                 <td>{{ bid.created_at }}</td>
                                 <td>
-                                    <img class="mini-avatar" src="{{ bid.bidder_id.avatar.url }}" alt=""> 
+                                    <img class="mini-avatar" src="{{ bid.bidder_id.avatar.url }}" alt="">
                                     {{ bid.bidder_id.full_name }}
                                     Description
                                     {{ bid.bidder_msg }}

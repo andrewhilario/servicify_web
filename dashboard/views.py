@@ -304,7 +304,11 @@ def service_requests(request, service_id):
 
 
 def service_marketplace(request):
-    return render(request, 'includes/service-marketplace.html')
+    service = Service.objects.order_by('?')
+    context = {
+        'services': service,
+    }
+    return render(request, 'includes/service-marketplace.html', context)
 
 
 def acquireservice(request):
