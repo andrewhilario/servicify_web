@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, PasswordChangeForm, SetPasswordForm
-from .models import MainUser, WorkOffer, Service, ServiceTypes, ServiceImage, Bid, ServiceClients
+from .models import *
 
 
 class UserLoginForm(AuthenticationForm):
@@ -126,7 +126,7 @@ class CreateServiceForm(forms.ModelForm):
 
 class AcquireServiceForm(forms.ModelForm):
     client_msg = forms.CharField(label='Message', min_length=5,
-                                  max_length=1000, help_text='Required', widget=forms.Textarea)
+                                 max_length=1000, help_text='Required', widget=forms.Textarea)
 
     class Meta:
         model = ServiceClients
@@ -138,10 +138,25 @@ class AcquireServiceForm(forms.ModelForm):
             {'placeholder': 'Enter the details of what you need to be done.', 'name': 'client_msg', 'id': 'client_msg'})
 
 
+class RateServiceForm(forms.ModelForm):
+    message = forms.CharField(
+        min_length=5, max_length=1000, help_text='Required', widget=forms.Textarea)
+
+    class Meta:
+        model = ServiceReview
+        fields = ['message']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['message'].widget.attrs.update(
+            {'placeholder': 'Help us improve the platform. Share with us your experience with this service.', 'name': 'message', 'id': 'message'})
+
+
 class CreateWorkOfferBidForm(forms.ModelForm):
     bidder_msg = forms.CharField(label='Message', min_length=5,
-                                  max_length=1000, help_text='Required', widget=forms.Textarea)
-    bid_amount = forms.DecimalField(max_digits=19, decimal_places=4, help_text='Required')
+                                 max_length=1000, help_text='Required', widget=forms.Textarea)
+    bid_amount = forms.DecimalField(
+        max_digits=19, decimal_places=4, help_text='Required')
 
     class Meta:
         model = Bid

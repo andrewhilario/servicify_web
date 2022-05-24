@@ -11,6 +11,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+from django.db.models import Sum
 from django.http import *
 import random
 
@@ -229,20 +230,35 @@ def createservice(request):
 
 
 def service_details(request, service_id):
+    client_acquired_service = None
+    client_acquired_service_review = None
+    form = None
+    review_form = None
+    avg_rating = None
+    form_errors = []
+    form_messages = []
+
     service = Service.objects.get(id=service_id)
     total_clients = ServiceClients.objects.filter(service_id=service).count()
-    clients_finished = ServiceClients.objects.filter(service_id=service, status='COMPLETED').count()
+    clients_finished = ServiceClients.objects.filter(
+        service_id=service, status='COMPLETED').count()
+    reviews = ServiceReview.objects.filter(transaction_id__service_id=service).order_by('-created_at')
+
+    if reviews:
+        rating_sum = reviews.aggregate(Sum('rating'))['rating__sum']
+        avg_rating = round(rating_sum / reviews.count(), 2)
+        client_acquired_service_review = ServiceReview.objects.filter(transaction_id__client_id=request.user.mainuser).first()
+        
 
     if request.user.is_authenticated:
         form = AcquireServiceForm()
-        client_acquired_service = ServiceClients.objects.filter(service_id=service, client_id=request.user.mainuser).first()
-    else:
-        client_acquired_service = None
-        form = None
+        client_acquired_service = ServiceClients.objects.filter(
+            service_id=service, client_id=request.user.mainuser).first()
 
-    form_errors = []
-    form_messages = []
-    if request.method == 'POST' and request.user.is_authenticated and not client_acquired_service:
+        if client_acquired_service:
+            review_form = RateServiceForm()
+
+    if request.method == 'POST' and request.user.is_authenticated and not client_acquired_service:  # acquisition
         acquired_service_form = AcquireServiceForm(request.POST)
         if acquired_service_form.is_valid():
             acquired_service = acquired_service_form.save(commit=False)
@@ -251,16 +267,36 @@ def service_details(request, service_id):
             acquired_service.status = 'PENDING'
             acquired_service.save()
             client_acquired_service = acquired_service
-            form_messages.append('We have sent your message to the service owner. The service owner will contact you shortly.')
+            form_messages.append(
+                'We have sent your message to the service owner. The service owner will contact you shortly.')
         else:
-            form_errors.append('Unable to process your request. Please check your input.')
+            form_errors.append(
+                'Unable to process your request. Please check your input.')
 
+    elif request.method == 'POST' and request.user.is_authenticated and client_acquired_service:  # review
+        stars = request.POST.get('rating2', False)
+        rating_form = RateServiceForm(request.POST)
+
+        if rating_form.is_valid() and stars < 5.0:
+            review = rating_form.save(commit=False)
+            review.transaction_id = client_acquired_service
+            review.rating = float(stars)
+            review.save()
+            form_messages.append('Thanks for sharing your experience!')
+        else:
+            form_errors.append(
+                'Unable to process your request. Please check your input.')
+    
     context = {
         'service': service,
         'total_clients': total_clients,
         'clients_finished': clients_finished,
         'client_acquired_service': client_acquired_service,
+        'client_acquired_service_review': client_acquired_service_review,
+        'avg_rating': avg_rating,
+        'reviews': reviews,
         'form': form,
+        'review_form': review_form,
         'form_messages': form_messages,
         'form_errors': form_errors,
     }
@@ -320,6 +356,9 @@ def acquireservice2(request):
 
 
 def register(request):
+    registerForm = None
+    mainUserForm = None
+
     if request.method == 'POST':
         registerForm = RegistrationForm(request.POST)
         if registerForm.is_valid():

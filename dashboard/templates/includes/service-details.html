@@ -2,8 +2,23 @@
 {% load static %}
 {% load humanize %}
 {% block css_files %}
+<link rel="stylesheet" href="{% static 'css/includes/rating.css' %}">
 <link rel="stylesheet" href="{% static 'css/includes/service-details.css' %}">
-
+<link rel="stylesheet" href="{% static 'star-rating/star-rating-svg.css' %}">
+{% endblock %}
+{% block scripts %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="{% static 'star-rating/jquery.star-rating-svg.js' %}"></script>
+<script>
+    $(".review-stars").starRating({
+        strokeColor: '#FFD992',
+        starShape: 'rounded',
+        starSize: 25,
+        useGradient: false,
+        readOnly: true,
+      });
+      
+</script>
 {% endblock %}
 {% block content %}
 {% include 'navbar.html' %}
@@ -62,6 +77,10 @@
                 </div>
                 <div class="srvc-dtl-tags">
                     <div class="srvc-dtl-tag-container">
+                        <i class="fa fa-star checked"></i> {{ avg_rating }} / 5.0
+                        <span>Total of {{ reviews.count }} reviews</span>
+                    </div>
+                    <div class="srvc-dtl-tag-container">
                         <strong>{{ total_clients }}</strong>
                         <span>Total Clients</span>
                     </div>
@@ -85,15 +104,62 @@
                     <h5 style="color: #FF8400;">{{ client_acquired_service.status }}</h5>
                     {% elif client_acquired_service.status == 'ON-GOING' %}
                     <h5 style="color: #fff700;">{{ client_acquired_service.status }}</h5>
-                    {% elif client_acquired_service.status == 'CANCELED' or client_acquired_service.status == 'DECLINED' %}
+                    {% elif client_acquired_service.status == 'CANCELED' or client_acquired_service.status == 'DECLINED'
+                    %}
                     <h5 style="color: #cd1800;">{{ client_acquired_service.status }}</h5>
                     {% elif client_acquired_service.status == 'COMPLETED' %}
                     <h5 style="color: #268700;">{{ client_acquired_service.status }}</h5>
                     {% endif %}
                 </div>
-                <span>Details:</span>
                 <p>{{ client_acquired_service.client_msg }}</p>
             </div>
+                {% if not client_acquired_service_review %}
+                <div class="service-review">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {% if form_errors %}
+                        <div class="srvc-dtl-error">
+                            <p>Unable to proceed:</p>
+                            {% for error in form_errors %}
+                            <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        <div class="service-review-btn-input">
+                            <div class="service-review-btn-textarea">
+                                {{ review_form.message }}
+                            </div>
+                            <div class="rating-group">
+                                <input class="rating__input rating__input--none" checked name="rating2" id="rating2-0" value="0" type="radio">
+                                <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                                <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                <input class="rating__input" name="rating2" id="rating2-05" value="0.5" type="radio">
+                                <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                <input class="rating__input" name="rating2" id="rating2-10" value="1" type="radio">
+                                <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                <input class="rating__input" name="rating2" id="rating2-15" value="1.5" type="radio">
+                                <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                <input class="rating__input" name="rating2" id="rating2-20" value="2" type="radio">
+                                <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating2-25"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                <input class="rating__input" name="rating2" id="rating2-25" value="2.5" type="radio">
+                                <label aria-label="3 stars" class="rating__label" for="rating2-30"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                <input class="rating__input" name="rating2" id="rating2-30" value="3" type="radio">
+                                <label aria-label="3.5 stars" class="rating__label rating__label--half" for="rating2-35"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                <input class="rating__input" name="rating2" id="rating2-35" value="3.5" type="radio">
+                                <label aria-label="4 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                <input class="rating__input" name="rating2" id="rating2-40" value="4" type="radio">
+                                <label aria-label="4.5 stars" class="rating__label rating__label--half" for="rating2-45"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                <input class="rating__input" name="rating2" id="rating2-45" value="4.5" type="radio">
+                                <label aria-label="5 stars" class="rating__label" for="rating2-50"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                <input class="rating__input" name="rating2" id="rating2-50" value="5" type="radio">
+                            </div>
+                            <div class="service-review-btn">
+                                <input type="submit" value="Place Review">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                {% endif %}
             {% elif request.user.is_authenticated %}
             {% for message in form_messages %}
             <p>{{ message }}</p>
@@ -189,20 +255,21 @@
         </div>
         <div class="srvc-dtl-review-clients">
             <div class="service-review">
-                <div class="reviewer-avatar">
-                    <img src="{% for data in avatar %} {{ data.avatar.url }} {% endfor %}" alt="">
-                </div>
-                <div class="review-body">
-                    <span class="review-body-name">{{ request.user.mainuser.full_name }}</span>
-                    <div class="star-ratings">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                    </div>
-                    <span class="review-body-rv-dtl">Review description Lorem ipsum</span>
-                </div>
+                <ul>
+                    {% for review in reviews %}
+                    <li>
+                        <div class="reviewer-avatar">
+                            <img src="{{ review.client.avatar.url }}" alt="">
+                        </div>
+                        <div class="review-body">
+                            <span class="review-body-name">{{ review.client.full_name }}</span>
+                            <div class="review-stars" data-rating="{{ review.rating }}"></div>
+                            <p>{{ review.rating }}</p>
+                            <span class="review-body-rv-dtl">{{ review.message }}</span>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>

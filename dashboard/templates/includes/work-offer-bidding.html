@@ -92,6 +92,7 @@
                     </div>
                 </div>
                 {% endif %}
+                {% if total_bids %}
                 <div class="wo-current-price">
                     <div class="wo-highest-bid">
                         <p>Highest Bid:</p>
@@ -105,6 +106,7 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
                 <div class="wo-bid-incre">
                     <p>Starting Bid:</p>
                     <span>₱{% filter intcomma %}{{ work_offer.min_pay|floatformat }}{% endfilter %}</span>

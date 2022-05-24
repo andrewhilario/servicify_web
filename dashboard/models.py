@@ -71,11 +71,22 @@ class ServiceClients(models.Model):
     client_msg = models.TextField()
     status = models.CharField(max_length=64)
 
+# For reviews of services that clients acquired
 class ServiceReview(models.Model):
     transaction_id = models.ForeignKey(ServiceClients, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     rating = models.DecimalField(max_digits=2, decimal_places=1)
     message = models.TextField()
+
+    @property
+    def client(self):
+        "Returns the transaction client."
+        return self.transaction_id.client_id
+    
+    @property
+    def iterable_rating(self):
+        "Returns the iterable form of ratings."
+        return [self.rating]
 
 # Review photos
 class ServiceReviewImage(models.Model):

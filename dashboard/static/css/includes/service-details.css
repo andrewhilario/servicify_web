@@ -306,12 +306,6 @@
     border-radius: 20px;
 }
 
-.service-review {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-}
-
 .reviewer-avatar {
     width: 100px;
     height: 100px;
@@ -356,8 +350,8 @@
 .asc-dtl {
     width: 70%;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
     margin: 20px 0px;
 }
 
@@ -370,7 +364,7 @@
 .asc-dtl h5 {
     font-size: 1.2rem;
     font-weight: bold;
-    margin: 0;
+    margin-top: 10px;
 }
 
 .acquired-service-card span {
@@ -408,4 +402,14 @@
 .scroll-active-2 {
     transition: all .5s ease-in-out;
     transform: translateX(0%);
+}
+
+.service-review {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.service-review form {
+    width: 100%;
 }
