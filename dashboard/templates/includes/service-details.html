@@ -15,20 +15,21 @@
     <h2>Service</h2>
     <div class="srvc-dtl-contents">
         <div class="srvc-dtl-image-view">
+            {% for img in service.serviceimage_set.all|slice:":1" %}
             <div class="srvc-dtl-main-img">
-                <img src="{% static 'images/wo-carpentry-1.png' %}" alt="">
+
+                <img src="{{ img.image.url }}" alt="" id="img-preview">
+
             </div>
+            {% endfor %}
             <div class="srvc-dtl-img-thumbs">
+                {% for img in service.serviceimage_set.all %}
                 <div class="srvc-dtl-sub-img">
-                    <img src="{% static 'images/wo-carpentry-1.png' %}" alt="">
+                    <img src="{{ img.image.url }}" alt="" id="img-thumbnails" onclick="myFunction(this);">
                 </div>
-                <div class="srvc-dtl-sub-img">
-                    <img src="{% static 'images/wo-carpentry-2.png' %}" alt="">
-                </div>
-                <div class="srvc-dtl-sub-img">
-                    <img src="{% static 'images/wo-carpentry-3.png' %}" alt="">
-                </div>
+                {% endfor %}
             </div>
+
         </div>
         <div class="srvc-dtl-details-and-reviews">
             <div class="srvc-dtl-sub-contents">
