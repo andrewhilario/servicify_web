@@ -5,14 +5,19 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+from .custom_models import CompressedImageField
+
 def user_directory_path(instance, filename):
     return 'users/avatars/{0}/{1}'.format(instance.user.id, filename)
 
 def workoffer_directory_path(instance, filename):
-    return 'workoffers/thumbnails/{0}/{1}'.format(instance.id, filename)
+    return 'workoffers/thumbnails/{0}/{1}'.format(instance.workoffer.id, filename)
 
 def service_directory_path(instance, filename):
-    return 'services/thumbnails/{0}/{1}'.format(instance.id, filename)
+    return 'services/thumbnails/{0}/{1}'.format(instance.service.id, filename)
+
+def service_review_directory_path(instance, filename):
+    return 'services/review_images/{0}/{1}'.format(instance.id, filename)
 
 # Create your models here.
 
@@ -20,7 +25,7 @@ def service_directory_path(instance, filename):
 class MainUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=15)
-    avatar = models.ImageField(
+    avatar = CompressedImageField(quality=50,
         upload_to=user_directory_path, default='users/avatar.png')
     
     @property
@@ -56,7 +61,7 @@ class Service(models.Model):
 # For service photos
 class ServiceImage(models.Model):
    service = models.ForeignKey(Service, on_delete=models.CASCADE)
-   image = models.ImageField(upload_to=service_directory_path)
+   image = CompressedImageField(quality=50, upload_to=service_directory_path)
 
 # For services that clients acquired
 class ServiceClients(models.Model):
@@ -65,6 +70,17 @@ class ServiceClients(models.Model):
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     client_msg = models.TextField()
     status = models.CharField(max_length=64)
+
+class ServiceReview(models.Model):
+    transaction_id = models.ForeignKey(ServiceClients, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(default=datetime.now, blank=True)
+    rating = models.DecimalField(max_digits=2, decimal_places=1)
+    message = models.TextField()
+
+# Review photos
+class ServiceReviewImage(models.Model):
+   service_review = models.ForeignKey(ServiceReview, on_delete=models.CASCADE)
+   image = CompressedImageField(quality=25, upload_to=service_review_directory_path)
 
 class WorkOffer(models.Model):
     created_by = models.ForeignKey(MainUser, on_delete=models.CASCADE)
@@ -77,7 +93,7 @@ class WorkOffer(models.Model):
 # For work offer photos
 class WorkOfferImage(models.Model):
    workoffer = models.ForeignKey(WorkOffer, on_delete=models.CASCADE)
-   image = models.ImageField(upload_to=workoffer_directory_path)
+   image = CompressedImageField(quality=50, upload_to=workoffer_directory_path)
 
 class Bid(models.Model):
     workoffer_id = models.ForeignKey(WorkOffer, on_delete=models.CASCADE)
