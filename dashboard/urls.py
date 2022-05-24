@@ -24,8 +24,6 @@ urlpatterns = [
     path('createservice/', views.createservice, name='createservice'),
     path('service/<slug:service_id>/service_requests', views.service_requests, name='service_requests'),
     path('service-request/view/', views.view_service, name='view_service'),
-    path('acquireservice/', views.acquireservice, name='acquireservice'),
-    path('acquireservice2/', views.acquireservice2, name='acquireservice2'),
 
     # work offers
     path('createworkoffer/', views.createworkoffer, name='createworkoffer'),
@@ -45,6 +43,8 @@ urlpatterns = [
     # unused
     path('workoffer/view', views.workoffer, name='workoffer_view'),
     path('workoffer2/', views.workoffer2, name='workoffer2'),
+    path('acquireservice/', views.acquireservice, name='acquireservice'),
+    path('acquireservice2/', views.acquireservice2, name='acquireservice2'),
 
 
     

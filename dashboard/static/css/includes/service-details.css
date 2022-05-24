@@ -106,10 +106,10 @@
 }
 
 .srvc-dtl-img-sub-details {
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-right: 10px;
 }
 
 .srvc-dtl-img-container {
@@ -139,7 +139,6 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
     margin-bottom: 10px;
 }
 
