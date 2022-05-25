@@ -244,7 +244,7 @@ def service_details(request, service_id):
     clients_finished = ServiceClients.objects.filter(
         service_id=service, status='COMPLETED').count()
     
-    if review_star_filter != 'all':
+    if review_star_filter and review_star_filter != 'all':
         stars = float(review_star_filter)
         reviews = ServiceReview.objects.filter(transaction_id__service_id=service, rating__range=(stars, stars+0.9)).order_by('-created_at')
     else:
