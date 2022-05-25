@@ -247,6 +247,7 @@
     padding: 40px 20px;
     border-radius: 20px;
     display: block;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .srvc-dtl-description h5 {
@@ -267,9 +268,11 @@
     flex-direction: column;
     background-color: #7CB687;
     width: 25%;
+    height: 50%;
     color: white;
     padding: 40px 20px;
     border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .srvc-dtl-review-options h3 {
@@ -304,6 +307,7 @@
     color: white;
     padding: 40px 0;
     border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .reviewer-avatar {
@@ -311,7 +315,8 @@
     height: 100px;
     border-radius: 50%;
     border: 3px solid #749E7D;
-    margin: 0px 40px;
+    margin: 0 30px;
+    margin-top: 30px;
 }
 
 
@@ -367,6 +372,10 @@
     margin-top: 10px;
 }
 
+.asc-msg {
+    margin-bottom: 30px;
+}
+
 .acquired-service-card span {
     font-size: 1.5rem;
     font-weight: bold;
@@ -408,8 +417,134 @@
     display: flex;
     flex-direction: row;
     width: 100%;
+    margin: 30px 0px;
+    background: #749E7D;
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .service-review form {
     width: 100%;
+    display: flex;
+}
+
+.service-review-btn-input {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-review-btn-input h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 10px 0px;
+}
+
+.service-review-btn-textarea textarea {
+    resize: none;
+    width: 100%;
+    margin: 20px 0px;
+    border-radius: 10px;
+    border: 2px solid #5d9167;
+    font-family: "Raleway";
+    font-weight: 400;
+    padding: 10px;
+    outline: none;
+}
+
+.service-review-upload {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.service-review-upload input[type="file"] {
+    display: none;
+}
+
+.service-review-upload label {
+
+    text-align: center;
+    width: 100%;
+    padding: 20px 10px;
+    border-radius: 10px;
+    /* background-color: #5d9167; */
+    border: 2.5px solid #ffffff;
+    cursor: pointer;
+    color: white;
+    font-size: 1rem;
+    font-family: "Raleway";
+    font-weight: bold;
+    box-shadow: #749E7D59 0px 5px 15px;
+}
+
+.service-review-btn input[type="submit"] {
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    border: 2.5px solid #ffffff;
+    background-color: #749E7D;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: "Raleway";
+    padding: 0 50px;
+    text-align: center;
+    cursor: pointer;
+    margin: 20px 0px;
+
+}
+
+.service-reviews ul li {
+    padding: 20px;
+    display: flex;
+}
+
+
+.rv-container {
+    margin-top: 0;
+}
+
+.rv-star {
+    display: flex;
+    align-items: center;
+}
+
+.rv-star p {
+    margin-right: 10px;
+}
+
+.review-stars {
+    display: flex;
+    align-items: center;
+}
+
+.rv-msg {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0px;
+}
+
+
+.review-footer {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 15px;
+}
+
+.rv-footer-container {
+    width: 150px;
+    height: 100px;
+
+}
+
+.rv-footer-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
 }
