@@ -247,7 +247,7 @@ def service_details(request, service_id):
     if reviews:
         rating_sum = reviews.aggregate(Sum('rating'))['rating__sum']
         avg_rating = round(rating_sum / reviews.count(), 2)
-        client_acquired_service_review = ServiceReview.objects.filter(transaction_id__client_id=request.user.mainuser).first()
+        client_acquired_service_review = reviews.filter(transaction_id__client_id=request.user.mainuser).first()
         
 
     if request.user.is_authenticated:
@@ -267,22 +267,30 @@ def service_details(request, service_id):
             acquired_service.status = 'PENDING'
             acquired_service.save()
             client_acquired_service = acquired_service
-            form_messages.append(
-                'We have sent your message to the service owner. The service owner will contact you shortly.')
+            return HttpResponseRedirect(service_id)
         else:
             form_errors.append(
                 'Unable to process your request. Please check your input.')
 
     elif request.method == 'POST' and request.user.is_authenticated and client_acquired_service:  # review
-        stars = request.POST.get('rating2', False)
+        stars = float(request.POST.get('rating2', False))
         rating_form = RateServiceForm(request.POST)
+        review_imgs = request.FILES.getlist('file')
 
-        if rating_form.is_valid() and stars < 5.0:
+        if rating_form.is_valid() and (stars <= 5.0 and stars >= 0) and len(review_imgs) <= 5:
             review = rating_form.save(commit=False)
             review.transaction_id = client_acquired_service
-            review.rating = float(stars)
+            review.rating = stars
             review.save()
-            form_messages.append('Thanks for sharing your experience!')
+
+            for img in review_imgs:
+                pic = ServiceReviewImage()
+                pic.service_review = review
+                pic.image = img
+                pic.save()
+
+            client_acquired_service_review = review
+            return HttpResponseRedirect(service_id)
         else:
             form_errors.append(
                 'Unable to process your request. Please check your input.')

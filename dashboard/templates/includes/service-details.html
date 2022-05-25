@@ -113,9 +113,9 @@
                 </div>
                 <p>{{ client_acquired_service.client_msg }}</p>
             </div>
-                {% if not client_acquired_service_review %}
+
                 <div class="service-review">
-                    <form action="" method="post">
+                    <form action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         {% if form_errors %}
                         <div class="srvc-dtl-error">
@@ -153,13 +153,17 @@
                                 <label aria-label="5 stars" class="rating__label" for="rating2-50"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
                                 <input class="rating__input" name="rating2" id="rating2-50" value="5" type="radio">
                             </div>
+                            <div class="service-review-upload">
+                                <p>Upload up to 5 images</p>
+                                <input type="file" name="file" multiple accept="image/*" data-max_length="5">
+                            </div>
                             <div class="service-review-btn">
                                 <input type="submit" value="Place Review">
                             </div>
                         </div>
                     </form>
                 </div>
-                {% endif %}
+
             {% elif request.user.is_authenticated %}
             {% for message in form_messages %}
             <p>{{ message }}</p>
@@ -266,6 +270,11 @@
                             <div class="review-stars" data-rating="{{ review.rating }}"></div>
                             <p>{{ review.rating }}</p>
                             <span class="review-body-rv-dtl">{{ review.message }}</span>
+                        </div>
+                        <div class="review-footer">
+                            {% for img in review.servicereviewimage_set.all %}
+                            <img src="{{ img.image.url }}" alt="">
+                            {% endfor %}
                         </div>
                     </li>
                     {% endfor %}
