@@ -1,6 +1,7 @@
 {% extends 'index.html' %}
 {% load static %}
 {% load humanize %}
+{% load custom_tags %}
 {% block css_files %}
 <link rel="stylesheet" href="{% static 'css/includes/rating.css' %}">
 <link rel="stylesheet" href="{% static 'css/includes/service-details.css' %}">
@@ -210,65 +211,73 @@
         <h5>Service Details:</h5><br>
         <p>{{ service.description }}</p>
     </div>
-    <div class="srvc-dtl-reviews">
+    <div class="srvc-dtl-reviews" id="rating">
         <div class="srvc-dtl-review-options">
-            <h3>Star Ratings</h3>
-            <div class="rating-setting">
-                <input type="radio" name="review-rating" id="review-filter-all">
-                <div class="star-ratings">
-                    All
-                </div>
-            </div>
-            <div class="rating-setting">
-                <input type="radio" name="review-rating" id="review-filter-5-star">
-                <div class="star-ratings">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                </div>
-            </div>
-            <div class="rating-setting">
-                <input type="radio" name="review-rating" id="review-filter-4-star">
-                <div class="star-ratings">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star "></span>
-                </div>
-            </div>
-            <div class="rating-setting">
-                <input type="radio" name="review-rating" id="review-filter-3-star">
-                <div class="star-ratings">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star "></span>
-                    <span class="fa fa-star "></span>
-                </div>
-            </div>
-            <div class="rating-setting">
-                <input type="radio" name="review-rating" id="review-filter-2-star">
-                <div class="star-ratings">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star "></span>
-                    <span class="fa fa-star "></span>
-                    <span class="fa fa-star "></span>
-                </div>
-            </div>
-            <div class="rating-setting">
-                <input type="radio" name="review-rating" id="review-filter-1-star">
-                <div class="star-ratings">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star "></span>
-                    <span class="fa fa-star "></span>
-                    <span class="fa fa-star "></span>
-                    <span class="fa fa-star "></span>
-                </div>
-            </div>
+            <h3>Filters</h3>
+            <ul>
+                <li class="rating-setting">
+                    <a href="?{% query_transform stars='all' %}#rating">
+                        <div class="star-ratings">
+                            All
+                        </div>
+                    </a>
+                </li>
+                <li class="rating-setting">
+                    <a href="?{% query_transform stars=5 %}#rating">
+                        <div class="star-ratings">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                        </div>
+                    </a>
+                </li>
+                <li class="rating-setting">
+                    <a href="?{% query_transform stars=4 %}#rating">
+                        <div class="star-ratings">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star "></span>
+                        </div>
+                    </a>
+                </li>
+                <li class="rating-setting">
+                    <a href="?{% query_transform stars=3 %}#rating">
+                    <div class="star-ratings">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star "></span>
+                        <span class="fa fa-star "></span>
+                    </div>
+                </a>
+                </li>
+                <li class="rating-setting">
+                    <a href="?{% query_transform stars=2 %}#rating">
+                    <div class="star-ratings">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star "></span>
+                        <span class="fa fa-star "></span>
+                        <span class="fa fa-star "></span>
+                    </div>
+                </a>
+                </li>
+                <li class="rating-setting">
+                    <a href="?{% query_transform stars=1 %}#rating">
+                    <div class="star-ratings">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star "></span>
+                        <span class="fa fa-star "></span>
+                        <span class="fa fa-star "></span>
+                        <span class="fa fa-star "></span>
+                    </div>
+                </a>
+                </li>
+            </ul>
         </div>
         <div class="srvc-dtl-review-clients">
             <div class="service-reviews">

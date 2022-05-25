@@ -67,6 +67,9 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'dashboard.views.avatar',
             ],
+            'libraries':{
+                'custom_tags': 'dashboard.custom_tags',
+            }
         },
     },
 ]
@@ -97,8 +100,8 @@ DATABASES = {
 
         #please change the port thanks
 
-        # 'PORT': '8080',
-        'PORT': '8080',
+        # 'PORT': '5432',
+        'PORT': '5432',
 
     }
 }

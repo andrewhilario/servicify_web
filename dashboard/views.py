@@ -237,12 +237,19 @@ def service_details(request, service_id):
     avg_rating = None
     form_errors = []
     form_messages = []
+    review_star_filter = request.GET.get('stars', None)
 
     service = Service.objects.get(id=service_id)
     total_clients = ServiceClients.objects.filter(service_id=service).count()
     clients_finished = ServiceClients.objects.filter(
         service_id=service, status='COMPLETED').count()
-    reviews = ServiceReview.objects.filter(transaction_id__service_id=service).order_by('-created_at')
+    
+    if review_star_filter != 'all':
+        stars = float(review_star_filter)
+        reviews = ServiceReview.objects.filter(transaction_id__service_id=service, rating__range=(stars, stars+0.9)).order_by('-created_at')
+    else:
+        reviews = ServiceReview.objects.filter(transaction_id__service_id=service).order_by('-created_at')
+
 
     if reviews:
         rating_sum = reviews.aggregate(Sum('rating'))['rating__sum']
