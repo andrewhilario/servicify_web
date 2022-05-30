@@ -5,6 +5,9 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+from phonenumber_field.modelfields import PhoneNumberField
+from location_field.models.plain import PlainLocationField
+
 from .custom_models import CompressedImageField
 
 def user_directory_path(instance, filename):
@@ -24,7 +27,15 @@ def service_review_directory_path(instance, filename):
 # this extends Django's built-in User model
 class MainUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone_number = models.CharField(max_length=15)
+    phone_number = PhoneNumberField()
+
+    street = models.CharField(max_length=255, blank=True)
+    sublocality = models.CharField(max_length=255, blank=True)
+    locality = models.CharField(max_length=255, blank=True)
+    full_addr = models.CharField(max_length=255, blank=True)
+
+    city = models.CharField(max_length=255, blank=True)
+    location = PlainLocationField(based_fields=['city'], zoom=7, default='14.572950835033037,480.992431640625')
     avatar = CompressedImageField(quality=50,
         upload_to=user_directory_path, default='users/avatar.png')
     
@@ -33,10 +44,10 @@ class MainUser(models.Model):
         "Returns the user's full name."
         return '%s %s' % (self.user.first_name, self.user.last_name)
 
-@ receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        MainUser.objects.create(user=instance)
+# @ receiver(post_save, sender=User)
+# def create_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         MainUser.objects.create(user=instance)
 
 
 # For service categories
@@ -57,6 +68,14 @@ class Service(models.Model):
     description = models.TextField()
     service_type = models.ForeignKey(ServiceTypes, on_delete=models.DO_NOTHING)
     price = models.DecimalField(max_digits=19, decimal_places=4)
+
+    street = models.CharField(max_length=255, blank=True)
+    sublocality = models.CharField(max_length=255, blank=True)
+    locality = models.CharField(max_length=255, blank=True)
+    full_addr = models.CharField(max_length=255, blank=True)
+
+    city = models.CharField(max_length=255, blank=True)
+    location = PlainLocationField(based_fields=['city'], zoom=7, default='14.572950835033037,480.992431640625')
 
 # For service photos
 class ServiceImage(models.Model):

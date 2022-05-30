@@ -14,6 +14,7 @@ from django.core.exceptions import PermissionDenied
 from django.db.models import Sum
 from django.http import *
 import random
+import json
 
 # for 404 page
 
@@ -203,9 +204,26 @@ def view_bidding_details(request, work_offer_id, bidding_id):
 def createservice(request):
     if request.method == "POST":
         serviceForm = CreateServiceForm(request.POST)
-        if serviceForm.is_valid():
+        locationData = request.POST.get('locData', False)
+
+        if serviceForm.is_valid() and locationData:
             service = serviceForm.save(commit=False)
             service.created_by = request.user.mainuser
+            locationData = dict(json.loads(locationData))
+
+            for loc in locationData['details']:
+                if 'route' in loc["types"]:
+                    service.street = loc["long_name"]
+                elif 'neighborhood' in loc["types"]:
+                    service.street = loc["long_name"]
+                elif 'premise' in loc["types"]:
+                    service.street = loc["long_name"]
+                elif 'sublocality' in loc["types"]:
+                    service.sublocality = loc["long_name"]
+                elif 'locality' in loc["types"]:
+                    service.locality = loc["long_name"]
+
+            service.full_addr = locationData["Label"]
             service.save()
 
             for service_img in request.FILES.getlist('file'):
@@ -376,11 +394,33 @@ def register(request):
 
     if request.method == 'POST':
         registerForm = RegistrationForm(request.POST)
-        if registerForm.is_valid():
+        mainUserForm = MainUserRegistrationForm(request.POST, request.FILES)
+        locationData = request.POST.get('locData', False)
+
+        if registerForm.is_valid() and mainUserForm.is_valid() and locationData:
             user = registerForm.save(commit=False)
             user.email = registerForm.cleaned_data['email']
             user.set_password(registerForm.cleaned_data['password'])
             user.is_active = False
+            
+            main_user = mainUserForm.save(commit=False)
+            locationData = dict(json.loads(locationData))
+
+            for loc in locationData['details']:
+                print(loc)
+                if 'route' in loc["types"]:
+                    main_user.street = loc["long_name"]
+                elif 'neighborhood' in loc["types"]:
+                    main_user.street = loc["long_name"]
+                elif 'premise' in loc["types"]:
+                    main_user.street = loc["long_name"]
+                elif 'sublocality' in loc["types"]:
+                    main_user.sublocality = loc["long_name"]
+                elif 'locality' in loc["types"]:
+                    main_user.locality = loc["long_name"]
+
+            main_user.full_addr = locationData["Label"]
+            
             user.save()
             current_site = get_current_site(request)
             subject = 'Servicify: Activate your account'
@@ -391,15 +431,8 @@ def register(request):
                 'token': account_activation_token.make_token(user),
             })
             user.email_user(subject=subject, message=message)
-
-            mainUserForm = MainUserRegistrationForm(
-                request.POST, request.FILES, instance=user.mainuser)
-
-            if mainUserForm.is_valid():
-                main_user = mainUserForm.save(commit=False)
-                main_user.save()
-            else:
-                print('not valid')
+            main_user.user = user
+            main_user.save()
 
             return render(request, 'includes/registration-success.html', {'email': user.email})
     else:

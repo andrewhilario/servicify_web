@@ -1,6 +1,9 @@
 {% load static %}
 {% block css_files %}
 <link rel="stylesheet" href="{% static 'css/includes/register.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="{% static 'star-rating/jquery.star-rating-svg.js' %}"></script>
+{{mainuser_form.media}}
 {% endblock %}
 {% block content %}
 {% include 'navbar.html' %}
@@ -34,18 +37,36 @@
         document.querySelector(".upload-button").addEventListener('click', function () {
             document.querySelector(".file-upload").click()
         });
+
+        document.querySelector("#continue").addEventListener('click', function () {
+            if (localStorage.getItem("locData")) {
+                document.querySelector("#locData").value = localStorage.getItem("locData");
+                document.querySelector("#registerForm").submit();
+            }
+        });
     });
 </script>
 
 <div class="register-template">
     <h1>Create a New Account</h1>
     <div class="register-form">
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" id="registerForm">
             {% csrf_token %}
             <div class="main-form">
                 {% if form.errors %}
                 <p>Please correct the following errors:</p>
                 {% for field in form %}
+                {% if field.errors %}
+                <div class="alert alert-primary" role="alert">
+                    {{ field.label }}: {{ field.errors|striptags }}
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+
+                {% if mainuser_form.errors %}
+                <br>
+                {% for field in mainuser_form %}
                 {% if field.errors %}
                 <div class="alert alert-primary" role="alert">
                     {{ field.label }}: {{ field.errors|striptags }}
@@ -72,6 +93,14 @@
                     <label for="email">{{ form.email.label }}</label>
                     {{ form.email }}
                 </div>
+                <div class="register-phone-number">
+                    <label for="phone_number">{{ mainuser_form.phone_number.label }}</label>
+                    {{ mainuser_form.phone_number }}
+                </div>
+                <div class="location">
+                    {{ mainuser_form.city }}
+                    {{ mainuser_form.location }}
+                </div>
                 <div class="register-password">
                     <label for="password">{{ form.password.label }}</label>
                     {{ form.password }}
@@ -80,6 +109,7 @@
                     <label for="password">{{ form.password2.label }}</label>
                     {{ form.password2 }}
                 </div>
+                <input type="hidden" name="locData" id="locData"/>
                 <div class="register-account-type">
                     <h3>Select your Account Type</h3>
                     <div class="account-type-selection">
@@ -131,6 +161,6 @@
 </div>
 
 
-
+<button id="scroll-top" class="scroll-top"><i class="fa-solid fa-arrow-up"></i></button>
 {% include 'footer.html' %}
 {% endblock %}

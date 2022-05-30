@@ -5,6 +5,10 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, PasswordChangeForm, SetPasswordForm
 from .models import *
 
+from phonenumber_field.formfields import PhoneNumberField
+from phonenumber_field.widgets import PhoneNumberPrefixWidget
+from location_field.forms.plain import PlainLocationField
+
 
 class UserLoginForm(AuthenticationForm):
 
@@ -49,7 +53,7 @@ class RegistrationForm(forms.ModelForm):
         cd = self.cleaned_data
         if cd['password'] != cd['password2']:
             raise forms.ValidationError('Passwords do not match.')
-        if self.cleaned_data['username'].lower() in cd['password'] or self.cleaned_data['email'].lower() in cd['password'] or self.cleaned_data['first_name'].lower() in cd['password'] or self.cleaned_data['last_name'].lower() in cd['password']:
+        elif self.cleaned_data.get('username', '').lower() in cd['password'] or self.cleaned_data.get('email', '').lower() in cd['password'] or self.cleaned_data.get('first_name').lower() in cd['password'] or self.cleaned_data.get('last_name').lower() in cd['password']:
             raise forms.ValidationError(
                 'Password must NOT include characters that are in your Email, Username, and Names.')
 
@@ -65,7 +69,7 @@ class RegistrationForm(forms.ModelForm):
         email = self.cleaned_data['email']
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError(
-                'Please use another Email, that is already taken')
+                'E-mail is already taken.')
         return email
 
     def __init__(self, *args, **kwargs):
@@ -86,9 +90,21 @@ class RegistrationForm(forms.ModelForm):
 
 class MainUserRegistrationForm(forms.ModelForm):
 
+    phone_number = PhoneNumberField(label='Phone Number', help_text='Required', region='PH', widget=PhoneNumberPrefixWidget)
+    city = forms.CharField()
+    location = PlainLocationField(based_fields=['city'], initial='14.572950835033037,480.992431640625')
+
     class Meta:
         model = MainUser
-        fields = ['avatar']
+        fields = ['avatar', 'phone_number', 'city', 'location']
+    
+    def clean_phone_number(self):
+        phone_number = self.cleaned_data['phone_number']
+        print(phone_number)
+        if MainUser.objects.filter(phone_number=phone_number).exists():
+            raise forms.ValidationError(
+                'Phone number is already taken.')
+        return email
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -118,10 +134,12 @@ class CreateServiceForm(forms.ModelForm):
         label='Minimum Pay (PHP)', max_digits=19, decimal_places=4, help_text='Required')
     service_type = forms.ModelChoiceField(
         queryset=ServiceTypes.objects.all(), empty_label="Select category")
+    city = forms.CharField()
+    location = PlainLocationField(based_fields=['city'], initial='14.572950835033037,480.992431640625')
 
     class Meta:
         model = Service
-        fields = ['service_name', 'description', 'price', 'service_type']
+        fields = ['service_name', 'description', 'price', 'service_type', 'city', 'location']
 
 
 class AcquireServiceForm(forms.ModelForm):
