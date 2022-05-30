@@ -407,7 +407,6 @@ def register(request):
             locationData = dict(json.loads(locationData))
 
             for loc in locationData['details']:
-                print(loc)
                 if 'route' in loc["types"]:
                     main_user.street = loc["long_name"]
                 elif 'neighborhood' in loc["types"]:

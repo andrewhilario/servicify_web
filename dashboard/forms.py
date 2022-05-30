@@ -100,7 +100,6 @@ class MainUserRegistrationForm(forms.ModelForm):
     
     def clean_phone_number(self):
         phone_number = self.cleaned_data['phone_number']
-        print(phone_number)
         if MainUser.objects.filter(phone_number=phone_number).exists():
             raise forms.ValidationError(
                 'Phone number is already taken.')
