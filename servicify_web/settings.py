@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+
+# read .env
+env = environ.Env()
+environ.Env.read_env(".env")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -179,7 +184,7 @@ LOCATION_FIELD = {
 
     # Google
     'provider.google.api': 'https://maps.google.com/maps/api/js',
-    'provider.google.api_key': 'AIzaSyDx5uMVSPuNxUXxrJ1sahZC-SfpQwJul9I',
+    'provider.google.api_key': env('GOOGLE_MAPS_API_KEY'),
     'provider.google.api_libraries': '',
     'provider.google.map.type': 'ROADMAP',
 
