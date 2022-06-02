@@ -1,6 +1,6 @@
 # Servicify
 
-Servicify is a service platform.
+Servicify is a service platform. Made by Group 6 DICT 3-1 of PUP Institute of Technology.
 
 
 ## How to install Git for Windows 10
