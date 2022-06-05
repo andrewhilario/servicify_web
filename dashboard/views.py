@@ -272,11 +272,11 @@ def service_details(request, service_id):
     if reviews:
         rating_sum = reviews.aggregate(Sum('rating'))['rating__sum']
         avg_rating = round(rating_sum / reviews.count(), 2)
-        client_acquired_service_review = reviews.filter(transaction_id__client_id=request.user.mainuser).first()
         
 
     if request.user.is_authenticated:
         form = AcquireServiceForm()
+        client_acquired_service_review = reviews.filter(transaction_id__client_id=request.user.mainuser).first()
         client_acquired_service = ServiceClients.objects.filter(
             service_id=service, client_id=request.user.mainuser).first()
 

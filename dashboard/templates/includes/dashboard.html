@@ -2,9 +2,90 @@
 {% load humanize %}
 {% block css_files %}
 <link rel="stylesheet" href="{% static 'css/includes/dashboard.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 {% endblock %}
 {% block content %}
 {% include 'navbar.html' %}
+<script>
+
+    var distance = (lat1, lon1, lat2, lon2, unit) => {
+        if ((lat1 == lat2) && (lon1 == lon2)) {
+            return 0;
+        }
+        else {
+            var radlat1 = Math.PI * lat1 / 180;
+            var radlat2 = Math.PI * lat2 / 180;
+            var theta = lon1 - lon2;
+            var radtheta = Math.PI * theta / 180;
+            var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+            if (dist > 1) {
+                dist = 1;
+            }
+            dist = Math.acos(dist);
+            dist = dist * 180 / Math.PI;
+            dist = dist * 60 * 1.1515;
+            if (unit == "K") { dist = dist * 1.609344 }
+            if (unit == "N") { dist = dist * 0.8684 }
+            return dist;
+        }
+    }
+
+
+    function getDistance() {
+        unset = 0
+        elements = document.getElementsByClassName("service-loc-l")
+        for (let e of elements) {
+            if (e.hidden && e.innerText.length > 0) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    let lat = position.coords.latitude;
+                    let long = position.coords.longitude;
+                    console.log(lat, long)
+                    let srvDist = e.innerText.split(",")
+                    console.log(srvDist)
+                    console.log(e.innerText)
+                    
+                    let dist = distance(lat, long, srvDist[0], srvDist[1], "K").toFixed(2)
+                    
+                    if (dist) {
+                        e.innerText = `${dist}km away - `
+                        e.hidden = false
+                    }
+                });
+            } else {
+                unset++;
+            }
+        }
+
+        if (unset) {
+            setTimeout(() => {
+                getDistance();
+            }, 100)
+        }
+    }
+
+    $( document ).ready(function() {
+        navigator.permissions.query({ name: 'geolocation' }).then(function (result) {
+            if (result.state == 'granted') {
+                getDistance()
+            } else if (result.state == 'prompt') {
+                getDistance()
+            } else if (result.state == 'denied') {
+                window.alert("Please allow location access.");
+                navigator.permissions.query({ name: 'geolocation' })
+            }
+
+            result.onchange(() => {
+                if (result.state == 'granted') {
+                    getDistance()
+                } else if (result.state == 'denied') {
+                    window.alert("Please allow location access.");
+                    navigator.permissions.query({ name: 'geolocation' })
+                }
+            })
+        });
+     });
+
+</script>
 <div class="dashboard-template-1">
     <div class="dashboard-title-header">
         <h1>From Workers,</h1>
@@ -32,9 +113,7 @@
                         {% endfor %}
                     </div>
                     <p>{{ work_offer.work_name }}</p>
-                    <span>Bid Starts at &#8369;{% filter intcomma %}{{ work_offer.min_pay|floatformat }}{% endfilter %}
-
-                    </span>
+                    <span>Bid Starts at &#8369;{% filter intcomma %}{{ work_offer.min_pay|floatformat }}{% endfilter %} </span>
                 </a>
             </li>
             {% endfor %}
@@ -59,7 +138,11 @@
                     </div>
                     <p>{{service.service_name|truncatechars:16}}</p>
                     <p>{{service.service_type}}</p>
-                    <span>2.1km away - Tondo</span>
+                    <div class="service-loc">
+                        {% if service.street %} <p><span class="service-loc-l" hidden>{{ service.location }}</span>{{service.street}}</p>
+                        {% elif service.sublocality %} <p><span class="service-loc-l" hidden>{{ service.location }}</span>{{service.sublocality}}</p>
+                        {% elif service.locality %} <p><span class="service-loc-l" hidden>{{ service.location }}</span>{{service.locality}}</p> {% endif %}
+                    </div>
                 </a>
             </li>
             {% endfor %}

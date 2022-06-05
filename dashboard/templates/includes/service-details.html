@@ -64,10 +64,12 @@
                                     <p>Owner:</p>
                                     <span>{{ service.created_by.full_name }}</span>
                                 </li>
+                                {% if service.full_addr %}
                                 <li>
                                     <p>Location:</p>
-                                    <span>--</span>
+                                    <span>{{service.full_addr}}</span>
                                 </li>
+                                {% endif %}
                             </ul>
                         </div>
                     </div>
@@ -282,6 +284,11 @@
         <div class="srvc-dtl-review-clients">
             <div class="service-reviews">
                 <ul>
+                    {% if not reviews %}
+                    <div class="">
+                        No reviews yet 🤷‍♂️
+                    </div>
+                    {% endif %}
                     {% for review in reviews %}
                     <li>
                         <div class="reviewer-avatar">

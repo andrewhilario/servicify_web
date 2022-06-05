@@ -42,8 +42,6 @@
                 <li><a href="{% url 'profile' %}"><i class="fa-solid fa-user"></i>Profile</a></li>
                 <li><a href="{% url 'profile_client' %}"><i class="fa-solid fa-user"></i>Profile Client</a></li>
                 <li><a href="/"><i class="fa-solid fa-house-chimney"></i>Home</a></li>
-                <li><a href="{% url 'about_us' %}"><i class="fa-solid fa-circle-info"></i>About</a></li>
-                <li><a href="{% url 'contact_us' %}"><i class="fa-solid fa-phone"></i>Contact</a></li>
                 <li><a href="{% url 'createservice' %}"><i class="fa-solid fa-wrench"></i>Create Service</a></li>
                 <li><a href="{% url 'service_marketplace' %}"><i class="fa-solid fa-shop"></i>Service Marketplace</a>
                 </li>
@@ -57,9 +55,6 @@
         </li>
 
         {% else %}
-        <li><a href="/">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
         <li><a href="{% url 'service_marketplace' %}">Service Marketplace</a></li>
         <li><a href="{% url 'work_offer_list' %}">Work Offers</a></li>
         <li><a href="{% url 'login' %}">Login</a></li>
