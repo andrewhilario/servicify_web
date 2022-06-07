@@ -23,6 +23,8 @@ from django.conf.urls import handler404
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('dashboard.urls')),
+    # Social Auth URL
+    path('oauth/', include('social_django.urls', namespace='social')),
 ]
 
 

@@ -85,15 +85,27 @@
     color: white;
     font-family: "Raleway";
     margin: 20px auto;
-}
-
-.login-buttons input:nth-last-of-type(2) {
     background-color: #507C59;
 }
 
-.login-buttons input:nth-last-of-type(1) {
+.login-buttons a {
+    width: 70%;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    color: white;
+    font-family: "Raleway";
+    margin: 20px auto;
+    text-align: center;
     background-color: #3B5998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
+
+
 
 .seperator {
     width: 100%;

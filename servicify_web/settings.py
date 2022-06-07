@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'location_field.apps.DefaultConfig',
     'sslserver',
+    # Social Auth App Django
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +61,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Social Auth App Django Middleware
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'servicify_web.urls'
@@ -75,6 +79,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'dashboard.views.avatar',
+                # Social Auth Context Processors
+                'social_django.context_processors.backends',  # <-- Here
+                'social_django.context_processors.login_redirect',
             ],
             'libraries':{
                 'custom_tags': 'dashboard.custom_tags',
@@ -82,6 +89,14 @@ TEMPLATES = [
         },
     },
 ]
+# Social Auth Backends
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.github.GithubOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 WSGI_APPLICATION = 'servicify_web.wsgi.application'
 
@@ -107,10 +122,10 @@ DATABASES = {
 
         'HOST': '127.0.0.1',
 
-        #please change the port thanks
+        # please change the port thanks
 
         # 'PORT': '5432',
-        'PORT': '5432',
+        'PORT': '8080',
 
     }
 }
@@ -162,10 +177,17 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' PROD
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # DEV
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # DEV
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
+
+LOGOUT_URL = '/logout/'
+LOGIN_REDIRECT_URL = '/'
+
+# Login with Facebook
+SOCIAL_AUTH_FACEBOOK_KEY = '1676193802714052'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '2179108d13a09636bc9538d8883b8e2e'
 
 # jango-phonenumber-field
 PHONENUMBER_DB_FORMAT = 'E164'
