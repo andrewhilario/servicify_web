@@ -96,7 +96,7 @@ Lists of tasks that need to be done.
 - [x] Bidding Details Blank element (https://imgur.com/a/invM4Zt)
 - [ ] Register Phone Number and Address style (https://imgur.com/a/z7IlEMV)
 - [ ] Create Service Address style (same lang ng sa register yung layout) (https://imgur.com/a/D672zTT)
-- [ ] Service Detail Filter section styles (https://imgur.com/a/AtmdXPZ)
+- [x] Service Detail Filter section styles (https://imgur.com/a/AtmdXPZ)
 - [x] FIX: Review avatars streched when message is long (https://imgur.com/a/sUWf4VK)
 - [x] 'CLOSED' tag for closed work offers (Similar to Created At but darker bg color) (https://imgur.com/a/OA7uUAf)
 - [x] Winning Bid Card and Highest Bid Style (https://imgur.com/a/NYqO17S)
