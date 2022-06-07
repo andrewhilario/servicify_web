@@ -3,6 +3,7 @@ from django.shortcuts import render
 from .forms import *
 from .tokens import account_activation_token
 from .models import *
+from .sms import send_sms
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.contrib.sites.shortcuts import get_current_site
@@ -14,7 +15,7 @@ from django.core.exceptions import PermissionDenied
 from django.db.models import Sum
 from django.http import *
 import random
-import json
+
 
 # for 404 page
 
@@ -290,6 +291,8 @@ def service_details(request, service_id):
             acquired_service.client_id = request.user.mainuser
             acquired_service.service_id = service
             acquired_service.status = 'PENDING'
+            send_sms(str(service.created_by.phone_number),
+                     f"Hello {service.created_by.full_name},\n\nYour {service.service_name} has a new service request from user {request.user.mainuser.full_name}.")
             acquired_service.save()
             client_acquired_service = acquired_service
             return HttpResponseRedirect(service_id)
@@ -345,21 +348,29 @@ def service_requests(request, service_id):
         updated_status = request.POST.get('set-client-status', False)
         service_client_id = request.POST.get('service-client-id', False)
         service_client = ServiceClients.objects.get(id=service_client_id)
-        
-        if service_client.status in ['COMPLETED','DECLINED','CANCELED']:
+
+        if service_client.status in ['COMPLETED', 'DECLINED', 'CANCELED']:
             form_error = 'Unfortunately, we cant update the status.'
 
         if updated_status == 'ACCEPT' and service_client.status == 'PENDING':
             service_client.status = 'ON-GOING'
+            send_sms(str(service_client.client_id.phone_number),
+                     f"Hello {service_client.client_id.full_name},\n\nYour {service.service_name} service request has been ACCEPTED and placed into ON-GOING by the service owner.")
             service_client.save()
         elif updated_status == 'DECLINE' and service_client.status == 'PENDING':
             service_client.status = 'DECLINED'
+            send_sms(str(service_client.client_id.phone_number),
+                     f"Hello {service_client.client_id.full_name},\n\nYour {service.service_name} service request has been DECLINED by the service owner.")
             service_client.save()
         elif updated_status == 'COMPLETE' and service_client.status == 'ON-GOING':
             service_client.status = 'COMPLETED'
+            send_sms(str(service_client.client_id.phone_number),
+                     f"Hello {service_client.client_id.full_name},\n\nYour {service.service_name} service request status is updated to COMPLETE by the service owner.")
             service_client.save()
         elif updated_status == 'CANCEL' and service_client.status == 'ON-GOING':
             service_client.status = 'CANCELED'
+            send_sms(str(service_client.client_id.phone_number),
+                     f"Hello {service_client.client_id.full_name},\n\nYour {service.service_name} service request is CANCELED by the service owner.")
             service_client.save()
         else:
             form_error = 'Invalid option.'

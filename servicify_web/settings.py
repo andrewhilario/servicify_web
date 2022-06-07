@@ -204,3 +204,6 @@ LOCATION_FIELD = {
         ),
     },
 }
+
+# Set this true only when needed, it charges the API
+SMS_NOTIFICATION = False
