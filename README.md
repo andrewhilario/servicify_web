@@ -93,7 +93,7 @@ Lists of tasks that need to be done.
 - [x] 404 Page *(Drew)*
 
 ### Template Changes
-- [ ] Bidding Details Blank element (https://imgur.com/a/invM4Zt)
+- [x] Bidding Details Blank element (https://imgur.com/a/invM4Zt)
 - [ ] Register Phone Number and Address style (https://imgur.com/a/z7IlEMV)
 - [ ] Create Service Address style (same lang ng sa register yung layout) (https://imgur.com/a/D672zTT)
 - [ ] Service Detail Filter section styles (https://imgur.com/a/AtmdXPZ)
