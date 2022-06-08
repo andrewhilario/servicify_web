@@ -91,12 +91,14 @@
                         <strong>{{ clients_finished }}</strong>
                         <span>Completed</span>
                     </div>
+                    {% if request.user.is_authenticated and service.created_by.id == request.user.mainuser.id %}
                     <div class="srvc-dtl-tag-container">
                         <a href="{% url 'service_requests' service.id %}">
                             <i class="fa-solid fa-list"></i>
                             <span>Manage</span>
                         </a>
                     </div>
+                    {% endif %}
                 </div>
             </div>
             {% if client_acquired_service %}

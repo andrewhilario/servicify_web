@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 {% block css_files %}
 <link rel="stylesheet" href="{% static 'css/includes/profile-page.css' %}">
 <link rel="stylesheet" href="{% static 'css/includes/dashboard.css' %}">
@@ -12,95 +13,134 @@
         </div>
         <div class="profile-picture-outer">
             <div class="profile-picture">
-                <img src="{% for data in avatar %}
-                {{ data.avatar.url }}
-                {% endfor %}" alt="">
+                <img src="{{ user.mainuser.avatar.url }}" alt="">
             </div>
         </div>
         <div class="profile-header-info">
             <div class="profile-form">
                 <div class="profile-name">
-                    <p>{{ request.user.first_name }} {{request.user.last_name}}</p>
+                    <p>{{user.mainuser.full_name}}</p>
                     <span>Full Name</span>
                 </div>
-                <div class="profile-phone">
-                    <p>09123456789</p>
-                    <span>Phone Number</span>
-                </div>
                 <div class="profile-email">
-                    <p>{{ request.user.email }}</p>
-                    <span>email</span>
+                    <p>{{user.date_joined}}</p>
+                    <span>Join Date</span>
                 </div>
                 <div class="facebook-connect">
                     <a href="#">
                         <i class="fa-brands fa-facebook"></i>
-                        <p>{{request.user.first_name}} {{request.user.last_name}}</p>
+                        <p>Verified</p>
                     </a>
                 </div>
             </div>
         </div>
+
+        <!-- Services -->
         <div class="reviews">
             <div class="reviews-header">
-                <h2>Recent Service Reviews</h2>
+                <h2>{{user.mainuser.full_name}}'s Services</h2>
             </div>
+            {% for srv in services %}
             <div class="reviews-content">
-                <div class="review-sub-contents">
-                    <img src="{% for data in avatar %}
-                    {{ data.avatar.url }}
-                    {% endfor %}" alt="" id="profile-pic">
-                    <div class="reviews-sub-contents-2">
-                        <div class="name-and-reviews">
-                            <p>{{request.user.first_name}} {{request.user.last_name}}</p>
-                            <p>Reviews: </p>
+                <div class="service-details">
+                    <div class="review-sub-contents">
+                        <div class="reviews-sub-contents-2">
+                            <!-- service name -->
+                            <div class="name-and-reviews">
+                                <a href="{% url 'service_details' srv.service.id  %}"><p>{{srv.service.service_name}} (<i class="fa fa-star checked"></i> {{ srv.avg_rating }})</p></a>
+                            </div>
+                            <!-- service price -->
+                            <div class="">
+                                <p>₱{% filter intcomma %}{{ srv.service.price|floatformat }}{% endfilter %}</p>
+                            </div>
+                            <!-- service location -->
+                            <div class="">
+                                {% if srv.service.street %} <p><span class="service-loc-l" hidden>{{ srv.service.location }}</span>{{srv.service.street}}</p>
+                                {% elif srv.service.sublocality %} <p><span class="service-loc-l" hidden>{{ srv.service.location }}</span>{{srv.service.sublocality}}</p>
+                                {% elif srv.service.locality %} <p><span class="service-loc-l" hidden>{{ srv.service.location }}</span>{{srv.service.locality}}</p> {% endif %}
+                            </div>
+                            <!-- service description -->
+                            <div class="review">
+                                <p>{{ srv.service.description }}</p>
+                            </div>
+                            <!-- service clients -->
+                            <div class="">
+                                <p>Clients: {{ srv.total_clients }}</p>
+                            </div>
                         </div>
-                        <div class="review">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime nostrum alias aliquam
-                                aspernatur modi iusto velit id. Rem, quam repudiandae!</p>
+                    </div>
+                    <div class="review-sub-content">
+                        <div class="reviews-sub-contents-3">
+                            {% for img in srv.service.serviceimage_set.all|slice:":1" %}
+                            <div class="pic-and-reviews">
+                                <img src="{{ img.image.url }}" alt="">
+                            </div>
+                            {% endfor %}
+
+                            <div class="review">
+                                {% for img in srv.service.serviceimage_set.all %}
+                                <img src="{{ img.image.url }}" alt="">
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="review-sub-content">
-                    <div class="reviews-sub-contents-3">
-                        <div class="pic-and-reviews">
-                            <img src="{% static 'images/background-homepage.png'%}" alt="">
-                        </div>
-                        <div class="review">
-                            <img src="{% static 'images/background-homepage.png' %}" alt="">
-                            <img src="{% static 'images/background-homepage.png' %}" alt="">
-                            <img src="{% static 'images/background-homepage.png' %}" alt="">
-                        </div>
+                <!-- reviews -->
+                <!-- <div class="service-reviews">
+                    <div class="">
+                        <p>Reviews ({{ reviews.count }})</p>
                     </div>
-                </div>
+                </div> -->
             </div>
+            {% endfor %}
+        </div>
+
+        <!-- Work Offers -->
+        <div class="reviews">
+            <div class="reviews-header">
+                <h2>{{user.mainuser.full_name}}'s Work Offers</h2>
+            </div>
+            {% for work in work_offers %}
             <div class="reviews-content">
-                <div class="review-sub-contents">
-                    <img src="{% for data in avatar %}
-                    {{ data.avatar.url }}
-                    {% endfor %}" alt="" id="profile-pic">
-                    <div class="reviews-sub-contents-2">
-                        <div class="name-and-reviews">
-                            <p>{{request.user.first_name}} {{request.user.last_name}}</p>
-                            <p>Reviews: </p>
-                        </div>
-                        <div class="review">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime nostrum alias aliquam
-                                aspernatur modi iusto velit id. Rem, quam repudiandae!</p>
+                <div class="service-details">
+                    <div class="review-sub-contents">
+                        <div class="reviews-sub-contents-2">
+                            <!-- workoffer name -->
+                            <div class="name-and-reviews">
+                                <a href="{% url 'work_offer_bidding' work.work_offer.id  %}"><p>{{ work.work_offer.work_name }} ({{ work.work_offer.status }})</p></a>
+                            </div>
+                            <!-- workoffer status -->
+                            <div class="name-and-reviews">
+                                <p>(Total Bids: {{ work.total_bids }})</p>
+                            </div>
+                            <!-- workoffer starting bid -->
+                            <div class="">
+                                <p>Starting Bid: ₱{% filter intcomma %}{{ work.work_offer.min_pay|floatformat }}{% endfilter %}</p>
+                            </div>
+                            <!-- work offer description -->
+                            <div class="review">
+                                <p>{{ work.work_offer.description }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="review-sub-content">
-                    <div class="reviews-sub-contents-3">
-                        <div class="pic-and-reviews">
-                            <img src="{% static 'images/background-homepage.png'%}" alt="">
-                        </div>
-                        <div class="review">
-                            <img src="{% static 'images/background-homepage.png' %}" alt="">
-                            <img src="{% static 'images/background-homepage.png' %}" alt="">
-                            <img src="{% static 'images/background-homepage.png' %}" alt="">
+                    <div class="review-sub-content">
+                        <div class="reviews-sub-contents-3">
+                            {% for img in work.work_offer.workofferimage_set.all|slice:":1" %}
+                            <div class="pic-and-reviews">
+                                <img src="{{ img.image.url }}" alt="">
+                            </div>
+                            {% endfor %}
+
+                            <div class="review">
+                                {% for img in work.work_offer.workofferimage_set.all %}
+                                <img src="{{ img.image.url }}" alt="">
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </div>
     <button id="scroll-top" class="scroll-top"><i class="fa-solid fa-arrow-up"></i></button>

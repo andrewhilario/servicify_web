@@ -42,18 +42,9 @@
             <li class="hover-profile" id="navlinks-profile">
                 <ul class="navlinks-clicked">
 
-                    <li><a href="{% url 'profile' %}"><i class="fa-solid fa-user"></i>Profile</a></li>
-                    <li><a href="{% url 'profile_client' %}"><i class="fa-solid fa-user"></i>Profile Client</a></li>
-                    <li><a href="/"><i class="fa-solid fa-house-chimney"></i>Home</a></li>
-                    <li><a href="{% url 'createservice' %}"><i class="fa-solid fa-wrench"></i>Create Service</a></li>
-                    <li><a href="{% url 'service_marketplace' %}"><i class="fa-solid fa-shop"></i>Service
-                            Marketplace</a>
-                    </li>
+                    <li><a href="{% url 'profile' request.user.id %}"><i class="fa-solid fa-user"></i>Profile</a></li>
+                    <li><a href="{% url 'service_marketplace' %}"><i class="fa-solid fa-shop"></i>Service Marketplace</a></li>
                     <li><a href="{% url 'work_offer_list' %}"><i class="fa-solid fa-briefcase"></i>Work Offers</a></li>
-
-                    <li><a href="{% url 'createworkoffer' %}"><i class="fa-solid fa-briefcase"></i>Create Work Offer</a>
-                    </li>
-
                     <li><a href="{% url 'logout' %}"><i class="fa-solid fa-door-open"></i>Logout</a></li>
                 </ul>
             </li>

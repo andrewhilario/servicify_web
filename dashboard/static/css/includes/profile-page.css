@@ -164,6 +164,12 @@
     display: flex;
     color: white;
     justify-content: space-between;
+    flex-direction: column;
+}
+
+.service-details {
+    display: flex;
+    justify-content: space-between;
 }
 
 .name-and-reviews {

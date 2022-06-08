@@ -12,7 +12,7 @@ from .forms import UserLoginForm
 urlpatterns = [
     path('', views.dashboard, name='dashboard'),
     path('home/', views.dashboard, name='home'),
-    path('login/', auth_views.LoginView.as_view(template_name='includes/login.html',
+    path('login/', auth_views.LoginView.as_view(template_name='includes/login.html', next_page='/',
                                                 authentication_form=UserLoginForm), name='login'),
     path('logout/', views.logout_user, name='logout'),
     path('custom_logout', views.custom_logout, name='custom_logout'),
@@ -34,7 +34,7 @@ urlpatterns = [
     path('register/success', views.register_success, name='register_success'),
     path('activate/<slug:uidb64>/<slug:token>/',
          views.activate, name='activate'),
-    path('profile/service-person', views.profile_page, name='profile'),
+    path('profile/<slug:user_id>', views.profile_page, name='profile'),
     path('profile/client', views.profile_client, name='profile_client'),
     path('contact/', views.contactus, name='contact_us'),
     path('about/', views.aboutus, name='about_us'),

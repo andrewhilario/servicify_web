@@ -261,14 +261,18 @@ def service_details(request, service_id):
     form = None
     review_form = None
     avg_rating = None
+    is_service_owner = False
     form_errors = []
     form_messages = []
     review_star_filter = request.GET.get('stars', None)
 
-    service = Service.objects.get(id=service_id)
+    try:
+        service = Service.objects.get(id=service_id)
+    except:
+        return HttpResponseRedirect("/")
+    
     total_clients = ServiceClients.objects.filter(service_id=service).count()
-    clients_finished = ServiceClients.objects.filter(
-        service_id=service, status='COMPLETED').count()
+    clients_finished = ServiceClients.objects.filter(service_id=service, status='COMPLETED').count()
     
     if review_star_filter and review_star_filter != 'all':
         stars = float(review_star_filter)
@@ -535,8 +539,41 @@ def register_success(request):
     return render(request, 'includes/registration-success.html')
 
 
-def profile_page(request):
-    return render(request, 'includes/profile-page.html')
+def profile_page(request, user_id):
+    try:
+        user = User.objects.get(id=user_id)
+    except:
+        return HttpResponseRedirect("/")
+
+    services_orm = Service.objects.filter(created_by=user.mainuser).all()
+    services = []
+
+    for srv in services_orm:
+        service = {}
+        service['avg_rating'] = 0
+        service['service'] = srv
+        service['reviews'] = ServiceReview.objects.filter(transaction_id__service_id=srv).order_by('-created_at')
+        service['total_clients'] = ServiceClients.objects.filter(service_id=srv).count()
+        if service['reviews']:
+            rating_sum = service['reviews'].aggregate(Sum('rating'))['rating__sum']
+            service['avg_rating'] = round(rating_sum / service['reviews'].count(), 2)
+
+        services.append(service)
+
+    work_offers_orm = WorkOffer.objects.filter(created_by=user.mainuser).all()
+    work_offers = []
+
+    for work_offer in work_offers_orm:
+        work = {}
+        work['work_offer'] = work_offer
+        work['total_bids'] = Bid.objects.filter(workoffer_id=work_offer.id).count()
+        work_offers.append(work)
+
+    return render(request, 'includes/profile-page.html', {
+        'user': user,
+        'services': services,
+        'work_offers': work_offers,
+    })
 
 
 def profile_client(request):

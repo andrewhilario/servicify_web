@@ -87,7 +87,7 @@
     border: 2px solid #7CB687;
     outline: none;
     border-radius: 10px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 500;
     font-family: 'Raleway', sans-serif;
     cursor: pointer;
@@ -121,4 +121,17 @@
     color: white;
     background-color: #7CB687;
     transition: all .2s ease-in;
+}
+
+.sm-list-or-grid a {
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    font-family: 'Raleway', sans-serif;
+    outline: none;
+}
+
+.sm-list-or-grid #create {
+    width: 100%
 }
