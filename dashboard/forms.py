@@ -29,7 +29,7 @@ class RegistrationForm(forms.ModelForm):
     username = forms.CharField(
         label='Username', min_length=4, max_length=50, help_text='Required')
     email = forms.EmailField(label='Email', max_length=100, help_text='Required', error_messages={
-        'required': 'Sorry, you will need an email'})
+        'required': 'This field is required.'})
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(
         label='Repeat password', widget=forms.PasswordInput)
@@ -73,19 +73,29 @@ class RegistrationForm(forms.ModelForm):
         return email
 
     def __init__(self, *args, **kwargs):
+        initial = kwargs['initial']
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs.update(
             {'placeholder': 'Username', 'name': 'username', 'id': 'username'})
         self.fields['email'].widget.attrs.update(
-            {'placeholder': 'E-mail', 'name': 'email', 'id': 'email'})
+            {'placeholder': 'E-mail', 'name': 'email', 'id': 'email', 'value': initial['email']})
         self.fields['password'].widget.attrs.update(
             {'placeholder': 'Password'})
         self.fields['password2'].widget.attrs.update(
             {'placeholder': 'Repeat password'})
         self.fields['first_name'].widget.attrs.update(
-            {'placeholder': 'Your first name', 'name': 'firstname', 'id': 'firstname'})
+            {'placeholder': 'Your first name', 'name': 'firstname', 'id': 'firstname', 'value': initial['first_name']})
         self.fields['last_name'].widget.attrs.update(
-            {'placeholder': 'Your last name', 'name': 'lastname', 'id': 'lastname'})
+            {'placeholder': 'Your last name', 'name': 'lastname', 'id': 'lastname', 'value': initial['last_name']})
+        
+        if initial['email']:
+            self.fields['email'].disabled = True
+        
+        if initial['first_name']:
+            self.fields['first_name'].disabled = True
+        
+        if initial['last_name']:
+            self.fields['last_name'].disabled = True
 
 
 class MainUserRegistrationForm(forms.ModelForm):
@@ -103,7 +113,7 @@ class MainUserRegistrationForm(forms.ModelForm):
         if MainUser.objects.filter(phone_number=phone_number).exists():
             raise forms.ValidationError(
                 'Phone number is already taken.')
-        return email
+        return phone_number
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
