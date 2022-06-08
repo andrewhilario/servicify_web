@@ -114,3 +114,19 @@ function myFunction(imgs) {
 	expandImg.parentElement.style.display = "block";
 }
 
+var burgerbtn = document.getElementById('nav-icon4');
+var navlinks = document.getElementById('navlinks');
+
+
+if (burgerbtn) {
+	burgerbtn.addEventListener('click', () => {
+		burgerbtn.classList.toggle('open');
+		navlinks.classList.toggle('navlinks-active');
+	})
+}
+
+
+
+
+
+

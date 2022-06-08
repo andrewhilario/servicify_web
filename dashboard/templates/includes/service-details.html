@@ -248,36 +248,36 @@
                 </li>
                 <li class="rating-setting">
                     <a href="?{% query_transform stars=3 %}#rating">
-                    <div class="star-ratings">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star "></span>
-                        <span class="fa fa-star "></span>
-                    </div>
-                </a>
+                        <div class="star-ratings">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                        </div>
+                    </a>
                 </li>
                 <li class="rating-setting">
                     <a href="?{% query_transform stars=2 %}#rating">
-                    <div class="star-ratings">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star "></span>
-                        <span class="fa fa-star "></span>
-                        <span class="fa fa-star "></span>
-                    </div>
-                </a>
+                        <div class="star-ratings">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                        </div>
+                    </a>
                 </li>
                 <li class="rating-setting">
                     <a href="?{% query_transform stars=1 %}#rating">
-                    <div class="star-ratings">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star "></span>
-                        <span class="fa fa-star "></span>
-                        <span class="fa fa-star "></span>
-                        <span class="fa fa-star "></span>
-                    </div>
-                </a>
+                        <div class="star-ratings">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                        </div>
+                    </a>
                 </li>
             </ul>
         </div>
@@ -285,14 +285,16 @@
             <div class="service-reviews">
                 <ul>
                     {% if not reviews %}
-                    <div class="">
+                    <div class="no-reviews">
                         No reviews yet 🤷‍♂️
                     </div>
                     {% endif %}
                     {% for review in reviews %}
-                    <li>
-                        <div class="reviewer-avatar">
-                            <img src="{{ review.client.avatar.url }}" alt="">
+                    <li class="review-pages">
+                        <div class="review-pfp">
+                            <div class="reviewer-avatar">
+                                <img src="{{ review.client.avatar.url }}" alt="">
+                            </div>
                         </div>
                         <div class="rv-container">
                             <div class="review-body">

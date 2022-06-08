@@ -87,6 +87,17 @@ body {
   margin-left: 50px;
 }
 
+.map_address {
+  display: flex;
+  flex-direction: column;
+}
+
+.map_inputs {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
 #id_service_type {
   width: 100%;
   margin-bottom: 16px;
@@ -97,6 +108,39 @@ body {
   font-size: 1.2rem;
   font-family: "Raleway", sans-serif;
   font-weight: 500;
+}
+
+#id_city {
+  margin: 15px 0px;
+}
+
+#id_location {
+  margin: 15px 0px;
+  width: 55%;
+}
+
+#map_button_location {
+  margin: 15px 0px;
+  width: 40%;
+  background-color: #507c59;
+  font-size: 1rem;
+  font-family: 'Raleway';
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all .4s ease-in-out;
+}
+
+#map_button_location:hover {
+  background-color: #6c9b76;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#map_location {
+  width: 100% !important;
+  margin: 15px 0px;
 }
 
 .service-create-input {
@@ -376,4 +420,108 @@ textarea {
     'rightside leftside2';
   gap: 12px;
   padding: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .service-create-container {
+    width: 90%;
+    margin: auto;
+    padding: 20px 10px;
+  }
+
+  .service-create-title h1 {
+    font-size: 1.6rem;
+  }
+
+  .service-create-title p {
+    font-size: .8rem;
+  }
+
+  .service-create-flex {
+    flex-direction: column;
+  }
+
+  .service-create-flex-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .service-thumbnail-upload-button {
+    margin: 20px 0;
+  }
+
+  .service-create-form {
+    width: 100%;
+    margin: 0px;
+  }
+
+  /* Create Service Successfully */
+  .cs-success {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .cs-success a {
+    font-size: .8rem;
+  }
+
+  .cs-success h2 {
+    width: 90%;
+    margin: 0 auto;
+    font-size: 1.6rem;
+  }
+
+  .cs-success p {
+    width: 90%;
+    margin: 20px auto;
+    font-size: 1.1rem;
+  }
+
+  .cs-details {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 40%;
+  }
+
+  .cs-details h3 {
+    font-size: 1.2rem;
+  }
+
+  .cs-sub-details {
+    width: 90%;
+    margin: 20px auto;
+    flex-direction: column;
+  }
+
+  .cs-sub-details .cs-profile {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0px !important;
+  }
+
+  .cs-pfp-details p {
+    margin: 0;
+  }
+
+  .cs-sub-details .cs-pfp {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: 3px solid #59745f;
+  }
+
+  .cs-sub-details .cs-images {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+  }
+
+  .cs-images img {
+    width: 200px !important;
+    height: 150px !important;
+  }
+
 }

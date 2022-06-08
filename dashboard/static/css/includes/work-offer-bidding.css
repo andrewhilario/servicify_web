@@ -419,12 +419,14 @@
 }
 
 .wo-active-bids {
-    width: 70%;
+    width: 100%;
     display: flex;
     padding: 40px 0;
     justify-content: space-around;
-    margin: 0 auto;
+    margin: 10px auto;
     align-items: center;
+    background-color: #7CB687;
+    border-radius: 20px;
 }
 
 .wo-active-bids i {

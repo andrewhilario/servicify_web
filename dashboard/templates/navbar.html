@@ -17,56 +17,76 @@
             <img src="{% static 'images/logo-navbar.png' %}" alt="logo">
         </a>
     </div>
-    <ul class="navlinks">
-        {% if request.user.is_authenticated %}
-        <div class="search-bar">
-            <input type="text" placeholder="Search..." id="search-bar-logged-in">
-            <button id="search">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
 
+
+    {% if request.user.is_authenticated %}
+    <div class="navlinks-logged-in">
+        <ul class="navlink">
+            <div class="search-bar">
+                <input type="text" placeholder="Search..." id="search-bar-logged-in">
+                <button id="search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+
+            </div>
+            <li><a href="">{{ request.user.first_name }}</a></li>
+            <li>
+                <button id="avatar">
+                    <img class="avatar" src="
+                {% for data in avatar %}
+                {{ data.avatar.url }}
+                {% endfor %}
+                ">
+                </button>
+            </li>
+            <li class="hover-profile" id="navlinks-profile">
+                <ul class="navlinks-clicked">
+
+                    <li><a href="{% url 'profile' %}"><i class="fa-solid fa-user"></i>Profile</a></li>
+                    <li><a href="{% url 'profile_client' %}"><i class="fa-solid fa-user"></i>Profile Client</a></li>
+                    <li><a href="/"><i class="fa-solid fa-house-chimney"></i>Home</a></li>
+                    <li><a href="{% url 'createservice' %}"><i class="fa-solid fa-wrench"></i>Create Service</a></li>
+                    <li><a href="{% url 'service_marketplace' %}"><i class="fa-solid fa-shop"></i>Service
+                            Marketplace</a>
+                    </li>
+                    <li><a href="{% url 'work_offer_list' %}"><i class="fa-solid fa-briefcase"></i>Work Offers</a></li>
+
+                    <li><a href="{% url 'createworkoffer' %}"><i class="fa-solid fa-briefcase"></i>Create Work Offer</a>
+                    </li>
+
+                    <li><a href="{% url 'logout' %}"><i class="fa-solid fa-door-open"></i>Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    {% else %}
+    <div class="burger-menu">
+        <div id="nav-icon4">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
-        <li><a href="">{{ request.user.first_name }}</a></li>
-        <li>
-            <button id="avatar">
-                <img class="avatar" src="
-            {% for data in avatar %}
-            {{ data.avatar.url }}
-            {% endfor %}
-            ">
-            </button>
-        </li>
-        <li class="hover-profile" id="navlinks-profile">
-            <ul class="navlinks-clicked">
+    </div>
+    <div class="navlinks-logged-out">
 
-                <li><a href="{% url 'profile' %}"><i class="fa-solid fa-user"></i>Profile</a></li>
-                <li><a href="{% url 'profile_client' %}"><i class="fa-solid fa-user"></i>Profile Client</a></li>
-                <li><a href="/"><i class="fa-solid fa-house-chimney"></i>Home</a></li>
-                <li><a href="{% url 'createservice' %}"><i class="fa-solid fa-wrench"></i>Create Service</a></li>
-                <li><a href="{% url 'service_marketplace' %}"><i class="fa-solid fa-shop"></i>Service Marketplace</a>
-                </li>
-                <li><a href="{% url 'work_offer_list' %}"><i class="fa-solid fa-briefcase"></i>Work Offers</a></li>
+        <ul class="navlinks" id="navlinks">
 
-                <li><a href="{% url 'createworkoffer' %}"><i class="fa-solid fa-briefcase"></i>Create Work Offer</a>
-                </li>
+            <li><a href="{% url 'service_marketplace' %}">Service Marketplace</a></li>
+            <li><a href="{% url 'work_offer_list' %}">Work Offers</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <div class="search-bar">
+                <input type="text" placeholder="Search" id="search-bar">
+                <button id="search">
+                    <img src="{% static 'images/search-icon.png' %}" alt="search-icon">
+                </button>
 
-                <li><a href="{% url 'logout' %}"><i class="fa-solid fa-door-open"></i>Logout</a></li>
-            </ul>
-        </li>
-
-        {% else %}
-        <li><a href="{% url 'service_marketplace' %}">Service Marketplace</a></li>
-        <li><a href="{% url 'work_offer_list' %}">Work Offers</a></li>
-        <li><a href="{% url 'login' %}">Login</a></li>
-        <div class="search-bar">
-            <input type="text" placeholder="Search" id="search-bar">
-            <button id="search">
-                <img src="{% static 'images/search-icon.png' %}" alt="search-icon">
-            </button>
-
-        </div>
-        {% endif %}
+            </div>
+    </div>
     </ul>
+    {% endif %}
+
+
 
 </div>
 
@@ -83,6 +103,8 @@
 
     }
 </script>
+
+
 
 
 

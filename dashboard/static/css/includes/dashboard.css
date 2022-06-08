@@ -1,6 +1,6 @@
 .dashboard-template-1 {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-image: url('/static/images/background-homepage.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -49,7 +49,7 @@
 
 .dashboard-template-2 {
     width: 100%;
-    height: 120vh;
+    /* height: 120vh; */
     background-color: white;
 }
 
@@ -82,7 +82,6 @@
     list-style: none;
     margin: 0 10px;
     width: 20%;
-
 }
 
 .offers li a {
@@ -250,8 +249,9 @@
     height: 100%;
     display: flex;
 
-    align-items: center;
-    margin: 0 auto;
+    flex-direction: row;
+    align-items: baseline;
+    margin: 50px auto;
     position: relative;
 }
 
@@ -273,7 +273,6 @@
     padding: 10px;
     border-radius: 10px;
     transition: all .2s ease-in-out;
-
 }
 
 /* .services li a img {
@@ -329,8 +328,9 @@
 /* Dashboard Tempalte 3 */
 
 .dashboard-template-3 {
+    margin: 5% 0px;
     width: 100%;
-    height: 60vh;
+    /* height: 60vh; */
     background-color: #507C59;
 }
 
@@ -435,32 +435,128 @@
     text-align: center;
 }
 
-.scroll-top {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    z-index: 99;
-    outline: none;
-    background-color: #5d9167;
-    border: none;
-    cursor: pointer;
-    padding: 20px;
-    border-radius: 4px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    transform: translateX(200%);
-}
 
-.scroll-top i {
-    color: white;
-    font-size: 2rem;
-}
 
-.scroll-active-1 {
-    transition: all .5s ease-in-out;
-    transform: translateX(200%);
-}
 
-.scroll-active-2 {
-    transition: all .5s ease-in-out;
-    transform: translateX(0%);
+@media screen and (max-width: 768px) {
+    .dashboard-template-1 {
+        display: block;
+        padding-top: 70%;
+    }
+
+    .dashboard-title-header {
+        width: 100%;
+        font-size: 1.5rem;
+        margin: 10% 20px;
+    }
+
+    .dashboard-sub-title {
+        width: 100%;
+        font-size: 1.2rem;
+        margin: 10% 20px;
+    }
+
+    .dashboard-setup-service-profile {
+        width: 100%;
+        margin: 10% 20px;
+    }
+
+    /* .dashboard-setup-service-profile a {
+        width: 100%;
+        padding: 20px 40px;
+        border-radius: 5px;
+        text-decoration: none;
+        color: white;
+        background-color: #507C59;
+    } */
+
+    .dashboard-template-2 {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dashboard-work-offers {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+    }
+
+    .offers {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .offers li {
+        width: 100%;
+    }
+
+
+    .dashboard-services {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+    }
+
+    .services {
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .services li {
+        width: 100%;
+        margin: 0px 20px;
+    }
+
+
+
+    .dashboard-show-more {
+        margin: 0 10px;
+        width: 100%;
+        right: 0%;
+        position: relative;
+    }
+
+    .dashboard-show-more-2 {
+        position: relative;
+        margin: 0 10px;
+        right: 0%;
+        width: 100%;
+    }
+
+    .dashboard-template-3 {
+        width: 100%;
+    }
+
+    .dashboard-template-3 h1 {
+        font-size: 1.6rem;
+    }
+
+    .dashboard-categories {
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .dashboard-template-4 {
+        width: 100%;
+        margin: 50px 0px;
+    }
+
+    .dashboard-template-4 h1 {
+        width: 100%;
+        font-size: 1.6rem;
+    }
+
+    .dashboard-template-4 form {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .mailing-section {
+        width: 100%;
+    }
+
+
 }

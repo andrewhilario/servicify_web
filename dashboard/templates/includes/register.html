@@ -95,11 +95,20 @@
                 </div>
                 <div class="register-phone-number">
                     <label for="phone_number">{{ mainuser_form.phone_number.label }}</label>
-                    {{ mainuser_form.phone_number }}
+                    <div class="phone_number">
+                        {{ mainuser_form.phone_number }}
+                    </div>
                 </div>
-                <div class="location">
-                    {{ mainuser_form.city }}
-                    {{ mainuser_form.location }}
+                <div class="register-location">
+                    <label for="location">Address</label>
+                    <div class="location">
+                        {{ mainuser_form.city }}
+                        <div class="maps">
+                            {{ mainuser_form.location }}
+                        </div>
+
+                    </div>
+
                 </div>
                 <div class="register-password">
                     <label for="password">{{ form.password.label }}</label>
