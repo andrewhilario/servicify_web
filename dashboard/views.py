@@ -1,8 +1,10 @@
 from multiprocessing import context
-from django.shortcuts import render
+from django.urls import reverse
 from .forms import *
 from .tokens import account_activation_token
 from .models import *
+from .sms import send_sms
+from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.contrib.sites.shortcuts import get_current_site
@@ -11,10 +13,16 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+from django.core.files import File
+from django.core.files.temp import NamedTemporaryFile as NamedTemporaryFileEx
 from django.db.models import Sum
 from django.http import *
+from social_django.utils import psa, load_strategy
+from social_core.backends.oauth import BaseOAuth1, BaseOAuth2
 import random
+import urllib3
 import json
+import tempfile
 
 # for 404 page
 
@@ -290,6 +298,8 @@ def service_details(request, service_id):
             acquired_service.client_id = request.user.mainuser
             acquired_service.service_id = service
             acquired_service.status = 'PENDING'
+            send_sms(str(service.created_by.phone_number),
+                     f"Hello {service.created_by.full_name},\n\nYour {service.service_name} has a new service request from user {request.user.mainuser.full_name}.")
             acquired_service.save()
             client_acquired_service = acquired_service
             return HttpResponseRedirect(service_id)
@@ -345,21 +355,29 @@ def service_requests(request, service_id):
         updated_status = request.POST.get('set-client-status', False)
         service_client_id = request.POST.get('service-client-id', False)
         service_client = ServiceClients.objects.get(id=service_client_id)
-        
-        if service_client.status in ['COMPLETED','DECLINED','CANCELED']:
+
+        if service_client.status in ['COMPLETED', 'DECLINED', 'CANCELED']:
             form_error = 'Unfortunately, we cant update the status.'
 
         if updated_status == 'ACCEPT' and service_client.status == 'PENDING':
             service_client.status = 'ON-GOING'
+            send_sms(str(service_client.client_id.phone_number),
+                     f"Hello {service_client.client_id.full_name},\n\nYour {service.service_name} service request has been ACCEPTED and placed into ON-GOING by the service owner.")
             service_client.save()
         elif updated_status == 'DECLINE' and service_client.status == 'PENDING':
             service_client.status = 'DECLINED'
+            send_sms(str(service_client.client_id.phone_number),
+                     f"Hello {service_client.client_id.full_name},\n\nYour {service.service_name} service request has been DECLINED by the service owner.")
             service_client.save()
         elif updated_status == 'COMPLETE' and service_client.status == 'ON-GOING':
             service_client.status = 'COMPLETED'
+            send_sms(str(service_client.client_id.phone_number),
+                     f"Hello {service_client.client_id.full_name},\n\nYour {service.service_name} service request status is updated to COMPLETE by the service owner.")
             service_client.save()
         elif updated_status == 'CANCEL' and service_client.status == 'ON-GOING':
             service_client.status = 'CANCELED'
+            send_sms(str(service_client.client_id.phone_number),
+                     f"Hello {service_client.client_id.full_name},\n\nYour {service.service_name} service request is CANCELED by the service owner.")
             service_client.save()
         else:
             form_error = 'Invalid option.'
@@ -391,9 +409,27 @@ def acquireservice2(request):
 def register(request):
     registerForm = None
     mainUserForm = None
+    initial_data = {
+        'first_name': '',
+        'last_name': '',
+        'email': '',
+    }
+    auth_avatar = None
+    partial_token = request.GET.get('partial_token')
+
+    if partial_token:
+        strategy = load_strategy()
+        partial = strategy.partial_load(partial_token)
+        auth_data = dict(partial.data['kwargs'])
+        auth_avatar = auth_data['response']['picture']['data']['url']
+        initial_data = {
+            'first_name': auth_data['details']['first_name'],
+            'last_name': auth_data['details']['last_name'],
+            'email': auth_data['details']['email'],
+        }
 
     if request.method == 'POST':
-        registerForm = RegistrationForm(request.POST)
+        registerForm = RegistrationForm(request.POST, initial=initial_data)
         mainUserForm = MainUserRegistrationForm(request.POST, request.FILES)
         locationData = request.POST.get('locData', False)
 
@@ -402,42 +438,83 @@ def register(request):
             user.email = registerForm.cleaned_data['email']
             user.set_password(registerForm.cleaned_data['password'])
             user.is_active = False
-            
+
             main_user = mainUserForm.save(commit=False)
             locationData = dict(json.loads(locationData))
 
             for loc in locationData['details']:
-                if 'route' in loc["types"]:
-                    main_user.street = loc["long_name"]
-                elif 'neighborhood' in loc["types"]:
-                    main_user.street = loc["long_name"]
-                elif 'premise' in loc["types"]:
-                    main_user.street = loc["long_name"]
-                elif 'sublocality' in loc["types"]:
-                    main_user.sublocality = loc["long_name"]
-                elif 'locality' in loc["types"]:
-                    main_user.locality = loc["long_name"]
+                if 'route' in loc['types']:
+                    main_user.street = loc['long_name']
+                elif 'neighborhood' in loc['types']:
+                    main_user.street = loc['long_name']
+                elif 'premise' in loc['types']:
+                    main_user.street = loc['long_name']
+                elif 'sublocality' in loc['types']:
+                    main_user.sublocality = loc['long_name']
+                elif 'locality' in loc['types']:
+                    main_user.locality = loc['long_name']
+            main_user.full_addr = locationData['Label']
 
-            main_user.full_addr = locationData["Label"]
-            
             user.save()
-            current_site = get_current_site(request)
-            subject = 'Servicify: Activate your account'
-            message = render_to_string('email-activation.html', {
-                'user': user,
-                'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': account_activation_token.make_token(user),
-            })
-            user.email_user(subject=subject, message=message)
             main_user.user = user
+            if auth_avatar and not request.FILES.get('filepath', False):
+                conn = urllib3.PoolManager()
+                response = conn.request('GET', auth_avatar)
+                if response.status == 200:
+                    file_obj = tempfile.NamedTemporaryFile(delete=True)
+                    file_obj.write( response.data )
+                    file_obj.flush()
+                
+                    django_file_obj = File(file_obj)
+                    main_user.avatar.save(auth_data['response']['id'], django_file_obj)
+
             main_user.save()
 
-            return render(request, 'includes/registration-success.html', {'email': user.email})
+            if partial_token:
+                user.is_active = True
+                user.save()
+                request.session['finish'] = True
+                request.session['user_instance'] = user.id
+                return redirect(reverse('social:complete', kwargs={'backend': 'facebook'}))
+            else:
+                current_site = get_current_site(request)
+                subject = 'Servicify: Activate your account'
+                message = render_to_string('email-activation.html', {
+                    'user': user,
+                    'domain': current_site.domain,
+                    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                    'token': account_activation_token.make_token(user),
+                })
+                user.email_user(subject=subject, message=message)
+                return render(request, 'includes/registration-success.html', {'email': user.email})
     else:
-        registerForm = RegistrationForm()
+        registerForm = RegistrationForm(initial=initial_data)
         mainUserForm = MainUserRegistrationForm()
-    return render(request, 'includes/register.html', {'form': registerForm, 'mainuser_form': mainUserForm})
+
+    return render(request, 'includes/register.html', {
+        'form': registerForm,
+        'mainuser_form': mainUserForm,
+        'is_auth': True if partial_token else False,
+        'auth_avatar': auth_avatar,
+    })
+
+
+@psa('social:complete')
+def ajax_auth(request, backend):
+    """AJAX authentication endpoint"""
+    if isinstance(request.backend, BaseOAuth1):
+        token = {
+            'oauth_token': request.REQUEST.get('access_token'),
+            'oauth_token_secret': request.REQUEST.get('access_token_secret'),
+        }
+    elif isinstance(request.backend, BaseOAuth2):
+        token = request.REQUEST.get('access_token')
+    else:
+        raise HttpResponseBadRequest('Wrong backend type')
+    user = request.backend.do_auth(token, ajax=True)
+    login(request, user)
+    data = {'id': user.id, 'username': user.username}
+    return HttpResponse(json.dumps(data), mimetype='application/json')
 
 
 def activate(request, uidb64, token):
@@ -449,7 +526,7 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        return render(request, 'includes/registration-complete.html', {'fullname': user.first_name + " " + user.first_name})
+        return render(request, 'includes/registration-complete.html', {'fullname': user.mainuser.full_name})
     else:
         return render(request, 'includes/registration-invalid.html')
 

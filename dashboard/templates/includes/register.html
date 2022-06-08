@@ -148,7 +148,11 @@
             </div>
             <div class="register-buttons">
                 <div class="avatar-wrapper">
+                    {% if auth_avatar %}
+                    <img class="profile-pic" src="{{ auth_avatar }}" />
+                    {% else %}
                     <img class="profile-pic" src="" />
+                    {% endif %}
                     <div class="upload-button">
                     </div>
                     <!-- <input class="file-upload" type="file" accept="image/*" name="avatar" /> -->
@@ -156,11 +160,13 @@
                 </div>
 
                 <input id="continue" type="submit" value="Register">
+                {% if not is_auth %}
                 <span class="seperator">
                     <hr>
                     <p>or</p>
                 </span>
                 <a id="fblogin" href="{% url 'social:begin' 'facebook' %}">Sign In with Facebook</a>
+                {% endif %}
             </div>
         </form>
         <div class="reg-login-btn">

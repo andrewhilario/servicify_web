@@ -107,8 +107,7 @@
                     <h5 style="color: #FF8400;">{{ client_acquired_service.status }}</h5>
                     {% elif client_acquired_service.status == 'ON-GOING' %}
                     <h5 style="color: #fff700;">{{ client_acquired_service.status }}</h5>
-                    {% elif client_acquired_service.status == 'CANCELED' or client_acquired_service.status == 'DECLINED'
-                    %}
+                    {% elif client_acquired_service.status == 'CANCELED' or client_acquired_service.status == 'DECLINED' %}
                     <h5 style="color: #cd1800;">{{ client_acquired_service.status }}</h5>
                     {% elif client_acquired_service.status == 'COMPLETED' %}
                     <h5 style="color: #268700;">{{ client_acquired_service.status }}</h5>
