@@ -53,16 +53,19 @@ def dashboard(request):
 
 
 def avatar(request):
+    categories = ServiceTypes.objects.order_by('?')[:6]
     if request.user.is_authenticated:
         user = User.objects.get(username=request.user)
         avatar = MainUser.objects.filter(user=user)
         context = {
             "avatar": avatar,
+            "categories": categories,
         }
         return context
     else:
         return {
-            'NotLoggedIn': User.objects.none()
+            "NotLoggedIn": User.objects.none(),
+            "categories": categories,
         }
 
 
