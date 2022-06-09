@@ -362,6 +362,7 @@
 
 .categories a img {
     margin-bottom: 20px;
+    filter: grayscale(1) invert(1);
 }
 
 /* Dashboard Template 4 */

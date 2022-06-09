@@ -1,32 +1,60 @@
 {% load static %}
+{% load custom_tags %}
 {% block css_files %}
 <link rel="stylesheet" href="{% static 'css/includes/dashboard.css' %}">
 <link rel="stylesheet" href="{% static 'css/includes/work-offer.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 {% endblock %}
 {% block content %}
 {% load humanize %}
 {% include 'navbar.html' %}
+<script>
+    $(function () {
+        $('select').on('change', function () {
+            var url = $(this).val();
+            if (url) {
+                window.location = url;
+            }
+            return false;
+        });
+    });
+
+    $(function () {
+        var sort = GetURLParameter("sort");
+        var filter = GetURLParameter("filter");
+
+        if (sort) $(`#${sort}`).attr('selected','selected')
+        if (filter) $(`#${filter}`).attr('selected','selected')
+    });
+
+    function GetURLParameter(sParam) {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++) {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam) {
+                return sParameterName[1];
+            }
+        }
+    }
+</script>
 <div class="work-offer-list">
     <h1>Biddings</h1>
     <div class="wo-sort">
-
         <div class="wo-sort-section">
-
             <span>Sort by:</span>
-            <a href="#">Newest</a>
-            <a href="#">Oldest</a>
-            <select name="sort" id="" value="Price">
-                <option value="none" selected disabled hidden>Price</option>
-                <option value="">Price: High to Low</option>
-                <option value="">Price: Low to High</option>
+            <a href="?{% query_transform sort='new' %}">Newest</a>
+            <a href="?{% query_transform sort='old' %}">Oldest</a>
+            <select name="sort" id="price-filter" value="Price">
+                <option value="none" selected disabled hidden>Pay</option>
+                <option id="price_desc" value="?{% query_transform sort='price_desc' %}">Pay: High to Low</option>
+                <option id="price_asc" value="?{% query_transform sort='price_asc' %}">Pay: Low to High</option>
             </select>
         </div>
         <div class="wo-list-or-grid">
-
             <button><i class="fa-solid fa-list"></i></button>
             <button><i class="fa-solid fa-table-cells-large"></i></button>
             <button id="create"><a href="{% url 'createworkoffer' %}">Create a Work Offer</a></button>
-
         </div>
 
     </div>

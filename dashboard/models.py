@@ -20,7 +20,10 @@ def service_directory_path(instance, filename):
     return 'services/thumbnails/{0}/{1}'.format(instance.service.id, filename)
 
 def service_review_directory_path(instance, filename):
-    return 'services/review_images/{0}/{1}'.format(instance.id, filename)
+    return 'services/review_images/{0}/{1}'.format(instance.service_review.id, filename)
+
+def service_type_directory_path(instance, filename):
+    return 'services/types/{0}/{1}'.format(instance.id, filename)
 
 # Create your models here.
 
@@ -54,11 +57,18 @@ class MainUser(models.Model):
 class ServiceTypes(models.Model):
     name = models.CharField(max_length=64)
     tag = models.CharField(max_length=12, blank=True)
+    image = models.ImageField(upload_to=service_type_directory_path, blank=True)
     created_by = models.ForeignKey(MainUser, on_delete=models.DO_NOTHING)
     created_at = models.DateTimeField(default=datetime.now, blank=True)
 
     def __str__(self):
         return self.name
+        
+    @property
+    def parsed_name(self):
+        "Returns the user's full name."
+        return self.name.replace(' ','_').lower()
+
 
 # For services
 class Service(models.Model):

@@ -125,8 +125,8 @@ DATABASES = {
 
         # please change the port thanks
 
-        # 'PORT': '5432',
-        'PORT': '8080',
+        'PORT': '5432',
+        # 'PORT': '8080',
 
     }
 }
@@ -181,10 +181,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # DEV
 
 LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = '/login/'
+LOGIN_URL = '/login'
 
-LOGOUT_URL = '/logout/'
-LOGIN_REDIRECT_URL = '/'
+LOGOUT_URL = '/logout'
+LOGOUT_REDIRECT_URL = '/'
 
 # Login with Facebook
 SOCIAL_AUTH_FACEBOOK_KEY = '1003522293867363'

@@ -20,11 +20,10 @@
             <div class="profile-form">
                 <div class="profile-name">
                     <p>{{user.mainuser.full_name}}</p>
-                    <span>Full Name</span>
                 </div>
                 <div class="profile-email">
-                    <p>{{user.date_joined}}</p>
-                    <span>Join Date</span>
+                    <!-- <p>{{user.date_joined}}</p> -->
+                    <span>Joined {{ user.date_joined|date:'F o' }}</span>
                 </div>
                 <div class="facebook-connect">
                     <a href="#">

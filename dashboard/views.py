@@ -40,9 +40,13 @@ def dashboard(request):
     # for services
     service = Service.objects.order_by('?')[:5]
 
+    # categories
+    categories = ServiceTypes.objects.order_by('?')[:6]
+
     context = {
         'work_offers': work_offers,
         'services': service,
+        'categories': categories,
     }
 
     return render(request, 'includes/dashboard.html', context)
@@ -122,8 +126,23 @@ def workoffer2(request):
 
 
 def work_offer_list(request):
+    sort = request.GET.get('sort', None)
+    category = request.GET.get('filter', None)
+    
+    order = []
     work_offers = WorkOffer.objects.order_by('?')
+    if sort == 'new':
+        order.append('-created_at')
+    elif sort == 'old':
+        order.append('created_at')
+    elif sort == 'price_desc':
+        order.append('-min_pay')
+    elif sort == 'price_asc':
+        order.append('min_pay')
 
+    if order:
+        work_offers = work_offers.order_by(*order)
+    
     context = {
         'work_offers': work_offers
     }
@@ -395,9 +414,31 @@ def service_requests(request, service_id):
 
 
 def service_marketplace(request):
+    sort = request.GET.get('sort', None)
+    category = request.GET.get('filter', None)
+    
+    order = []
     service = Service.objects.order_by('?')
+    if sort == 'new':
+        order.append('-created_at')
+    elif sort == 'old':
+        order.append('created_at')
+    elif sort == 'price_desc':
+        order.append('-price')
+    elif sort == 'price_asc':
+        order.append('price')
+    
+    if category and category != 'all':
+        category = category.replace('_', ' ')
+        service = service.filter(service_type__name__icontains=category)
+
+    if order:
+        service = service.order_by(*order)
+    
+    service_types = ServiceTypes.objects.order_by('-name')
     context = {
         'services': service,
+        'service_types': service_types,
     }
     return render(request, 'includes/service-marketplace.html', context)
 

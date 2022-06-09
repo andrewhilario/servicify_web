@@ -1,11 +1,43 @@
 {% load static %}
+{% load custom_tags %}
 {% block css_files %}
 <link rel="stylesheet" href="{% static 'css/includes/dashboard.css' %}">
 <link rel="stylesheet" href="{% static 'css/includes/service-marketplace.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 {% endblock %}
 {% block content %}
 {% load humanize %}
 {% include 'navbar.html' %}
+<script>
+    $(function () {
+        $('select').on('change', function () {
+            var url = $(this).val();
+            if (url) {
+                window.location = url;
+            }
+            return false;
+        });
+    });
+
+    $(function () {
+        var sort = GetURLParameter("sort");
+        var filter = GetURLParameter("filter");
+
+        if (sort) $(`#${sort}`).attr('selected','selected')
+        if (filter) $(`#${filter}`).attr('selected','selected')
+    });
+
+    function GetURLParameter(sParam) {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++) {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam) {
+                return sParameterName[1];
+            }
+        }
+    }
+</script>
 <div class="sm-list">
     <h1>Service Marketplace</h1>
     <div class="sm-sort">
@@ -13,22 +45,19 @@
         <div class="sm-sort-section">
 
             <span>Sort by:</span>
-            <a href="#">Newest</a>
-            <a href="#">Oldest</a>
-            <select name="sort" id="" value="Price">
+            <a href="?{% query_transform sort='new' %}">Newest</a>
+            <a href="?{% query_transform sort='old' %}">Oldest</a>
+            <select name="sort" id="price-filter" value="Price">
                 <option value="none" selected disabled hidden>Price</option>
-                <option value="">Price: High to Low</option>
-                <option value="">Price: Low to High</option>
+                <option id="price_desc" value="?{% query_transform sort='price_desc' %}">Price: High to Low</option>
+                <option id="price_asc" value="?{% query_transform sort='price_asc' %}">Price: Low to High</option>
             </select>
-            <select name="sort" id="" value="">
+            <select name="sort" id="service-filter" value="">
                 <option value="none" selected disabled hidden>Categories</option>
-                <option value="">Electronics</option>
-                <option value="">Health Service</option>
-                <option value="">Automotive</option>
-                <option value="">Legal Service</option>
-                <option value="">Event Service</option>
-                <option value="">Well-being</option>
-
+                <option id="all" value="?{% query_transform filter='all' %}">All</option>
+                {% for type in service_types %}
+                <option id="{{ type.parsed_name }}" value="?{% query_transform filter=type.parsed_name %}">{{ type.name }}</option>
+                {% endfor %}
             </select>
         </div>
         <div class="sm-list-or-grid">
