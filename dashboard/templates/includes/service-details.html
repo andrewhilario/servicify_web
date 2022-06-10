@@ -181,7 +181,7 @@
                 </form>
             </div>
 
-            {% elif request.user.is_authenticated %}
+            {% elif request.user.is_authenticated and service.created_by.id != request.user.mainuser.id %}
             {% for message in form_messages %}
             <p>{{ message }}</p>
             {% endfor %}
@@ -205,7 +205,7 @@
                     </div>
                 </div>
             </form>
-            {% else %}
+            {% elif not request.user.is_authenticated %}
             <p>Login to acquire service.</p>
             {% endif %}
         </div>
