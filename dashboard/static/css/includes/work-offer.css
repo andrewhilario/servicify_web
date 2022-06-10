@@ -333,8 +333,9 @@
 }
 
 .wo-sort-section {
-    width: 40%;
+    width: 50%;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     padding: 30px 10px;
     align-items: center;
@@ -343,17 +344,29 @@
 .wo-sort-section span {
     font-size: 1rem;
     font-weight: bold;
+    width: 10%;
 }
 
-.wo-sort-section a {
+.wo-sortings-nop-href a {
     text-decoration: none;
     color: black;
     padding: 10px 30px;
+    margin: 0px 10px;
     border: 2px solid #7CB687;
     border-radius: 10px;
     font-weight: 500;
     outline: none;
 }
+
+.wo-sortings-nop {
+    display: flex;
+    width: 100%;
+}
+
+.wo-sortings-nop-href {
+    display: flex;
+}
+
 
 .wo-sort-section a:hover {
     background-color: #7CB687;
