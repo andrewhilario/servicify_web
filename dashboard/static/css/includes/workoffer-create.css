@@ -220,3 +220,25 @@ textarea {
   position: absolute;
   z-index: -1;
 }
+
+@media screen and (max-width:768px) {
+  .work-offer-create-container {
+    width: 100%;
+    margin: 0;
+    padding: 30px 15px;
+  }
+
+  .work-offer-create-flex {
+    flex-direction: column;
+  }
+
+  .work-offer-create-flex-container {
+    width: 100%;
+    margin: 20px auto;
+  }
+
+  .work-offer-create-form {
+    width: 100%;
+    margin: 0;
+  }
+}
