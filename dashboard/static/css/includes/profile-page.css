@@ -150,6 +150,66 @@
     margin-bottom: 5%;
 }
 
+
+::-webkit-scrollbar {
+    width: 5px;
+    overflow: hidden;
+}
+
+::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ffffff;
+}
+
+.reviews #load_more {
+    padding: 10px 20px;
+    background-color: #749E7D;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    font-size: 1.2rem;
+    font-family: 'Raleway';
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    margin: 0 auto;
+    display: flex;
+}
+
+#work_offer_rev {
+    height: 75%;
+    width: 100%;
+    padding: 0px 10px;
+    overflow: hidden;
+    transition: all .5s ease-in-out;
+}
+
+#load_less {
+    padding: 10px 20px;
+    background-color: #749E7D;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    font-size: 1.2rem;
+    font-family: 'Raleway';
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    margin: 0 auto;
+    display: none;
+}
+
+#load_more:hover,
+#load_less:hover {
+    background-color: #377c46;
+}
+
+
 .reviews-header {
     text-align: center;
     margin: 30px auto;
@@ -174,6 +234,11 @@
 
 .name-and-reviews {
     margin: 20px auto;
+}
+
+.name-and-reviews a {
+    color: white;
+    text-decoration: none;
 }
 
 .review-sub-contents {
@@ -398,6 +463,7 @@
         flex-direction: column;
     }
 
+
     .reviews-header h2 {
         font-size: 1.2rem !important;
     }
@@ -470,4 +536,12 @@
         margin: 0 auto;
     }
 
+    .service-details {
+        flex-direction: column;
+    }
+
+    #work_offer_rev {
+        height: 138vh !important;
+        overflow: hidden;
+    }
 }

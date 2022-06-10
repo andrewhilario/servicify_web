@@ -88,6 +88,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    margin: 25px 0px;
 }
 
 .srvc-dtl-details h3 {
@@ -565,6 +566,10 @@
     gap: 15px;
 }
 
+.rv-footer-images {
+    width: 100%;
+}
+
 .rv-footer-container {
     width: 150px;
     height: 100px;
@@ -576,4 +581,123 @@
     height: 100%;
     object-fit: cover;
 
+}
+
+@media screen and (max-width: 768px) {
+    .srvc-dtl-contents {
+        width: 100%;
+
+        flex-direction: column;
+    }
+
+    .srvc-dtl-image-view {
+        width: 100%;
+        padding: 20px 0px;
+    }
+
+    .srvc-dtl-details-and-reviews {
+        width: 100%;
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .srvc-dtl-sub-contents {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .srvc-dtl-sub-details {
+        width: 100%;
+        padding: 20px 5px;
+    }
+
+    .srvc-dtl-img-sub-details {
+        padding-right: 20px;
+    }
+
+    .srvc-dtl-tags {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .srvc-dtl-service-input {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .srvc-dtl-service-btn input[type="submit"] {
+        width: 100%;
+        height: 50px;
+        border-radius: 10px;
+        border: 2.5px solid #ffffff;
+        background-color: #749E7D;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+        font-family: "Raleway";
+        padding: 0 50px;
+        text-align: center;
+        cursor: pointer;
+        margin: 20px 0px;
+    }
+
+    .srvc-dtl-reviews {
+        flex-direction: column;
+    }
+
+    .srvc-dtl-review-options {
+
+        width: 100%;
+        /* height: 10% !important; */
+        margin: 15px 0px;
+    }
+
+    .srvc-dtl-review-options h3 {
+        margin: 15px 0px;
+    }
+
+    .rating-setting {
+        height: 2vh;
+        margin: 8px 0px;
+    }
+
+    .srvc-dtl-review-clients {
+        width: 100%;
+    }
+
+    .review-pages {
+        flex-direction: column;
+    }
+
+    .review-pfp {
+        width: 100%;
+    }
+
+    .rv-container {
+        width: 100%;
+        margin: 0 20px;
+    }
+
+    .review-footer {
+        display: flex !important;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .rv-footer-container {
+        width: 135px;
+        height: 80px;
+        margin: 0;
+    }
+
+    .rv-footer-images {
+        width: 45%;
+    }
+
+    .acquired-service-card {
+        margin: 10px 20px;
+    }
 }

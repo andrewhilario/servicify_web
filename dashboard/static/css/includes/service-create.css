@@ -120,7 +120,7 @@ body {
 }
 
 #map_button_location {
-  margin: 15px 0px;
+  padding: 15px 0px;
   width: 40%;
   background-color: #507c59;
   font-size: 1rem;
@@ -342,7 +342,7 @@ textarea {
 
 
 .cs-sub-details .cs-profile {
-  width: 40%;
+  width: 55%;
   display: flex;
   justify-content: space-around;
   align-items: center;

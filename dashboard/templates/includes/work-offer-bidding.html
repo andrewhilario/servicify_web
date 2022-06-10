@@ -196,7 +196,7 @@
                 </div>
                 <div class="wo-latest-bid-content">
                     <p>Latest Bid: </p>
-                    <span>₱{{ latest_bid.bid_amount }}</span>
+                    <span>₱{{ latest_bid.bid_amount|floatformat:"2" }}</span>
                 </div>
                 {% else %}
                 <div class="wo-latest-bid-content">
@@ -221,7 +221,7 @@
                             {% for bid in bids %}
                             <tr class="wo-bid-tbl">
                                 <td>
-                                    <p>{{ bid.created_at }}</p>
+                                    <p>{{ bid.created_at.date }}</p>
                                 </td>
                                 <td>
                                     <div class="bid-tbl-dtl">
@@ -236,7 +236,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <p>₱{{ bid.bid_amount }}</p>
+                                    <p>₱{{ bid.bid_amount|floatformat:"2" }}</p>
                                 </td>
                                 <td>
                                     <p>{{ bid.status }}</p>

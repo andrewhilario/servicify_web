@@ -23,8 +23,8 @@
         var sort = GetURLParameter("sort");
         var filter = GetURLParameter("filter");
 
-        if (sort) $(`#${sort}`).attr('selected','selected')
-        if (filter) $(`#${filter}`).attr('selected','selected')
+        if (sort) $(`#${sort}`).attr('selected', 'selected')
+        if (filter) $(`#${filter}`).attr('selected', 'selected')
     });
 
     function GetURLParameter(sParam) {
@@ -43,13 +43,17 @@
     <div class="wo-sort">
         <div class="wo-sort-section">
             <span>Sort by:</span>
-            <a href="?{% query_transform sort='new' %}">Newest</a>
-            <a href="?{% query_transform sort='old' %}">Oldest</a>
-            <select name="sort" id="price-filter" value="Price">
-                <option value="none" selected disabled hidden>Pay</option>
-                <option id="price_desc" value="?{% query_transform sort='price_desc' %}">Pay: High to Low</option>
-                <option id="price_asc" value="?{% query_transform sort='price_asc' %}">Pay: Low to High</option>
-            </select>
+            <div class="wo-sortings-nop">
+                <div class="wo-sortings-nop-href">
+                    <a href="?{% query_transform sort='new' %}">Newest</a>
+                    <a href="?{% query_transform sort='old' %}">Oldest</a>
+                </div>
+                <select name="sort" id="price-filter" value="Price">
+                    <option value="none" selected disabled hidden>Pay</option>
+                    <option id="price_desc" value="?{% query_transform sort='price_desc' %}">Pay: High to Low</option>
+                    <option id="price_asc" value="?{% query_transform sort='price_asc' %}">Pay: Low to High</option>
+                </select>
+            </div>
         </div>
         <div class="wo-list-or-grid">
             <button><i class="fa-solid fa-list"></i></button>

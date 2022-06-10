@@ -44,9 +44,9 @@
                     let srvDist = e.innerText.split(",")
                     console.log(srvDist)
                     console.log(e.innerText)
-                    
+
                     let dist = distance(lat, long, srvDist[0], srvDist[1], "K").toFixed(2)
-                    
+
                     if (dist) {
                         e.innerText = `${dist}km away - `
                         e.hidden = false
@@ -64,7 +64,7 @@
         }
     }
 
-    $( document ).ready(function() {
+    $(document).ready(function () {
         navigator.permissions.query({ name: 'geolocation' }).then(function (result) {
             if (result.state == 'granted') {
                 getDistance()
@@ -84,7 +84,7 @@
                 }
             })
         });
-     });
+    });
 
 </script>
 <div class="dashboard-template-1">
@@ -96,9 +96,11 @@
         <h3>Make your craft known.</h3>
     </div>
     <div class="dashboard-setup-service-profile">
+
         <a href="{% url 'custom_logout' %}">
             Setup a Service Profile
         </a>
+
     </div>
 </div>
 <div class="dashboard-template-2">
@@ -114,7 +116,8 @@
                         {% endfor %}
                     </div>
                     <p>{{ work_offer.work_name }}</p>
-                    <span>Bid Starts at &#8369;{% filter intcomma %}{{ work_offer.min_pay|floatformat }}{% endfilter %} </span>
+                    <span>Bid Starts at &#8369;{% filter intcomma %}{{ work_offer.min_pay|floatformat }}{% endfilter %}
+                    </span>
                 </a>
             </li>
             {% endfor %}
@@ -140,9 +143,12 @@
                     <p>{{service.service_name|truncatechars:16}}</p>
                     <p>{{service.service_type}}</p>
                     <div class="service-loc">
-                        {% if service.street %} <p><span class="service-loc-l" hidden>{{ service.location }}</span>{{service.street}}</p>
-                        {% elif service.sublocality %} <p><span class="service-loc-l" hidden>{{ service.location }}</span>{{service.sublocality}}</p>
-                        {% elif service.locality %} <p><span class="service-loc-l" hidden>{{ service.location }}</span>{{service.locality}}</p> {% endif %}
+                        {% if service.street %} <p><span class="service-loc-l" hidden>{{ service.location
+                                }}</span>{{service.street}}</p>
+                        {% elif service.sublocality %} <p><span class="service-loc-l" hidden>{{ service.location
+                                }}</span>{{service.sublocality}}</p>
+                        {% elif service.locality %} <p><span class="service-loc-l" hidden>{{ service.location
+                                }}</span>{{service.locality}}</p> {% endif %}
                     </div>
                 </a>
             </li>
