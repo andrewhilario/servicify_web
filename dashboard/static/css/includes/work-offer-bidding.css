@@ -1,6 +1,5 @@
 .wo-bidding {
     width: 90%;
-
     margin: 0 auto;
 }
 
@@ -178,7 +177,7 @@
 }
 
 .wo-timer {
-    width: 150px;
+    width: 100%;
     height: 100px;
     background-color: #749E7D;
     display: flex;
@@ -457,7 +456,7 @@
     display: flex;
     padding: 40px 0;
     justify-content: space-around;
-
+    margin: 10px auto;
     align-items: center;
     background-color: #7CB687;
     border-radius: 20px;
@@ -654,4 +653,191 @@
     font-size: 1.3rem;
     font-weight: bold;
     color: red;
+}
+
+@media screen and (max-width:768px) {
+    .wo-bidding {
+        width: 90%;
+    }
+
+    .wo-bidding h1 {
+        font-size: 2rem;
+    }
+
+    .wo-contents {
+        flex-direction: column;
+    }
+
+    .wo-image-view {
+        width: 100%;
+    }
+
+    .wo-details-and-bid {
+        width: 100%;
+        margin: 0;
+    }
+
+    .wo-sub-contents {
+        width: 100%;
+        flex-direction: column-reverse;
+    }
+
+    .wo-details h3 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .wo-sub-details {
+        width: 100%;
+    }
+
+    .wo-img-sub-details {
+        padding: 0px 20px;
+    }
+
+    .wo-description {
+        padding: 10px 20px;
+    }
+
+    .wo-time-limit {
+        width: 100%;
+    }
+
+    .wo-timer {
+        width: 80% !important;
+        margin: 20px auto;
+        height: 50px;
+        /* margin: 20px 20px; */
+
+        justify-content: space-around;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .wo-timer i {
+        width: 30%;
+        padding: 0px 20px;
+    }
+
+    .wo-timer p {
+        width: 85%;
+    }
+
+    .wo-bid-incre {
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        margin: 20px auto;
+    }
+
+    .wo-current-price {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .wo-highest-bid p,
+    .wo-highest-bid span {
+        font-size: 1.5rem !important;
+        margin: 0;
+    }
+
+    .wo-bidders {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .wo-active-and-total-bids {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .wo-winning-bids {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .wo-latest-bidder {
+        width: 100%;
+    }
+
+    .wo-active-bids,
+    .wo-total-bids {
+        width: 90%;
+        margin-left: 0;
+        margin-right: 0;
+        margin: 10px auto;
+        flex-direction: row;
+    }
+
+    .wo-active-bids i,
+    .wo-total-bids i {
+        font-size: 4rem;
+    }
+
+    .wo-sub-content {
+        /* width: 80%; */
+        /* flex-direction: row-reverse; */
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0px;
+    }
+
+    .wo-sub-content span {
+        /*  */
+        font-size: 2rem;
+        text-align: center;
+        line-height: normal;
+    }
+
+    .wo-latest-bidder {
+        padding: 0px 10px;
+        margin: 20px auto;
+    }
+
+    .wo-latest-bid {
+        padding: 20px 10px;
+        margin: 0;
+        font-size: 1rem;
+    }
+
+    .wo-other-bid {
+        margin: 0 auto;
+        padding: 20px 10px;
+        width: 90%;
+
+    }
+
+    .wo-other-bid p {
+        font-size: 1rem !important;
+    }
+
+    .wo-other-bid-tbl {
+        width: 100%;
+        margin: 0 auto;
+        overflow-x: scroll;
+    }
+
+    .wo-other-bid-tbl table {
+        font-size: 1rem;
+        margin: 0 auto;
+        width: 300px;
+    }
+
+    .bid-tbl-dtl-pfp img {
+        display: none;
+    }
+
+    .bid-tbl-sub-dtl {
+        display: none;
+    }
+
+    .wo-latest-bid-content {
+        margin: 10px auto;
+    }
+
+    .wo-latest-bid-content span img {
+        display: none;
+    }
 }

@@ -11,7 +11,7 @@
         <span>Return to {{ bid.workoffer_id.work_name }}</span>
     </a>
     <h2>{{ bid.bidder_id.full_name }}'s bid</h2>
-    <p>Bid amount: &#8369;{{ bid.bid_amount }}</p>
+    <p>Bid amount: &#8369;{{ bid.bid_amount|floatformat:"2" }}</p>
     <p>Message: <br> {{ bid.bidder_msg }}</p>
     <div class="view-work-offer-page-contents">
         <div class="vwo-profile">

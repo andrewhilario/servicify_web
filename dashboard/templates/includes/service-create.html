@@ -136,7 +136,7 @@
                     {{ form.service_type }}
                 </div>
                 <div class="service-create-input">
-                    <label for="" class="service-create-label">{{ form.service_name.label }}</label>
+                    <label for="" class="service-create-label">Service {{ form.service_name.label }}</label>
                     {{ form.service_name }}
                 </div>
                 <div class="service-create-input">
@@ -147,7 +147,7 @@
                     <label for="" class="service-create-label">{{ form.description.label }}</label>
                     {{ form.description }}
                 </div>
-                <input type="hidden" name="locData" id="locData"/>
+                <input type="hidden" name="locData" id="locData" />
                 <div class="service-create-form-button">
                     <input type="submit" id="create-service" value="Create Service" />
                 </div>

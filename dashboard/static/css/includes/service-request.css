@@ -328,3 +328,68 @@
     background-color: #B74848;
     color: white;
 }
+
+.showBtn {
+    display: none;
+}
+
+.show-table {
+    opacity: 1;
+}
+
+.showTblMobile {
+    display: none;
+}
+
+@media screen and (max-width:768px) {
+
+
+    .service-request-header {
+        width: 100%;
+        flex-direction: column;
+        align-items: start;
+
+    }
+
+    .sr-entries {
+        margin: 20px 0px;
+    }
+
+    .sr-search-and-sort {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .sr-sort-select,
+    .sr-search-bar {
+        margin: 15px 0px;
+    }
+
+    .service-request-table {
+        width: 100%;
+    }
+
+    .sr-table {
+        width: 100% !important;
+    }
+
+    .sr-table tbody tr td {
+        height: 10vh !important;
+    }
+
+    .sr-action form {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .sr-action form select {
+        padding: 5px 1px;
+        width: 100%;
+        margin: 10px;
+    }
+
+    .show-table {
+        display: none;
+    }
+
+}

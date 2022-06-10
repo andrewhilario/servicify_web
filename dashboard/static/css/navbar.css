@@ -168,7 +168,7 @@
     flex-direction: column;
     justify-content: space-around;
     padding: 40px 10px;
-
+    margin: 10px 0px;
 }
 
 .navlinks-clicked li {
@@ -400,12 +400,14 @@
     .hover-profile {
         width: 300%;
         left: -155%;
-        top: 120%;
+        top: 130%;
         z-index: 99999999;
     }
 
     .navlinks-clicked {
-        z-index: 9999;
+        z-index: 9;
+        padding: 20px 10px;
+        margin: 10px 0px;
     }
 
 

@@ -23,8 +23,8 @@
         var sort = GetURLParameter("sort");
         var filter = GetURLParameter("filter");
 
-        if (sort) $(`#${sort}`).attr('selected','selected')
-        if (filter) $(`#${filter}`).attr('selected','selected')
+        if (sort) $(`#${sort}`).attr('selected', 'selected')
+        if (filter) $(`#${filter}`).attr('selected', 'selected')
     });
 
     function GetURLParameter(sParam) {
@@ -45,20 +45,29 @@
         <div class="sm-sort-section">
 
             <span>Sort by:</span>
-            <a href="?{% query_transform sort='new' %}">Newest</a>
-            <a href="?{% query_transform sort='old' %}">Oldest</a>
-            <select name="sort" id="price-filter" value="Price">
-                <option value="none" selected disabled hidden>Price</option>
-                <option id="price_desc" value="?{% query_transform sort='price_desc' %}">Price: High to Low</option>
-                <option id="price_asc" value="?{% query_transform sort='price_asc' %}">Price: Low to High</option>
-            </select>
-            <select name="sort" id="service-filter" value="">
-                <option value="none" selected disabled hidden>Categories</option>
-                <option id="all" value="?{% query_transform filter='all' %}">All</option>
-                {% for type in service_types %}
-                <option id="{{ type.parsed_name }}" value="?{% query_transform filter=type.parsed_name %}">{{ type.name }}</option>
-                {% endfor %}
-            </select>
+            <div class="sm-sortings">
+                <div class="sm-sorting-href">
+                    <a href="?{% query_transform sort='new' %}">Newest</a>
+                    <a href="?{% query_transform sort='old' %}">Oldest</a>
+                </div>
+                <div class="sm-sortings-select">
+                    <select name="sort" id="price-filter" value="Price">
+                        <option value="none" selected disabled hidden>Price</option>
+                        <option id="price_desc" value="?{% query_transform sort='price_desc' %}">Price: High to Low
+                        </option>
+                        <option id="price_asc" value="?{% query_transform sort='price_asc' %}">Price: Low to High
+                        </option>
+                    </select>
+                    <select name="sort" id="service-filter" value="">
+                        <option value="none" selected disabled hidden>Categories</option>
+                        <option id="all" value="?{% query_transform filter='all' %}">All</option>
+                        {% for type in service_types %}
+                        <option id="{{ type.parsed_name }}" value="?{% query_transform filter=type.parsed_name %}">
+                            {{ type.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
         </div>
         <div class="sm-list-or-grid">
 
@@ -69,7 +78,7 @@
         </div>
 
     </div>
-    <ul class="offers" id="container">
+    <ul class="service-list">
         {% for service in services %}
         <li>
             <a href="{% url 'service_details' service.id  %}">
@@ -80,7 +89,15 @@
                 </div>
                 <p>{{service.service_name|truncatechars:16}}</p>
                 <p>{{service.service_type}}</p>
-                <span>2.1km away - Tondo</span>
+                <div class="service-loc">
+                    {% if service.street %} <p><span class="service-loc-l" hidden>
+                            {{ service.location }}</span>{{service.street}}</p>
+                    {% elif service.sublocality %} <p><span class="service-loc-l" hidden>
+                            {{ service.location }}</span>{{service.sublocality}}</p>
+                    {% elif service.locality %} <p><span class="service-loc-l" hidden>
+                            {{ service.location}}</span>{{service.locality}}</p>
+                    {% endif %}
+                </div>
             </a>
         </li>
         {% endfor %}

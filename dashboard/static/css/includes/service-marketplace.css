@@ -12,32 +12,46 @@
 
 }
 
-.sm-list .offers {
+.service-list {
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-columns: 15% 15% 15% 15% 15% 15%;
     width: 100%;
     padding: 60px 0px;
     gap: 20px;
+    justify-content: center;
 }
 
-.sm-list .offers li {
-    width: 100%;
+.service-list li {
+    list-style: none;
+    transition: all .2s ease-in-out;
+
+
 }
 
-.sm-list .offers li a {
-    width: 100%;
+.service-list li a {
+    text-decoration: none;
+    color: black;
+    margin: 0;
+
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
-
+    justify-content: left;
+    align-items: flex-start;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all .2s ease-in-out;
 }
 
-.sm-list .offers li a p {
+.service-list li a:hover {
+    transform: scale(1.03);
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    transition: all .2s ease-in-out;
+}
+
+
+
+.services .work-offer-thumbnail-parent img {
     width: 100%;
-}
-
-.sm-list .offers .work-offer-thumbnail-parent img {
-    width: 110%;
     margin: 0 auto;
     border-radius: 10px;
 }
@@ -96,7 +110,7 @@
 
 
 .sm-list-or-grid {
-    width: 10%;
+    width: 20%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -123,6 +137,11 @@
     transition: all .2s ease-in;
 }
 
+.sm-list-or-grid button:hover a {
+    color: white;
+    transition: all .2s ease-in;
+}
+
 .sm-list-or-grid a {
     font-size: 1rem;
     font-weight: bold;
@@ -132,6 +151,86 @@
     outline: none;
 }
 
-.sm-list-or-grid #create {
-    width: 100%
+.sm-sortings {
+    display: flex;
+    align-items: center;
+
+}
+
+.sm-sorting-href {
+    margin: 0 10px;
+}
+
+.sm-sortings-select {
+    margin: 0 10px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .sm-list {
+        width: 100%;
+    }
+
+    .sm-list h1 {
+        font-size: 2rem;
+        padding: 45px 10px;
+    }
+
+    .sm-sort {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .sm-sort-section {
+        width: 100%;
+        flex-direction: column;
+        padding: 15px 5px;
+    }
+
+    .sm-sort-section span {
+        margin-left: 20px;
+        align-self: start;
+    }
+
+    .sm-sortings {
+        padding: 10px 10px;
+        width: 100%;
+        flex-direction: column;
+        align-items: start;
+    }
+
+
+    .sm-sorting-href {
+        margin: 20px 10px;
+    }
+
+    .sm-list-or-grid {
+        width: 100%;
+        padding: 5px 25px;
+    }
+
+    .sm-list-or-grid button {
+        padding: 15px 25px;
+    }
+
+    #create {
+        background-color: #7CB687;
+
+    }
+
+    #create a {
+        color: white;
+    }
+
+    .service-list {
+        width: 90%;
+        grid-template-columns: auto !important;
+        margin: 0 auto;
+    }
+
+    .service-list li {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
 }
