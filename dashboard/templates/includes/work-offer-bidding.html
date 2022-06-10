@@ -41,7 +41,7 @@
                             <div class="wo-img-container">
                                 <img src="{{ work_offer.created_by.avatar.url }}" alt="">
                             </div>
-                            <span>⭐⭐⭐⭐⭐</span>
+                            <!-- <span>⭐⭐⭐⭐⭐</span> -->
                         </div>
                         <div class="wo-content-sub-details">
                             <ul>
@@ -51,7 +51,7 @@
                                 </li>
                                 <li>
                                     <p>Location:</p>
-                                    <span>Muntinlupa City</span>
+                                    <span>{{ work_offer.created_by.full_addr }}</span>
                                 </li>
                                 <li>
                                     <p>Work Posted: </p>
@@ -78,42 +78,13 @@
                 </div>
             </div>
             <div class="wo-pricing">
-                {% if winning_bid %}
-                <div class="wo-winning-bid">
-                    <div class="wo-winning-bid-details">
-                        <p>Winning Bid:</p>
-                        <span>₱{% filter intcomma %}{{ winning_bid.bid_amount|floatformat }}{% endfilter %}</span>
-                    </div>
-                    <div class="winning-bid-placed">
-                        Placed by: <div class="avt-name">
-                            <img class="mini-avatar" src="{{ winning_bid.bidder_id.avatar.url }}" alt="">
-                            {{ winning_bid.bidder_id.full_name }}
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-                {% if total_bids %}
-                <div class="wo-current-price">
-                    <div class="wo-highest-bid">
-                        <p>Highest Bid:</p>
-                        <span>₱{% filter intcomma %}{{ highest_bid.bid_amount|floatformat }}{% endfilter %}</span>
-                    </div>
-                    <div class="winning-bid-placed">
-                        Placed by:
-                        <div class="avt-name">
-                            <img class="mini-avatar" src="{{ highest_bid.bidder_id.avatar.url }}" alt="">
-                            {{ highest_bid.bidder_id.full_name }}
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
                 <div class="wo-bid-incre">
                     <p>Starting Bid:</p>
                     <span>₱{% filter intcomma %}{{ work_offer.min_pay|floatformat }}{% endfilter %}</span>
                 </div>
             </div>
             <div class="wo-bidding-input">
-                {% if request.user.is_authenticated %}
+                {% if request.user.is_authenticated and work_offer.created_by.id != request.user.mainuser.id and not is_user_has_pending %}
                 {% if winning_bid %}
                 <em class="wo-bd-closed">Bidding is already closed.</em>
                 {% else %}
@@ -138,8 +109,6 @@
                     </div>
                 </form>
                 {% endif %}
-                {% else %}
-                <p>Login to place bid</p>
                 {% endif %}
             </div>
         </div>
@@ -210,29 +179,29 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Date</th>
                                 <th>Details</th>
                                 <th>Bid</th>
                                 <th>Status</th>
+                                {% if request.user.is_authenticated and work_offer.created_by.id == request.user.mainuser.id  %}
                                 <th>Action</th>
+                                {% endif %}
                             </tr>
                         </thead>
                         <tbody>
                             {% for bid in bids %}
                             <tr class="wo-bid-tbl">
                                 <td>
-                                    <p>{{ bid.created_at.date }}</p>
-                                </td>
-                                <td>
                                     <div class="bid-tbl-dtl">
+                                        <div class="bid-tbl-sub-dtl">
+                                            <span>{{ bid.bidder_msg }}</span>
+                                            
+                                        </div>
                                         <div class="bid-tbl-dtl-pfp">
                                             <img class="mini-avatar" src="{{ bid.bidder_id.avatar.url }}" alt="">
-                                            <span>{{ bid.bidder_id.full_name }}</span>
+                                            <span>{{ bid.bidder_id.full_name }} <em>({{ bid.created_at|date:"SHORT_DATE_FORMAT" }})</em></span>
+                                            
                                         </div>
-                                        <div class="bid-tbl-sub-dtl">
-                                            <span>Description</span>
-                                            <span>{{ bid.bidder_msg }}</span>
-                                        </div>
+                                        
                                     </div>
                                 </td>
                                 <td>
@@ -241,9 +210,11 @@
                                 <td>
                                     <p>{{ bid.status }}</p>
                                 </td>
+                                {% if request.user.is_authenticated and work_offer.created_by.id == request.user.mainuser.id  %}
                                 <td>
                                     <a href="{% url 'view_bidding_details' work_offer.id bid.id %}">View</a>
                                 </td>
+                                {% endif %}
                             </tr>
                             {% endfor %}
                         </tbody>

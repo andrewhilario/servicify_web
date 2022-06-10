@@ -51,7 +51,7 @@
             <div class="srvc-dtl-sub-contents">
                 <div class="srvc-dtl-details">
                     <h3>{{ service.service_name }}</h3>
-                    <h4>{{ service.service_type.tag }} {{ service.service_type.name }}</h4>
+                    <h4>{{ service.service_type.name }}</h4>
                     <div class="srvc-dtl-sub-details">
                         <div class="srvc-dtl-img-sub-details">
                             <div class="srvc-dtl-img-container">
@@ -119,6 +119,7 @@
                 <p class="asc-msg"><strong>Message:</strong> <br>{{ client_acquired_service.client_msg }}</p>
             </div>
 
+            {% if not client_acquired_service_review %}
             <div class="service-review">
                 <form action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -181,6 +182,7 @@
                     </div>
                 </form>
             </div>
+            {% endif %}
 
             {% elif request.user.is_authenticated and service.created_by.id != request.user.mainuser.id %}
             {% for message in form_messages %}

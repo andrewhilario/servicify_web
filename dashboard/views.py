@@ -152,16 +152,20 @@ def work_offer_list(request):
     return render(request, 'includes/work-offer-list.html', context)
 
 def work_offer_bidding(request, work_offer_id):
+    is_user_has_pending = None
     work_offer = WorkOffer.objects.get(id=work_offer_id)
     client_work_posted = WorkOffer.objects.filter(created_by=work_offer.created_by).count()
     highest_bid = Bid.objects.filter(workoffer_id=work_offer.id).order_by('-bid_amount').first()
     total_bids = Bid.objects.filter(workoffer_id=work_offer.id).count()
-    active_bids = Bid.objects.filter(workoffer_id=work_offer.id, status='PENDING').count()
+    active_bids = Bid.objects.filter(workoffer_id=work_offer.id, status='PENDING')
     bids = Bid.objects.filter(workoffer_id=work_offer.id).order_by('-created_at').all()
     winning_bid = Bid.objects.filter(workoffer_id=work_offer.id, status='ACCEPTED').first()
     latest_bid = None
     if bids:
         latest_bid = bids[0]
+
+    if bids and request.user.is_authenticated:
+        is_user_has_pending = active_bids.filter(bidder_id=request.user.mainuser).first()
 
     if request.user.is_authenticated:
         form = CreateWorkOfferBidForm()
@@ -175,8 +179,8 @@ def work_offer_bidding(request, work_offer_id):
 
         bidForm = CreateWorkOfferBidForm(request.POST)
         if bidForm.is_valid():
-            if bidForm.cleaned_data["bid_amount"] < work_offer.min_pay:
-                form_errors.append('Bid amount must be greater than starting bid.')
+            if bidForm.cleaned_data["bid_amount"] < 0:
+                form_errors.append('Bid amount must be greater than zero.')
             else:
                 bid = bidForm.save(commit=False)
                 bid.bidder_id = request.user.mainuser
@@ -192,9 +196,10 @@ def work_offer_bidding(request, work_offer_id):
         'form_errors': form_errors if form_errors else None,
         'highest_bid': highest_bid,
         'total_bids': total_bids,
-        'active_bids': active_bids,
+        'active_bids': active_bids.count(),
         'latest_bid': latest_bid,
         'winning_bid': winning_bid,
+        'is_user_has_pending': is_user_has_pending,
         'bids': bids,
     }
     return render(request, 'includes/work-offer-bidding.html', context)
