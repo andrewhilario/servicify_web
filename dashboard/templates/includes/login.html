@@ -24,7 +24,11 @@
             </div>
             <div class="login-password">
                 <label for="password">{{ form.password.label }}</label>
-                {{ form.password }}
+                <div class="password-show">
+                    {{ form.password }} <i class="fa-solid fa-eye" id="show_pass"></i> <i class="fa-solid fa-eye-slash"
+                        id="hide_pass"></i>
+
+                </div>
             </div>
             <div class="login-buttons">
                 <input type="submit" value="Login">
@@ -41,6 +45,28 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    var show_pass = document.getElementById("show_pass");
+    var unshow_pass = document.getElementById("hide_pass");
+    function reveal() {
+        if (show_pass) {
+            show_pass.onclick = () => {
+                document.getElementById("password").type = "text";
+                show_pass.style.display = "none";
+                unshow_pass.style.display = "block";
+            }
+        }
+        if (unshow_pass) {
+            unshow_pass.onclick = () => {
+                document.getElementById("password").type = "password";
+                unshow_pass.style.display = "none";
+                show_pass.style.display = "block";
+            }
+        }
+
+    }
+    reveal()
+</script>
 
 {% include 'footer.html' %}
 {% endblock %}

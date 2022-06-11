@@ -144,6 +144,35 @@
     margin: 20px 0;
 }
 
+.password-show {
+    width: 100%;
+    position: relative !important;
+}
+
+#id_password {
+    position: relative !important;
+}
+
+#show_pass,
+#show_pass2 {
+    position: absolute;
+    top: 23%;
+    right: 2%;
+    cursor: pointer;
+    font-size: 1.4rem;
+    display: block;
+}
+
+#hide_pass,
+#hide_pass2 {
+    position: absolute;
+    top: 23%;
+    right: 2%;
+    cursor: pointer;
+    font-size: 1.4rem;
+    display: none;
+}
+
 @media screen and (max-width: 768px) {
     .login-template h1 {
         font-size: 1.5rem;
