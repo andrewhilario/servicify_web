@@ -1,0 +1,110 @@
+{% load static %}
+{% load custom_tags %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'css/includes/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'css/includes/service-marketplace.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+{% endblock %}
+{% block content %}
+{% load humanize %}
+{% include 'navbar.html' %}
+<script>
+    $(function () {
+        $('select').on('change', function () {
+            var url = $(this).val();
+            if (url) {
+                window.location = url;
+            }
+            return false;
+        });
+    });
+
+    $(function () {
+        var sort = GetURLParameter("sort");
+        var filter = GetURLParameter("filter");
+
+        if (sort) $(`#${sort}`).attr('selected', 'selected')
+        if (filter) $(`#${filter}`).attr('selected', 'selected')
+    });
+
+    function GetURLParameter(sParam) {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++) {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam) {
+                return sParameterName[1];
+            }
+        }
+    }
+</script>
+<div class="sm-list">
+    <h1>Service Marketplace</h1>
+    <div class="sm-sort">
+
+        <div class="sm-sort-section">
+
+            <span>Sort by:</span>
+            <div class="sm-sortings">
+                <div class="sm-sorting-href">
+                    <a href="?{% query_transform sort='new' %}">Newest</a>
+                    <a href="?{% query_transform sort='old' %}">Oldest</a>
+                </div>
+                <div class="sm-sortings-select">
+                    <select name="sort" id="price-filter" value="Price">
+                        <option value="none" selected disabled hidden>Price</option>
+                        <option id="price_desc" value="?{% query_transform sort='price_desc' %}">Price: High to Low
+                        </option>
+                        <option id="price_asc" value="?{% query_transform sort='price_asc' %}">Price: Low to High
+                        </option>
+                    </select>
+                    <select name="sort" id="service-filter" value="">
+                        <option value="none" selected disabled hidden>Categories</option>
+                        <option id="all" value="?{% query_transform filter='all' %}">All</option>
+                        {% for type in service_types %}
+                        <option id="{{ type.parsed_name }}" value="?{% query_transform filter=type.parsed_name %}">
+                            {{ type.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="sm-list-or-grid">
+
+            <button id="list"><i class="fa-solid fa-list"></i></button>
+            <button id="grid"><i class="fa-solid fa-table-cells-large"></i></button>
+            <button id="create"><a href="{% url 'createservice' %}">Create a Service</a></button>
+
+        </div>
+
+    </div>
+    <ul class="service-list">
+        {% for service in services %}
+        <li>
+            <a href="{% url 'service_details' service.id  %}">
+                <div class="work-offer-thumbnail-parent">
+                    {% for img in service.serviceimage_set.all %}
+                    <img src="{{ img.image.url }}" alt="">
+                    {% endfor %}
+                </div>
+                <p>{{service.service_name|truncatechars:16}}</p>
+                <p>{{service.service_type}}</p>
+                <div class="service-loc">
+                    {% if service.street %} <p><span class="service-loc-l" hidden>
+                            {{ service.location }}</span>{{service.street}}</p>
+                    {% elif service.sublocality %} <p><span class="service-loc-l" hidden>
+                            {{ service.location }}</span>{{service.sublocality}}</p>
+                    {% elif service.locality %} <p><span class="service-loc-l" hidden>
+                            {{ service.location}}</span>{{service.locality}}</p>
+                    {% endif %}
+                </div>
+            </a>
+        </li>
+        {% endfor %}
+
+    </ul>
+</div>
+<button id="scroll-top" class="scroll-top"><i class="fa-solid fa-arrow-up"></i></button>
+
+{% include 'footer.html' %}
+{% endblock %}

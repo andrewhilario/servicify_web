@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+
+# read .env
+env = environ.Env()
+environ.Env.read_env(".env")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,8 +31,10 @@ SECRET_KEY = 'django-insecure-=0#20@v@)j1ww(6d_1pik&m^jxrxf&a1$8fifi@n8hp-j@w0e_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost',
+                 '192.168.1.2', '192.168.100.39', '192.168.100.38']
 
+SECURE_SSL_REDIRECT = False
 
 # Application definition
 
@@ -38,7 +45,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'dashboard.apps.DashboardConfig',
+    'phonenumber_field',
+    'location_field.apps.DefaultConfig',
+    'sslserver',
+    # Social Auth App Django
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +62,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Social Auth App Django Middleware
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'servicify_web.urls'
@@ -65,10 +80,24 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'dashboard.views.avatar',
+                # Social Auth Context Processors
+                'social_django.context_processors.backends',  # <-- Here
+                'social_django.context_processors.login_redirect',
             ],
+            'libraries':{
+                'custom_tags': 'dashboard.custom_tags',
+            }
         },
     },
 ]
+# Social Auth Backends
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.github.GithubOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 WSGI_APPLICATION = 'servicify_web.wsgi.application'
 
@@ -94,7 +123,10 @@ DATABASES = {
 
         'HOST': '127.0.0.1',
 
-        'PORT': '5432',
+        # please change the port thanks
+
+        'PORT': '8080',
+        # 'PORT': '8080',
 
     }
 }
@@ -134,7 +166,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -146,6 +178,83 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' PROD
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # DEV
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # DEV
 
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/login'
+
+LOGOUT_URL = '/logout'
+LOGOUT_REDIRECT_URL = '/'
+
+# Login with Facebook
+SOCIAL_AUTH_FACEBOOK_KEY = '1003522293867363'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'e17900da592b9dd4d2ccbdc685c4e854'
+
+# SOCIAL_AUTH_FACEBOOK_KEY = '1676193802714052'  # App ID
+# SOCIAL_AUTH_FACEBOOK_SECRET = '2179108d13a09636bc9538d8883b8e2e'
+
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+# SOCIAL_AUTH_FACEBOOK_API_VERSION = 'v14.0'
+
+SOCIAL_AUTH_FIELDS_STORED_IN_SESSION = ['finish', 'user_instance', ]
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id, name, email, picture'
+}
+
+# python-social-auth pipeline
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.mail.mail_validation',
+    # 'social_core.pipeline.user.create_user',
+    'dashboard.pipeline.get_other_data',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+)
+
+
+# jango-phonenumber-field
+PHONENUMBER_DB_FORMAT = 'E164'
+PHONENUMBER_DEFAULT_REGION = 'PH'
+PHONENUMBER_DEFAULT_FORMAT = 'E164'
+
+# django-location-field
+LOCATION_FIELD_PATH = STATIC_URL + 'location_field'
+
+LOCATION_FIELD = {
+    'map.provider': 'google',
+    'map.zoom': 13,
+
+    'search.provider': 'google',
+    'search.suffix': '',
+
+    # Google
+    'provider.google.api': 'https://maps.google.com/maps/api/js',
+    'provider.google.api_key': env('GOOGLE_MAPS_API_KEY'),
+    'provider.google.api_libraries': '',
+    'provider.google.map.type': 'ROADMAP',
+
+    # Mapbox
+    'provider.mapbox.access_token': '',
+    'provider.mapbox.max_zoom': 18,
+    'provider.mapbox.id': 'mapbox.streets',
+
+    # OpenStreetMap
+    'provider.openstreetmap.max_zoom': 18,
+
+    # misc
+    'resources.root_path': LOCATION_FIELD_PATH,
+    'resources.media': {
+        'js': (
+            LOCATION_FIELD_PATH + '/js/form.js',
+        ),
+    },
+}
+
+# Set this true only when needed, it charges the API
+SMS_NOTIFICATION = False

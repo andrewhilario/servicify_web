@@ -1,8 +1,15 @@
 env/*
-env
+!env/Lib
+env/Lib/*
+!env/Lib/site-packages
+env/Lib/site-packages/*
+!env/Lib/site-packages/location_field
+.env
+.pem
 __pycache__/*
 __pycache__
 .vscode/*
 .vscode/
 *.jpg
+*.jpeg
 *.png

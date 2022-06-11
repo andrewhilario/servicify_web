@@ -1,0 +1,102 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="work-offer-page">
+    <a href="/">
+        <i class="fa-solid fa-caret-left"></i>
+        <span>Return to Homepage</span>
+    </a>
+    <h2>Work Offer Biddings</h2>
+    <div class="work-offer-header">
+        <div class="wo-entries">
+            <span>Show</span>
+            <select>
+                <option>All</option>
+                <option>10</option>
+                <option>25</option>
+                <option>50</option>
+                <option>100</option>
+            </select>
+            <span>entries</span>
+        </div>
+        <div class="wo-search-and-sort">
+            <div class="wo-sort-select">
+                <span>Sort by:</span>
+                <select>
+                    <option>Name</option>
+                    <option>Status</option>
+                    <option>Amount</option>
+                </select>
+            </div>
+            <div class="wo-search-bar">
+                <label for="searh">Search:</label>
+                <input type="text" name="search" placeholder="Search">
+            </div>
+        </div>
+    </div>
+    <div class="work-offer-table">
+        <table class="wo-table">
+            <thead>
+                <tr>
+                    <th>Name of the Cline</th>
+                    <th>Status</th>
+                    <th>Bid Amount</th>
+                    <th>Bid</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    <td><span>Juan Dela Cruz</span></td>
+                    <td><span style="color:#FF8400;">Pending</span></td>
+                    <td><span>&#8369;50.00</span></td>
+                    <td><span>&#8369;5,050.00
+                        </span></td>
+                    <td><span><a href="{% url 'view_work_offer_bidding' %}" id="view">View</a>/ <input type="button"
+                                value="Remove"></span>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td><span>Juan Dela Cruz</span></td>
+                    <td><span style="color:#FF8400;">Pending</span></td>
+                    <td><span>&#8369;50.00</span></td>
+                    <td><span>&#8369;5,100.00
+                        </span></td>
+                    <td><span><a href="{% url 'view_work_offer_bidding' %}">View</a>/ <input type="button"
+                                value="Remove"></span>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td><span>Juan Dela Cruz</span></td>
+                    <td><span style="color:#FF8400;">Pending</span></td>
+                    <td><span>&#8369;100.00</span></td>
+                    <td><span>&#8369;5,200.00
+                        </span></td>
+                    <td><span><a href="{% url 'view_work_offer_bidding' %}">View</a>/ <input type="button"
+                                value="Remove"></span>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td><span>Juan Dela Cruz</span></td>
+                    <td><span style="color:#FF8400;">Pending</span></td>
+                    <td><span>&#8369;200.00</span></td>
+                    <td><span>&#8369;5,400.00
+                        </span></td>
+                    <td><span><a href="{% url 'view_work_offer_bidding' %}">View</a>/ <input type="button"
+                                value="Remove"></span>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% include 'footer.html' %}
+{% endblock %}

@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap');
+
+body{
+    font-family: 'Raleway', sans-serif;
+}
+
+.work-offer-container{
+    width: 60%;
+    margin: auto;
+    padding: 70px;
+}
+
+.work-offer-title{
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.work-offer-flex{
+    display: flex;
+    padding: 24px;
+}
+
+.work-offer-details{
+    padding: 16px;
+}
+
+.work-offer-details-card{
+    padding: 16px;
+    display: flex;
+}
+
+.work-offer-details-card-img{
+    width: 144px;
+    height: 144px;
+    margin-right: 24px;
+}
+
+.work-offer-details-card-img img{
+    width: 100%;
+    border-radius: 50%;
+}
+
+.work-offer-card-details{
+    font-weight: 600;
+}
+
+.work-offer-card-title{
+    font-size: 24px;
+}
+
+.work-offer-client-name{
+    font-size: 20px;
+}
+
+.work-offer-card-values{
+    font-weight: 400;
+}
+
+.work-offer-details-thumbnail-img{
+    width: 100%;
+    height: 144px;
+    margin-bottom: 8px;
+}
+
+.work-offer-details-thumbnail-img img{
+    border-radius: 8px;
+    height: 100%;
+    width: 110%;
+}
+
+.work-offer-thumbnail-service-name{
+    font-weight: 600;
+}
+
+.work-offer-form{
+    width: 50%;
+    padding: 16px;
+    margin-left : 150px;
+}
+
+.work-offer-input{
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.work-offer-label{
+    display: block;
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.work-offer-container input, textarea{
+    width: 100%;
+    border: 2px solid black;
+    border-radius: 4px;
+    outline: none;
+    padding: 8px;
+}
+
+.work-offer-container textarea{
+    height: 128px;
+    font: 'Raleway', sans-serif;
+}
+
+.work-offer-form-button input[type="button"]{
+    width: 100%;
+    padding: 16px 8px;
+    background-color: #507c59;
+    border: 1px solid #507c59;
+    border-radius: 4px;
+
+    font: 16px 'Raleway', sans-serif;
+    font-weight: 600;
+    color: white;
+}

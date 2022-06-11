@@ -1,0 +1,236 @@
+.sm-list {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.sm-list h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    padding: 50px 20px;
+
+}
+
+.service-list {
+    display: grid;
+    grid-template-columns: 15% 15% 15% 15% 15% 15%;
+    width: 100%;
+    padding: 60px 0px;
+    gap: 20px;
+    justify-content: center;
+}
+
+.service-list li {
+    list-style: none;
+    transition: all .2s ease-in-out;
+
+
+}
+
+.service-list li a {
+    text-decoration: none;
+    color: black;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all .2s ease-in-out;
+}
+
+.service-list li a:hover {
+    transform: scale(1.03);
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    transition: all .2s ease-in-out;
+}
+
+
+
+.services .work-offer-thumbnail-parent img {
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+
+/* Work Offer List Sorting */
+
+.sm-sort {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sm-sort-section {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 10px;
+    align-items: center;
+}
+
+.sm-sort-section span {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.sm-sort-section a {
+    text-decoration: none;
+    color: black;
+    padding: 10px 30px;
+    border: 2px solid #7CB687;
+    border-radius: 10px;
+    font-weight: 500;
+    outline: none;
+}
+
+.sm-sort-section a:hover {
+    background-color: #7CB687;
+    color: white;
+    transition: all .2s ease-in;
+}
+
+.sm-sort-section select {
+    color: black;
+    padding: 10px;
+    border: 2px solid #7CB687;
+    outline: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: 'Raleway', sans-serif;
+    cursor: pointer;
+}
+
+
+
+.sm-list-or-grid {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10px;
+}
+
+.sm-list-or-grid button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    outline: none;
+    border: 2px solid #7CB687;
+    border-radius: 10px;
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+    font-size: 1.5rem;
+    background-color: white;
+}
+
+.sm-list-or-grid button:hover {
+    color: white;
+    background-color: #7CB687;
+    transition: all .2s ease-in;
+}
+
+.sm-list-or-grid button:hover a {
+    color: white;
+    transition: all .2s ease-in;
+}
+
+.sm-list-or-grid a {
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    font-family: 'Raleway', sans-serif;
+    outline: none;
+}
+
+.sm-sortings {
+    display: flex;
+    align-items: center;
+
+}
+
+.sm-sorting-href {
+    margin: 0 10px;
+}
+
+.sm-sortings-select {
+    margin: 0 10px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .sm-list {
+        width: 100%;
+    }
+
+    .sm-list h1 {
+        font-size: 2rem;
+        padding: 45px 10px;
+    }
+
+    .sm-sort {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .sm-sort-section {
+        width: 100%;
+        flex-direction: column;
+        padding: 15px 5px;
+    }
+
+    .sm-sort-section span {
+        margin-left: 20px;
+        align-self: start;
+    }
+
+    .sm-sortings {
+        padding: 10px 10px;
+        width: 100%;
+        flex-direction: column;
+        align-items: start;
+    }
+
+
+    .sm-sorting-href {
+        margin: 20px 10px;
+    }
+
+    .sm-list-or-grid {
+        width: 100%;
+        padding: 5px 25px;
+    }
+
+    .sm-list-or-grid button {
+        padding: 15px 25px;
+    }
+
+    #create {
+        background-color: #7CB687;
+
+    }
+
+    #create a {
+        color: white;
+    }
+
+    .service-list {
+        width: 90%;
+        grid-template-columns: auto !important;
+        margin: 0 auto;
+    }
+
+    .service-list li {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+}

@@ -1,0 +1,547 @@
+.profile_page {
+    width: 100%;
+
+    display: block;
+}
+
+.profile-header-image {
+    width: 100%;
+    height: 30vh;
+}
+
+.profile-header-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-picture-outer {
+    width: 250px;
+    height: 250px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    margin: -80px auto;
+    z-index: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-picture {
+    width: 90%;
+    height: 90%;
+    background-color: white;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profile-header-info {
+    width: 50%;
+    height: 40vh;
+    background-color: #749E7D;
+    margin: 0 auto;
+    margin-bottom: 5%;
+    border-radius: 20px;
+
+}
+
+.profile-form {
+    padding: 40px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.profile-name {
+    margin-top: 12%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-name p {
+    font-size: 2rem;
+    font-weight: bold;
+
+}
+
+.profile-name span {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.profile-phone {
+    margin-top: 3%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-phone p {
+    font-size: 2.5rem;
+    font-weight: bold;
+
+}
+
+.profile-phone span {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.profile-email {
+    margin: 3% auto;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-email p {
+    font-size: 2rem;
+    font-weight: bold;
+
+}
+
+.profile-email span {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.facebook-connect {
+    margin-top: 3%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    background-color: #3B5998;
+    width: 400px;
+    height: 50px;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px
+}
+
+.facebook-connect a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.facebook-connect a i {
+    margin-right: 10px;
+    color: #ffffff;
+    text-align: center;
+
+}
+
+.reviews {
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 5%;
+}
+
+
+::-webkit-scrollbar {
+    width: 5px;
+    overflow: hidden;
+}
+
+::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ffffff;
+}
+
+.reviews #load_more {
+    padding: 10px 20px;
+    background-color: #749E7D;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    font-size: 1.2rem;
+    font-family: 'Raleway';
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    margin: 0 auto;
+    display: flex;
+}
+
+#work_offer_rev {
+    height: 75%;
+    width: 100%;
+    padding: 0px 10px;
+    overflow: hidden;
+    transition: all .5s ease-in-out;
+}
+
+#load_less {
+    padding: 10px 20px;
+    background-color: #749E7D;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    font-size: 1.2rem;
+    font-family: 'Raleway';
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    margin: 0 auto;
+    display: none;
+}
+
+#load_more:hover,
+#load_less:hover {
+    background-color: #377c46;
+}
+
+
+.reviews-header {
+    text-align: center;
+    margin: 30px auto;
+}
+
+.reviews-content {
+    width: 100%;
+    background-color: #749E7D;
+    margin: 0 auto;
+    margin-bottom: 10%;
+    border-radius: 20px;
+    display: flex;
+    color: white;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.service-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.name-and-reviews {
+    margin: 20px auto;
+}
+
+.name-and-reviews a {
+    color: white;
+    text-decoration: none;
+}
+
+.review-sub-contents {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+#profile-pic {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin: 20px 10px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.review-sub-contents-2 {
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.review-sub-content {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.reviews-sub-contents-3 {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin: 20px;
+}
+
+
+
+.pic-and-reviews img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    padding: 10px;
+}
+
+.review {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.review img {
+    width: 65px;
+    height: 65px;
+    object-fit: cover;
+    padding: 10px 0;
+}
+
+/* Client side */
+.work-posted {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 5px 20px;
+    color: rgb(255, 255, 255);
+}
+
+.work-posted-contents {
+    margin: 15px 10px;
+    width: 100%;
+    background-color: #749E7D;
+    border-radius: 10px;
+}
+
+.work-posted-contents i {
+    color: rgb(0, 255, 98);
+    font-size: .8rem;
+    padding: 25px 20px;
+
+}
+
+.work-offered-and-date {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 20px;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.work-posted-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: .8rem;
+    padding: 25px 20px;
+}
+
+.work-posted-pfp {
+    padding-right: 15px;
+}
+
+.wp-pfp-container {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: 2px solid #19221b;
+}
+
+.wp-pfp-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%
+}
+
+.work-posted-details-section {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.work-posted-details-section h4,
+.wpd-rating {
+    padding: 5px 0px;
+}
+
+.work-posted-details-section p {
+    padding: 10px 0px;
+    width: 70%;
+}
+
+.work-posted-details-price {
+    width: 55%;
+    font-size: 1.4rem;
+}
+
+
+@media screen and (max-width: 768px) {
+    .profile-picture-outer {
+        width: 125px;
+        height: 125px;
+    }
+
+    .profile-header-info {
+        width: 80%;
+
+        background-color: #749E7D;
+        margin: 0 auto;
+        margin-bottom: 5%;
+        margin-top: 15%;
+        border-radius: 20px;
+    }
+
+    .profile-form {
+        width: 100%;
+        margin: 0 auto;
+        margin-bottom: 10%;
+        margin-top: 15%;
+        border-radius: 20px;
+    }
+
+    .profile-name {
+        margin-top: 20%;
+    }
+
+    .profile-phone,
+    .profile-email {
+        margin-top: 10%;
+    }
+
+    .profile-form p {
+        font-size: 1.4rem;
+        font-weight: bold;
+    }
+
+    .profile-form span {
+        font-size: 1rem;
+
+    }
+
+    .facebook-connect {
+        margin-top: 15% !important;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        background-color: #3B5998;
+        width: 80%;
+        height: 40px;
+        margin: 0 auto;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px
+    }
+
+    .facebook-connect a {
+        color: white;
+        text-decoration: none;
+        display: flex;
+        text-align: center;
+
+    }
+
+    .facebook-connect a p {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .facebook-connect a i {
+        margin-right: 10px;
+        color: #ffffff;
+        text-align: center;
+    }
+
+    .reviews {
+        width: 80%;
+        margin: 0 auto;
+        margin-bottom: 5%;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .reviews-header h2 {
+        font-size: 1.2rem !important;
+    }
+
+    .reviews-content {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .review-sub-contents {
+        width: 90%;
+        margin: 0 auto;
+        flex-direction: column;
+    }
+
+    #profile-pic {
+
+        margin: 20px auto;
+
+    }
+
+    .review-sub-content {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .reviews-sub-contents-3 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .review {
+        padding: 10px;
+    }
+
+    .review img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .work-posted {
+        grid-template-columns: auto;
+    }
+
+    .work-posted-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 1rem;
+        padding: 15px;
+    }
+
+    .work-posted-pfp {
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    .work-posted-details-section {
+        text-align: center;
+    }
+
+    .work-posted-details-section p {
+        margin: 0 auto;
+        font-size: .9rem;
+    }
+
+    .work-posted-details-price {
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .service-details {
+        flex-direction: column;
+    }
+
+    #work_offer_rev {
+        height: 138vh !important;
+        overflow: hidden;
+    }
+}

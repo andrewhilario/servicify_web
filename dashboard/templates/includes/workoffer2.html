@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="work-offer-container">
+    <div class="work-offer-title">
+        <h1>Place an offer</h1>
+    </div>
+    <div>
+        <p class="success-msg">Your offer to work has been<br>sent to client</p>
+    </div>
+    <div class="work-offer-flex-1">
+        <div class="work-offer-details">
+            <div class="work-offer-details-card">
+                <div class="work-offer-details-card-img">
+                    <img src="{% static 'images/image-default.png' %}" alt="">
+                </div>
+                <div class="work-offer-card-details">
+                    <div class="work-offer-card-title">Client Details</div>
+                    <div class="work-offer-client-name">Client Name</div>
+                    <div class="">
+                        <p>Join Date: <span class="work-offer-card-values">2/22/22</span></p>
+                        <p>Location: <span class="work-offer-card-values">Pasig City</span></p>
+                        <p>Works Posted: <span class="work-offer-card-values">3</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+{% endblock %}    

@@ -1,0 +1,68 @@
+{% load static %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'css/includes/work-offer.css' %}">
+<link rel="stylesheet" href="{% static 'css/includes/work-offer-bidding.css' %}">
+{% endblock %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="view-work-offer-page">
+    <a href="{% url 'work_offer_bidding' bid.workoffer_id.id %}">
+        <i class="fa-solid fa-caret-left"></i>
+        <span>Return to {{ bid.workoffer_id.work_name }}</span>
+    </a>
+    <h2>{{ bid.bidder_id.full_name }}'s bid</h2>
+    <p>Bid amount: &#8369;{{ bid.bid_amount|floatformat:"2" }}</p>
+    <p>Message: <br> {{ bid.bidder_msg }}</p>
+    <div class="view-work-offer-page-contents">
+        <div class="vwo-profile">
+            <div class="vwo-pfp">
+                <img src="{{ bid.bidder_id.avatar.url }}" alt="">
+            </div>
+            <div class="vwo-pfp-details">
+                <div class="vwo-pfp-name">
+                    <h3>{{ bid.bidder_id.full_name }}</h3>
+                    <span>Bidder's Name</span>
+                </div>
+                <div class="vwo-pfp-other-details">
+                    <ul>
+                        <li>
+                            <p>Join date: </p>
+                            <span>{{ bid.bidder_id.user.date_joined.date }}</span>
+                        </li>
+                        <li>
+                            <p>Location: </p>
+                            <span></span>
+                        </li>
+                        <li>
+                            <p>Service: </p>
+                            <span>{{ bidder_service.service_name }}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if form_error %}
+    <div class="vwo-error">
+        <em>{{ form_error }}</em>
+    </div>
+    {% else %}
+    {% if bid.status == 'PENDING' %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="view-work-offer-btns">
+            <input type="submit" value="Accept Bid" name="accept-bid">
+            <input type="submit" value="Decline Bid" name="decline-bid">
+        </div>
+    </form>
+    {% else %}
+    <div class="view-work-offer-btns">
+        <h3>{{ bid.status }}</h3>
+    </div>
+    {% endif %}
+    {% endif %}
+</div>
+
+
+{% include 'footer.html' %}
+{% endblock %}

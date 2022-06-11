@@ -1,0 +1,96 @@
+.contactus-template {
+    width: 100%;
+    height: 50vh;
+    background-image: url('/static/images/background-homepage.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.contactus-title-header {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contactus-title-header p {
+    font-weight: bold;
+    font-size: 100px;
+    text-align: center;
+    color: white;
+
+}
+
+.contactus-container {
+    width: 90%;
+    margin: 100px;
+    padding: 100px;
+    padding-left: 20px;
+    display: flex;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.contactus-form {
+    width: 70%;
+    padding: 16px;
+    margin-left: 150px;
+}
+
+.contactus-form p {
+    font-weight: bold;
+    font-size: 35px;
+    margin-bottom: 80px;
+    font-family: "Raleway";
+}
+
+.contactus-input {
+    width: 80%;
+    margin-bottom: 25px;
+}
+
+.contactus-container input,
+textarea {
+    width: 100%;
+    border: 2px solid black;
+    border-radius: 10px;
+    outline: none;
+    padding: 8px;
+    font-size: 20px;
+    font-family: "Raleway";
+}
+
+.contactus-container textarea {
+    height: 200px;
+    font-family: "Raleway";
+    resize: none;
+}
+
+.contactus-form-button input[type="button"] {
+    width: 30%;
+    padding: 16px 8px;
+    background-color: #507c59;
+    border: 1px solid #507c59;
+    border-radius: 10px;
+
+    font: 18px 'Raleway', sans-serif;
+    font-weight: 600;
+    color: white;
+}
+
+.contactus-img {
+    width: 80%;
+    padding: 70px;
+}
+
+.contactus-img-container {
+    width: 400px;
+    height: 300px;
+    margin: 5px;
+}
+
+.contactus-img-container img {
+    width: 180%;
+    height: 160%;
+}

@@ -1,0 +1,214 @@
+{% load static %}
+{% load humanize %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'css/includes/profile-page.css' %}">
+<link rel="stylesheet" href="{% static 'css/includes/dashboard.css' %}">
+{% endblock %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="profile_page">
+    <div class="profile-section">
+        <div class="profile-header-image">
+            <img src="{% static 'images/background-homepage.png'%}" alt="">
+        </div>
+        <div class="profile-picture-outer">
+            <div class="profile-picture">
+                <img src="{{ user.mainuser.avatar.url }}" alt="">
+            </div>
+        </div>
+        <div class="profile-header-info">
+            <div class="profile-form">
+                <div class="profile-name">
+                    <p>{{user.mainuser.full_name}}</p>
+                </div>
+                <div class="profile-email">
+                    <!-- <p>{{user.date_joined}}</p> -->
+                    <span>Joined {{ user.date_joined|date:'F o' }}</span>
+                </div>
+                <div class="facebook-connect">
+                    <a href="#">
+                        <i class="fa-brands fa-facebook"></i>
+                        <p>Verified</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services -->
+        <div class="reviews" id="services_rev">
+            <div class="reviews-header">
+                <h2>{{user.mainuser.full_name}}'s Services</h2>
+            </div>
+            {% for srv in services %}
+            <div class="reviews-content">
+                <div class="service-details">
+                    <div class="review-sub-contents">
+                        <div class="reviews-sub-contents-2">
+                            <!-- service name -->
+                            <div class="name-and-reviews">
+                                <a href="{% url 'service_details' srv.service.id  %}">
+                                    <p>{{srv.service.service_name}} (<i class="fa fa-star checked"
+                                            style="color: orange;"></i>
+                                        {%if srv.avg_rating is not None %}
+                                        {{ srv.avg_rating }}
+                                        {% else %}
+                                        0
+                                        {% endif %}
+                                        )</p>
+                                </a>
+                            </div>
+                            <!-- service price -->
+                            <div class="">
+                                <p>₱{% filter intcomma %}{{ srv.service.price|floatformat }}{% endfilter %}</p>
+                            </div>
+                            <!-- service location -->
+                            <div class="">
+                                {% if srv.service.street %} <p><span class="service-loc-l" hidden>{{
+                                        srv.service.location }}</span>{{srv.service.street}}</p>
+                                {% elif srv.service.sublocality %} <p><span class="service-loc-l" hidden>{{
+                                        srv.service.location }}</span>{{srv.service.sublocality}}</p>
+                                {% elif srv.service.locality %} <p><span class="service-loc-l" hidden>{{
+                                        srv.service.location }}</span>{{srv.service.locality}}</p>
+                                {% endif %}
+                            </div>
+                            <!-- service description -->
+                            <div class="review">
+                                <p>{{ srv.service.description }}</p>
+                            </div>
+                            <!-- service clients -->
+                            <div class="">
+                                <p>Clients: {{ srv.total_clients }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-sub-content">
+                        <div class="reviews-sub-contents-3">
+                            {% for img in srv.service.serviceimage_set.all|slice:":1" %}
+                            <div class="pic-and-reviews">
+                                <img src="{{ img.image.url }}" alt="">
+                            </div>
+                            {% endfor %}
+
+                            <div class="review">
+                                {% for img in srv.service.serviceimage_set.all %}
+                                <img src="{{ img.image.url }}" alt="">
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Work Offers -->
+        <div class="reviews">
+            <div class="reviews-header">
+                <h2>{{user.mainuser.full_name}}'s Work Offers</h2>
+            </div>
+            <div id="work_offer_rev">
+                {% for work in work_offers %}
+                <div class="reviews-content">
+                    <div class="service-details">
+                        <div class="review-sub-contents">
+                            <div class="reviews-sub-contents-2">
+                                <!-- workoffer name -->
+                                <div class="name-and-reviews">
+                                    <a href="{% url 'work_offer_bidding' work.work_offer.id  %}">
+                                        <p>{{ work.work_offer.work_name }} ({{ work.work_offer.status }})</p>
+                                    </a>
+                                </div>
+                                <!-- workoffer status -->
+                                <div class="name-and-reviews">
+                                    <p>(Total Bids: {{ work.total_bids }})</p>
+                                </div>
+                                <!-- workoffer starting bid -->
+                                <div class="">
+                                    <p>Starting Bid: ₱{% filter intcomma %}{{ work.work_offer.min_pay|floatformat }}
+                                        {% endfilter %}</p>
+                                </div>
+                                <!-- work offer description -->
+                                <div class="review">
+                                    <p>{{ work.work_offer.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="review-sub-content">
+                            <div class="reviews-sub-contents-3">
+                                {% for img in work.work_offer.workofferimage_set.all|slice:":1" %}
+                                <div class="pic-and-reviews">
+                                    <img src="{{ img.image.url }}" alt="">
+                                </div>
+                                {% endfor %}
+
+                                <div class="review">
+                                    {% for img in work.work_offer.workofferimage_set.all %}
+                                    <img src="{{ img.image.url }}" alt="">
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button id="load_more">Show More</button>
+            <button id="load_less">Show less</button>
+
+        </div>
+
+    </div>
+    <button id="scroll-top" class="scroll-top"><i class="fa-solid fa-arrow-up"></i></button>
+</div>
+<script>
+    var load_more = document.getElementById('load_more');
+    var load_less = document.getElementById('load_less');
+    var work_offer_rev = document.getElementById('work_offer_rev');
+
+    if (load_more) {
+        load_more.addEventListener('click', () => {
+            work_offer_rev.style.height = '150%';
+
+            work_offer_rev.style.overflowY = 'scroll';
+            work_offer_rev.style.transition = 'all .5s ease-in-out';
+            load_more.style.display = 'none';
+            load_less.style.display = 'block';
+
+            if (window.matchMedia("(max-width: 768px)").matches) {
+                work_offer_rev.style.height = '200vh !important';
+                work_offer_rev.style.overflowY = 'scroll';
+                work_offer_rev.style.transition = 'all .5s ease-in-out';
+                load_more.style.display = 'none';
+                load_less.style.display = 'block';
+                console.log('mobile');
+            }
+
+        })
+    }
+    if (load_less) {
+        load_less.addEventListener('click', () => {
+            work_offer_rev.style.height = '75%';
+
+
+            work_offer_rev.style.overflow = 'hidden';
+            work_offer_rev.style.transition = 'all .5s ease-in-out';
+            load_less.style.display = 'none';
+            load_more.style.display = 'block';
+            work_offer_rev.scroll({ top: 0, left: 0, behavior: 'smooth' });
+            window.scroll({ top: 1650, left: 0, behavior: 'smooth' });
+            if (window.matchMedia("(max-width: 768px)").matches) {
+                work_offer_rev.scroll({ top: 0, left: 0, behavior: 'smooth' });
+                window.scroll({ top: 1650, left: 0, behavior: 'smooth' });
+                work_offer_rev.style.height = '68vh ';
+                work_offer_rev.style.overflow = 'hidden';
+                work_offer_rev.style.transition = 'all .5s ease-in-out';
+                load_less.style.display = 'none';
+                load_more.style.display = 'block';
+            }
+        })
+    }
+
+</script>
+{% include 'footer.html' %}
+{% endblock %}

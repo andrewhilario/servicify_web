@@ -1,7 +1,92 @@
-{% extends 'index.html' %}
 {% load static %}
+{% load humanize %}
+{% load custom_tags %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'css/includes/dashboard.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+{% endblock %}
 {% block content %}
 {% include 'navbar.html' %}
+<script>
+
+    var distance = (lat1, lon1, lat2, lon2, unit) => {
+        if ((lat1 == lat2) && (lon1 == lon2)) {
+            return 0;
+        }
+        else {
+            var radlat1 = Math.PI * lat1 / 180;
+            var radlat2 = Math.PI * lat2 / 180;
+            var theta = lon1 - lon2;
+            var radtheta = Math.PI * theta / 180;
+            var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+            if (dist > 1) {
+                dist = 1;
+            }
+            dist = Math.acos(dist);
+            dist = dist * 180 / Math.PI;
+            dist = dist * 60 * 1.1515;
+            if (unit == "K") { dist = dist * 1.609344 }
+            if (unit == "N") { dist = dist * 0.8684 }
+            return dist;
+        }
+    }
+
+
+    function getDistance() {
+        unset = 0
+        elements = document.getElementsByClassName("service-loc-l")
+        for (let e of elements) {
+            if (e.hidden && e.innerText.length > 0) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    let lat = position.coords.latitude;
+                    let long = position.coords.longitude;
+                    console.log(lat, long)
+                    let srvDist = e.innerText.split(",")
+                    console.log(srvDist)
+                    console.log(e.innerText)
+
+                    let dist = distance(lat, long, srvDist[0], srvDist[1], "K").toFixed(2)
+
+                    if (dist) {
+                        e.innerText = `${dist}km away - `
+                        e.hidden = false
+                    }
+                });
+            } else {
+                unset++;
+            }
+        }
+
+        if (unset) {
+            setTimeout(() => {
+                getDistance();
+            }, 100)
+        }
+    }
+
+    $(document).ready(function () {
+        navigator.permissions.query({ name: 'geolocation' }).then(function (result) {
+            if (result.state == 'granted') {
+                getDistance()
+            } else if (result.state == 'prompt') {
+                getDistance()
+            } else if (result.state == 'denied') {
+                window.alert("Please allow location access.");
+                navigator.permissions.query({ name: 'geolocation' })
+            }
+
+            result.onchange(() => {
+                if (result.state == 'granted') {
+                    getDistance()
+                } else if (result.state == 'denied') {
+                    window.alert("Please allow location access.");
+                    navigator.permissions.query({ name: 'geolocation' })
+                }
+            })
+        });
+    });
+
+</script>
 <div class="dashboard-template-1">
     <div class="dashboard-title-header">
         <h1>From Workers,</h1>
@@ -11,114 +96,89 @@
         <h3>Make your craft known.</h3>
     </div>
     <div class="dashboard-setup-service-profile">
-        <a href="#">
+
+        <a href="{% url 'custom_logout' %}">
             Setup a Service Profile
         </a>
+
     </div>
 </div>
 <div class="dashboard-template-2">
     <div class="dashboard-work-offers">
         <h1>Work offers</h1>
         <ul class="offers">
-            <li><a href="">
-                    <img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Computer Repair</p>
-                    <span>Bid Starts at &#8369;5000</span>
-                </a></li>
-            <li><a href=""><img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Room Sanitation</p>
-                    <span>Bid Starts at &#8369;5000</span>
-                </a></li>
-            <li><a href="">
-                    <img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Computer Repair</p>
-                    <span>Bid Starts at &#8369;5000</span>
-                </a></li>
-            <li><a href="">
-                    <img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Computer Repair</p>
-                    <span>Bid Starts at &#8369;5000</span>
-                </a></li>
-            <li><a href="">
-                    <img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Room Sanitation</p>
-                    <span>Bid Starts at &#8369;5000</span>
-                </a></li>
+            {% for work_offer in work_offers reversed %}
+            <li>
+                <a href="{% url 'work_offer_bidding' work_offer.id  %}">
+                    <div class="work-offer-thumbnail-parent">
+                        {% for img in work_offer.workofferimage_set.all %}
+                        <img src="{{ img.image.url }}" alt="">
+                        {% endfor %}
+                    </div>
+                    <p>{{ work_offer.work_name }}</p>
+                    <span>Bid Starts at &#8369;{% filter intcomma %}{{ work_offer.min_pay|floatformat }}{% endfilter %}
+                    </span>
+                </a>
+            </li>
+            {% endfor %}
+            <li class="dashboard-show-more">
+                <a href="workoffer" class="dashboard-show-href">
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                    <p>Show more</p>
+                </a>
+            </li>
         </ul>
     </div>
     <div class="dashboard-services">
         <h1>Services</h1>
         <ul class="services">
-            <li><a href="">
-                    <img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Miguel's Notary Services</p>
-                    <span>2.1km away - Tondo</span>
-                </a></li>
-            <li><a href="">
-                    <img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Miguel's Notary Services</p>
-                    <span>2.1km away - Tondo</span>
-                </a></li>
-            <li><a href=""><img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Miguel's Notary Services</p>
-                    <span>2.1km away - Tondo</span>
-                </a></li>
-            <li><a href=""><img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Miguel's Notary Services</p>
-                    <span>2.1km away - Tondo</span>
-                </a></li>
-            <li><a href=""><img src="{% static 'images/image-default.png' %}" alt="">
-                    <p>Miguel's Notary Services</p>
-                    <span>2.1km away - Tondo</span>
-                </a></li>
+            {% for service in services %}
+            <li>
+                <a href="{% url 'service_details' service.id  %}">
+                    <div class="work-offer-thumbnail-parent">
+                        {% for img in service.serviceimage_set.all %}
+                        <img src="{{ img.image.url }}" alt="">
+                        {% endfor %}
+                    </div>
+                    <p>{{service.service_name|truncatechars:16}}</p>
+                    <p>{{service.service_type}}</p>
+                    <div class="service-loc">
+                        {% if service.street %} <p><span class="service-loc-l" hidden>{{ service.location
+                                }}</span>{{service.street}}</p>
+                        {% elif service.sublocality %} <p><span class="service-loc-l" hidden>{{ service.location
+                                }}</span>{{service.sublocality}}</p>
+                        {% elif service.locality %} <p><span class="service-loc-l" hidden>{{ service.location
+                                }}</span>{{service.locality}}</p> {% endif %}
+                    </div>
+                </a>
+            </li>
+            {% endfor %}
+            <li class="dashboard-show-more-2">
+                <a href="service-marketplace">
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                    <p>Show more</p>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
 <div class="dashboard-template-3">
     <h1>Top Categories</h1>
     <div class="dashboard-categories">
+        {% for type in categories %}
         <div class="categories">
-            <a href="">
-                <img src="{% static 'images/electronic.png' %}" alt="">
-                <p>Electronics</p>
+            <a href="/service-marketplace/?{% query_transform filter=type.parsed_name %}">
+                <img src="{{ type.image.url }}" alt="">
+                <p>{{ type.name }}</p>
             </a>
         </div>
-        <div class="categories">
-            <a href="">
-                <img src="{% static 'images/health.png' %}" alt="">
-                <p>Health Service
-                </p>
-            </a>
-        </div>
-        <div class="categories">
-            <a href="">
-                <img src="{% static 'images/automotive.png' %}" alt="">
-                <p>Automotive</p>
-            </a>
-        </div>
-        <div class="categories">
-            <a href="">
-                <img src="{% static 'images/legal.png' %}" alt="">
-                <p>Legal Services</p>
-            </a>
-        </div>
-        <div class="categories">
-            <a href="">
-                <img src="{% static 'images/event.png' %}" alt="">
-                <p>Event Services</p>
-            </a>
-        </div>
-        <div class="categories">
-            <a href="">
-                <img src="{% static 'images/well-being.png' %}" alt="">
-                <p>Wellbeing</p>
-            </a>
-        </div>
+        {% endfor %}
     </div>
 </div>
 <div class="dashboard-template-4">
     <h1>Join our mailing list for the updates</h1>
     <form action="">
+        {% csrf_token %}
         <div class="mailing-section">
             <label for="email">Email</label>
             <input type="email">

@@ -1,0 +1,846 @@
+.wo-bidding {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.wo-bidding a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.wo-bidding a i,
+.wo-bidding a span {
+    padding: 40px 0px;
+}
+
+.wo-bidding h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 30px 0px;
+}
+
+.wo-contents {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 5%;
+}
+
+.wo-image-view {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.wo-main-img {
+    width: 100%;
+    height: 450px;
+    border-radius: 40px;
+    margin: 20px;
+}
+
+.wo-main-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wo-img-thumbs {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    align-self: start;
+    margin-top: 20px;
+}
+
+.wo-sub-img {
+    width: 100px;
+    height: 70px;
+    border-radius: 5px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.wo-sub-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wo-sub-img:hover img {
+    filter: none !important;
+    transition: all .4s ease-in-out;
+}
+
+.wo-sub-img:nth-child(2) img {
+    filter: grayscale(100%);
+}
+
+.wo-sub-img:nth-child(3) img {
+    filter: grayscale(100%);
+}
+
+.wo-details-and-bid {
+    width: 40%;
+    margin: 0 50px;
+}
+
+.wo-sub-contents {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-self: start;
+}
+
+.wo-details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.wo-details h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.wo-sub-details {
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.wo-img-sub-details {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.wo-img-container {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #749E7D;
+}
+
+.wo-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #749E7D;
+}
+
+
+.wo-content-sub-details ul {
+
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.wo-content-sub-details ul li {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.wo-content-sub-details ul li p {
+    font-weight: bold;
+}
+
+.wo-time-limit {
+    width: 30%;
+}
+
+.wb-closed {
+    width: 100%;
+    text-align: center;
+    margin: 15px 0px;
+}
+
+.wb-closed span {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: rgb(255, 55, 55);
+    text-align: center;
+}
+
+.wo-timer {
+    width: 100%;
+    height: 100px;
+    background-color: #749E7D;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    color: white;
+}
+
+.wo-timer i {
+    text-align: center;
+    width: 100%;
+    font-size: 2rem;
+    margin: 10px 0;
+    color: white;
+}
+
+.wo-timer p {
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.wo-manage {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: 30px auto;
+}
+
+.wo-manage button {
+    padding: 20px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #749E7D;
+    outline: none;
+    font-family: 'Raleway';
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.wo-manage button:hover {
+    background-color: #24503a;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.wo-description {
+    width: 100%;
+    padding: 20px 0;
+}
+
+.wo-description span {
+    margin-right: 10px;
+}
+
+.wo-winning-bid {
+    width: 100%;
+    padding: 20px 0;
+
+}
+
+.winning-bid-placed {
+    margin: 20px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.avt-name {
+    display: flex;
+    align-items: center;
+}
+
+.avt-name img {
+    margin: 0px 15px;
+}
+
+.wo-winning-bid-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0px;
+}
+
+.wo-winning-bid-details p,
+.wo-winning-bid-details span {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.wo-pricing {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.wo-current-price {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.wo-current-price p {
+    font-size: 2.3rem;
+    font-weight: bold;
+    margin-right: 10px
+}
+
+.wo-current-price span {
+    font-size: 2.3rem;
+    font-weight: bold;
+    margin-right: 10px
+}
+
+.wo-highest-bid {
+    display: flex;
+    justify-content: space-between;
+}
+
+.wo-bid-incre {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.wo-bid-incre span {
+
+    margin-right: 10px
+}
+
+.wo-bidding-input {
+    width: 100%;
+    display: flex;
+    margin: 0;
+    /* justify-content: space-around; */
+}
+
+.wo-bidding-input form {
+    width: 100%;
+}
+
+.wo-bid-input {
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+
+.wo-bid-input p {
+    position: absolute;
+    top: 15%;
+    left: 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.wo-bid-input input {
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border: 2px solid #749E7D;
+    padding-left: 35px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: 10px;
+    font-family: 'Raleway';
+}
+
+.wo-bd-closed {
+    width: 100%;
+    text-align: center;
+    margin: 15px 0px;
+    color: red;
+    font-weight: bold;
+}
+
+.wo-bid-input button {
+    width: 40%;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    background-color: #749E7D;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0 50px;
+    text-align: center;
+    cursor: pointer;
+    font-family: 'Raleway';
+    transition: all 0.3s ease-in-out;
+    outline: none;
+}
+
+.wo-bid-input button:hover {
+    background-color: #24503a;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.wo-bid-message {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+
+}
+
+#bidder_msg {
+    width: 100%;
+    border: 2px solid #7CB687;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    resize: none;
+    font-family: 'Raleway';
+    padding: 10px;
+    outline: none;
+}
+
+/* bidders */
+
+.wo-bidders {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    margin: 100px auto;
+}
+
+.wo-active-and-total-bids {
+    width: 35%;
+    height: 100%;
+    color: white;
+
+    border-radius: 20px;
+}
+
+.wo-active-bids {
+    width: 100%;
+    display: flex;
+    padding: 40px 0;
+    justify-content: space-around;
+    margin: 10px auto;
+    align-items: center;
+    background-color: #7CB687;
+    border-radius: 20px;
+}
+
+.wo-active-bids i {
+    font-size: 5rem;
+}
+
+.wo-sub-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+}
+
+.wo-sub-content span {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.wo-sub-content p {
+    text-align: center;
+    font-weight: 500;
+}
+
+.wo-total-bids {
+    width: 100%;
+    display: flex;
+    padding: 40px 0;
+    justify-content: space-around;
+    margin: 10px auto;
+    align-items: center;
+    background-color: #7CB687;
+    border-radius: 20px;
+}
+
+
+.wo-total-bids i {
+    font-size: 5rem;
+}
+
+.wo-latest-bidder {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+
+
+    background-color: #7CB687;
+    color: white;
+    border-radius: 20px;
+}
+
+.wo-latest-bid {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    padding: 40px;
+    padding-bottom: 30px;
+    font-size: 2rem;
+
+}
+
+.wo-latest-bid-content {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.wo-other-bid {
+    width: 90%;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.wo-other-bid p {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.wo-other-bid-tbl {
+    width: 100%;
+}
+
+.wo-other-bid-tbl table {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 1.5rem;
+}
+
+.wo-other-bid-tbl table thead tr th {
+    padding: 10px 0;
+    color: white;
+}
+
+.wo-winning-bids {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #7CB687;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    padding: 20px 0px;
+}
+
+.wo-winning-bids i {
+    font-size: 5rem;
+    text-align: center;
+    margin: 15px 0px;
+}
+
+.wo-wb-sub-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+}
+
+.wo-wb-sub-content p {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.wo-wb-sub-content span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.wo-wb-pfp {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.wo-wb-desc {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px auto;
+}
+
+.wo-wb-date {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.wo-other-bid-tbl table tbody tr td {
+    padding: 10px 0;
+    text-align: center;
+
+}
+
+
+.wo-bid-tbl p {
+    font-size: 1rem;
+    color: white;
+}
+
+.wo-bid-tbl a {
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+}
+
+.bid-tbl-dtl {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin: 0 auto;
+    font-size: 1rem;
+    color: white;
+}
+
+.bid-tbl-dtl-pfp {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.bid-tbl-dtl-pfp span {
+    margin-left: 5px;
+    font-size: small;
+}
+
+.bid-tbl-dtl-pfp img {
+    margin: 5px;
+}
+
+.bid-tbl-sub-dtl {
+    font-size: large;
+    font-weight: 500;
+    display: flex;
+    width: 100%;
+    align-items: start;
+    flex-direction: column;
+}
+
+
+.mini-avatar {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+.wo-bid-error {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    margin: 20px auto;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: red;
+}
+
+@media screen and (max-width:768px) {
+    .wo-bidding {
+        width: 90%;
+    }
+
+    .wo-bidding h1 {
+        font-size: 2rem;
+    }
+
+    .wo-contents {
+        flex-direction: column;
+    }
+
+    .wo-image-view {
+        width: 100%;
+    }
+
+    .wo-details-and-bid {
+        width: 100%;
+        margin: 0;
+    }
+
+    .wo-sub-contents {
+        width: 100%;
+        flex-direction: column-reverse;
+    }
+
+    .wo-details h3 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .wo-sub-details {
+        width: 100%;
+    }
+
+    .wo-img-sub-details {
+        padding: 0px 20px;
+    }
+
+    .wo-description {
+        padding: 10px 20px;
+    }
+
+    .wo-time-limit {
+        width: 100%;
+    }
+
+    .wo-timer {
+        width: 80% !important;
+        margin: 20px auto;
+        height: 50px;
+        /* margin: 20px 20px; */
+
+        justify-content: space-around;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .wo-timer i {
+        width: 30%;
+        padding: 0px 20px;
+    }
+
+    .wo-timer p {
+        width: 85%;
+    }
+
+    .wo-bid-incre {
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        margin: 20px auto;
+    }
+
+    .wo-current-price {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .wo-highest-bid p,
+    .wo-highest-bid span {
+        font-size: 1.5rem !important;
+        margin: 0;
+    }
+
+    .wo-bidders {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .wo-active-and-total-bids {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .wo-winning-bids {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .wo-latest-bidder {
+        width: 100%;
+    }
+
+    .wo-active-bids,
+    .wo-total-bids {
+        width: 90%;
+        margin-left: 0;
+        margin-right: 0;
+        margin: 10px auto;
+        flex-direction: row;
+    }
+
+    .wo-active-bids i,
+    .wo-total-bids i {
+        font-size: 4rem;
+    }
+
+    .wo-sub-content {
+        /* width: 80%; */
+        /* flex-direction: row-reverse; */
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0px;
+    }
+
+    .wo-sub-content span {
+        /*  */
+        font-size: 2rem;
+        text-align: center;
+        line-height: normal;
+    }
+
+    .wo-latest-bidder {
+        padding: 0px 10px;
+        margin: 20px auto;
+    }
+
+    .wo-latest-bid {
+        padding: 20px 10px;
+        margin: 0;
+        font-size: 1rem;
+    }
+
+    .wo-other-bid {
+        margin: 0 auto;
+        padding: 20px 10px;
+        width: 90%;
+
+    }
+
+    .wo-other-bid p {
+        font-size: 1rem !important;
+    }
+
+    .wo-other-bid-tbl {
+        width: 100%;
+        margin: 0 auto;
+        overflow-x: scroll;
+    }
+
+    .wo-other-bid-tbl table {
+        font-size: 1rem;
+        margin: 0 auto;
+        width: 300px;
+    }
+
+    .bid-tbl-dtl-pfp img {
+        display: none;
+    }
+
+    .bid-tbl-sub-dtl {
+        display: none;
+    }
+
+    .wo-latest-bid-content {
+        margin: 10px auto;
+    }
+
+    .wo-latest-bid-content span img {
+        display: none;
+    }
+}

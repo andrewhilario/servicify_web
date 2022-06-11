@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="acquire-service-container">
+    <div class="acquire-service-title">
+        <h1>Miguel's Notary Service</h1>
+    </div>
+    <div class="acquire-service-success-msg">
+        <p>Your service inquiry has been sent<br>to the Miguel's Notary Service</p>
+    </div>
+    <div class="acquire-service-title">
+        <h1>Service Details</h1>
+    </div>
+    <div class="acquire-service-flex">
+        <div class="acquire-service-details">
+            <div class="acquire-service-details-card">
+                <div class="acquire-service-details-card-img">
+                    <img src="{% static 'images/image-default.png' %}" alt="">
+                </div>
+                <div class="acquire-service-card-details">
+                    <div class="acquire-service-card-title">Client Details</div>
+                    <div class="acquire-service-client-name">Client Name</div>
+                    <div class="">
+                        <p>Join Date: <span class="acquire-service-card-values">2/22/22</span></p>
+                        <p>Location: <span class="acquire-service-card-values">Pasig City</span></p>
+                        <p>Works Posted: <span class="acquire-service-card-values">3</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="acquire-service1">
+        <ul class="service1">
+            <li><a href=""><img src="{% static 'images/image-default.png' %}" alt="">
+                </a></li>
+            <li><a href=""><img src="{% static 'images/image-default.png' %}" alt="">
+                </a></li>
+            <li><a href=""><img src="{% static 'images/image-default.png' %}" alt="">
+                </a></li>
+            <li><a href=""><img src="{% static 'images/image-default.png' %}" alt="">
+                </a></li>
+        </ul>
+    </div>
+</div>
+{% include 'footer.html' %}
+{% endblock %}

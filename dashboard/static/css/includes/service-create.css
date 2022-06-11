@@ -1,0 +1,530 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap");
+
+body {
+  font-family: "Raleway", sans-serif;
+}
+
+.service-create-container {
+  width: 60%;
+  margin: auto;
+  padding: 70px;
+}
+
+.service-create-title {
+  margin-bottom: 45px;
+  text-align: left;
+}
+
+.service-create-title h1 {
+  margin-bottom: 8px;
+}
+
+.service-create-flex {
+  display: flex;
+}
+
+.service-create-flex-container {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.service-create-details {
+  padding: 16px;
+}
+
+.service-create-details-card {
+  padding: 16px;
+  display: flex;
+}
+
+.service-create-details-card-img {
+  width: 144px;
+  height: 144px;
+  margin-right: 24px;
+}
+
+.service-create-details-card-img img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.service-create-card-details {
+  font-weight: 600;
+}
+
+.service-create-card-title {
+  font-size: 24px;
+}
+
+.service-create-client-name {
+  font-size: 20px;
+}
+
+.service-create-card-values {
+  font-weight: 400;
+}
+
+.service-create-details-thumbnail-img {
+  width: 100%;
+  height: 144px;
+  margin-bottom: 8px;
+}
+
+.service-create-details-thumbnail-img img {
+  border-radius: 8px;
+  height: 100%;
+  width: 110%;
+}
+
+.service-create-thumbnail-service-name {
+  font-weight: 600;
+}
+
+.service-create-form {
+  width: 50%;
+  padding: 16px;
+  margin-left: 50px;
+}
+
+.map_address {
+  display: flex;
+  flex-direction: column;
+}
+
+.map_inputs {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+#id_service_type {
+  width: 100%;
+  margin-bottom: 16px;
+  border: 2px solid black;
+  border-radius: 4px;
+  outline: none;
+  padding: 8px;
+  font-size: 1.2rem;
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+}
+
+#id_city {
+  margin: 15px 0px;
+}
+
+#id_location {
+  margin: 15px 0px;
+  width: 55%;
+}
+
+#map_button_location {
+  padding: 15px 0px;
+  width: 40%;
+  background-color: #507c59;
+  font-size: 1rem;
+  font-family: 'Raleway';
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all .4s ease-in-out;
+}
+
+#map_button_location:hover {
+  background-color: #6c9b76;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#map_location {
+  width: 100% !important;
+  margin: 15px 0px;
+}
+
+.service-create-input {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.service-create-label {
+  display: block;
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.service-create-container input,
+textarea {
+  width: 100%;
+  border: 2px solid black;
+  border-radius: 4px;
+  outline: none;
+  padding: 8px;
+  font-family: "Raleway", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.service-create-container textarea {
+  height: 128px;
+  font: "Raleway", sans-serif;
+}
+
+.service-create-form-button input[type="submit"] {
+  width: 100%;
+  padding: 16px 8px;
+  background-color: #507c59;
+  border: 1px solid #507c59;
+  border-radius: 4px;
+
+  font: 16px "Raleway", sans-serif;
+  font-weight: 600;
+  color: white;
+}
+
+.service-create-title-error {
+  margin: 30vh auto;
+  text-align: center;
+}
+
+.service-create-upload__box {
+  padding: 40px;
+}
+
+.service-thumbnail-upload-button-box {
+  margin-bottom: 10px;
+}
+
+.service-create-upload__img-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
+.service-create-upload__img-box {
+  width: 200px;
+  padding: 0 10px;
+  margin-bottom: 12px;
+}
+
+.service-create-img-bg {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  padding-bottom: 100%;
+}
+
+.service-thumbnail {
+  height: 350px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.service-thumbnail-upload {
+  position: relative;
+  background: #e2eaf4;
+  margin: 5px;
+}
+
+.service-thumbnail-upload:first-child {
+  width: 100%;
+}
+
+.service-thumbnail-upload:not(:first-child) {
+  flex: 1;
+}
+
+.service-thumbnail-upload-close {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  text-align: center;
+  line-height: 24px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.service-thumbnail-upload-close:after {
+  content: "\2716";
+  font-size: 14px;
+  color: white;
+}
+
+.service-thumbnail-upload-button {
+  display: inline-block;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  min-width: 116px;
+  padding: 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid;
+  background-color: #507c59;
+  border-color: #507c59;
+  line-height: 26px;
+  font-size: 14px;
+}
+
+.service-create-upload__inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+/* Create Service Success */
+
+.cs-success {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.cs-success a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.cs-success a i,
+.cs-success a span {
+  padding: 40px 0px;
+}
+
+.cs-success h2 {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin: 80px auto;
+  padding: 30px 0px;
+  text-align: center;
+}
+
+
+
+.cs-success p {
+  width: 50%;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 30px 0px;
+  text-align: center;
+  margin: 5% auto;
+}
+
+.cs-details {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.cs-details h3 {
+  align-self: start;
+  font-weight: bold;
+  font-size: 2rem;
+  margin-left: 10%;
+}
+
+.cs-sub-details {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 50px auto;
+}
+
+
+.cs-sub-details .cs-profile {
+  width: 55%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.cs-sub-details .cs-pfp {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #59745f;
+}
+
+.cs-sub-details .cs-pfp img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.cs-sub-details .cs-pfp-name h4 {
+  font-size: 1.4rem;
+  font-weight: bold;
+
+}
+
+.cs-sub-details .cs-pfp-other-details ul {
+  margin: 10px auto;
+}
+
+.cs-sub-details .cs-pfp-other-details ul li {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cs-sub-details .cs-pfp-other-details ul li p {
+  width: 50%;
+  font-size: .9rem;
+  font-weight: bold;
+  text-align: start;
+  padding: 0;
+}
+
+.cs-sub-details .cs-pfp-other-details ul li span {
+  width: 50%;
+  font-size: .9rem;
+  text-align: start;
+}
+
+
+.cs-sub-details .cs-images img:nth-last-of-type(3) {
+  grid-area: rightside;
+  width: 200px;
+  height: 150px;
+}
+
+.cs-sub-details .cs-images img:nth-last-of-type(2) {
+  grid-area: leftside1;
+  width: 120px;
+  height: 70px;
+}
+
+.cs-sub-details .cs-images img:nth-last-of-type(1) {
+  grid-area: leftside2;
+  width: 120px;
+  height: 70px;
+}
+
+.cs-sub-details .cs-images {
+  display: grid;
+  grid-template-areas: 'rightside leftside1'
+    'rightside leftside2';
+  gap: 12px;
+  padding: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .service-create-container {
+    width: 90%;
+    margin: auto;
+    padding: 20px 10px;
+  }
+
+  .service-create-title h1 {
+    font-size: 1.6rem;
+  }
+
+  .service-create-title p {
+    font-size: .8rem;
+  }
+
+  .service-create-flex {
+    flex-direction: column;
+  }
+
+  .service-create-flex-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .service-thumbnail-upload-button {
+    margin: 20px 0;
+  }
+
+  .service-create-form {
+    width: 100%;
+    margin: 0px;
+  }
+
+  /* Create Service Successfully */
+  .cs-success {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .cs-success a {
+    font-size: .8rem;
+  }
+
+  .cs-success h2 {
+    width: 90%;
+    margin: 20px auto !important;
+
+    font-size: 1.6rem;
+  }
+
+  .cs-success p {
+    width: 90%;
+    margin: 20px auto;
+    font-size: 1.1rem;
+  }
+
+  .cs-details {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 40%;
+  }
+
+  .cs-details h3 {
+    font-size: 1.2rem;
+    /* margin: 0; */
+  }
+
+  .cs-sub-details {
+    width: 90%;
+    margin: 20px auto;
+    flex-direction: column;
+  }
+
+  .cs-sub-details .cs-profile {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0px !important;
+  }
+
+  .cs-pfp-details p {
+    margin: 0;
+  }
+
+  .cs-sub-details .cs-pfp {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: 3px solid #59745f;
+  }
+
+  .cs-sub-details .cs-images {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+  }
+
+  .cs-images img {
+    width: 200px !important;
+    height: 150px !important;
+  }
+
+}

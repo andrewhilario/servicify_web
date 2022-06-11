@@ -1,0 +1,395 @@
+.service-request-page {
+    width: 90%;
+    height: 90vh;
+    margin: 0 auto;
+}
+
+.service-request-page a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.service-request-page a i,
+.service-request-page a span {
+    padding: 40px 0px;
+}
+
+.service-request-page h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 30px 0px;
+}
+
+.service-request-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sr-entries span {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.sr-entries select {
+    border: 2px solid black;
+    border-radius: 4px;
+    font-family: 'Raleway';
+    font-size: .9rem;
+    font-weight: 500;
+    padding: 5px 10px;
+}
+
+.sr-entries select option {
+    font-family: 'Raleway';
+    font-size: .9rem;
+    font-weight: 500;
+}
+
+.sr-search-and-sort {
+    display: flex;
+    width: 30%;
+    justify-content: space-around;
+}
+
+.sr-sort-select span {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.sr-sort-select select {
+    border: 2px solid black;
+    border-radius: 4px;
+    font-family: 'Raleway';
+    font-size: .9rem;
+    font-weight: 500;
+    padding: 5px 10px;
+}
+
+.sr-sort-select select option {
+    font-family: 'Raleway';
+    font-size: .9rem;
+    font-weight: 500;
+}
+
+.sr-search-bar label {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.sr-search-bar input[type='text'] {
+    border: 2px solid black;
+    border-radius: 4px;
+    font-family: 'Raleway';
+    font-size: .9rem;
+    font-weight: 500;
+    padding: 5px 10px;
+}
+
+.service-request-table {
+    width: 100%;
+}
+
+.sr-table {
+    margin-top: 30px;
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+.sr-table thead {
+
+    background-color: #59745f;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    padding: 5px;
+    border-radius: 0px 15px 0px 15px;
+}
+
+.sr-table th,
+.sr-table td {
+    padding: 12px 15px;
+    text-align: center;
+}
+
+.sr-table tbody tr {
+    border-bottom: 2px solid #59745f;
+    text-align: center;
+}
+
+.sr-table tbody tr td span {
+    font-weight: 600;
+}
+
+.sr-table tbody tr td span a {
+    cursor: pointer;
+    color: rgb(44, 170, 44);
+}
+
+.sr-table tbody tr td span input[type='button'] {
+    font-weight: 600;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-family: "Raleway";
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.sr-table tbody tr td span button {
+    font-weight: 600;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-family: "Raleway";
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.no-data {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    color: rgb(168, 168, 168);
+}
+
+.sr-action {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.sr-action form {
+    width: 40%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.sr-action form select {
+    border: 2px solid #85C693;
+    border-radius: 4px;
+    font-family: 'Raleway';
+    font-size: .9rem;
+    font-weight: 500;
+    padding: 5px 10px;
+    outline: none;
+    cursor: pointer;
+}
+
+.servicify-errors {
+    color: red;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 30px 0px;
+}
+
+
+
+/* View Service Request Page */
+
+.view-service-page {
+    width: 90%;
+    height: 70vh;
+    margin: 0 auto;
+}
+
+
+.view-service-page a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.view-service-page a i,
+.view-service-page a span {
+    padding: 40px 0px;
+}
+
+
+.view-service-page h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    padding-top: 30px;
+    text-align: center;
+}
+
+.view-service-page p {
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding: 5px 0px;
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+.view-service-page-contents {
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 50px auto;
+}
+
+.vs-profile {
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.vs-pfp {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #59745f;
+}
+
+.vs-pfp img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.vs-pfp-name h3 {
+    font-size: 1.4rem;
+    font-weight: bold;
+
+}
+
+.vs-pfp-other-details ul {
+    margin: 10px auto;
+}
+
+.vs-pfp-other-details ul li {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.vs-pfp-other-details ul li p {
+    font-size: .9rem;
+    font-weight: bold;
+    text-align: start;
+    padding: 0;
+}
+
+.vs-pfp-other-details ul li span {
+    font-size: .9rem;
+    text-align: start;
+}
+
+.vs-message {
+    width: 50%;
+}
+
+.vs-message h4 {
+    font-size: 1.3rem;
+    font-size: bold;
+    margin: 10px auto;
+}
+
+.vs-message p {
+    font-size: .9rem;
+    font-weight: 500;
+    text-align: start;
+}
+
+.view-service-page-btns {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 40px auto;
+}
+
+.view-service-page-btns input[type='button'] {
+    padding: 10px 40px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    cursor: pointer;
+}
+
+.view-service-page-btns input[type='button']:nth-of-type(1) {
+    background-color: #85C693;
+    color: white;
+}
+
+.view-service-page-btns input[type='button']:nth-of-type(2) {
+    background-color: #B74848;
+    color: white;
+}
+
+.showBtn {
+    display: none;
+}
+
+.show-table {
+    opacity: 1;
+}
+
+.showTblMobile {
+    display: none;
+}
+
+@media screen and (max-width:768px) {
+
+
+    .service-request-header {
+        width: 100%;
+        flex-direction: column;
+        align-items: start;
+
+    }
+
+    .sr-entries {
+        margin: 20px 0px;
+    }
+
+    .sr-search-and-sort {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .sr-sort-select,
+    .sr-search-bar {
+        margin: 15px 0px;
+    }
+
+    .service-request-table {
+        width: 100%;
+    }
+
+    .sr-table {
+        width: 100% !important;
+    }
+
+    .sr-table tbody tr td {
+        height: 10vh !important;
+    }
+
+    .sr-action form {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .sr-action form select {
+        padding: 5px 1px;
+        width: 100%;
+        margin: 10px;
+    }
+
+    .show-table {
+        display: none;
+    }
+
+}

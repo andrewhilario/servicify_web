@@ -1,5 +1,7 @@
-{% extends 'index.html' %}
 {% load static %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'css/includes/login.css' %}">
+{% endblock %}
 {% block content %}
 {% include 'navbar.html' %}
 
@@ -11,13 +13,9 @@
 
             {% if form.errors %}
             <p>Please correct the following errors:</p>
-            {% for field in form %}
-            {% if field.errors %}
             <div class="alert alert-primary" role="alert">
-                {{ field.label }}: {{ field.errors|striptags }}
+                Your username or password is incorrect.
             </div>
-            {% endif %}
-            {% endfor %}
             {% endif %}
 
             <div class="login-email">
@@ -35,7 +33,7 @@
                     <hr>
                     <p>or</p>
                 </span>
-                <input type="button" value="Continue with Facebook">
+                <a id="fblogin" href="{% url 'social:begin' 'facebook' %}">Sign In with Facebook</a>
             </div>
         </form>
         <div class="login-reg-btn">

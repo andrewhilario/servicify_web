@@ -17,38 +17,87 @@
             <img src="{% static 'images/logo-navbar.png' %}" alt="logo">
         </a>
     </div>
-    <ul class="navlinks">
-        
-        {% if request.user.is_authenticated %}
-        <li><a href="{% url 'logout' %}">Logout</a></li>
-        <li><a href="">{{ request.user.first_name }}</a></li>
-        <li>
-            <a href="/">
-                <img class="avatar" src="
-            {% for data in avatar %}
-            {{ data.avatar.url }}
-            {% endfor %}
-            ">
-                
-            </a>
-        </li>
 
-        {% else %}
-        <li><a href="/">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Service Marketplace</a></li>
-        <li><a href="">Work Offer</a></li>
-        <li><a href="{% url 'login' %}">Login</a></li>
-        <div class="search-bar">
-            <button type="submit">
-                <img src="{% static 'images/search-icon.png' %}" alt="search-icon">
-            </button>
+
+    {% if request.user.is_authenticated %}
+    <div class="navlinks-logged-in">
+        <ul class="navlink">
+            <!-- <div class="search-bar">
+                <input type="text" placeholder="Search..." id="search-bar-logged-in">
+                <button id="search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+
+            </div> -->
+            <li><a href="">{{ request.user.first_name }}</a></li>
+            <li>
+                <button id="avatar">
+                    <img class="avatar" src="
+                {% for data in avatar %}
+                {{ data.avatar.url }}
+                {% endfor %}
+                ">
+                </button>
+            </li>
+            <li class="hover-profile" id="navlinks-profile">
+                <ul class="navlinks-clicked">
+
+                    <li><a href="{% url 'profile' request.user.id %}"><i class="fa-solid fa-user"></i>Profile</a></li>
+                    <li><a href="{% url 'service_marketplace' %}"><i class="fa-solid fa-shop"></i>Service
+                            Marketplace</a></li>
+                    <li><a href="{% url 'work_offer_list' %}"><i class="fa-solid fa-briefcase"></i>Work Offers</a></li>
+                    <li><a href="{% url 'logout' %}"><i class="fa-solid fa-door-open"></i>Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    {% else %}
+    <div class="burger-menu">
+        <div id="nav-icon4">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
-        {% endif %}
+    </div>
+    <div class="navlinks-logged-out">
+
+        <ul class="navlinks" id="navlinks">
+
+            <li><a href="{% url 'service_marketplace' %}">Service Marketplace</a></li>
+            <li><a href="{% url 'work_offer_list' %}">Work Offers</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <!-- <div class="search-bar">
+                <input type="text" placeholder="Search" id="search-bar">
+                <button id="search">
+                    <img src="{% static 'images/search-icon.png' %}" alt="search-icon">
+                </button>
+
+            </div> -->
+    </div>
     </ul>
+    {% endif %}
+
+
 
 </div>
+
+<script>
+    var search = document.querySelector('#search');
+    var search_bar = document.querySelector('#search-bar');
+    var search_bar_login = document.querySelector('#search-bar-logged-in');
+
+    if (search) {
+        search.onclick = () => {
+            search_bar.classList.toggle('search-active');
+
+        }
+
+    }
+</script>
+
+
+
 
 
 {% endblock %}

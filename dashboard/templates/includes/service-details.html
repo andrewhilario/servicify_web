@@ -1,0 +1,340 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load humanize %}
+{% load custom_tags %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'css/includes/rating.css' %}">
+<link rel="stylesheet" href="{% static 'css/includes/service-details.css' %}">
+<link rel="stylesheet" href="{% static 'star-rating/star-rating-svg.css' %}">
+{% endblock %}
+{% block scripts %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="{% static 'star-rating/jquery.star-rating-svg.js' %}"></script>
+<script>
+    $(".review-stars").starRating({
+        strokeColor: '#FFD992',
+        starShape: 'rounded',
+        starSize: 25,
+        useGradient: false,
+        readOnly: true,
+    });
+
+</script>
+{% endblock %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="srvc-dtl">
+    <a href="/">
+        <i class="fa-solid fa-caret-left"></i>
+        <span>Return to Homepage</span>
+    </a>
+    <h2>Service</h2>
+    <div class="srvc-dtl-contents">
+        <div class="srvc-dtl-image-view">
+            {% for img in service.serviceimage_set.all|slice:":1" %}
+            <div class="srvc-dtl-main-img">
+
+                <img src="{{ img.image.url }}" alt="" id="img-preview">
+
+            </div>
+            {% endfor %}
+            <div class="srvc-dtl-img-thumbs">
+                {% for img in service.serviceimage_set.all %}
+                <div class="srvc-dtl-sub-img">
+                    <img src="{{ img.image.url }}" alt="" id="img-thumbnails" onclick="myFunction(this);">
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+        <div class="srvc-dtl-details-and-reviews">
+            <div class="srvc-dtl-sub-contents">
+                <div class="srvc-dtl-details">
+                    <h3>{{ service.service_name }}</h3>
+                    <h4>{{ service.service_type.name }}</h4>
+                    <div class="srvc-dtl-sub-details">
+                        <div class="srvc-dtl-img-sub-details">
+                            <div class="srvc-dtl-img-container">
+                                <img src="{{ service.created_by.avatar.url }}" alt="">
+                            </div>
+                        </div>
+                        <div class="srvc-dtl-content-sub-details">
+                            <ul>
+                                <li>
+                                    <p>Owner:</p>
+                                    <span>{{ service.created_by.full_name }}</span>
+                                </li>
+                                {% if service.full_addr %}
+                                <li>
+                                    <p>Location:</p>
+                                    <span>{{service.full_addr}}</span>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="srvc-dtl-price">
+                        <h5>Service starts at:</h5>
+                        <h3>₱{% filter intcomma %}{{ service.price|floatformat }}{% endfilter %}</h3>
+                    </div>
+                </div>
+                <div class="srvc-dtl-tags">
+                    <div class="srvc-dtl-tag-container">
+                        <i class="fa fa-star checked"></i> {{ avg_rating }} / 5.0
+                        <span>Total of {{ reviews.count }} reviews</span>
+                    </div>
+                    <div class="srvc-dtl-tag-container">
+                        <strong>{{ total_clients }}</strong>
+                        <span>Total Clients</span>
+                    </div>
+                    <div class="srvc-dtl-tag-container">
+                        <strong>{{ clients_finished }}</strong>
+                        <span>Completed</span>
+                    </div>
+                    {% if request.user.is_authenticated and service.created_by.id == request.user.mainuser.id %}
+                    <div class="srvc-dtl-tag-container">
+                        <a href="{% url 'service_requests' service.id %}">
+                            <i class="fa-solid fa-list"></i>
+                            <span>Manage</span>
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% if client_acquired_service %}
+            <div class="acquired-service-card">
+                <div class="asc-dtl">
+                    <h4>Your service request details:</h4>
+                    {% if client_acquired_service.status == 'PENDING' %}
+                    <h5 style="color: #FF8400;">{{ client_acquired_service.status }}</h5>
+                    {% elif client_acquired_service.status == 'ON-GOING' %}
+                    <h5 style="color: #fff700;">{{ client_acquired_service.status }}</h5>
+                    {% elif client_acquired_service.status == 'CANCELED' or client_acquired_service.status == 'DECLINED'
+                    %}
+                    <h5 style="color: #cd1800;">{{ client_acquired_service.status }}</h5>
+                    {% elif client_acquired_service.status == 'COMPLETED' %}
+                    <h5 style="color: #268700;">{{ client_acquired_service.status }}</h5>
+                    {% endif %}
+                </div>
+                <p class="asc-msg"><strong>Message:</strong> <br>{{ client_acquired_service.client_msg }}</p>
+            </div>
+
+            {% if not client_acquired_service_review %}
+            <div class="service-review">
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% if form_errors %}
+                    <div class="srvc-dtl-error">
+                        <p>Unable to proceed:</p>
+                        {% for error in form_errors %}
+                        <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <div class="service-review-btn-input">
+                        <h3>Rate my Service</h3>
+                        <div class="rating-group">
+                            <input class="rating__input rating__input--none" checked name="rating2" id="rating2-0"
+                                value="0" type="radio">
+                            <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                            <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i
+                                    class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                            <input class="rating__input" name="rating2" id="rating2-05" value="0.5" type="radio">
+                            <label aria-label="1 star" class="rating__label" for="rating2-10"><i
+                                    class="rating__icon rating__icon--star fa fa-star"></i></label>
+                            <input class="rating__input" name="rating2" id="rating2-10" value="1" type="radio">
+                            <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i
+                                    class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                            <input class="rating__input" name="rating2" id="rating2-15" value="1.5" type="radio">
+                            <label aria-label="2 stars" class="rating__label" for="rating2-20"><i
+                                    class="rating__icon rating__icon--star fa fa-star"></i></label>
+                            <input class="rating__input" name="rating2" id="rating2-20" value="2" type="radio">
+                            <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating2-25"><i
+                                    class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                            <input class="rating__input" name="rating2" id="rating2-25" value="2.5" type="radio">
+                            <label aria-label="3 stars" class="rating__label" for="rating2-30"><i
+                                    class="rating__icon rating__icon--star fa fa-star"></i></label>
+                            <input class="rating__input" name="rating2" id="rating2-30" value="3" type="radio">
+                            <label aria-label="3.5 stars" class="rating__label rating__label--half" for="rating2-35"><i
+                                    class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                            <input class="rating__input" name="rating2" id="rating2-35" value="3.5" type="radio">
+                            <label aria-label="4 stars" class="rating__label" for="rating2-40"><i
+                                    class="rating__icon rating__icon--star fa fa-star"></i></label>
+                            <input class="rating__input" name="rating2" id="rating2-40" value="4" type="radio">
+                            <label aria-label="4.5 stars" class="rating__label rating__label--half" for="rating2-45"><i
+                                    class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                            <input class="rating__input" name="rating2" id="rating2-45" value="4.5" type="radio">
+                            <label aria-label="5 stars" class="rating__label" for="rating2-50"><i
+                                    class="rating__icon rating__icon--star fa fa-star"></i></label>
+                            <input class="rating__input" name="rating2" id="rating2-50" value="5" type="radio">
+                        </div>
+                        <div class="service-review-btn-textarea">
+                            {{ review_form.message }}
+                        </div>
+
+                        <div class="service-review-upload">
+                            <label for="file">Upload up to 5 images</label>
+                            <input type="file" name="file" id="file" multiple accept="image/*" data-max_length="5">
+                        </div>
+                        <div class="service-review-btn">
+                            <input type="submit" value="Place Review">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            {% endif %}
+
+            {% elif request.user.is_authenticated and service.created_by.id != request.user.mainuser.id %}
+            {% for message in form_messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+            <form action="" method="post">
+                {% csrf_token %}
+                {% if form_errors %}
+                <div class="srvc-dtl-error">
+                    <p>Unable to proceed:</p>
+                    {% for error in form_errors %}
+                    <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <div class="srvc-dtl-service-input">
+                    <div class="srvc-dtl-service-textarea">
+                        <label for="client_msg">{{ form.client_msg.label }}</label>
+                        {{ form.client_msg }}
+                    </div>
+                    <div class="srvc-dtl-service-btn">
+                        <input type="submit" value="Acquire Service">
+                    </div>
+                </div>
+            </form>
+            {% elif not request.user.is_authenticated %}
+            <p>Login to acquire service.</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="srvc-dtl-description">
+        <h5>Service Details:</h5><br>
+        <p>{{ service.description }}</p>
+    </div>
+    <div class="srvc-dtl-reviews" id="rating">
+        <div class="srvc-dtl-review-options">
+            <h3>Filters</h3>
+            <ul>
+                <li class="rating-setting">
+                    <a href="?{% query_transform stars='all' %}#rating">
+                        <div class="star-ratings">
+                            All
+                        </div>
+                    </a>
+                </li>
+                <li class="rating-setting">
+                    <a href="?{% query_transform stars=5 %}#rating">
+                        <div class="star-ratings">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                        </div>
+                    </a>
+                </li>
+                <li class="rating-setting">
+                    <a href="?{% query_transform stars=4 %}#rating">
+                        <div class="star-ratings">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star "></span>
+                        </div>
+                    </a>
+                </li>
+                <li class="rating-setting">
+                    <a href="?{% query_transform stars=3 %}#rating">
+                        <div class="star-ratings">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                        </div>
+                    </a>
+                </li>
+                <li class="rating-setting">
+                    <a href="?{% query_transform stars=2 %}#rating">
+                        <div class="star-ratings">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                        </div>
+                    </a>
+                </li>
+                <li class="rating-setting">
+                    <a href="?{% query_transform stars=1 %}#rating">
+                        <div class="star-ratings">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="srvc-dtl-review-clients">
+            <div class="service-reviews">
+                <ul>
+                    {% if not reviews %}
+                    <div class="no-reviews">
+                        No reviews yet 🤷‍♂️
+                    </div>
+                    {% endif %}
+                    {% for review in reviews %}
+                    <li class="review-pages">
+                        <div class="review-pfp">
+                            <div class="reviewer-avatar">
+                                <img src="{{ review.client.avatar.url }}" alt="">
+                            </div>
+                        </div>
+                        <div class="rv-container">
+                            <div class="review-body">
+                                <span class="review-body-name">{{ review.client.full_name }}</span>
+                                <div class="rv-star">
+                                    <p>{{ review.rating }}</p>
+                                    <div class="review-stars" data-rating="{{ review.rating }}"></div>
+
+                                </div>
+                                <div class="rv-msg">
+                                    <p>Message:</p>
+                                    <span class="review-body-rv-dtl">{{ review.message }}</span>
+                                </div>
+                            </div>
+                            <div class="review-footer">
+                                {% for img in review.servicereviewimage_set.all %}
+                                <div class="rv-footer-images">
+
+                                    <div class="rv-footer-container">
+                                        <img src="{{ img.image.url }}" alt="">
+                                    </div>
+
+
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    </li>
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<button id="scroll-top" class="scroll-top"><i class="fa-solid fa-arrow-up"></i></button>
+{% include 'footer.html' %}
+{% endblock %}
