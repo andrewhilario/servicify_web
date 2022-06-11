@@ -112,14 +112,23 @@
                 </div>
                 <div class="register-password">
                     <label for="password">{{ form.password.label }}</label>
-                    {{ form.password }}
+                    <div class="password-show">
+                        {{ form.password }} <i class="fa-solid fa-eye" id="show_pass"></i> <i
+                            class="fa-solid fa-eye-slash" id="hide_pass"></i>
+
+                    </div>
                 </div>
                 <div class="register-password">
                     <label for="password">{{ form.password2.label }}</label>
-                    {{ form.password2 }}
+                    <div class="password-show">
+                        {{ form.password2 }} <i class="fa-solid fa-eye" id="show_pass2"></i> <i
+                            class="fa-solid fa-eye-slash" id="hide_pass2"></i>
+
+                    </div>
+
                 </div>
                 <input type="hidden" name="locData" id="locData" />
-                <div class="register-account-type">
+                <!-- <div class="register-account-type">
                     <h3>Select your Account Type</h3>
                     <div class="account-type-selection">
 
@@ -144,7 +153,7 @@
                             </label>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="register-buttons">
                 <div class="avatar-wrapper">
@@ -174,6 +183,45 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    var show_pass = document.getElementById("show_pass");
+    var unshow_pass = document.getElementById("hide_pass");
+    var show_pass2 = document.getElementById("show_pass2");
+    var unshow_pass2 = document.getElementById("hide_pass2");
+    function reveal() {
+        if (show_pass) {
+            show_pass.onclick = () => {
+                document.getElementById("id_password").type = "text";
+                show_pass.style.display = "none";
+                unshow_pass.style.display = "block";
+            }
+        }
+        if (unshow_pass) {
+            unshow_pass.onclick = () => {
+                document.getElementById("id_password").type = "password";
+                unshow_pass.style.display = "none";
+                show_pass.style.display = "block";
+            }
+        }
+        if (show_pass2) {
+            show_pass2.onclick = () => {
+                document.getElementById("id_password2").type = "text";
+                show_pass2.style.display = "none";
+                unshow_pass2.style.display = "block";
+            }
+        }
+        if (unshow_pass2) {
+            unshow_pass2.onclick = () => {
+                document.getElementById("id_password2").type = "password";
+                unshow_pass2.style.display = "none";
+                show_pass2.style.display = "block";
+            }
+        }
+
+    }
+    reveal()
+</script>
 
 
 <button id="scroll-top" class="scroll-top"><i class="fa-solid fa-arrow-up"></i></button>
