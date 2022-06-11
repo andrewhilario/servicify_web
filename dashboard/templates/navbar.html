@@ -83,17 +83,17 @@
 </div>
 
 <script>
-    var search = document.querySelector('#search');
-    var search_bar = document.querySelector('#search-bar');
-    var search_bar_login = document.querySelector('#search-bar-logged-in');
+    var burgerbtn = document.getElementById('nav-icon4');
+    var navlinks = document.getElementById('navlinks');
 
-    if (search) {
-        search.onclick = () => {
-            search_bar.classList.toggle('search-active');
 
-        }
-
+    if (burgerbtn) {
+        burgerbtn.addEventListener('click', () => {
+            burgerbtn.classList.toggle('open');
+            navlinks.classList.toggle('navlinks-active');
+        })
     }
+
 </script>
 
 
