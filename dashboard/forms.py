@@ -87,27 +87,29 @@ class RegistrationForm(forms.ModelForm):
             {'placeholder': 'Your first name', 'name': 'firstname', 'id': 'firstname', 'value': initial['first_name']})
         self.fields['last_name'].widget.attrs.update(
             {'placeholder': 'Your last name', 'name': 'lastname', 'id': 'lastname', 'value': initial['last_name']})
-        
+
         if initial['email']:
             self.fields['email'].disabled = True
-        
+
         if initial['first_name']:
             self.fields['first_name'].disabled = True
-        
+
         if initial['last_name']:
             self.fields['last_name'].disabled = True
 
 
 class MainUserRegistrationForm(forms.ModelForm):
 
-    phone_number = PhoneNumberField(label='Phone Number', help_text='Required', region='PH', widget=PhoneNumberPrefixWidget)
+    phone_number = PhoneNumberField(
+        label='Phone Number', help_text='Required', region='PH', widget=PhoneNumberPrefixWidget)
     city = forms.CharField()
-    location = PlainLocationField(based_fields=['city'], initial='14.572950835033037,480.992431640625')
+    location = PlainLocationField(
+        based_fields=['city'], initial='14.572950835033037,480.992431640625')
 
     class Meta:
         model = MainUser
         fields = ['avatar', 'phone_number', 'city', 'location']
-    
+
     def clean_phone_number(self):
         phone_number = self.cleaned_data['phone_number']
         if MainUser.objects.filter(phone_number=phone_number).exists():
@@ -123,7 +125,7 @@ class MainUserRegistrationForm(forms.ModelForm):
 
 class CreateWorkOfferForm(forms.ModelForm):
     work_name = forms.CharField(
-        label='Name', min_length=5, max_length=100, help_text='Required')
+        label='Name', min_length=5, max_length=25, help_text='Required')
     description = forms.CharField(label='Description', min_length=5,
                                   max_length=1000, help_text='Required', widget=forms.Textarea)
     min_pay = forms.DecimalField(
@@ -136,7 +138,7 @@ class CreateWorkOfferForm(forms.ModelForm):
 
 class CreateServiceForm(forms.ModelForm):
     service_name = forms.CharField(
-        label='Name', min_length=5, max_length=100, help_text='Required')
+        label='Name', min_length=5, max_length=25, help_text='Required')
     description = forms.CharField(label='Description', min_length=5,
                                   max_length=1000, help_text='Required', widget=forms.Textarea)
     price = forms.DecimalField(
@@ -144,11 +146,13 @@ class CreateServiceForm(forms.ModelForm):
     service_type = forms.ModelChoiceField(
         queryset=ServiceTypes.objects.all(), empty_label="Select category")
     city = forms.CharField()
-    location = PlainLocationField(based_fields=['city'], initial='14.572950835033037,480.992431640625')
+    location = PlainLocationField(
+        based_fields=['city'], initial='14.572950835033037,480.992431640625')
 
     class Meta:
         model = Service
-        fields = ['service_name', 'description', 'price', 'service_type', 'city', 'location']
+        fields = ['service_name', 'description',
+                  'price', 'service_type', 'city', 'location']
 
 
 class AcquireServiceForm(forms.ModelForm):

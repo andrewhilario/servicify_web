@@ -448,13 +448,18 @@
     display: flex;
     justify-content: center;
     margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .offers-list li a {
     text-decoration: none;
     color: black;
     margin: 10px auto;
-
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     display: flex;
     flex-direction: column;
     justify-content: left;
@@ -463,6 +468,8 @@
     border-radius: 10px;
     transition: all .2s ease-in-out;
 }
+
+/* .offers-list li a p {} */
 
 .offers-list li a:hover {
     transform: scale(1.03);

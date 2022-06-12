@@ -131,7 +131,7 @@ def workoffer2(request):
 def work_offer_list(request):
     sort = request.GET.get('sort', None)
     category = request.GET.get('filter', None)
-    
+
     order = []
     work_offers = WorkOffer.objects.order_by('?')
     if sort == 'new':
@@ -145,27 +145,34 @@ def work_offer_list(request):
 
     if order:
         work_offers = work_offers.order_by(*order)
-    
+
     context = {
         'work_offers': work_offers
     }
     return render(request, 'includes/work-offer-list.html', context)
 
+
 def work_offer_bidding(request, work_offer_id):
     is_user_has_pending = None
     work_offer = WorkOffer.objects.get(id=work_offer_id)
-    client_work_posted = WorkOffer.objects.filter(created_by=work_offer.created_by).count()
-    highest_bid = Bid.objects.filter(workoffer_id=work_offer.id).order_by('-bid_amount').first()
+    client_work_posted = WorkOffer.objects.filter(
+        created_by=work_offer.created_by).count()
+    highest_bid = Bid.objects.filter(
+        workoffer_id=work_offer.id).order_by('-bid_amount').first()
     total_bids = Bid.objects.filter(workoffer_id=work_offer.id).count()
-    active_bids = Bid.objects.filter(workoffer_id=work_offer.id, status='PENDING')
-    bids = Bid.objects.filter(workoffer_id=work_offer.id).order_by('-created_at').all()
-    winning_bid = Bid.objects.filter(workoffer_id=work_offer.id, status='ACCEPTED').first()
+    active_bids = Bid.objects.filter(
+        workoffer_id=work_offer.id, status='PENDING')
+    bids = Bid.objects.filter(
+        workoffer_id=work_offer.id).order_by('-created_at').all()
+    winning_bid = Bid.objects.filter(
+        workoffer_id=work_offer.id, status='ACCEPTED').first()
     latest_bid = None
     if bids:
         latest_bid = bids[0]
 
     if bids and request.user.is_authenticated:
-        is_user_has_pending = active_bids.filter(bidder_id=request.user.mainuser).first()
+        is_user_has_pending = active_bids.filter(
+            bidder_id=request.user.mainuser).first()
 
     if request.user.is_authenticated:
         form = CreateWorkOfferBidForm()
@@ -204,11 +211,13 @@ def work_offer_bidding(request, work_offer_id):
     }
     return render(request, 'includes/work-offer-bidding.html', context)
 
+
 @login_required
 def view_bidding_details(request, work_offer_id, bidding_id):
-    bid = Bid.objects.get(id=bidding_id,workoffer_id=work_offer_id)
+    bid = Bid.objects.get(id=bidding_id, workoffer_id=work_offer_id)
     is_valid_workoffer = bid.workoffer_id.status == 'OPEN'
-    bidder_service = Service.objects.filter(created_by=bid.bidder_id.id).first()
+    bidder_service = Service.objects.filter(
+        created_by=bid.bidder_id.id).first()
 
     form_error = None
     if is_valid_workoffer and request.method == 'POST':
@@ -222,10 +231,9 @@ def view_bidding_details(request, work_offer_id, bidding_id):
             bid.save()
         else:
             form_error = 'Unknown action'
-    
+
     if not is_valid_workoffer:
         form_error = 'Bidding for this work offer is now closed.'
-
 
     context = {
         'bid': bid,
@@ -297,25 +305,27 @@ def service_details(request, service_id):
         service = Service.objects.get(id=service_id)
     except:
         return HttpResponseRedirect("/")
-    
+
     total_clients = ServiceClients.objects.filter(service_id=service).count()
-    clients_finished = ServiceClients.objects.filter(service_id=service, status='COMPLETED').count()
-    
+    clients_finished = ServiceClients.objects.filter(
+        service_id=service, status='COMPLETED').count()
+
     if review_star_filter and review_star_filter != 'all':
         stars = float(review_star_filter)
-        reviews = ServiceReview.objects.filter(transaction_id__service_id=service, rating__range=(stars, stars+0.9)).order_by('-created_at')
+        reviews = ServiceReview.objects.filter(transaction_id__service_id=service, rating__range=(
+            stars, stars+0.9)).order_by('-created_at')
     else:
-        reviews = ServiceReview.objects.filter(transaction_id__service_id=service).order_by('-created_at')
-
+        reviews = ServiceReview.objects.filter(
+            transaction_id__service_id=service).order_by('-created_at')
 
     if reviews:
         rating_sum = reviews.aggregate(Sum('rating'))['rating__sum']
         avg_rating = round(rating_sum / reviews.count(), 2)
-        
 
     if request.user.is_authenticated:
         form = AcquireServiceForm()
-        client_acquired_service_review = reviews.filter(transaction_id__client_id=request.user.mainuser).first()
+        client_acquired_service_review = reviews.filter(
+            transaction_id__client_id=request.user.mainuser).first()
         client_acquired_service = ServiceClients.objects.filter(
             service_id=service, client_id=request.user.mainuser).first()
 
@@ -360,7 +370,7 @@ def service_details(request, service_id):
         else:
             form_errors.append(
                 'Unable to process your request. Please check your input.')
-    
+
     context = {
         'service': service,
         'total_clients': total_clients,
@@ -424,7 +434,7 @@ def service_requests(request, service_id):
 def service_marketplace(request):
     sort = request.GET.get('sort', None)
     category = request.GET.get('filter', None)
-    
+
     order = []
     service = Service.objects.order_by('?')
     if sort == 'new':
@@ -435,14 +445,14 @@ def service_marketplace(request):
         order.append('-price')
     elif sort == 'price_asc':
         order.append('price')
-    
+
     if category and category != 'all':
         category = category.replace('_', ' ')
         service = service.filter(service_type__name__icontains=category)
 
     if order:
         service = service.order_by(*order)
-    
+
     service_types = ServiceTypes.objects.order_by('-name')
     context = {
         'services': service,
@@ -515,11 +525,12 @@ def register(request):
                 response = conn.request('GET', auth_avatar)
                 if response.status == 200:
                     file_obj = tempfile.NamedTemporaryFile(delete=True)
-                    file_obj.write( response.data )
+                    file_obj.write(response.data)
                     file_obj.flush()
-                
+
                     django_file_obj = File(file_obj)
-                    main_user.avatar.save(auth_data['response']['id'], django_file_obj)
+                    main_user.avatar.save(
+                        auth_data['response']['id'], django_file_obj)
 
             main_user.save()
 
@@ -601,11 +612,15 @@ def profile_page(request, user_id):
         service = {}
         service['avg_rating'] = 0
         service['service'] = srv
-        service['reviews'] = ServiceReview.objects.filter(transaction_id__service_id=srv).order_by('-created_at')
-        service['total_clients'] = ServiceClients.objects.filter(service_id=srv).count()
+        service['reviews'] = ServiceReview.objects.filter(
+            transaction_id__service_id=srv).order_by('-created_at')
+        service['total_clients'] = ServiceClients.objects.filter(
+            service_id=srv).count()
         if service['reviews']:
-            rating_sum = service['reviews'].aggregate(Sum('rating'))['rating__sum']
-            service['avg_rating'] = round(rating_sum / service['reviews'].count(), 2)
+            rating_sum = service['reviews'].aggregate(Sum('rating'))[
+                'rating__sum']
+            service['avg_rating'] = round(
+                rating_sum / service['reviews'].count(), 2)
 
         services.append(service)
 
@@ -615,7 +630,8 @@ def profile_page(request, user_id):
     for work_offer in work_offers_orm:
         work = {}
         work['work_offer'] = work_offer
-        work['total_bids'] = Bid.objects.filter(workoffer_id=work_offer.id).count()
+        work['total_bids'] = Bid.objects.filter(
+            workoffer_id=work_offer.id).count()
         work_offers.append(work)
 
     return render(request, 'includes/profile-page.html', {
@@ -640,8 +656,10 @@ def contact_us(request):
 def search_results(request):
     return render(request, 'includes/search-results-page.html')
 
+
 def contactus(request):
-    return render(request, 'includes/contactus.html') 
+    return render(request, 'includes/contactus.html')
+
 
 def aboutus(request):
-    return render(request, 'includes/aboutus.html') 
+    return render(request, 'includes/aboutus.html')
