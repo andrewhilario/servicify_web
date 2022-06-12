@@ -19,6 +19,39 @@ body {
   margin-bottom: 8px;
 }
 
+.work-offer-create-titles {
+  width: 93%;
+  margin-bottom: 45px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.work-offer-create-titles h1 {
+  margin-bottom: 8px;
+}
+
+
+.cancel-btn {
+  background-color: #852121;
+  border: 1px solid #e3e3e3;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 20px 30px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 10px;
+}
+
+.cancel-btn a {
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+
 .work-offer-create-flex {
   display: flex;
 }
@@ -221,6 +254,9 @@ textarea {
   position: absolute;
   z-index: -1;
 }
+.cancel-btns{
+  display: none;
+}
 
 @media screen and (max-width:768px) {
   .work-offer-create-container {
@@ -241,5 +277,34 @@ textarea {
   .work-offer-create-form {
     width: 100%;
     margin: 0;
+  }
+  .work-offer-create-titles{
+    width: 100%;
+    margin: 0;
+  }
+  .cancel-btn{
+    display: none;
+  }
+  .cancel-btns {
+    display: flex;
+    background-color: #852121;
+    border: 1px solid #e3e3e3;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 20px 30px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+    justify-content: center;
+    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 10px; */
+    margin: 10px 0px;
+  }
+  
+  .cancel-btns a {
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
   }
 }

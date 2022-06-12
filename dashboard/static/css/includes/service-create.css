@@ -18,6 +18,36 @@ body {
 .service-create-title h1 {
   margin-bottom: 8px;
 }
+.service-create-titles{
+  width: 93%;
+  margin-bottom: 45px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.service-create-titles h1 {
+  margin-bottom: 8px;
+}
+.cancel-btn {
+  background-color: #852121;
+  border: 1px solid #e3e3e3;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 20px 30px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 10px;
+}
+
+.cancel-btn a {
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
 
 .service-create-flex {
   display: flex;
@@ -428,6 +458,9 @@ textarea {
   gap: 12px;
   padding: 5px;
 }
+.cancel-btns{
+  display: none;
+}
 
 @media screen and (max-width: 768px) {
   .service-create-container {
@@ -447,6 +480,9 @@ textarea {
   .service-create-flex {
     flex-direction: column;
   }
+  .service-create-titles{
+  margin-top: 40px;
+    }
 
   .service-create-flex-container {
     display: flex;
@@ -531,6 +567,31 @@ textarea {
   .cs-images img {
     width: 200px !important;
     height: 150px !important;
+  }
+  .cancel-btn{
+    display: none;
+  }
+  .cancel-btns {
+    display: flex;
+    background-color: #852121;
+    border: 1px solid #e3e3e3;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 20px 30px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+    justify-content: center;
+    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 10px; */
+    margin: 10px 0px;
+  }
+  
+  .cancel-btns a {
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
   }
 
 }

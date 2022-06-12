@@ -75,40 +75,47 @@
                         <i class="fa-solid fa-clock"></i>
                         <p>Created {{ work_offer.created_at|naturaltime }}</p>
                     </div>
+                    <div class="edit-btn">
+                        <a href="/workoffer/{{ work_offer.id }}/edit">Edit</a>
+                    </div>
                 </div>
             </div>
             <div class="wo-pricing">
                 <div class="wo-bid-incre">
                     <p>Starting Bid:</p>
-                    <span>₱{% filter intcomma %}{{ work_offer.min_pay|floatformat }}{% endfilter %}</span>
+                    <span>
+                        ₱{% filter intcomma %}
+                        {{ work_offer.min_pay|floatformat }}
+                        {% endfilter %}
+                    </span>
                 </div>
             </div>
             <div class="wo-bidding-input">
                 {% if request.user.is_authenticated and work_offer.created_by.id != request.user.mainuser.id and not is_user_has_pending %}
-                {% if winning_bid %}
-                <em class="wo-bd-closed">Bidding is already closed.</em>
-                {% else %}
-                <form method="post">
-                    {% csrf_token %}
-                    {% if form_errors %}
-                    <div class="wo-bid-error">
-                        <p>Unable to create bid:</p>
-                        {% for error in form_errors %}
-                        <p>{{ error }}</p>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                    <div class="wo-bid-input">
-                        <p>₱</p>
-                        {{ bid_form.bid_amount }}
-                        <button type="submit">Bid Now</button>
-                    </div>
+                    {% if winning_bid %}
+                    <em class="wo-bd-closed">Bidding is already closed.</em>
+                    {% else %}
+                    <form method="post">
+                        {% csrf_token %}
+                        {% if form_errors %}
+                        <div class="wo-bid-error">
+                            <p>Unable to create bid:</p>
+                            {% for error in form_errors %}
+                            <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        <div class="wo-bid-input">
+                            <p>₱</p>
+                            {{ bid_form.bid_amount }}
+                            <button type="submit">Bid Now</button>
+                        </div>
 
-                    <div class="wo-bid-message">
-                        {{ bid_form.bidder_msg }}
-                    </div>
-                </form>
-                {% endif %}
+                        <div class="wo-bid-message">
+                            {{ bid_form.bidder_msg }}
+                        </div>
+                    </form>
+                    {% endif %}
                 {% endif %}
             </div>
         </div>
@@ -182,7 +189,7 @@
                                 <th>Details</th>
                                 <th>Bid</th>
                                 <th>Status</th>
-                                {% if request.user.is_authenticated and work_offer.created_by.id == request.user.mainuser.id  %}
+                                {% if request.user.is_authenticated and work_offer.created_by.id == request.user.mainuser.id %}
                                 <th>Action</th>
                                 {% endif %}
                             </tr>
@@ -194,14 +201,15 @@
                                     <div class="bid-tbl-dtl">
                                         <div class="bid-tbl-sub-dtl">
                                             <span>{{ bid.bidder_msg }}</span>
-                                            
+
                                         </div>
                                         <div class="bid-tbl-dtl-pfp">
                                             <img class="mini-avatar" src="{{ bid.bidder_id.avatar.url }}" alt="">
-                                            <span>{{ bid.bidder_id.full_name }} <em>({{ bid.created_at|date:"SHORT_DATE_FORMAT" }})</em></span>
-                                            
+                                            <span>{{ bid.bidder_id.full_name }} <em>({{
+                                                    bid.created_at|date:"SHORT_DATE_FORMAT" }})</em></span>
+
                                         </div>
-                                        
+
                                     </div>
                                 </td>
                                 <td>
@@ -210,7 +218,7 @@
                                 <td>
                                     <p>{{ bid.status }}</p>
                                 </td>
-                                {% if request.user.is_authenticated and work_offer.created_by.id == request.user.mainuser.id  %}
+                                {% if request.user.is_authenticated and work_offer.created_by.id == request.user.mainuser.id %}
                                 <td>
                                     <a href="{% url 'view_bidding_details' work_offer.id bid.id %}">View</a>
                                 </td>

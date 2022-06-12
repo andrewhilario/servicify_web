@@ -641,8 +641,12 @@ def profile_page(request, user_id):
     })
 
 
-def profile_client(request):
-    return render(request, 'includes/profile-page-client.html')
+def edit_service(request, service_id):
+    return render(request, 'includes/edit-service.html')
+
+
+def edit_work_offer(request, work_offer_id):
+    return render(request, 'includes/edit-offer.html')
 
 
 def view_service(request):

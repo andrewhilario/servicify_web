@@ -4,7 +4,6 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 
-
 from . import views
 from .forms import UserLoginForm
 
@@ -18,24 +17,35 @@ urlpatterns = [
     path('custom_logout', views.custom_logout, name='custom_logout'),
     path('register/', views.register, name='register'),
 
-    #services
-    path('service/<slug:service_id>', views.service_details, name='service_details'),
-    path('service-marketplace/', views.service_marketplace, name='service_marketplace'),
+    # services
+    path('service/<slug:service_id>',
+         views.service_details, name='service_details'),
+    path('service-marketplace/', views.service_marketplace,
+         name='service_marketplace'),
     path('createservice/', views.createservice, name='createservice'),
-    path('service/<slug:service_id>/service_requests', views.service_requests, name='service_requests'),
+    path('service/<slug:service_id>/service_requests',
+         views.service_requests, name='service_requests'),
+     #     for Edit Service
+    path('service/<slug:service_id>/edit/', views.edit_service, name='edit_service'),
+    #     end of Edit Service
     path('service-request/view/', views.view_service, name='view_service'),
 
     # work offers
     path('createworkoffer/', views.createworkoffer, name='createworkoffer'),
     path('workoffer/', views.work_offer_list, name='work_offer_list'),
-    path('biddings/<slug:work_offer_id>', views.work_offer_bidding, name='work_offer_bidding'),
-    path('biddings/<slug:work_offer_id>/view/<slug:bidding_id>', views.view_bidding_details, name='view_bidding_details'),
-    
+    #    for Edit Work Offer
+    path('workoffer/<slug:work_offer_id>/edit/', views.edit_work_offer, name='edit_work_offer'),
+     #    end of Edit Work Offer
+    path('biddings/<slug:work_offer_id>',
+         views.work_offer_bidding, name='work_offer_bidding'),
+    path('biddings/<slug:work_offer_id>/view/<slug:bidding_id>',
+         views.view_bidding_details, name='view_bidding_details'),
+
     path('register/success', views.register_success, name='register_success'),
     path('activate/<slug:uidb64>/<slug:token>/',
          views.activate, name='activate'),
     path('profile/<slug:user_id>', views.profile_page, name='profile'),
-    path('profile/client', views.profile_client, name='profile_client'),
+
     path('contact/', views.contactus, name='contact_us'),
     path('about/', views.aboutus, name='about_us'),
     path('search/', views.search_results, name='search_results'),
@@ -47,7 +57,5 @@ urlpatterns = [
     path('acquireservice2/', views.acquireservice2, name='acquireservice2'),
 
 
-    
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
