@@ -127,6 +127,10 @@
                     <label for="" class="service-create-label">Service owner</label>
                     {{ service_owner }} (You)
                 </div>
+                <div class="service-create-input">
+                    <label for="" class="service-create-label">Service {{ form.service_name.label }}</label>
+                    {{ form.service_name }}
+                </div>
                 <div class="location">
                     <label for="">Service Location</label>
                     {{ form.city }}
@@ -136,10 +140,7 @@
                     <label for="" class="service-create-label">{{ form.service_type.label }}</label>
                     {{ form.service_type }}
                 </div>
-                <div class="service-create-input">
-                    <label for="" class="service-create-label">Service {{ form.service_name.label }}</label>
-                    {{ form.service_name }}
-                </div>
+                
                 <div class="service-create-input">
                     <label for="" class="service-create-label">{{ form.price.label }}</label>
                     {{ form.price }}
