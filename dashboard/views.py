@@ -194,6 +194,8 @@ def work_offer_bidding(request, work_offer_id):
                 bid.workoffer_id = work_offer
                 bid.status = 'PENDING'
                 bid.save()
+                send_sms(str(work_offer.created_by.phone_number),
+                     f"Hello {work_offer.created_by.full_name},\n\nYour {work_offer.work_name} has a new bid from user {request.user.mainuser.full_name} with amount of {round(bid.bid_amount, 2)}PHP.")
                 return HttpResponseRedirect(work_offer_id)
 
     context = {
@@ -226,9 +228,14 @@ def view_bidding_details(request, work_offer_id, bidding_id):
             bid.workoffer_id.status = 'CLOSED'
             bid.save()
             bid.workoffer_id.save()
+            send_sms(str(bid.bidder_id.phone_number),
+                f"Hello {bid.bidder_id.full_name},\n\nYour {bid.workoffer_id.work_name} bid has been ACCEPTED by the client.\
+                    You may contact the client to discuss further: {bid.workoffer_id.created_by.phone_number}.")
         elif request.POST.get('decline-bid', False):
             bid.status = 'DECLINED'
             bid.save()
+            send_sms(str(bid.bidder_id.phone_number),
+                f"Hello {bid.bidder_id.full_name},\n\nYour {bid.workoffer_id.work_name} bid has been DECLINED by the client.")
         else:
             form_error = 'Unknown action'
 
