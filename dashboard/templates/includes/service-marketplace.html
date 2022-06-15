@@ -87,7 +87,7 @@
                     <img src="{{ img.image.url }}" alt="">
                     {% endfor %}
                 </div>
-                <p>{{service.service_name|truncatechars:16}}</p>
+                <p style="font-weight: bold !important;">{{service.service_name|truncatechars:16}}</p>
                 <p>{{service.service_type}}</p>
                 <div class="service-loc">
                     {% if service.street %} <p><span class="service-loc-l" hidden>

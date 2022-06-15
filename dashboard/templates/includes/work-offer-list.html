@@ -71,7 +71,7 @@
                     <img src="{{ img.image.url }}" alt="">
                     {% endfor %}
                 </div>
-                <p>{{ work_offer.work_name }}</p>
+                <p style="font-weight: bold !important;">{{ work_offer.work_name }}</p>
                 <span>Bid Starts at &#8369;{% filter intcomma %}{{ work_offer.min_pay|floatformat }}{% endfilter %}
 
                 </span>
