@@ -170,7 +170,8 @@
     color: white;
     margin-bottom: 10px;
 }
-.srvc-dtl-tag-containers{
+
+.srvc-dtl-tag-containers {
     width: 150px;
     height: 50px;
     background-color: #749E7D;
@@ -182,7 +183,8 @@
     color: white;
     margin-bottom: 10px;
 }
-.srvc-dtl-tag-containers a{
+
+.srvc-dtl-tag-containers a {
     color: white;
 }
 
@@ -714,5 +716,9 @@
 
     .acquired-service-card {
         margin: 10px 20px;
+    }
+
+    .srvc-dtl-img-thumbs {
+        width: 100%;
     }
 }

@@ -76,11 +76,19 @@
     transition: all .4s ease-in-out;
 }
 
+.wo-sub-img:nth-child(1) img {
+    filter: grayscale(100%);
+}
+
 .wo-sub-img:nth-child(2) img {
     filter: grayscale(100%);
 }
 
 .wo-sub-img:nth-child(3) img {
+    filter: grayscale(100%);
+}
+
+.wo-sub-img:nth-child(4) img {
     filter: grayscale(100%);
 }
 
@@ -167,7 +175,7 @@
     align-items: center;
 }
 
-.edit-btn{
+.edit-btn {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -175,7 +183,8 @@
     margin-top: 20px;
     cursor: pointer;
 }
-.edit-btn a{
+
+.edit-btn a {
     text-decoration: none;
     color: rgb(255, 255, 255);
     font-weight: bold;
@@ -869,7 +878,8 @@
     .wo-latest-bid-content span img {
         display: none;
     }
-    .edit-btn{
+
+    .edit-btn {
         width: 80%;
         display: flex;
         justify-content: center;
@@ -877,7 +887,8 @@
         margin: 5px 0px;
         cursor: pointer;
     }
-    .edit-btn a{
+
+    .edit-btn a {
         text-decoration: none;
         color: rgb(255, 255, 255);
         font-weight: bold;
@@ -886,5 +897,9 @@
         border-radius: 5px;
         text-align: center;
         background-color: #749E7D;
+    }
+
+    .wo-img-thumbs {
+        width: 100%;
     }
 }
