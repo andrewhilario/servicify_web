@@ -2,6 +2,7 @@
 
 body {
   font-family: "Raleway", sans-serif;
+  overflow-x: hidden;
 }
 
 .service-create-container {
@@ -18,7 +19,8 @@ body {
 .service-create-title h1 {
   margin-bottom: 8px;
 }
-.service-create-titles{
+
+.service-create-titles {
   width: 93%;
   margin-bottom: 45px;
   text-align: left;
@@ -30,6 +32,7 @@ body {
 .service-create-titles h1 {
   margin-bottom: 8px;
 }
+
 .cancel-btn {
   background-color: #852121;
   border: 1px solid #e3e3e3;
@@ -458,7 +461,8 @@ textarea {
   gap: 12px;
   padding: 5px;
 }
-.cancel-btns{
+
+.cancel-btns {
   display: none;
 }
 
@@ -480,9 +484,10 @@ textarea {
   .service-create-flex {
     flex-direction: column;
   }
-  .service-create-titles{
-  margin-top: 40px;
-    }
+
+  .service-create-titles {
+    margin-top: 40px;
+  }
 
   .service-create-flex-container {
     display: flex;
@@ -568,9 +573,11 @@ textarea {
     width: 200px !important;
     height: 150px !important;
   }
-  .cancel-btn{
+
+  .cancel-btn {
     display: none;
   }
+
   .cancel-btns {
     display: flex;
     background-color: #852121;
@@ -586,7 +593,7 @@ textarea {
     /* box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 10px; */
     margin: 10px 0px;
   }
-  
+
   .cancel-btns a {
     width: 100%;
     text-align: center;

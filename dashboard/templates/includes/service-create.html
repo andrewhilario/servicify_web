@@ -14,6 +14,7 @@
         } else {
             document.addEventListener('DOMContentLoaded', fn);
         }
+
     }
     ready(ImgUpload)
 
@@ -59,6 +60,7 @@
                             imgArray.push(f);
                             imgWrap.innerHTML += "<div class='service-thumbnail-upload-close'></div>"
                             imgWrap.removeAttribute('background')
+                            
                             imgWrap.setAttribute('style', "background-image: url(" + e.target.result + ");background-repeat: no-repeat; background-position: center; background-size: cover;")
                             imgWrap.setAttribute('data-file', f.name)
                             iterator++;

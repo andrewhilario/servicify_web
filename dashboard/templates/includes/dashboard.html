@@ -7,7 +7,41 @@
 {% endblock %}
 {% block content %}
 {% include 'navbar.html' %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+    <script>
+        function disclaimer(){
+            Swal.fire({
+                title: 'Welcome to Servicify',
+                text: 'We are here to help you find the best service provider for you',
+                imageUrl: "{% static 'images/main-logo-2.png' %}",
 
+                html: 
+                    "<h2>Disclaimer</h1>" + "<br>" +
+                        "<p>This website is for capstone and research purposes only. Your facebook data and mobile number is not shared with anyone. The data saved when you login using facebook is used to display your profile picture, email and name only. Please be advised that this website is not for any commercial use. Thank you for your understanding.</p>" + "<br>" ,
+                input: 'checkbox',
+                inputAttributes: {
+                    required: 'true'
+                },
+                
+                inputPlaceholder: 'I agree to the disclaimer',
+                allowOutsideClick: false,
+                showConfirmButton: true,
+                confirmButtonText:'Continue',
+                confirmButtonColor: '#5D9167',
+                inputValidator: (value) => {
+                    return new Promise((resolve) => {
+                        if (value == 1) {
+                            resolve()
+                        } else {
+                            resolve('Please check the required input!')
+                        }
+                    })
+                }
+            })
+            
+        }
+        document.getElementById("body").addEventListener('load', disclaimer());
+    </script>
 <script>
 
     var distance = (lat1, lon1, lat2, lon2, unit) => {

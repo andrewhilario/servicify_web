@@ -2,12 +2,14 @@
 
 body {
   font-family: "Raleway", sans-serif;
+  overflow-x: hidden;
 }
 
 .work-offer-create-container {
   width: 60%;
   margin: auto;
   padding: 70px;
+
 }
 
 .work-offer-create-title {
@@ -254,7 +256,8 @@ textarea {
   position: absolute;
   z-index: -1;
 }
-.cancel-btns{
+
+.cancel-btns {
   display: none;
 }
 
@@ -278,13 +281,16 @@ textarea {
     width: 100%;
     margin: 0;
   }
-  .work-offer-create-titles{
+
+  .work-offer-create-titles {
     width: 100%;
     margin: 0;
   }
-  .cancel-btn{
+
+  .cancel-btn {
     display: none;
   }
+
   .cancel-btns {
     display: flex;
     background-color: #852121;
@@ -300,7 +306,7 @@ textarea {
     /* box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 10px; */
     margin: 10px 0px;
   }
-  
+
   .cancel-btns a {
     width: 100%;
     text-align: center;
