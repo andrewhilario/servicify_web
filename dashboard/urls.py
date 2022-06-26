@@ -27,6 +27,7 @@ urlpatterns = [
          views.service_requests, name='service_requests'),
      #     for Edit Service
     path('service/<slug:service_id>/edit/', views.edit_service, name='edit_service'),
+    path('service/<slug:service_id>/delete/', views.delete_service, name='delete_service'),
     #     end of Edit Service
     path('service-request/view/', views.view_service, name='view_service'),
 
@@ -35,6 +36,7 @@ urlpatterns = [
     path('workoffer/', views.work_offer_list, name='work_offer_list'),
     #    for Edit Work Offer
     path('workoffer/<slug:work_offer_id>/edit/', views.edit_work_offer, name='edit_work_offer'),
+    path('workoffer/<slug:work_offer_id>/delete/', views.delete_workoffer, name='delete_workoffer'),
      #    end of Edit Work Offer
     path('biddings/<slug:work_offer_id>',
          views.work_offer_bidding, name='work_offer_bidding'),

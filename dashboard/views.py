@@ -649,11 +649,108 @@ def profile_page(request, user_id):
 
 
 def edit_service(request, service_id):
-    return render(request, 'includes/edit-service.html')
+    try:
+        service = Service.objects.get(id=service_id)
+        service_imgs = ServiceImage.objects.filter(service=service)
+    except:
+        return HttpResponseRedirect("/")
+    
+    if request.method == "POST":
+        edit_service_form = CreateServiceForm(request.POST, instance=service)
+        locationData = request.POST.get('locData', False)
+
+        if edit_service_form.is_valid() and locationData:
+            service = edit_service_form.save(commit=False)
+            locationData = dict(json.loads(locationData))
+
+            for loc in locationData['details']:
+                if 'route' in loc["types"]:
+                    service.street = loc["long_name"]
+                elif 'neighborhood' in loc["types"]:
+                    service.street = loc["long_name"]
+                elif 'premise' in loc["types"]:
+                    service.street = loc["long_name"]
+                elif 'sublocality' in loc["types"]:
+                    service.sublocality = loc["long_name"]
+                elif 'locality' in loc["types"]:
+                    service.locality = loc["long_name"]
+
+            service.full_addr = locationData["Label"]
+            service.save()
+
+            service_imgs.delete()
+            for service_img in request.FILES.getlist('file'):
+                pic = ServiceImage()
+                pic.service = service
+                pic.image = service_img
+                pic.save()
+
+            return redirect('service_details', service_id=service_id)
+
+
+    edit_service_form = CreateServiceForm(instance=service)
+
+    return render(request, 'includes/edit-service.html', {
+        'service': service,
+        'form': edit_service_form,
+    })
+
+
+def delete_service(request, service_id):
+    try:
+        service = Service.objects.get(id=service_id)
+        service_imgs = ServiceImage.objects.filter(service=service)
+    except:
+        return HttpResponseRedirect("/")
+
+    service.delete()
+    service_imgs.delete()
+
+    return HttpResponseRedirect("/")
 
 
 def edit_work_offer(request, work_offer_id):
-    return render(request, 'includes/edit-offer.html')
+    try:
+        workoffer = WorkOffer.objects.get(id=work_offer_id)
+        workoffer_imgs = WorkOfferImage.objects.filter(workoffer=workoffer)
+    except:
+        return HttpResponseRedirect("/")
+    
+    if request.method == "POST":
+        edit_workoffer_form = CreateWorkOfferForm(request.POST, instance=workoffer)
+
+        if edit_workoffer_form.is_valid():
+            workoffer = edit_workoffer_form.save()
+
+            workoffer_imgs.delete()
+            for work_offer_img in request.FILES.getlist('file'):
+                pic = WorkOfferImage()
+                pic.workoffer = workoffer
+                pic.image = work_offer_img
+                pic.save()
+
+            return redirect('work_offer_bidding', work_offer_id=work_offer_id)
+
+
+    edit_workoffer_form = CreateWorkOfferForm(instance=workoffer)
+
+    return render(request, 'includes/edit-offer.html', {
+        'workoffer': workoffer,
+        'form': edit_workoffer_form,
+    })
+
+
+def delete_workoffer(request, work_offer_id):
+    try:
+        workoffer = WorkOffer.objects.get(id=work_offer_id)
+        workoffer_imgs = WorkOfferImage.objects.filter(workoffer=workoffer)
+    except:
+        return HttpResponseRedirect("/")
+
+    workoffer.delete()
+    workoffer_imgs.delete()
+
+    return HttpResponseRedirect("/")
 
 
 def view_service(request):

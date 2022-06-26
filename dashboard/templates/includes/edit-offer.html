@@ -1,4 +1,3 @@
-{% extends 'index.html' %}
 {% load static %}
 {% block css_files %}
 <link rel="stylesheet" href="{% static 'css/includes/workoffer-create.css' %}">
@@ -113,8 +112,8 @@
     {% else %}
     <div class="work-offer-create-titles">
         <h1>Edit your Work Offer</h1>
-        <div class="cancel-btn">
-            <a href="{{ request.META.HTTP_REFERER }}">Cancel</a>
+        <div class="">
+            <a href="{% url 'delete_workoffer' workoffer.id  %}">Delete</a>
         </div>
         <!-- <p>Connect with freelancers, part-timers and professional services</p> -->
     </div>
@@ -141,28 +140,22 @@
             <div class="work-offer-create-form">
                 <div class="work-offer-create-input">
                     <label for="" class="work-offer-create-label">Client</label>
-                    {{ client_name }} (You)
+                    {{ workoffer.created_by.full_name  }} (You)
                 </div>
                 <div class="work-offer-create-input">
                     <label for="" class="work-offer-create-label">Title of your Work Offer</label>
                     {{ form.work_name }}
-                    <input type="text">
                 </div>
                 <div class="work-offer-create-input">
                     <label for="" class="work-offer-create-label">{{ form.min_pay.label }} Starting Bid (PHP)</label>
                     {{ form.min_pay }}
-                    <input type="number" name="" id="">
                 </div>
                 <div class="work-offer-create-input">
                     <label for="" class="work-offer-create-label">{{ form.description.label }} Description</label>
                     {{ form.description }}
-                    <textarea name="" id="" cols="40" rows="10" maxlength="1000" minlength="5"></textarea>
                 </div>
                 <div class="work-offer-create-form-button">
                     <input type="submit" id="create-workoffer" value="Update Work Offer" />
-                </div>
-                <div class="cancel-btns">
-                    <a href="{{ request.META.HTTP_REFERER }}">Cancel</a>
                 </div>
             </div>
         </div>
