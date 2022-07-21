@@ -43,6 +43,18 @@ body {
     transform: translateX(0%);
 }
 
+@media screen and (max-width: 1366px) {
+    .scroll-top {
+        padding: 10px 15px;
+    }
+
+    .scroll-top i {
+        color: white;
+        font-size: 1.5rem;
+    }
+
+}
+
 @media screen and (max-width: 768px) {
     body {
         display: block;

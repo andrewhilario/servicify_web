@@ -198,7 +198,13 @@
     transition: all .2s ease-in-out;
 }
 
-.dashboard-show-more a p {
+/* .dashboard-show-more a p {
+    font-style: bold;
+    font-size: 1.5rem;
+    color: #000000 !important;
+    transition: all .2s ease-in-out;
+} */
+.dashboard-show-more-p {
     font-style: bold;
     font-size: 1.5rem !important;
     color: #000000 !important;
@@ -311,7 +317,7 @@
 
 .dashboard-show-more-2 a p {
     font-style: bold;
-    font-size: 1.5rem !important;
+    font-size: 1.5rem;
     color: #000000 !important;
     transition: all .2s ease-in-out;
 }
@@ -435,7 +441,78 @@
 }
 
 
+@media screen and (max-width: 1366px) {
+    .dashboard-title-header {
+        font-size: 1.5rem;
+    }
 
+    .dashboard-sub-title {
+        font-size: 1rem;
+    }
+
+    .dashboard-setup-service-profile {
+        width: 50%;
+        float: left;
+        font-size: 1rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+        margin-top: 5%;
+        margin-left: 5%;
+    }
+
+    .dashboard-setup-service-profile a {
+        width: 100%;
+        padding: 20px 40px;
+        border-radius: 5px;
+        text-decoration: none;
+        color: white;
+        background-color: #507C59;
+    }
+
+    .work-offer-thumbnail-parent {
+        width: 150px;
+        height: 200px;
+        /* background-color: gray; */
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .dashboard-show-more,
+    .dashboard-show-more-2 {
+        margin: 0 10px;
+        width: 100%;
+        right: -3%;
+        top: 0%;
+        position: relative;
+    }
+
+    .dashboard-work-offers,
+    .dashboard-services {
+        height: 70vh !important;
+    }
+
+
+    .dashboard-show-more-p {
+        font-size: 1rem !important;
+    }
+
+    .dashboard-template-4 {
+        height: 80vh;
+    }
+
+    .dashboard-template-4 h1 {
+        width: 100%;
+        font-size: 1.5rem;
+    }
+
+    .mailing-section input {
+        width: 100%;
+    }
+
+    .mailing-section label {
+        font-size: 1rem;
+    }
+}
 
 @media screen and (max-width: 768px) {
     .dashboard-template-1 {
@@ -479,6 +556,7 @@
         display: flex;
         height: 100%;
         flex-direction: column;
+        padding: 20px;
     }
 
     .offers {
