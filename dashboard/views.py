@@ -195,7 +195,7 @@ def work_offer_bidding(request, work_offer_id):
                 bid.status = 'PENDING'
                 bid.save()
                 send_sms(str(work_offer.created_by.phone_number),
-                     f"Hello {work_offer.created_by.full_name},\n\nYour {work_offer.work_name} has a new bid from user {request.user.mainuser.full_name} with amount of {round(bid.bid_amount, 2)}PHP.")
+                         f"Hello {work_offer.created_by.full_name},\n\nYour {work_offer.work_name} has a new bid from user {request.user.mainuser.full_name} with amount of {round(bid.bid_amount, 2)}PHP.")
                 return HttpResponseRedirect(work_offer_id)
 
     context = {
@@ -229,13 +229,13 @@ def view_bidding_details(request, work_offer_id, bidding_id):
             bid.save()
             bid.workoffer_id.save()
             send_sms(str(bid.bidder_id.phone_number),
-                f"Hello {bid.bidder_id.full_name},\n\nYour {bid.workoffer_id.work_name} bid has been ACCEPTED by the client.\
+                     f"Hello {bid.bidder_id.full_name},\n\nYour {bid.workoffer_id.work_name} bid has been ACCEPTED by the client.\
                     You may contact the client to discuss further: {bid.workoffer_id.created_by.phone_number}.")
         elif request.POST.get('decline-bid', False):
             bid.status = 'DECLINED'
             bid.save()
             send_sms(str(bid.bidder_id.phone_number),
-                f"Hello {bid.bidder_id.full_name},\n\nYour {bid.workoffer_id.work_name} bid has been DECLINED by the client.")
+                     f"Hello {bid.bidder_id.full_name},\n\nYour {bid.workoffer_id.work_name} bid has been DECLINED by the client.")
         else:
             form_error = 'Unknown action'
 
@@ -654,7 +654,7 @@ def edit_service(request, service_id):
         service_imgs = ServiceImage.objects.filter(service=service)
     except:
         return HttpResponseRedirect("/")
-    
+
     if request.method == "POST":
         edit_service_form = CreateServiceForm(request.POST, instance=service)
         locationData = request.POST.get('locData', False)
@@ -687,7 +687,6 @@ def edit_service(request, service_id):
 
             return redirect('service_details', service_id=service_id)
 
-
     edit_service_form = CreateServiceForm(instance=service)
 
     return render(request, 'includes/edit-service.html', {
@@ -715,9 +714,10 @@ def edit_work_offer(request, work_offer_id):
         workoffer_imgs = WorkOfferImage.objects.filter(workoffer=workoffer)
     except:
         return HttpResponseRedirect("/")
-    
+
     if request.method == "POST":
-        edit_workoffer_form = CreateWorkOfferForm(request.POST, instance=workoffer)
+        edit_workoffer_form = CreateWorkOfferForm(
+            request.POST, instance=workoffer)
 
         if edit_workoffer_form.is_valid():
             workoffer = edit_workoffer_form.save()
@@ -730,7 +730,6 @@ def edit_work_offer(request, work_offer_id):
                 pic.save()
 
             return redirect('work_offer_bidding', work_offer_id=work_offer_id)
-
 
     edit_workoffer_form = CreateWorkOfferForm(instance=workoffer)
 
